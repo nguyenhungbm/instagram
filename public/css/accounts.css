@@ -1,0 +1,138 @@
+.content{
+    width: 70%; 
+    margin: 0 auto;
+    height: 100%;
+    box-sizing: border-box ;
+    display: table;
+    font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;;
+}
+.edit-form{ 
+    width: 100%;
+    background: white;
+    border: 1px solid #bdbdbd
+}
+.content .edit-form__left{
+    float:left;     
+    width: 25%;   
+}
+.content .edit-form__left li{
+    padding: 15px;
+ }
+ .content .edit-form__left li.noactivate:hover{
+    background: #b5b5b557;
+ }
+.edit-form__right{
+    float:left;
+    padding-top: 20px;
+    width:75%;
+    border-left: 1px solid #bdbdbd;
+    min-height:545px
+} 
+
+.edit-form__right .clr img{   
+    height: 40px;
+    width: 40px;
+    object-fit: cover;   
+}
+.edit-form__right .clr b{
+    padding: 15px;
+    font-weight: 600;
+    float: right    ;
+}
+.edit-form__right input[type="text"],.edit-form__right input[type="password"]{
+    margin: 10px;
+    height: 30px;
+    width: 100%;
+    padding-left: 15px;
+    border:1px solid #bdbdbd;
+    border-radius: 5px;
+}
+.edit-form__right textarea{
+    margin: 10px;
+    height: 50px;
+    width: 100%;
+    resize: vertical;
+    padding: 15px;
+    border:1px solid #bdbdbd;
+
+}
+.edit-form__title {
+    width: 30%;
+    height: 100%;
+    float: left;
+    text-align: right;
+}
+.edit-form__content{
+    width:70%; 
+    height: 100%; 
+    float: left
+}
+.edit-form__content p{
+    padding-left: 10px;}
+.clr .button{
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 10px;}
+.clr .buttons{
+    position: relative;
+    width: 80%;
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 21px;}
+.buttons img{ 
+    position: absolute;
+    top: 0;
+    left: 45%;
+}
+.clr .buttons p{
+    left: 45%;
+}
+.gender{
+    padding: 15px
+}
+.gender input{
+   width:10%;
+   margin-top: 5px  ;
+}
+.gender dd{
+    width: 90%;
+    text-align: left
+}
+.activate{
+    border-left: 2px solid black;
+}
+@media only screen and (max-width: 670px){
+.edit-form__left{
+    display: none;
+}
+.edit-form__right .w-80{
+    width: 125%;
+}
+.edit-form__title {
+    width: 100%;
+    height: 100%;
+    float: right;
+    text-align: left;
+}
+.edit-form__right .clr b {
+    padding-bottom: 0px;
+    float: left;
+}
+.w-80 .clr .edit-form__title,.w-80 .clr .edit-form__content{
+    text-align: center;
+} 
+p#myBtn-5{
+    margin-top: -20px;
+    float: unset;
+}
+.userr p{float: unset !important;}
+.edit-form__content{
+    width:100%;
+}
+.edit-form__content input,.edit-form__content textarea{
+    width: 92% !important;
+}
+.edit-form__right .clr img {
+    margin-left: 15px;
+}
+}

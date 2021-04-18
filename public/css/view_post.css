@@ -1,0 +1,57 @@
+form{
+   
+   width: 100% !important;
+   background: #fff;
+}
+.asd{
+   margin: auto !important;
+    width: 60%;
+    border: 1px solid #bdbdbd;
+    height: 90%;
+    top: 0;
+ }
+ .asa{
+   float: left;
+   width: 65%;
+   height: 100%;
+ }
+ .ass{
+    float: left;
+   width:35%;
+   height: 100%;
+   background: white;
+ }
+ .asf{
+   font-weight: 600;
+   width: 50% ;
+   float: left;
+ }
+ hr,.hr{
+   width:70%;
+   margin:0 auto
+}
+footer{width:90%;
+   margin:0 auto
+}
+
+@media only screen and (max-width: 670px){
+   body{
+      margin-top: 120px !important;
+   }
+   .asd{width: 100%;
+      margin-top: 120px;
+      border: none;
+   }
+   .asa{width: 100%;height: 70%;}
+   .ass{width: 100%;float: unset;}
+   .heq{
+      position: absolute;
+      top: 0;
+      z-index: 1000;
+      margin-top: 50px;
+      width: 100%;}
+   .her{height: 0% !important;}
+   .heu form textarea,body,.ass {
+      background-color: #f3f3f3b5;
+   } 
+}

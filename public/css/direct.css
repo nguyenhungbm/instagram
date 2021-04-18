@@ -1,0 +1,338 @@
+.messages{
+    margin-left: -34px;
+    height: 87vh;
+    width: 75vw; 
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    border: 1px solid #bdbdbd;
+    transform: translate(-50%,-50%);} 
+.top-left{
+    border-right: 1px solid #bdbdbd;
+    border-bottom: 1px solid #bdbdbd;}
+.bottom-left{
+    border-right: 1px solid #bdbdbd;}
+.top-right{
+    border-bottom: 1px solid #bdbdbd;}
+.rights{
+    top: 0;position: fixed;
+    margin-top: 90px;
+    margin-top: 0 !important;
+}  
+.top-left,.top-right{
+    width: 100%;    
+    height: 13%;
+}
+.bottom-left,.bottom-right{
+    width: 100%;
+    height: 87%; 
+    overflow: auto;
+    font-size: 12px;
+
+}  
+.bottom-right{
+    border-bottom-right-radius: 5px;
+    border: none;
+    height: 75%;}
+.top-left p{ 
+    color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);}
+.top-left img{ 
+    float: right;
+    padding: 25px;
+}
+.we{
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+}
+.we p{
+    margin-top: 20px;
+}
+.we button{
+    margin-top: 20px;
+    background-color: #0072ffd1;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+.user{
+    width: 80%;
+    float: left;
+    padding: 15px;
+    font-weight: 700;
+}
+.user img{
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.infos{
+    width: 20%;
+    float: left;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.info{
+    padding: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border: 1px solid black;
+    border-radius: 50%;}
+.bottom-left img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    float: left;
+    margin: 15px;
+}
+.bottom-left ul{height: 100%;}
+.bottom-left li{ 
+    width: 100%;  
+    height: 15%;
+} 
+.bottom-left li:hover{
+    background-color: #80808014;
+}    
+.bottom-left li p,.bottom-left li .is-pulled-right{
+    margin-top:5% ;
+}
+.bottom-right .img-upload{
+    height: 300px;
+    width: 200px;
+    border-radius: 20px;
+} 
+.my-messages{
+
+    float: right;
+    width: 95%; 
+    margin-top: 15px;
+    margin-bottom:15px;
+    
+}
+.my-messages .me-messages{ 
+    margin-right: 20px;
+}
+.my-messages p{
+    box-sizing: content-box;
+    background-color:#80808021 ;
+    padding: 12px 8px;
+    float: right;
+    max-width: 45%;
+    border-radius: 18px;
+}
+.friend-messages{float: left;
+    width: 100%;
+    margin-bottom:60px;
+}
+.friend-img{
+    margin: 0 10px;
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+} 
+.time{font-size: 13px;
+    opacity: 0.5;
+    text-align: center;
+    line-height: 24px;}
+.friend-messages .os{
+    position: absolute;
+    top: 8px;
+    left: 67px;
+}
+.friend-chat{
+    padding: 12px 8px;
+    float: left;
+    border: 1px solid gray;
+    max-width: 45%;
+    border-radius: 18px;
+}  
+.friend-messages a{
+    float: left
+}
+.form-chat{
+    width: 90%; 
+    margin: 15px;
+    bottom: 0;
+}
+.form-chat .img-1{
+    position: absolute;
+    margin: 10px;
+}
+.form-chat .img-2{
+    position: absolute;  
+    top:0;
+    right: 0;
+    margin: 5px;
+    margin-right: 80px;
+    width: 35px;
+    height: 35px;
+}
+.form-chat .img-3{
+    position: absolute;  
+    top:0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    margin-right: 40px;
+}
+.form-chat textarea{
+    resize: none;  
+    padding-left: 50px;
+    padding-top: 10px;
+    width: 100%;   
+    border: 1px solid rgb(128 128 128 / 0.38);
+    border-radius: 20px;
+    
+}
+.form-chat button{
+    color:#0095f6;
+    position: absolute;
+    top:0;
+    right:0;
+    background-color: transparent;
+    border: none;
+    padding: 13px;
+    
+    font-weight: 700;
+    cursor: pointer;
+}  
+@media only screen and (max-width: 1000px){
+    .messages{  margin-left: 0;} 
+} 
+   
+@media only screen and (max-height: 530px){
+    .messages{  margin-top: 34px;} 
+    .top-left,.top-right{ 
+        height: 25%;}
+    .bottom-left li{ 
+            width: 100%;  
+            height: 35%;
+        }
+    .bottom-left,.bottom-right{ 
+    height: 75%;}
+}
+#id01{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);  
+    z-index: 100;
+    top:0
+}
+.w3-modal-content{
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    background-color:#fff;
+    width: 360px; 
+}
+.po{
+    flex-direction: column;
+    border-radius: 10px;
+}
+.pp{ 
+    height: 30px;
+}
+.pp span{ 
+    float: left;
+    width: 10%; 
+    text-align: center;
+    font-size: 40px;
+}
+.pp p{
+    width: 70%;
+    text-align: center;
+    line-height: 45px;
+    font-weight: 600;}
+.pp button{
+    color:#0095f6;
+    line-height: 45px;
+}
+.pi{ 
+    border-top: 1px solid #bdbdbd;
+    border-bottom: 1px solid #bdbdbd;
+    margin-top: 10px;
+}
+.pi p{position: absolute;
+    padding: 15px;}
+.pi input{
+    margin: 15px;
+    width: 69%;
+    border: none;
+    font-size: 17px;
+    margin-left: 60px;
+}
+.pu{ 
+    height: 210px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.pu .pq{
+    padding: 25px;
+    line-height: 40px;}
+.py{
+    padding-top: 10px;
+    padding-left: 15px;
+    height: 56px;  
+}
+.py img{
+    float: left;
+    width: 40px;
+    height: 40px;
+}
+.py div{
+    float: left;
+    width: 80%;
+    padding: 0px 15px;  
+}
+.py button{ 
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    color:white;
+    border: 1px solid #bdbdbd;}
+.py:hover{background-color: #fafafa}
+.background-blue{background-color:#0095f6;border:none;color:#fff}
+.background-white{background-color:#fff;color: #000;}
+.pt a{ 
+    display: flex;
+    background: #e0f1ff;
+    color: #0095f6;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+.no-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;}
+.pt a span{
+    margin-left: 5px;}
+.pe{
+    float: left;
+    width: 83%;
+    max-height: 270px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-left: 60px;
+}
+.pe .pt{
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.pw{
+    max-height: 120px; 
+    width: 105%;
+    flex-wrap: wrap;
+    box-sizing: content-box;} 

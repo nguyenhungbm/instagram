@@ -1,0 +1,140 @@
+.left{
+    width: 60%;
+    height: 100px;
+    background-color: white;
+}
+.right{
+    top: 0;position: fixed;
+    margin-top: 90px;
+}
+.cs,button,input[type="submit"]{cursor: pointer;}
+button{outline: none;background-color: transparent;border:none;}
+.os{opacity: 0.5;}
+
+.clr{
+    content: "";
+    display: table;
+    clear: both; 
+    width: 100%;
+}
+.story img{
+    margin-top:10px;
+    margin-left:10px;
+    margin-right:10px;
+    width: 70px;
+    height: 70px;
+    padding:2px;
+    border:2px solid red;
+    
+}
+.story{
+    margin-bottom:50px
+}
+
+.story a{
+    color:black;
+    font-size:14px;
+    text-align:center
+}
+.slick-prev, .slick-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 7px;
+    margin-top: -22px;
+    color: rgb(170, 170, 170);
+    font-weight: bold;
+    font-size: 12px;
+    background-color:#fbfafa;
+    border:none;
+    border-radius:50%;
+    user-select: none;
+    z-index:999
+  }
+  
+.slick-prev {
+    left: 0
+}
+.slick-next {
+    right: 0
+}
+article{
+    background-color:white; box-sizing: border-box; 
+    margin-bottom: 60px;
+}
+.img-user{
+   vertical-align: middle;
+   width: 30px;height: 30px;margin-right: 10px;
+}
+.img-edit{
+   margin-bottom:33px;
+    width: 15px;height: 15px;
+ }
+ article .header,article .attractive{
+     padding: 15px;
+ }
+ article .article-img{position: relative;
+    padding: -15px;
+    height: 65%;
+    width: 100%;
+    border: none;    max-width: 935px;
+   }
+/* article .attractive{
+    z-index: 9992;
+} */
+article .attractive img{margin: 5px;}
+.chat{
+    line-height: 24px;
+}
+hr{opacity: 0.5;}
+.form textarea{
+    border: none;
+    outline: none;
+    padding: 15px;
+    width: 88%;
+    height: 18px;
+    max-height: 80px;
+    resize: none;
+    overflow-wrap: break-word;
+    overflow: hidden;
+}
+.comment-submit{background-color: transparent;
+    border: none;
+    color: #00b8ff;
+    position: absolute;
+    right: 0;
+    margin-top: 10px;
+
+}
+.right{
+    width: 27%; 
+}
+.right .d-block{width: 80%;
+    margin: 0 auto;}
+.right img{vertical-align: middle;margin-right: 10px;object-fit: cover;}
+.user-name{ position: absolute;
+    width: 200%;}
+.suggest-follow{display: none;}
+.suggest{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size:14px
+}
+.suggest img{
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+}
+.save{float: right;}
+.save:hover{opacity: 0.5;}
+.slick-slide li:focus{
+border:none
+}
+@media only screen and (max-width: 670px){
+      .right{display:none}
+      .suggest-follow{display: block;}
+}
+
+.zxm{line-height: 30px;}

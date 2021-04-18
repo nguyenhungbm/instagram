@@ -1,0 +1,40 @@
+ .zxx{
+    min-height: 600px;
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 10px;
+    height: 800px;
+    position: relative;
+} 
+.zxz{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+.zxc{    height: 350px;
+    width: 300px;
+    position: relative;
+    margin-bottom: 40px;
+}
+.zxv{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display:none;
+    padding: 15px;
+    background: rgba(0,0,0,0.5);
+}
+.zxb{
+    position: absolute;
+    right: 0;
+}
+.zxn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50px, -30px);}
+.zxc:hover .zxv{display: block;} 
+.zxv{color: white;}
