@@ -91,9 +91,9 @@ h4 {
               @csrf
                 <h1>Instagram</h1><hr>
                 </br>
-                <input type="text" name="email" class="form-control input-sm chat-input" placeholder="username"/>
+                <input type="text" name="email" value="yvien@example.com" class="form-control input-sm chat-input" placeholder="username"/>
                 </br></br>
-                <input type="password" name="password" class="form-control input-sm chat-input" placeholder="password"/>
+                <input type="password" name="password" value="123456" class="form-control input-sm chat-input" placeholder="password"/>
                 </br></br>
                 <div class="wrapper">
                         <span class="group-btn">
