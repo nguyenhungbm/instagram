@@ -27,7 +27,6 @@ class PostImage extends Controller
         if($data['c_user_id'] != $post->user->id)
         User::find($post->user->id)->notify(new CommentPost($post,$user,'comment'));
         return response([
-            'count'=> Post::find($data['c_post']),
             'user'=>\Auth::user(), 
             'avatar' =>pare_url_file(\Auth::user()->avatar,'user')
             ]);

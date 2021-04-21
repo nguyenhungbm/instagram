@@ -41,7 +41,7 @@
    }
    }).done(function(e){
       
-   $('.comment{{$value}}').text(e.count.p_comment);
+   $('.comment{{$value}}').text(c_comment);
    $(".list-comment{{$value}}").prepend(`
    <div class="clr het">
    <div class="hew"><a href="/${e.user.user}"><img src="${e.avatar}" class="avatar_user_uploaded"></a> </div>

@@ -1,6 +1,41 @@
 <title>{{ $user->c_name}}</title>
 @include('header')
+
 <body>
+<script>
+
+   $(function(){ 
+//số bài viết
+$({ post_count: 0 }).animate({
+   post_count: {{ count($post)}}
+      }, {
+   duration: 1000,
+   easing: 'swing',
+   step: function() {
+      $('.post_count').text(Math.ceil(this.post_count));
+      }
+   });  
+//số người mình đang theo dõi
+$({ follower: 0 }).animate({
+   follower: {{count($userFollow)}}
+      }, {
+   duration: 1000,
+   easing: 'swing',
+   step: function() {
+      $('.follower').text(Math.ceil(this.follower));
+      }
+   });
+//số người đang theo dõi mình
+$({ count: 0 }).animate({
+   count:{{ count($areFollow) }}
+      }, {
+   duration: 1000,
+   easing: 'swing',
+   step: function() {
+      $('.count').text(Math.ceil(this.count));
+      }
+   });
+})</script>
    <section class="sd">
       <img src="{{ pare_url_file($user->avatar,'user') }}" class="rounded-circle user cs avatar_user_uploaded" id="{{$user->id == \Auth::id() ? 'myBtn-5' : ''}}">
       <img src="{{ asset('img/loading.gif')}}" class=" uploadavatar imguser" style="display:none;">
@@ -64,13 +99,13 @@
             </div>
          </div>
          <div class="csc">
-            <p><b style="padding-right: 5px;">{{ count($post)}}</b> {{ __('translate.posts')}}</p>
-            <p class="cs" id="myBtn-6"><b style="padding-right: 5px;" class="follower">{{count($userFollow)}}</b>{{ __('translate.followers')}}</p>
+            <p><b style="padding-right: 5px;" class="post_count">0</b> {{ __('translate.posts')}}</p>
+            <p class="cs" id="myBtn-6"><b style="padding-right: 5px;" class="follower">0</b>{{ __('translate.followers')}}</p>
             <!-- modal setting -->
             <div id="myModal-6" class="modal">
                <div class="modal-content settings animate__animated animate__zoomIn" >
-                  <li class="one">{{ ucwords(__('translate.followers'))}} <span class="float-right cs" id="exit6">&times;</span></li>
-                  <div class="settingss">
+                  <li class="one">{{ ucwords(__('translate.followers'))}} <span class="float-right cs" id="exit6" style="margin-top:-8px">&times;</span></li>
+                  <div class="list">
                      @if(!count($userFollow)) 
                      <li class="k-none"><i class="fa fa-lg fa-user-plus"></i></li>
                      <li class="k-none two">{{ ucwords(__('translate.followers'))}}</li>
@@ -117,11 +152,11 @@
                </div>
             </div>
             <!--end modal-->
-            <p class="cs" id="myBtn-7">{{ __('translate.folowing')}} <b class="count" style="float: none;">{{ count($areFollow) }}</b>{{ __('translate.following')}}</p>
+            <p class="cs" id="myBtn-7">{{ __('translate.folowing')}} <b class="count" style="float: none;">0</b>{{ __('translate.following')}}</p>
             <!-- modal setting -->
             <div id="myModal-7" class="modal">
                <div class="modal-content settings animate__animated animate__zoomIn" >
-                  <li class="one">{{ ucwords(__('translate.followers'))}} <span class="float-right cs" id="exit7">&times;</span></li>
+                  <li class="one">{{ ucwords(__('translate.followers'))}} <span class="float-right cs" id="exit7" style="margin-top:-8px">&times;</span></li>
                   <div class="list">
                      @if(!count($areFollow))
                      <li><i class="fa fa-lg fa-user-plus"></i></li>

@@ -53,7 +53,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Personal'], function () {
 Route::group(['namespace'=>'App\Http\Controllers\Page'], function () { 
     //follow user
     Route::get('/incre-view','HomePageController@incre_view')->name('post.increview'); 
-    Route::get('/follow','HomePageController@follow'); 
+    Route::post('/follow','HomePageController@follow'); 
     Route::post('/upload_user','HomePageController@uploadProfile')->name('upload.user'); 
     Route::get('/delete','HomePageController@deleteProfile')->name('post.delete');
     Route::get('/{user}','HomePageController@index')->name('get.home-page');   

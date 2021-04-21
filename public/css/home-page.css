@@ -455,10 +455,13 @@ h2{
 .settings{text-align: center;
     border-radius: 10px;
     width: 35vw;
-    max-width: 350px;
-    height: 50vh;
+    max-width: 350px; 
     min-height: 400px;
-    overflow: auto;}
+    overflow: hidden;}
+.settings .list{
+    overflow: auto;
+    height: 350px;
+}
 .settings .one{ 
     padding: 10px;
     border-bottom: 1px solid #bdbdbd;

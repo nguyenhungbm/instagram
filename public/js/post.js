@@ -33,8 +33,11 @@ function likepost(postId){
 //folow 
 
 function follow(followed){      
-    $.get({
+    $.post({
         url:"/follow",
+        headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data:{followed:followed},
         beforeSend:function(){
             //welcome (Gợi ý cho bạn)
