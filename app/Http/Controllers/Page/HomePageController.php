@@ -21,12 +21,7 @@ class HomePageController extends Controller
     public function index($id){ 
         //$id là username có thể là Auth->user hoặc không  
         $user = User::where('user',$id)->first();  
-        $post = Post::where(['p_user'=>$user['id'],
-                           'p_type'=>'profile'
-                           ])
-                    ->orderBy('created_at','desc')
-                    ->limit(6)
-                    ->get();
+      
         $countPost = Post::where(['p_user'=>$user['id'],'p_type'=>'profile'])->count();                   
         $video = Post::where(['p_user'=>$user['id'],
                            'p_type'=>'video'])
@@ -43,7 +38,6 @@ class HomePageController extends Controller
         $viewData=[  
             'now'        => Carbon::now(),
             'user'       => $user,
-            'post'       => $post, 
             'countPost'  => $countPost, 
             'title'      => '',
             'video'      => $video, 
@@ -53,6 +47,24 @@ class HomePageController extends Controller
         ];  
         return view('home-page',$viewData);
     } 
+
+    public function loadmore(Request $request){
+        $post = Post::where(['p_user'=> $request->user_id ,
+                             'p_type'=>'profile'
+                            ])
+                ->orderBy('created_at','desc')
+                ->limit($request->limit)
+                ->offset($request->start)
+                ->get();
+        $user = User::where('user',$request->user)->first();  
+        $now  = Carbon::now();
+        $output = '';
+        foreach($post as $key => $val){
+            $output.= view('layout.HomePage.post',compact('now','key','val','user'))->render();
+        }
+        return $output;
+    }
+
     public function saveProfile(Request $request){   
         $data=$request->except('_token','profiles','stories');  
         $data['created_at']=Carbon::now();

@@ -124,8 +124,10 @@
          </div>
       </div>
    </header>
+   
    @yield('content')
 </div>
+
 </html> 
 <script src="{{ asset('js/post.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>

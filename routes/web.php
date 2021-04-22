@@ -51,6 +51,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Personal'], function () {
 }); 
 //home page
 Route::group(['namespace'=>'App\Http\Controllers\Page'], function () { 
+    //load data
+    Route::post('/loadmore','HomePageController@loadmore')->name('loadmore'); 
     //follow user
     Route::get('/incre-view','HomePageController@incre_view')->name('post.increview'); 
     Route::post('/follow','HomePageController@follow'); 
