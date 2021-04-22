@@ -20,14 +20,15 @@ class HomePageController extends Controller
     }
     public function index($id){ 
         //$id là username có thể là Auth->user hoặc không  
-        $user=User::where('user',$id)->first();  
-        $post=Post::where(['p_user'=>$user['id'],
+        $user = User::where('user',$id)->first();  
+        $post = Post::where(['p_user'=>$user['id'],
                            'p_type'=>'profile'
                            ])
                     ->orderBy('created_at','desc')
-                   ->get();
-                           
-        $video=Post::where(['p_user'=>$user['id'],
+                    ->limit(6)
+                    ->get();
+        $countPost = Post::where(['p_user'=>$user['id'],'p_type'=>'profile'])->count();                   
+        $video = Post::where(['p_user'=>$user['id'],
                            'p_type'=>'video'])
                     ->orderBy('created_at','desc')
                     ->get();
@@ -43,6 +44,7 @@ class HomePageController extends Controller
             'now'        => Carbon::now(),
             'user'       => $user,
             'post'       => $post, 
+            'countPost'  => $countPost, 
             'title'      => '',
             'video'      => $video, 
             'followed'   => $isFollow,

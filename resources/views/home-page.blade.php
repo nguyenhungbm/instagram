@@ -1,41 +1,40 @@
 <title>{{ $user->c_name}}</title>
 @include('header')
-
 <body>
-<script>
-
-   $(function(){ 
-//số bài viết
-$({ post_count: 0 }).animate({
-   post_count: {{ count($post)}}
-      }, {
-   duration: 1000,
-   easing: 'swing',
-   step: function() {
-      $('.post_count').text(Math.ceil(this.post_count));
-      }
-   });  
-//số người mình đang theo dõi
-$({ follower: 0 }).animate({
-   follower: {{count($userFollow)}}
-      }, {
-   duration: 1000,
-   easing: 'swing',
-   step: function() {
-      $('.follower').text(Math.ceil(this.follower));
-      }
-   });
-//số người đang theo dõi mình
-$({ count: 0 }).animate({
-   count:{{ count($areFollow) }}
-      }, {
-   duration: 1000,
-   easing: 'swing',
-   step: function() {
-      $('.count').text(Math.ceil(this.count));
-      }
-   });
-})</script>
+   <script>
+      $(function(){ 
+      //số bài viết
+      $({ post_count: 0 }).animate({
+      post_count: {{ $countPost}}
+         }, {
+      duration: 1000,
+      easing: 'swing',
+      step: function() {
+         $('.post_count').text(Math.ceil(this.post_count));
+         }
+      });  
+      //số người mình đang theo dõi
+      $({ follower: 0 }).animate({
+      follower: {{count($userFollow)}}
+         }, {
+      duration: 1000,
+      easing: 'swing',
+      step: function() {
+         $('.follower').text(Math.ceil(this.follower));
+         }
+      });
+      //số người đang theo dõi mình
+      $({ count: 0 }).animate({
+      count:{{ count($areFollow) }}
+         }, {
+      duration: 1000,
+      easing: 'swing',
+      step: function() {
+         $('.count').text(Math.ceil(this.count));
+         }
+      });
+      })
+   </script> 
    <section class="sd">
       <img src="{{ pare_url_file($user->avatar,'user') }}" class="rounded-circle user cs avatar_user_uploaded" id="{{$user->id == \Auth::id() ? 'myBtn-5' : ''}}">
       <img src="{{ asset('img/loading.gif')}}" class=" uploadavatar imguser" style="display:none;">
@@ -255,7 +254,7 @@ $({ count: 0 }).animate({
    </div> 
    </form>  
    <div class="post-image">
-      @if(!count($post))
+      @if(!$countPost)
       <div class="clr">
          <br>
          <div class="hea">
@@ -352,7 +351,7 @@ $({ count: 0 }).animate({
                      <p class="f-6 " style="margin-top:-6px"> @include('layout.like',['value'=>$val->id])</p>
                      <p class="os">{{ $val->created_at->diffForHumans($now) }}</p>
                   </div>
-                    @include('layout.comment',['value'=>$val->id])
+                  @include('layout.comment',['value'=>$val->id])
                </div>
             </div>
          </div>
@@ -386,12 +385,7 @@ $({ count: 0 }).animate({
                   thismodal{{$val->id}}.style.display = "none";
                  
                   }
-               }
-              
-            
-            
-               
-               
+               } 
          </script>     
          @endforeach 
       </div>
@@ -448,12 +442,13 @@ $({ count: 0 }).animate({
          }
       })
    } 
-   let observer =new IntersectionObserver(callback,options);
+   let observer = new IntersectionObserver(callback,options);
    for( var i=0;i<id;i++) { 
    observer.observe(document.querySelector('#image'+i)); 
    } 
 </script> 
 <script>
+   $(function(){  
    $('#first').on('click',function(e){
       e.preventDefault();
       $('.post-image').removeClass('d-none');
@@ -470,10 +465,7 @@ $({ count: 0 }).animate({
       
       $(this).addClass('bt');
       $('#first').removeClass('bt');
-   })
-</script>  
-<script>
-   $(function(){  
+   }) 
       $('.next').on('click',function(){
             $('.first').addClass('d-none');
             $('.second').removeClass('d-none');
@@ -490,6 +482,11 @@ $({ count: 0 }).animate({
          $(this).hide();
          $('.nos').show();
       })
+   $(window).scroll(function() {
+    if($(window).scrollTop() >= $(document).height() - $(window).height()) {
+           alert(2);
+    }
+});
    }) 
 </script> 
 </body>

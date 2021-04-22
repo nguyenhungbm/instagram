@@ -21,15 +21,14 @@
    $(".submit-{{$value}}").on('click',function(e){
    e.preventDefault();
    var URL= $(this).parents('form').attr('action');
-   var c_comment=$('.textarea-comment{{$value}}').val();
-   var c_post=$('.post-comment{{$value}}').val();
-   var c_user_id='{{ \Auth::id()}}'; 
+   var c_comment =$('.textarea-comment{{$value}}').val();
+   var c_post = $('.post-comment{{$value}}').val();
    $.post({ 
    url:URL,
    headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
    },
-   data:{c_comment:c_comment,c_post:c_post,c_user_id:c_user_id},
+   data:{c_comment:c_comment,c_post:c_post},
    beforeSend:function(){
       $('.submit-{{$value}} div').hide();
       $('.load-comment').show();

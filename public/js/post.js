@@ -185,17 +185,20 @@ function followss(followed){
             }
             else{ 
             $('.cen'+followed).text(data.text_follow);
-            if(data.followed==1) $('.list').empty();
-            $('.list').prepend(`
-            <li class="clr users${followed}" style="height: 50px;">
-            <a href="${data.user.user}" class="zx position-relative">
-            <img src="uploads/user/${data.user.avatar}" class="w-35 rounded-circle"> 
-            <b class="zz">${data.user.user}</b><br>
-            <b class="os">${data.user.c_name}</b>
-            </a>
-            <button class="followss zc${followed}" onclick="followss('${followed}')" ><cen class="cen${followed}">${data.text_follow}</cen>
-            <img src="img/loading.gif" class="w-30 load${followed}" style="display:none;margin-top: -11px;">
-            `);
+            if(data.followed==1)
+            {
+                $('.list').empty();
+                $('.list').prepend(`
+                <li class="clr users${followed}" style="height: 50px;">
+                <a href="${data.user.user}" class="zx position-relative">
+                <img src="uploads/user/${data.user.avatar}" class="w-35 rounded-circle"> 
+                <b class="zz">${data.user.user}</b><br>
+                <b class="os">${data.user.c_name}</b>
+                </a>
+                <button class="followss zc${followed}" onclick="followss('${followed}')" ><cen class="cen${followed}">${data.text_follow}</cen>
+                <img src="img/loading.gif" class="w-30 load${followed}" style="display:none;margin-top: -11px;">
+                `);
+            }
             }
         }
     })
