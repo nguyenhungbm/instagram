@@ -73,7 +73,7 @@ const app = new Vue({
             axios.post('/group_chat/getGroupChat/'+roomId).then((response) => {
                 this.chat_group = response.data;
             });
-            Echo.private('Groups.' + roomId)
+            Echo.private('Groups.' + roomId) 
                     .listen('NewMessage', (e) => {
                         this.chat_group.group_chats.push(e.conversation);
                     });

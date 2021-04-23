@@ -3,10 +3,6 @@
     height: 100px;
     background-color: white;
 }
-.right{
-    top: 0;position: fixed;
-    margin-top: 90px;
-}
 .cs,button,input[type="submit"]{cursor: pointer;}
 button{outline: none;background-color: transparent;border:none;}
 .os{opacity: 0.5;}
@@ -108,6 +104,7 @@ hr{opacity: 0.5;}
 
 }
 .right{
+    position: fixed;
     width: 27%; 
 }
 .right .d-block{width: 80%;
@@ -119,8 +116,6 @@ hr{opacity: 0.5;}
 .suggest{
     width: 100%;
     margin-top: 10px;
-    margin-bottom: 5px;
-    font-size:14px
 }
 .suggest img{
     width: 35px;

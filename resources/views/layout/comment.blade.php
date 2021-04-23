@@ -40,6 +40,7 @@
    }
    }).done(function(e){
       
+      
    $('.comment{{$value}}').text(c_comment);
    $(".list-comment{{$value}}").prepend(`
    <div class="clr het">

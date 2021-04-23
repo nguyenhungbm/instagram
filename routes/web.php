@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();     
 include('route-admin.php'); 
 
+Route::get('/test','App\Http\Controllers\BlogController@getArticles'); 
 
 Route::get('/','App\Http\Controllers\HomeController@index')->name('home'); 
  Route::group(['namespace' =>'App\Http\Controllers\Auth','prefix'=>'account'],function(){
@@ -51,8 +52,6 @@ Route::group(['namespace'=>'App\Http\Controllers\Personal'], function () {
 }); 
 //home page
 Route::group(['namespace'=>'App\Http\Controllers\Page'], function () { 
-    //load data
-    Route::post('/loadmore','HomePageController@loadmore')->name('loadmore'); 
     //follow user
     Route::get('/incre-view','HomePageController@incre_view')->name('post.increview'); 
     Route::post('/follow','HomePageController@follow'); 

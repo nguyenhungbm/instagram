@@ -139,8 +139,11 @@ class DirectController extends Controller
                 ->orwhere('friend_id',\Auth::id());
         })
                 ->get();  
+                //lấy thông tin user trong group
         $group=GroupUser::where('user_id',\Auth::id())->join('groups','groups.id','group_user.group_id')->get();
+        //lấy id group
         $group_room=Group::where('room',$rooms)->first();
+        //lấy thông tin đoạn chat
         $conversation =Conversation::where('group_id',$room_id)->get();
         $viewData=[ 
             'chat'              => $chat, 

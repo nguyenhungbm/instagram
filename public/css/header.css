@@ -123,11 +123,7 @@ body,.background-gray{
     width: 60%;
     height: 100px;
     background-color: white;
-}
-.right{
-    top: 0;position: fixed;
-    margin-top: 90px;
-}
+} 
 .notification{
     position: absolute;
     top:0;
@@ -234,6 +230,11 @@ body,.background-gray{
 .hidden{
     animation: faceOut 2s;
     animation-fill-mode: forwards;
+}
+.auto-load{
+    margin-top: -30px;
+    font-size: 25px;
+    padding-bottom: 30px;
 }
 @keyframes faceOut{
     100%{

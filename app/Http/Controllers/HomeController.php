@@ -21,19 +21,20 @@ class HomeController extends Controller
 
      
     public function index(Request $request)
-    {    
-        if(Gate::allows('is-admin')){
-            return view('admin.index');
-        }
+    {     
         //tất cả bài viết của những người bạn theo dõi
         $posts =Post::join('follows','follows.followed','posts.p_user')
                     ->where('follows.user_id',\Auth::id())
                     ->where('posts.p_type','profile')
                     ->select('posts.*')
-                    ->limit(5)
-                    ->get(); 
-        $now =Carbon::now();
-        
+                    ->paginate(5);  
+
+        $count_post =Post::join('follows','follows.followed','posts.p_user')
+            ->where('follows.user_id',\Auth::id())
+            ->where('posts.p_type','profile')
+            ->count();
+        $now =Carbon::now(); 
+
         $areFollow =Follow::where(['user_id'=>\Auth::id()])->get();
         $user=[];
         if(!count($areFollow)){
@@ -52,9 +53,18 @@ class HomeController extends Controller
                     ->get(); 
         } 
     }
+    
+    $output = '';
+    if ($request->ajax()) {
+            foreach ($posts as $key =>$val) {
+                $output.= view('layout.Home.post',compact('now','key','val'))->render();
+            }   
+        return $output;
+    }
         $data=[
             'now'   => $now,
             'posts' => $posts, 
+            'count_post' => $count_post, 
             'user'  => $user,     
             'title' => 'Instagram'
         ];
