@@ -243,11 +243,19 @@
                <i class="fa fa-comment"></i> 
                <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>
             </div>
-            <img data-img="{{ pare_url_file($val->p_image,'profile') }}" class="lazyload" id="image{{$key}}">  
+            
+            <img data-img="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="lazyload" id="image{{$key}}"
+            >  
          </div>
          <div id="myModall{{$val->id}}" class="modal hei">
             <div class="csg">
-               <img src="{{ pare_url_file($val->p_image,'profile') }}" class="csq"> 
+            <a href="{{pare_url_file($val->p_image,'profile/img') }}" download class="position-absolute" style="
+               left: 15px;
+               top: 15px;
+               z-index: 100;
+               color: white;
+               " title="{{$val->p_image}}"> <span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-download fa-stack-1x"></i></span></a>
+               <img src="{{ pare_url_file($val->p_image,'profile/img_large') }}" class="csq"> 
                <div class="cle">
                   <div class="heq">
                      <div class="hew"><a href="{{ route('get.home-page',$val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar,'user') }}" class="avatar_user_uploaded"></a> </div>

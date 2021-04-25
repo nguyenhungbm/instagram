@@ -1,29 +1,27 @@
 <title>Bài viết của {{$val->user->c_name}}</title>
-
+@include('header')  
    <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="title" content="{{$val->user->c_name}}">
-   <meta name="description" content="{{$val->p_content}}">
-    
-   <meta name="url" property="og:url" content="{{  route('post.view',$val->p_slug) }}">
+   <meta name="url" property="og:url" content="{{ url(route('post.view',$val->p_slug)) }}">
    <meta name="type" property="og:type" content="website" />
    <meta name="title" property="og:title" content="{{$val->p_content}}">
-   <meta name="image" property="og:image" content="{{$val->p_image}}">
+   <meta name="image" property="og:image" content="{{ url('/uploads/profile/img/'.$val->p_image )}}">
+   <meta name="description" property="og:description" content="Bài viết của {{$val->user->c_name}}">
 
    <meta property="twitter:card" content="summary_large_image">
    <meta name="title" property="twitter:title" content="{{$val->p_content}}">
-   <meta name="image" property="twitter:image" content="{{$val->p_image}}">
-   <meta name="url" property="twitter:domain" content="{{route('post.view',$val->p_slug) }}">
+   <meta name="image" property="twitter:image" content="{{ url('/uploads/profile/img/'.$val->p_image )}}">
+   <meta name="url" property="twitter:domain" content="{{ url(route('post.view',$val->p_slug)) }}">
+   <meta name="description"  property="twitter:description" content="Bài viết của {{$val->user->c_name}}">
 
    <meta property="zalo:card" content="summary_large_image">
    <meta name="title" property="zalo:title" content="{{$val->p_content}}">
-   <meta name="image" property="zalo:image" content="{{$val->p_image}}">
-   <meta name="url" property="zalo:domain" content="{{   route('post.view',$val->p_slug) }}">
+   <meta name="image" property="zalo:image" content="{{ url('/uploads/profile/img/'.$val->p_image )}}">
+   <meta name="url" property="zalo:domain" content="{{ url(route('post.view',$val->p_slug)) }}">
+   <meta name="description"  property="zalo:description" content="Bài viết của {{$val->user->c_name}}">
    <link rel="stylesheet" href="{{ asset('css/view_post.css') }}"> 
  
-@include('header')  
    <div class="asd">
-      <img src="{{ pare_url_file($val->p_image,'profile') }}" class="asa"> 
+      <img src="{{ pare_url_file($val->p_image,'profile/img') }}" class="asa"> 
       <div class="ass">
          <div class="heq">
             <div class="hew"><a href="{{ route('get.home-page',$val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar,'user') }}" class="avatar_user_uploaded"></a> </div>

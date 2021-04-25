@@ -5,8 +5,9 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="url" content="{{url(pare_url_file(\Auth::user()->avatar,'user'))}}">
-    <meta name="title" content="{{ \Auth::user()->c_name}}">
+    <meta name="url" content="{{url('/')}}">
+    <meta name="image" content="{{url('/logo.jpg')}}">
+    <meta name="title" content="Instagram">
     <meta name="description" content="Website kết nối mọi người với nhau , cùng nhau chia sẻ những khoảnh khắc đáng nhớ">
     <meta name="userId" content="{{ Auth::check() ? Auth::user()->id : 'null' }}">
     <title>{{ __('translate.'.$title) ?? 'Instagram'}}</title>

@@ -3,7 +3,6 @@
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use function foo\func;
-
 if (!function_exists('upload_image')) {
     /**
      * @param $file [tên file trùng tên input]
@@ -11,45 +10,38 @@ if (!function_exists('upload_image')) {
      * @return array|int [ tham số trả về là 1 mảng - nếu lỗi trả về int ]
      */
     function upload_image($file, $folder = '', array $extend = array())
-    {
+    { 
         $code = 1;
         // lay duong dan anh
         $baseFilename = public_path() . '/uploads/' . $_FILES[$file]['name'];
-
+        // duoi file
+        
         // thong tin file
         $info = new SplFileInfo($baseFilename);
-
-        // duoi file
         $ext = strtolower($info->getExtension());
-
         // kiem tra dinh dang file
         if (!$extend)
             $extend = ['png', 'jpg', 'jpeg', 'webp'];
 
         if (!in_array($ext, $extend))
-            return $data['code'] = 0;
-
+            return $data['code'] = 0; 
         // Tên file mới
         $nameFile = trim(str_replace('.' . $ext, '', strtolower($info->getFilename())));
         $filename = date('Y-m-d__') . \Illuminate\Support\Str::slug($nameFile) . '.' . $ext;
-
-
-        // thu muc goc de upload
-        $path = public_path() . '/uploads/';
-        if ($folder)
-            $path = public_path() . '/uploads/' . $folder . '/' ;
-
-        if (!\File::exists($path))
-            mkdir($path, 0777, true);
-
-        // di chuyen file vao thu muc uploads
-        move_uploaded_file($_FILES[$file]['tmp_name'], $path . $filename);
-
+   
+        $img         = Image::make(Input::file($file))->resize(596, 596);
+        $image_large = Image::make(Input::file($file))->resize(614, 767);
+        $image_small = Image::make(Input::file($file))->resize(293, 293);
+        $url_img = 'uploads/'.$folder. '/img/' .$filename;
+        $url_img_large = 'uploads/'.$folder. '/img_large/' .$filename;
+        $url_img_small = 'uploads/'.$folder. '/img_small/' .$filename;
+        $img->save($url_img,60);
+        $image_large->save($url_img_large,60);
+        $image_small->save($url_img_small,60);
+        
         $data = [
             'name'     => $filename,
             'code'     => $code,
-            'path'     => $path,
-            'path_img' => 'uploads/' . $filename
         ];
 
         return $data;

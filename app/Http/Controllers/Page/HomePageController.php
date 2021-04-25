@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Page;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Image;
 use File;   
 use App\Models\User;
 use App\Models\Post;
@@ -60,21 +61,27 @@ class HomePageController extends Controller
         $data['p_user']=\Auth::id(); 
         $data['p_slug'] =Str::random(15);
         if($request->profiles){
-            $image =upload_image('profiles',"profile");
-            if($image['code']==1)
-                $data['p_image']=$image['name'];
-            $data['p_type']='profile';
-            $id=Post::insertGetId($data);
+            $data['p_type'] = 'profile';
+            $file = $request->file('profiles');
+            $filename = $file->getClientOriginalName();
+            $img = Image::make($file);
+            $img->resize(600, 600)->save(public_path('uploads/profile/img/'.$filename));
+            $img->resize(650, 650)->save(public_path('uploads/profile/img_large/'.$filename));
+            $img->resize(296, 296)->save(public_path('uploads/profile/img_small/'.$filename));
+    
+            $data['p_image']        = $filename;  
+
             DB::table('users')->where('id',\Auth::user()->id)->increment('picture');
         }
         if($request->stories){
-            $image =upload_image('stories','story');
+            $image = upload_image('stories','story');
             if($image['code']==1)
                 $data['p_image']=$image['name'];
             $data['p_type']='story';
-            $id=Post::insertGetId($data);
             DB::table('users')->where('id',\Auth::user()->id)->increment('story');
         }
+        $id=Post::insertGetId($data);
+
         return redirect()->back();
     }
     public function uploadProfile(Request $request){

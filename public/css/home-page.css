@@ -239,10 +239,6 @@ footer ul{
     height: 100%;} 
 .cse .clr i{padding: 7px;}   
 .cse:hover .csf{display: flex;z-index: 2;}
-.cse img{
-    width: 100%;
-    height: 100%;
-}
 .cse:hover img{
     filter: brightness(50%); z-index: 1;
 }
@@ -461,6 +457,7 @@ h2{
 .settings .list{
     overflow: auto;
     height: 350px;
+    width: 100%;
 }
 .settings .one{ 
     padding: 10px;
