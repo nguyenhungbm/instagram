@@ -33,21 +33,22 @@ Route::group(['prefix'=>'api-admin','namespace'=>'App\Http\Controllers\Admin','m
     });
 
     Route::group(['prefix'=>'permission'],function(){
+       
         Route::get('','PermissionController@index')->name('admin.permission.index');
         Route::get('create','PermissionController@create')->name('admin.permission.create');
-        Route::post('create','PermissionController@store')->middleware('check_admin_permission:create-permission');
+        Route::post('create','PermissionController@store');
         Route::get('update/{id}','PermissionController@update')->name('admin.permission.update');
-        Route::post('update/{id}','PermissionController@edit')->middleware('check_admin_permission:edit-permission');
-        Route::get('delete/{id}','PermissionController@delete')->name('admin.permission.delete')->middleware('check_admin_permission:del-permission'); 
+        Route::post('update/{id}','PermissionController@edit');
+        Route::get('delete/{id}','PermissionController@delete')->name('admin.permission.delete'); 
     });
 
     Route::group(['prefix'=>'role'],function(){
         Route::get('','RoleController@index')->name('admin.role.index');
         Route::get('create','RoleController@create')->name('admin.role.create');
-        Route::post('create','RoleController@store')->middleware('check_admin_permission:create-role');
+        Route::post('create','RoleController@store');
         Route::get('update/{id}','RoleController@update')->name('admin.role.update');
-        Route::post('update/{id}','RoleController@edit')->middleware('check_admin_permission:edit-role');
-        Route::get('delete/{id}','RoleController@delete')->name('admin.role.delete')->middleware('check_admin_permission:del-role'); 
+        Route::post('update/{id}','RoleController@edit');
+        Route::get('delete/{id}','RoleController@delete')->name('admin.role.delete'); 
     });
     Route::group(['prefix'=>'post'],function(){
         Route::get('','PostController@index')->name('admin.post.index');

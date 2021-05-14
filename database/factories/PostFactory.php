@@ -25,8 +25,6 @@ class PostFactory extends Factory
         return [ 
         'p_user' => $this->faker->randomDigit,
         'p_image' =>'images.jpg',
-        'p_image_small' =>'images.jpg',
-        'p_image_large' =>'images.jpg',
         'p_slug'=>Str::random(15),
         'p_content' =>$this->faker->realText($maxNbChars = 100, $indexSize = 2),
         'p_type' => 'profile',  
