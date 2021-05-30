@@ -155,7 +155,6 @@
    </div>
    <script type="text/javascript" src="{{ asset('slick/slick/slick.js') }}"></script>
    <script src="{{ asset('js/style.js') }}"></script>
-   <script src="{{ asset('js/post.js') }}"></script>
    <script src="{{ asset('js/modal.js') }}"></script>
 </body>
 @endsection

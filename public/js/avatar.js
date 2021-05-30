@@ -62,7 +62,7 @@ function UpdateUserAvatar(form){
          $('.img').empty();
          $('.img').prepend(`
          <img src="uploads/user/'+${e.avatar}" class="rounded-circle user cs avatar_user_uploaded" id="myBtn-5">
-         <img src="img/loading.gif" class=" uploadavatar imguser" style="display:none;">
+         <img src="img/loading.gif" class="imguser" style="display:none;">
          `);
          $('.avatar_user_uploaded').attr('src','uploads/user/'+e.avatar);
        }
@@ -87,7 +87,7 @@ $('#myModal-5').hide();
     $('.img').empty();
     $('.img').prepend(`
     <label for="upload_user_avatar"> <img src="/img/no-user.png" class="rounded-circle user cs avatar_user_uploaded"></label> 
-    <img src="img/loading.gif" class=" uploadavatar imguser" style="display:none;">
+    <img src="img/loading.gif" class="imguser" style="display:none;">
     `);
     $('.avatar_user_uploaded').attr('src','/img/no-user.png');
     }

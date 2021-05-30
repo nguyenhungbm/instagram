@@ -149,17 +149,17 @@
 <div class="hr">  
       <p style="margin-left:20px">Thêm các bài viết từ <a href="{{route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}}</b></a></p>
       <br>
-      <div class="clr">
+      <div class="clr" style="width:104%">
          @foreach($related_post as $key=> $val) 
-         <a href="{{route('post.view',$val->p_slug)}}">
-         <div class="cs cse">
-            <div class="clr csf">
-               <i class="fa fa-heart"></i> <p class="likes{{$val->id}}">{{ $val->p_favourite}}</p>
-               <i class="fa fa-comment"></i> <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>
-            </div>
-            <img src="{{ pare_url_file($val->p_image,'profile') }}"  id="image{{$key}}">  
+         <div class="cs cse" style="margin-right:19px">
+            <a href="{{route('post.view',$val->p_slug)}}">
+               <div class="clr csf">
+                  <i class="fa fa-heart"></i> <p class="likes{{$val->id}}">{{ $val->p_favourite}}</p>
+                  <i class="fa fa-comment"></i> <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>
+               </div>
+               <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}"  id="image{{$key}}">  
+            </a>
          </div>
-         </a>
          @endforeach
       </div>
 </div>

@@ -28,12 +28,7 @@
     border-left: 1px solid #bdbdbd;
     min-height:545px
 } 
-
-.edit-form__right .clr img{   
-    height: 40px;
-    width: 40px;
-    object-fit: cover;   
-}
+ 
 .edit-form__right .clr b{
     padding: 15px;
     font-weight: 600;

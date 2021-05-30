@@ -27,6 +27,7 @@ class HomeController extends Controller
                     ->where('follows.user_id',\Auth::id())
                     ->where('posts.p_type','profile')
                     ->select('posts.*')
+                    ->orderBy('created_at','desc')
                     ->paginate(5);  
 
         $count_post =Post::join('follows','follows.followed','posts.p_user')

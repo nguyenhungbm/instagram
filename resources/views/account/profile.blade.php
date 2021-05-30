@@ -2,42 +2,10 @@
 @section('contents')
         <div class="w-80">
             <div class="clr">
-                <div class="edit-form__title">
-                @if(!\Auth::user()->avatar) 
-                <label for="upload_user_avatar"> <img src="/img/no-user.png" class="rounded-circle cs avatar_user_uploaded"></label>
-                
-                @elseif(substr(\Auth::user()->avatar,0,4)=='http')
-                <img src="{{ \Auth::user()->avatar }}" class="rounded-circle cs avatar_user_uploaded" id="myBtn-5">
-                @else
-                <img src="{{ pare_url_file(\Auth::user()->avatar,'user') }}" class="rounded-circle  cs avatar_user_uploaded" id="myBtn-5">
-                @endif
-                <img src="{{ asset('img/loading.gif')}}" class=" uploadavatar imguser" style="display:none;">
-                
+             @include('layout.avatar',['user' =>\Auth::user(),'height'=>'40px'])
+                 
                 </div>
-                <form method="POST" enctype="multipart/form-data" id="form_upload_user_avatar">
-                    @csrf
-                    <input type="file" onchange="uploadUserAvatar(this,'form_upload_user_avatar')" accept="image/*"  name="upload_user_avatar" class="d-none" id="upload_user_avatar">
-                </form>
-                <div class="edit-form__content userr">  
-                    <p class="">{{\Auth::user()->user}}</p><br>
-                    <p class="text-blue cs" style="padding-left:10px" id="myBtn-5" >{{ __('translate.Change Profile Photo')}}</p>
-                </div>
-                </div>
-                  <!-- modal user image -->
-      <div id="myModal-5" class="modal">
-         <div class="modal-content setting animate__animated animate__zoomIn" >
-            <li class="hed"><a href="javascript:;" >{{ __('translate.Change Profile Photo')}}</a></li>
-            <li>
-               <label for="change_user" class="text-blue change cs">{{ __('translate.Upload Photo')}}</label>
-               <form method="POST" enctype="multipart/form-data" id="form_change_user_avatar">
-                  @csrf
-                  <input type="file" onchange="uploadUserAvatar(this,'form_change_user_avatar')" accept="image/*"  name="upload_user_avatar" class="d-none" id="change_user">
-               </form>
-            </li>
-            <li><a href="javascript:;" class="text-red remove_current_photo">{{ __('translate.Remove Current Photo')}}</a></li>
-            <li class="cs" id="exit5"><a href="javascript:;">{{ __('translate.Cancel')}}</a></li>
-         </div>
-      </div>
+              
 
            <form action="{{ route('profile.store')}}" method="POST" class="form-question">
                @csrf
@@ -137,7 +105,7 @@
             <div class="text-center"> 
                 <button type="submit" class="background-blue update_gender buttons">
                     <p>{{ __('translate.Submit')}}</p>
-                    <img src="{{ asset('img/loading.gif')}}" class=" uploadavatars" style="display:none;">
+                    <img src="{{ asset('img/loading.gif')}}" class="uploadavatars" style="display:none;">
                 </button>  
             </div><br>
             </div> 

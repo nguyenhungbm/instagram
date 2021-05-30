@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();     
 
 //admin-auth
-Route::group(['prefix' =>'admin-auth','namespace' => 'App\Http\Controllers\Admin\Auth'], function() {
+Route::group(['prefix' =>'admin-auth','namespace' => 'Admin\Auth'], function() {
     Route::get('login','AdminController@getLoginAdmin')->name('get.login.admin');
     Route::post('login','AdminController@postLoginAdmin');
 
@@ -15,7 +15,7 @@ Route::group(['prefix' =>'admin-auth','namespace' => 'App\Http\Controllers\Admin
 
     Route::get('logout','AdminController@getLogoutAdmin')->name('get.logout.admin');
 });
-Route::group(['prefix'=>'api-admin','namespace'=>'App\Http\Controllers\Admin','middleware'=>'check_admin_login'],function(){
+Route::group(['prefix'=>'api-admin','namespace'=>'Admin','middleware'=>'check_admin_login'],function(){
     Route::get('','AdminController@index')->name('admin.index'); 
     Route::group(['prefix'=>'admin'],function(){
         Route::get('','EmployeeController@index')->name('admin.employee.index');

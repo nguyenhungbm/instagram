@@ -85,18 +85,21 @@ class HomePageController extends Controller
         return redirect()->back();
     }
     public function uploadProfile(Request $request){
-    $user =  User::find(\Auth::user()->id);   
-    if ($request->hasFile('upload_user_avatar')) {
-      $image =upload_image('upload_user_avatar','user');
-      if($image['code']==1)
-        $user->avatar=$image['name'];
+        $user =  User::find(\Auth::user()->id);   
+        if($user->avatar != 'no-user.png'){
+            unlink(public_path('uploads/user/'.$user->avatar));
+        }
+        if ($request->hasFile('upload_user_avatar')) {
+        $image =upload_image('upload_user_avatar','user');
+        if($image['code']==1)
+            $user->avatar=$image['name'];
+        }
+        if($user->update()){
+        return  User::find(\Auth::user()->id);
+        }else{
+            return 700;
+        }
     }
-    if($user->update()){
-       return  User::find(\Auth::user()->id);
-    }else{
-        return 700;
-    }
-}
     
    
 

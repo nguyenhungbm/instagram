@@ -75,19 +75,7 @@
                         </a>  
                      </li> -->
                      <notification v-bind:notifications="notifications"  v-bind:notification_readed="notification_readed"></notification>
-                     <script>
-                        $(function(){
-                           $('.noti').on('click',function(){
-                              $('.set-noti-width').toggleClass("d-none");
-                              $('.set-user-width').addClass("d-none");
-                           })
-                           $('.set-user').on('click',function(){
-                              $('.set-noti-width').addClass("d-none");
-                              $('.set-user-width').toggleClass("d-none");
-                           })
-                           
-                        })
-                    </script>
+                   
                      <li class="d-inline-block position-relative set-user">
                         <a> 
                         <img src="{{ pare_url_file(auth()->user()->avatar,'user') }}" class="mr-20 rounded-circle w-30 avatar_user_uploaded" style="object-fit:cover">

@@ -9,7 +9,7 @@
       @endif
       <li><a href="{{route('post.view',$val->p_slug)}}" >{{ __('translate.Go to post')}}</a> </li>
       <li id="Btn1{{$value}}"><label >{{ __('translate.Share to')}} ...</label></li>
-      <input type="text" value="{{route('post.view',$val->p_slug)}}" id="myInput" style="opacity:0;position:absolute">
+      <input type="text" value="{{route('post.view',$val->p_slug)}}" id="myInput{{$value}}" style="opacity:0;position:absolute">
       <li class="tooltip">
          <a onclick="myFunction()" onmouseout="outFunc()">
          <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
@@ -22,7 +22,7 @@
 <!-- copy link -->
 <script>
    function myFunction() {
-   var copyText = document.getElementById("myInput");
+   var copyText = document.getElementById("myInput{{$value}}");
    copyText.select();
    copyText.setSelectionRange(0, 99999);
    document.execCommand("copy");
