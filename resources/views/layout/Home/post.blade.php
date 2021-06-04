@@ -22,7 +22,7 @@
                <a href="{{ $val->user->user}}" class="text-black">{{$val->user->c_name}} </a>{{$val->p_content}}    
                <br>
             </div>
-            <div class="hdl{{$key}}">
+            <div class="list-comment{{$key}}">
                @foreach(\App\Models\Comment::where('c_post',$val->id)->get() as $value=> $list) 
                <div class="chat w-100 position-relative hjk{{$value}}" style="display:none">
                   <a href="{{ $list->users->user}}" class="text-black">{{$list->users->c_name}}</a> {{ $list->c_comment}}

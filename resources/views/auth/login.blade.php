@@ -28,7 +28,7 @@
         <form action="" method="POST">
         @csrf
             <div class="username">
-                <input  type="text" value="zmang@example.org" class="username" id="username" name="email" placeholder="Số điện thoại, tên người dùng hoặc email" autocomplete="off">
+                <input  type="text" value="hung0913003358@gmail.com" class="username" id="username" name="email" placeholder="Số điện thoại, tên người dùng hoặc email" autocomplete="off">
                
                
             </div>

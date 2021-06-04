@@ -15,6 +15,7 @@
       else{ 
       $('#submit-{{$value}}').removeClass('disabled');
       if(event.keyCode === 13) {
+         $('.textarea-{{$value}}').prop( "disabled", true );
          event.preventDefault();
          document.getElementById("submit-"+{{$value}}).click();
        }
@@ -43,8 +44,6 @@
       $('.submit-{{$value}} div').show();
    }
    }).done(function(e){
-      
-      
    $('.comment{{$value}}').text(c_comment);
    $(".list-comment{{$value}}").prepend(`
    <div class="clr het">

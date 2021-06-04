@@ -25,7 +25,6 @@ class AdminFactory extends Factory
             'name' => $this->faker->unique()->name,  
             'email' => $this->faker->unique()->safeEmail, 
             'password' => Hash::make('123456'), 
-            'phone' => $this->faker->phoneNumber,  
         ];
     }
 }
