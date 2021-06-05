@@ -1,5 +1,6 @@
 <title>Bài viết của {{$val->user->c_name}}</title>
-@include('header')  
+@extends('header') 
+@section('content')  
    <meta charset="utf-8">
    <meta name="url" property="og:url" content="{{ url(route('post.view',$val->p_slug)) }}">
    <meta name="type" property="og:type" content="website" />
@@ -181,4 +182,9 @@
    </ul>
    <br> 
 </footer> 
+@endsection
+
+@section('js')
 <script src="{{ asset('js/post.js') }}"></script> 
+
+@endsection

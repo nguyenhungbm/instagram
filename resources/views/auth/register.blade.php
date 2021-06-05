@@ -23,7 +23,7 @@
         <form action="" method="POST">
         @csrf
             <div class="username">
-                <input type="text" name="email" value="0879428091" placeholder="Số di động hoặc email" autocomplete="off">
+                <input type="text" name="email"  placeholder="Số di động hoặc email" autocomplete="off">
              @if($errors->first('email'))    
                 <span class="text-danger">{{$errors->first('email') }}</span>
                 @endif

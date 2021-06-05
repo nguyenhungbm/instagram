@@ -1,6 +1,7 @@
 <?php
 return [
     //home page
+    'No result found.'=> 'No result found.',
     'Edit Profile'    => 'Edit Profile',
     'posts'           => 'posts',
     'followers'       => 'followers',

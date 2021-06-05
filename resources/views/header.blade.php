@@ -26,8 +26,7 @@
     @if(session('toastr'))
         <script>    
             var TYPE_MESSAGE="{{session('toastr.type') }}";
-            var MESSAGE ="{{session('toastr.messages') }}";
-        
+            var MESSAGE ="{{session('toastr.messages') }}"; 
         </script>
         
     @endif
@@ -49,13 +48,9 @@
       <div class="container">
          <div class="d-grid">
             <div><a href="{{ url('/')}}"><img src="{{ asset('img/logo.png') }}"  width="103px" height="29px"></a></div>
-            <div>
-               <input type="text" name="search" id="input-search" class="input-search" placeholder="{{ __('translate.Search')}}">
-               <a>
-               <img src="{{ asset('img/search.png') }}" class="w-15 yes search-2 "></a> 
-               <a>
-               <img src="{{ asset('img/delete.png') }}" class="w-15 float-right delete"></a>    
-            </div>
+           
+            @include('layout.header.search')
+
             <div>
                <div class="d-block">
                   <ul>
@@ -116,13 +111,12 @@
    
    @yield('content')
 </div>
-
 </html> 
-<script src="{{ asset('js/post.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="https://use.fontawesome.com/452826394c.js"></script>
-<script src="{{ asset('toastr/toastr.min.js') }}"></script>
-
+@yield('js')
+<script src="{{ asset('js/app.js') }}" ></script>
+<script src="https://use.fontawesome.com/452826394c.js" defer></script>
+<script src="{{ asset('toastr/toastr.min.js') }}" defer></script>
+ 
 <script>
       if(typeof TYPE_MESSAGE != "undefined"){
           switch (TYPE_MESSAGE){

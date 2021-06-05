@@ -12,14 +12,7 @@ use App\Models\Like;
 use Illuminate\Support\Facades\Gate;
 use Carbon\Carbon;  
 class HomeController extends Controller
-{
-     
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-     
+{ 
     public function index(Request $request)
     {     
         //tất cả bài viết của những người bạn theo dõi
@@ -28,13 +21,12 @@ class HomeController extends Controller
                     ->where('posts.p_type','profile')
                     ->select('posts.*')
                     ->orderBy('created_at','desc')
-                    ->paginate(5);  
+                    ->simplePaginate(5);  
 
         $count_post =Post::join('follows','follows.followed','posts.p_user')
             ->where('follows.user_id',\Auth::id())
             ->where('posts.p_type','profile')
             ->count();
-        $now =Carbon::now(); 
 
         $areFollow =Follow::where(['user_id'=>\Auth::id()])->get();
         $user=[];
@@ -43,27 +35,26 @@ class HomeController extends Controller
             ->orderBy('picture','desc')
             ->limit(5)
             ->get(); 
-} 
+        } 
         else{
-        foreach($areFollow as $list){
-        $user =User::where('id','!=',$list->id)
-                    ->where('id','!=',\Auth::id())
-                    ->orderBy('picture','desc')
-                    ->inRandomOrder()
-                    ->limit(5)
-                    ->get(); 
+            foreach($areFollow as $list){
+            $user =User::where('id','!=',$list->id)
+                        ->where('id','!=',\Auth::id())
+                        ->orderBy('picture','desc')
+                        ->inRandomOrder()
+                        ->limit(5)
+                        ->get(); 
         } 
     }
     
     $output = '';
     if ($request->ajax()) {
             foreach ($posts as $key =>$val) {
-                $output.= view('layout.Home.post',compact('now','key','val'))->render();
+                $output.= view('layout.Home.post',compact('key','val'))->render();
             }   
         return $output;
     }
         $data=[
-            'now'   => $now,
             'posts' => $posts, 
             'count_post' => $count_post, 
             'user'  => $user,     
@@ -71,5 +62,15 @@ class HomeController extends Controller
         ];
         return view('welcome',$data);
     }
-     
+    public function search(Request $request){
+        $val =User::where('id','!=',\Auth::id())
+                    ->where('c_name','like','%'.$request->value.'%')
+                    ->orwhere('user','like','%'.$request->value.'%')
+                    ->get();
+        if(!$val->isEmpty())
+            return view('layout.header.data',compact('val'))->render();
+        else{
+            return 0;
+        }
+    }
 }

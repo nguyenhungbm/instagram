@@ -91,16 +91,16 @@ class DirectController extends Controller
             }
          return $output;
         }
-       $val =User::where('id','!=',\Auth::id())
-                ->where('c_name','like','%'.$request->value.'%')
-                ->orwhere('user','like','%'.$request->value.'%')->limit(5)->get();
-       $output='';
-       if(!$val->isEmpty())
-       $output.= view('direct.searchmess',compact('val'))->render();
-       else{
-       $output= '<p class="pq os">Không có người dùng</p>';
-       }
-    return $output;
+        $val =User::where('id','!=',\Auth::id())
+                    ->where('c_name','like','%'.$request->value.'%')
+                    ->orwhere('user','like','%'.$request->value.'%')->limit(5)->get();
+        $output='';
+        if(!$val->isEmpty())
+            $output.= view('direct.searchmess',compact('val'))->render();
+        else{
+            $output= '<p class="pq os">'.__("translate.No result found.").'</p>';
+        }
+        return $output;
     }
     public function create_chat_group(Request $request){
         $random_number =rand(0000000000,9999999999); 

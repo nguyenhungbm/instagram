@@ -6,30 +6,30 @@ Auth::routes();
 
 //admin-auth
 Route::group(['prefix' =>'admin-auth','namespace' => 'Admin\Auth'], function() {
-    Route::get('login','AdminController@getLoginAdmin')->name('get.login.admin');
-    Route::post('login','AdminController@postLoginAdmin');
+    Route::get('login','HomeController@getLoginAdmin')->name('get.login.admin');
+    Route::post('login','HomeController@postLoginAdmin');
 
-    Route::get('register','AdminController@getRegisterAdmin')->name('get.register.admin');
-    Route::post('register','AdminController@postRegisterAdmin');
+    Route::get('register','HomeController@getRegisterAdmin')->name('get.register.admin');
+    Route::post('register','HomeController@postRegisterAdmin');
 
 
-    Route::get('logout','AdminController@getLogoutAdmin')->name('get.logout.admin');
+    Route::get('logout','HomeController@getLogoutAdmin')->name('get.logout.admin');
 });
 Route::group(['prefix'=>'api-admin','namespace'=>'Admin','middleware'=>'check_admin_login'],function(){
-    Route::get('','AdminController@index')->name('admin.index'); 
+    Route::get('','HomeController@index')->name('admin.index'); 
     Route::group(['prefix'=>'admin'],function(){
-        Route::get('','EmployeeController@index')->name('admin.employee.index');
-        Route::get('create','EmployeeController@create')->name('admin.employee.create');
-        Route::post('create','EmployeeController@store')->middleware('check_admin_permission:create-admin');
-        Route::get('update/{id}','EmployeeController@edit')->name('admin.employee.update');
-        Route::post('update/{id}','EmployeeController@update')->middleware('check_admin_permission:edit-admin');
-        Route::get('delete/{id}','EmployeeController@delete')->name('admin.employee.delete')->middleware('check_admin_permission:del-admin'); 
+        Route::get('','AdminController@index')->name('admin.employee.index');
+        Route::get('create','AdminController@create')->name('admin.employee.create');
+        Route::post('create','AdminController@store')->middleware('check_admin_permission:create-admin');
+        Route::get('update/{id}','AdminController@edit')->name('admin.employee.update');
+        Route::post('update/{id}','AdminController@update')->middleware('check_admin_permission:edit-admin');
+        Route::get('delete/{id}','AdminController@delete')->name('admin.employee.delete')->middleware('check_admin_permission:del-admin'); 
     });
 
     Route::group(['prefix'=>'user'],function(){
-        Route::get('list-user','AdminController@list')->name('admin.user.list');
-        Route::get('block_user/{id}','AdminController@block_user')->name('admin.user.block')->middleware('check_admin_permission:block-user'); 
-        Route::get('delete/{id}','AdminController@delete')->name('admin.user.delete'); 
+        Route::get('list-user','HomeController@list')->name('admin.user.list');
+        Route::get('block_user/{id}','HomeController@block_user')->name('admin.user.block')->middleware('check_admin_permission:block-user'); 
+        Route::get('delete/{id}','HomeController@delete')->name('admin.user.delete'); 
     });
 
     Route::group(['prefix'=>'permission'],function(){

@@ -1,12 +1,13 @@
 <?php
 return [
     //home page
+    'No result found.'                => 'Không có kết quả.',
     'Edit Profile'                    => 'Chỉnh sửa trang cá nhân',
     'posts'                           => 'Bài viết',
     'followers'                       => 'người theo dõi',
     'following'                       => ' người dùng',
     'folowing'                        => 'Đang theo dõi ',
-    'folowings'                        => 'Đang theo dõi ',
+    'folowings'                       => 'Đang theo dõi ',
     'Change Password'                 => 'Đổi mật khẩu',
     'Nametag'                         => 'Thẻ tên',
     'Apps and Websites' =>'Ứng dụng và trang web',

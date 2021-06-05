@@ -1,5 +1,6 @@
 <title>{{ $user->c_name}}</title>
-@include('header')
+@extends('header') 
+@section('content')
 <body>
    <section class="sd">
       @include('layout.avatar',['user' => $user,'height'=>'170px'])
@@ -382,9 +383,6 @@
 </body>
 <p class="os" style="text-align:center">&copy; 2020 INSTAGRAM FROM FACEBOOK</p>
 <br>
-<script src="{{ asset('js/modal.js') }}"></script> 
-<script src="{{ asset('js/post.js') }}"></script> 
-<script src="{{ asset('js/avatar.js') }}"></script> 
 <script>
    //lazy load img
    let id="{{count($post)}}";
@@ -449,4 +447,10 @@
    }) 
 </script> 
 </body>
-</html>
+@endsection
+
+@section('js')
+<script src="{{ asset('js/modal.js') }}" defer></script> 
+<script src="{{ asset('js/post.js') }}" defer></script> 
+<script src="{{ asset('js/avatar.js') }}" defer></script> 
+@endsection

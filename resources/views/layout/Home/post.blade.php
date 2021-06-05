@@ -31,7 +31,7 @@
                @endforeach
             </div>
             <p class="text-gray button{{$key}}">{{ __('translate.View more comments')}}</p>
-            <span class="text-gray" style="font-size:13px">{{ $val->created_at->diffForHumans($now) }} </span>
+            <span class="text-gray" style="font-size:13px">{{ $val->created_at->diffForHumans() }} </span>
             <hr>
             @include('layout.comment',['value'=>$val->id])
          </div>
