@@ -113,9 +113,17 @@ body,.background-gray{
     margin-left: 20%;
     margin-top:8px;filter:grayscale(100%);
 }
-.no{
+.no,.nos{
     width: 300px;
     height: 350px;
+}
+.loaders{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-100%);
 }
 ul.list{
     position: relative;

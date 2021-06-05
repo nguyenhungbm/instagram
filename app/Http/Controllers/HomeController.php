@@ -63,7 +63,7 @@ class HomeController extends Controller
         return view('welcome',$data);
     }
     public function search(Request $request){
-        $val =User::where('id','!=',\Auth::id())
+        $val = User::where('id','!=',\Auth::id())
                     ->where('c_name','like','%'.$request->value.'%')
                     ->orwhere('user','like','%'.$request->value.'%')
                     ->get();
