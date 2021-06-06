@@ -44,6 +44,7 @@ window.onclick = function(event) {
    if (event.target == modal7) {    
       modal7.style.display = "none";
    } 
+   $('.list').addClass('d-none');
 }
 var modal = document.getElementById("myModal"); 
 var btn = document.getElementById("myBtn"); 

@@ -36,7 +36,7 @@ Route::group(['namespace'=>'Personal'], function () {
     //tìm kiếm
     Route::get('/searchmess','DirectController@searchmess')->name('searchmess'); 
     //lấy người dùng tạo group chat 
-    Route::post('/direct/a/','DirectController@create_chat_group')->name('create_chat_group'); 
+    Route::get('/direct/a/','DirectController@create_chat_group')->name('create_chat_group'); 
     //chat group
     Route::get('/direct/t/{room}', 'DirectController@index_chat_group')->name('chat.group.show');
     Route::post('/group_chat/getGroupChat/{room}', 'DirectController@getGroupChat');

@@ -85,13 +85,13 @@ class DirectController extends Controller
             $chat =Chat::where('user_id',\Auth::id())->groupBy('friend_id')->get();
             $output='';
             if(!$chat->isEmpty())
-            $output.= view('direct.searchmess',compact('chat'))->render();
+                $output.= view('direct.searchmess',compact('chat'))->render();
             else{
-            $output= '';
+                $output= '';
             }
          return $output;
         }
-        $val =User::where('id','!=',\Auth::id())
+        $val = User::where('id','!=',\Auth::id())
                     ->where('c_name','like','%'.$request->value.'%')
                     ->orwhere('user','like','%'.$request->value.'%')->limit(5)->get();
         $output='';
@@ -103,24 +103,27 @@ class DirectController extends Controller
         return $output;
     }
     public function create_chat_group(Request $request){
-        $random_number =rand(0000000000,9999999999); 
-        $request->user.=','.\Auth::id();
-        $arr=explode(',',$request->user);
-        $group_name='';
-        foreach($arr as $item){
-            $group_name.=','.User::where('id',$item)->value('user');
+        if(!str_contains($request->user,',')) 
+            return redirect()->to('/direct/'.$request->user);
+        else{
+            $random_number =rand(0000000000,9999999999); 
+            $arr=explode(',',$request->user);
+            $group_name='';
+            foreach($arr as $item){
+                $group_name.=','.User::where('id',$item)->value('user');
+            }
+            $group = Group::create(['name' => mb_substr($group_name,1,20).'...',
+                                    'room' => $random_number
+                                    ]);
+            foreach($arr as $list){
+                if($list !=','){
+                $group_user= GroupUser::create([
+                        'group_id' => $group->id,
+                        'user_id'  => $list
+                    ]);
+                }
+            }
         }
-        $group = Group::create(['name' => mb_substr($group_name,1,20).'...',
-       'room' => $random_number
-        ]);
-        foreach($arr as $list){
-            if($list !=','){
-               $group_user= GroupUser::create([
-                    'group_id' => $group->id,
-                    'user_id'  => $list
-                ]);
-        }
-    }
     $viewData=[
         'title' =>'Group Chat'
     ];

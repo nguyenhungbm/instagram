@@ -46,8 +46,10 @@
             $('.list').addClass('d-none');
          }
       })
-    function search(val){
-        
-    }
+
+      
+    $(window).on('click',function(){
+        $('.list').addClass('d-none');
+    })
    })
-</script>
+</script> 
