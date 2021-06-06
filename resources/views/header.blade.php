@@ -116,7 +116,16 @@
 <script src="{{ asset('js/app.js') }}" ></script>
 <script src="https://use.fontawesome.com/452826394c.js" defer></script>
 <script src="{{ asset('toastr/toastr.min.js') }}" defer></script>
- 
+<script>
+     $('.noti').on('click',function(){
+        $('.set-noti-width').toggleClass("d-none");
+        $('.set-user-width').addClass("d-none");
+    })
+    $('.set-user').on('click',function(){
+        $('.set-noti-width').addClass("d-none");
+        $('.set-user-width').toggleClass("d-none");
+     })
+</script>
 <script>
       if(typeof TYPE_MESSAGE != "undefined"){
           switch (TYPE_MESSAGE){

@@ -2,32 +2,32 @@
 @extends('header') 
 @section('content')
 <body>
-   <section class="sd">
-      @include('layout.avatar',['user' => $user,'height'=>'170px'])
-      <div class="csa">
-         <div class="csb">
-            <span class="os">{{ $user->user }}</span>
-            @if($user->user === \Auth::user()->user)
-            <a href="{{ route('profile.edit') }}">{{ __('translate.Edit Profile')}}</a>
-            <i class="fa fa-2x fa-sun-o" id="myBtn-2"></i> 
-            <span class="fa-stack fa-lg cs" id="myBtn"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-plus fa-stack-1x"></i></span> 
-            @else  
-            <div class="list-follow">
-               @if(!$followed)
-               <button class="follow" onclick="follow('{{$user->id}}')">
-                  <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$user->id}}" style="display:none">
-                  <p class="text-follows{{$user->id}}">{{ __('translate.follow')}}</p>
-               </button>
-               @else
-               <a href="{{ route('chat.show', $user->id) }}" class="message">{{ __('translate.Message')}}</a>
-               <a class="unfollow follows{{$user->id}}"href="javascript:;"  onclick="follow('{{$user->id}}')">
-               <i class="fa  fa-user-times"></i>
-               <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$user->id}}" style="display:none;margin-top: -11px;">
-               </a>
-               @endif
+    <section class="sd">
+        @include('layout.avatar',['user' => $user,'height'=>'170px'])
+        <div class="csa">
+            <div class="csb">
+                <span class="os">{{ $user->user }}</span>
+                @if($user->user === \Auth::user()->user)
+                <a href="{{ route('profile.edit') }}">{{ __('translate.Edit Profile')}}</a>
+                <i class="fa fa-2x fa-sun-o" id="myBtn-2"></i> 
+                <span class="fa-stack fa-lg cs" id="myBtn"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-plus fa-stack-1x"></i></span> 
+                @else  
+                <div class="list-follow">
+                @if(!$followed)
+                <button class="follow" onclick="follow('{{$user->id}}')">
+                    <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$user->id}}" style="display:none">
+                    <p class="text-follows{{$user->id}}">{{ __('translate.follow')}}</p>
+                </button>
+                @else
+                <a href="{{ route('chat.show', $user->id) }}" class="message">{{ __('translate.Message')}}</a>
+                <a class="unfollow follows{{$user->id}}"href="javascript:;"  onclick="follow('{{$user->id}}')">
+                <i class="fa  fa-user-times"></i>
+                <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$user->id}}" style="display:none;margin-top: -11px;">
+                </a>
+                @endif
+                </div>
+                @endif
             </div>
-            @endif
-         </div>
          <!-- modal setting -->
          <div id="myModal-2" class="modal ">
             <div class="modal-content setting animate__animated animate__zoomIn" >
@@ -450,7 +450,7 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/modal.js') }}" defer></script> 
-<script src="{{ asset('js/post.js') }}" defer></script> 
-<script src="{{ asset('js/avatar.js') }}" defer></script> 
+<script src="{{ asset('js/modal.js') }}" ></script> 
+<script src="{{ asset('js/post.js') }}" ></script> 
+<script src="{{ asset('js/avatar.js') }}" ></script> 
 @endsection

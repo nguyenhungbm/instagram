@@ -64,16 +64,16 @@
 }
 .edit-form__content p{
     padding-left: 10px;}
-.clr .button{
+.button{
     padding: 10px;
     border-radius: 5px;
-    margin-left: 10px;}
+    margin-left: 10px;
+}
 .clr .buttons{
     position: relative;
     width: 80%;
     border-radius: 5px;
-    padding-top: 20px;
-    padding-bottom: 21px;}
+    padding: 5px}
 .buttons img{ 
     position: absolute;
     top: 0;
@@ -87,7 +87,6 @@
 }
 .gender input{
    width:10%;
-   margin-top: 5px  ;
 }
 .gender dd{
     width: 90%;

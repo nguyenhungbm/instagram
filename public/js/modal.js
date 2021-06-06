@@ -1,10 +1,12 @@
-//open modal change avatar
+$(function(){
+   //open modal change avatar
 $('body').on('click','#myBtn-5',function(){
     $('#myModal-5').show();
   })
   $('body').on('click','#exit5',function(){
     $('#myModal-5').hide();
   })
+})
   
 var modal6 = document.getElementById("myModal-6");
 var btn6 = document.getElementById("myBtn-6");
