@@ -46,8 +46,7 @@
 <script src="{{ asset('js/avatar.js') }}"></script>
 </body>
 <script src="{{ asset('toastr/toastr.min.js') }}"></script>
-    <script>
-
+<script>
     if(typeof TYPE_MESSAGE != "undefined"){
         switch (TYPE_MESSAGE){
             case 'success':
@@ -58,6 +57,4 @@
                 break;
         }
     }
-
-    
 </script>

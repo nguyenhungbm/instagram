@@ -22,18 +22,18 @@
 <!-- copy link -->
 <script>
    function myFunction() {
-   var copyText = document.getElementById("myInput{{$value}}");
-   copyText.select();
-   copyText.setSelectionRange(0, 99999);
-   document.execCommand("copy");
-   
-   var tooltip = document.getElementById("myTooltip");
-   tooltip.innerHTML = "Copied";
+      var copyText = document.getElementById("myInput{{$value}}");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      
+      var tooltip = document.getElementById("myTooltip");
+      tooltip.innerHTML = "Copied";
    }
    
    function outFunc() {
-   var tooltip = document.getElementById("myTooltip");
-   tooltip.innerHTML = "Copy to clipboard";
+      var tooltip = document.getElementById("myTooltip");
+      tooltip.innerHTML = "Copy to clipboard";
    }
 </script>
 <!-- modal share -->
@@ -57,41 +57,28 @@
 <script>
 $(function(){
     //hiện modal info
-          
-    var modal{{$value}} = document.getElementById("Modal{{$value}}"); 
-            var btn{{$value}} = document.getElementById("Btn{{$value}}");
-            var exits{{$value}} = document.getElementById("exits{{$value}}"); 
-
-            btn{{$value}}.onclick = function() {
-            modal{{$value}}.style.display = "block";
-            }   
-            
+    $('#Btn{{$value}}').on('click',function(){
+        $('#Modal{{$value}}').show();
+    })
+    $('#exits{{$value}}').on('click',function(){
+        $('#Modal{{$value}}').hide();
+    })
+    $('#Modal{{$value}}').on('click',function(event){
+        if(event.target ==  document.getElementById("Modal{{$value}}"))
+            $(this).hide();
+    }) 
             
    //hiện modal share
-   var modal1{{$value}} = document.getElementById("Modal1{{$value}}"); 
-            var btn1{{$value}} = document.getElementById("Btn1{{$value}}");
-            var exits1{{$value}} = document.getElementById("exits1{{$value}}"); 
-            btn1{{$value}}.onclick = function() {
-               modal{{$value}}.style.display = "none";
-               modal1{{$value}}.style.display = "block";  
-            }   
-               window.onclick = function(event) {   
-               if (event.target == modal1{{$value}}) {    
-               modal1{{$value}}.style.display = "none";
-               }
-               if (event.target == modal{{$value}}) {    
-               modal{{$value}}.style.display = "none";
-               }
-            }
-               //ẩn modal1 share
-
-            exits1{{$value}}.onclick = function(event) {   
-               modal1{{$value}}.style.display = "none";
-            }
-            //ẩn modal info
-            exits{{$value}}.onclick = function(event) {   
-               modal{{$value}}.style.display = "none";
-            }
+    $('#Btn1{{$value}}').on('click',function(){
+        $('#Modal1{{$value}}').show();
+    })
+    $('#exits1{{$value}}').on('click',function(){
+        $('#Modal1{{$value}}').hide();
+    })
+    $('#Modal1{{$value}}').on('click',function(event){
+        if(event.target ==  document.getElementById("Modal1{{$value}}"))
+            $(this).hide();
+    })   
 })
 </script>      
 <div id="fb-root"></div>

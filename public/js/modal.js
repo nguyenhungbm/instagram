@@ -1,67 +1,76 @@
 $(function(){
-   //open modal change avatar
-$('body').on('click','#myBtn-5',function(){
-    $('#myModal-5').show();
-  })
-  $('body').on('click','#exit5',function(){
-    $('#myModal-5').hide();
-  })
-})
-  
-var modal6 = document.getElementById("myModal-6");
-var btn6 = document.getElementById("myBtn-6");
-var exit6 = document.getElementById("exit6");
-btn6.onclick = function() {
-   modal6.style.display = "block";
-} 
-exit6.onclick = function() {
-   modal6.style.display = "none";
-}
-   
-var modal7 = document.getElementById("myModal-7");
-var btn7 = document.getElementById("myBtn-7");
-var exit7 = document.getElementById("exit7");
-   
-btn7.onclick = function() {
-   modal7.style.display = "block";
-} 
-exit7.onclick = function() {
-   modal7.style.display = "none";
-} 
+    //cài đặt
+    $('body').on('click','#myBtn-3',function(){
+        $('#myModal-3').show();
+    })
+    $('body').on('click','#exit3',function(){
+        $('#myModal-3').hide();
+    })
+    $('#myModal-3').on('click',function(event){
+        if(event.target == document.getElementById("myModal-3")) 
+            $(this).hide()
+    })
 
-var modal5 = document.getElementById("myModal-5");
+    //đăng bài
+    $('body').on('click','#myBtn-4',function(){
+        $('#myModal-4').show();
+            })
+        $('body').on('click','#exit4',function(){
+        $('#myModal-4').hide();
+            })
+        $('#myModal-4').on('click',function(event){
+            if(event.target == document.getElementById("myModal-4")) 
+                $(this).hide()
+        })
+
+    //avatar
+    $('#myBtn-5').on('click',function(){
+    $('#myModal-5').show();
+        })
+    $('#exit5').on('click',function(){
+    $('#myModal-5').hide();
+        })
+    $('#myModal-5').on('click',function(event){
+        if(event.target == document.getElementById("myModal-5")) 
+        $(this).hide()
+        })
+
+    //theo dõi
+    $('body').on('click','#myBtn-6',function(){
+    $('#myModal-6').show();
+        })
+    $('body').on('click','#exit6',function(){
+    $('#myModal-6').hide();
+        })
+    $('#myModal-6').on('click',function(event){
+        if(event.target == document.getElementById("myModal-6")) 
+            $(this).hide()
+        })
+
+    //đang theo dõi
+    $('body').on('click','#myBtn-7',function(){
+    $('#myModal-7').show();
+        })
+    $('body').on('click','#exit7',function(){
+    $('#myModal-7').hide();
+        })
+    $('#myModal-7').on('click',function(event){
+        if(event.target == document.getElementById("myModal-7")) 
+            $(this).hide()
+    })
+
+    //thông tin bài viết
+    $('body').on('click','#myBtn-8',function(){
+        $('#myModal-8').show();
+            })
+        $('body').on('click','#exit8',function(){
+        $('#myModal-8').hide();
+            })
+        $('#myModal-8').on('click',function(event){
+            if(event.target == document.getElementById("myModal-8")) 
+                $(this).hide()
+        })
+}) 
 window.onclick = function(event) { 
-   if (event.target == modal) {    
-      modal.style.display = "none";
-   }
-   if (event.target == modal2) {    
-      modal2.style.display = "none";
-   }
-   if (event.target == modal5) {    
-      modal5.style.display = "none";
-   }
-   if (event.target == modal6) {    
-      modal6.style.display = "none";
-   }
-   if (event.target == modal7) {    
-      modal7.style.display = "none";
-   } 
    $('.list').addClass('d-none');
-}
-var modal = document.getElementById("myModal"); 
-var btn = document.getElementById("myBtn"); 
-btn.onclick = function() {
-   modal.style.display = "block";
 }  
-   
-var modal2 = document.getElementById("myModal-2");
-var btn2 = document.getElementById("myBtn-2");
-var exit = document.getElementById("exit");
-   
-btn2.onclick = function() {
-   modal2.style.display = "block";
-} 
-exit.onclick = function(event) {
-    event.preventDefault();    
-    modal2.style.display = "none";
-} 

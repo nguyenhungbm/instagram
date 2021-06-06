@@ -41,7 +41,6 @@ class HomePageController extends Controller
         //đang theo dõi ai
         $userFollow =Follow::where('followed',$user['id'])->orderBy('created_at','desc')->get();
         $viewData=[  
-            'now'        => Carbon::now(),
             'user'       => $user,
             'countPost'  => $countPost, 
             'title'      => '',

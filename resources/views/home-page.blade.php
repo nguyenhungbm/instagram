@@ -9,8 +9,9 @@
                 <span class="os">{{ $user->user }}</span>
                 @if($user->user === \Auth::user()->user)
                 <a href="{{ route('profile.edit') }}">{{ __('translate.Edit Profile')}}</a>
-                <i class="fa fa-2x fa-sun-o" id="myBtn-2"></i> 
-                <span class="fa-stack fa-lg cs" id="myBtn"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-plus fa-stack-1x"></i></span> 
+                <i class="fa fa-2x fa-sun-o" id="myBtn-3"></i>  
+                <button id="myBtn-4" class="background-blue button" style="padding: 5px 20px;margin-left: 20px;border-radius: 5px;">Đăng bài</button> 
+
                 @else  
                 <div class="list-follow">
                 @if(!$followed)
@@ -29,7 +30,7 @@
                 @endif
             </div>
          <!-- modal setting -->
-         <div id="myModal-2" class="modal ">
+         <div id="myModal-3" class="modal ">
             <div class="modal-content setting animate__animated animate__zoomIn" >
                <li><a href="{{route('password.edit')}}">{{ __('translate.Change Password')}}</a></li>
                <li><a href="">{{ __('translate.Nametag')}}</a></li>
@@ -40,7 +41,7 @@
                <li><a href="">{{ __('translate.Emails from Instagram')}}</a></li>
                <li><a href="">{{ __('translate.Report a Problem')}}</a></li>
                <li><a href="{{ route('get.logout') }}">{{ __('translate.Log Out')}}</a></li>
-               <li><a href="#" id="exit">{{ __('translate.Cancel')}}</a></li>
+               <li><a href="#" id="exit3">{{ __('translate.Cancel')}}</a></li>
             </div>
          </div>
          <div class="csc">
@@ -180,7 +181,7 @@
    <button id="fourst"><i class="fa fa-user"></i> {{ __('translate.TAGGED')}}</button> 
    </div> 
    <!-- modal upload profile and story -->
-   <div id="myModal" class="modal"> 
+   <div id="myModal-4" class="modal"> 
    <div class="modal-content upload animate__animated animate__zoomIn ">
    <h4>{{ __('translate.Upload photo')}}</h4>
    <div class="button">
@@ -261,7 +262,7 @@
                            <p><a href="{{ route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}}</a> </b> {{$val->p_content}}</p>
                         </div>
                         <i class="fa fa-ellipsis-h"></i> 
-                        <div class="os heo">{{ $val->created_at->diffForHumans($now) }} 
+                        <div class="os heo">{{ $val->created_at->diffForHumans() }} 
                         </div>
                      </div>
                      @endif   
@@ -273,7 +274,7 @@
                               <p><b><a href="{{ route('get.home-page',$cmt->users->user)}}">{{$cmt->users->c_name}}</a> </b> {{$cmt->c_comment}}</p>
                            </div>
                            <i class="fa fa-ellipsis-h"></i>
-                           <div class="os heo">{{ $cmt->created_at->diffForHumans($now) }} </div>
+                           <div class="os heo">{{ $cmt->created_at->diffForHumans() }} </div>
                         </div>
                         @endforeach
                      </div>
@@ -307,13 +308,13 @@
                      @include('layout.attraction_button',['value'=>$val->id])
                      <p class="f-6 "><b class="view{{$val->id}}">{{$val->p_view}}</b> {{ __('translate.views')}}</p>
                      <p class="f-6 " style="margin-top:-6px"> @include('layout.like',['value'=>$val->id])</p>
-                     <p class="os">{{ $val->created_at->diffForHumans($now) }}</p>
+                     <p class="os">{{ $val->created_at->diffForHumans() }}</p>
                   </div>
                     @include('layout.comment',['value'=>$val->id])
                </div>
             </div>
          </div>
-         <script>   
+<script>   
             //click để scroll đến cuối trang
                // $('body').on('click','#myBtnn{{$val->id}}',function(){
                //    var $div = $("#hell"); 
@@ -321,65 +322,54 @@
                // })
                 
                //hiện modal bài viết 
-             
-               var thismodal{{$val->id}} = document.getElementById("myModall{{$val->id}}"); 
-               var thisbtn{{$val->id}} = document.getElementById("myBtnn{{$val->id}}"); 
-               var html=document.getElementsByTagName("html");
-               thisbtn{{$val->id}}.onclick = function() {
-               thismodal{{$val->id}}.style.display = "block";
-               var post='{{$val->id}}';
-               var URL ="{{ route('post.increview')}}";  
-               $.get({
-                  url:URL,
-                  data:{post:post},
-                  success:function(e){  
-                     $('.view{{$val->id}}').text(e.p_view);
-                  }
-               })
-               }   
-               //ẩn modal bài viết
-               thismodal{{$val->id}}.onclick = function(event) {   
-                  if (event.target == thismodal{{$val->id}}) {    
-                  thismodal{{$val->id}}.style.display = "none";
-                 
-                  }
-               }
-              
-            
-            
-               
-               
-         </script>     
-         @endforeach 
-      </div>
-   </div>
-   <div class="d-none post-video">
-      @if(!count($video))
-      <div class="hef">
-         <span class="fa-stack fa-2x fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-video-camera fa-stack-1x"></i></span>
-         <p>{{ __('translate.Upload a Video') }}</p>
-         <p>{{ __('translate.Videos must be between 1 and 60 minutes long.') }}</p>
-         <a href="{{ route('upload.video')}}">{{ __('translate.Upload') }}</a>
-      </div>
-      @endif
-   </div>
-   <footer>
-      <ul>
-         <li class=" "><a href="">{{ __('translate.About')}}</a></li>
-         <li class=" "><a href="">Blog</a></li>
-         <li class=" "><a href="">{{ __('translate.Jobs')}}</a></li>
-         <li class=" "><a href="">{{ __('translate.Help')}}</a></li>
-         <li class=" "><a href="">API</a></li>
-         <li class=" "><a href="">{{ __('translate.Privacy')}}</a></li>
-         <li class=" "><a href="">{{ __('translate.Terms')}}</a></li>
-         <li class=" "><a href="">{{ __('translate.Top Accounts')}}</a></li>
-         <li class=" "><a href="">Hashtag</a></li>
-         <li class=" "><a href="">{{ __('translate.Locations')}}</a></li>
-         <li class=" "><a href="{{route('language',['vi']) }}">Tiếng Việt</a></li>
-         <li class=" "><a href="{{route('language',['en']) }}">English</a></li>
-      </ul>
-      <br> 
-   </footer>
+    $(function(){
+        $('#myBtnn{{$val->id}}').on('click',function(event){
+            $('#myModall{{$val->id}}').show();
+            var post='{{$val->id}}';
+            var URL ="{{ route('post.increview')}}";  
+            $.get({
+                url:URL,
+                data:{post:post},
+                success:function(e){  
+                }
+            })
+        })
+        $('#myModall{{$val->id}}').on('click',function(event){
+            if(event.target == document.getElementById("myModall{{$val->id}}")) 
+                $(this).hide();
+        })
+    })            
+</script>     
+@endforeach 
+    </div>
+</div>
+    <div class="d-none post-video">
+        @if(!count($video))
+        <div class="hef">
+            <span class="fa-stack fa-2x fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-video-camera fa-stack-1x"></i></span>
+            <p>{{ __('translate.Upload a Video') }}</p>
+            <p>{{ __('translate.Videos must be between 1 and 60 minutes long.') }}</p>
+            <a href="{{ route('upload.video')}}">{{ __('translate.Upload') }}</a>
+        </div>
+        @endif
+    </div>
+    <footer>
+        <ul>
+            <li class=" "><a href="">{{ __('translate.About')}}</a></li>
+            <li class=" "><a href="">Blog</a></li>
+            <li class=" "><a href="">{{ __('translate.Jobs')}}</a></li>
+            <li class=" "><a href="">{{ __('translate.Help')}}</a></li>
+            <li class=" "><a href="">API</a></li>
+            <li class=" "><a href="">{{ __('translate.Privacy')}}</a></li>
+            <li class=" "><a href="">{{ __('translate.Terms')}}</a></li>
+            <li class=" "><a href="">{{ __('translate.Top Accounts')}}</a></li>
+            <li class=" "><a href="">Hashtag</a></li>
+            <li class=" "><a href="">{{ __('translate.Locations')}}</a></li>
+            <li class=" "><a href="{{route('language',['vi']) }}">Tiếng Việt</a></li>
+            <li class=" "><a href="{{route('language',['en']) }}">English</a></li>
+        </ul>
+        <br> 
+    </footer>
 </body>
 <p class="os" style="text-align:center">&copy; 2020 INSTAGRAM FROM FACEBOOK</p>
 <br>

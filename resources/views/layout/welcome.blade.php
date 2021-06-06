@@ -31,7 +31,7 @@
                      </div>
                      <a href="javascript:;" class="text-gray button{{$key}}">{{ __('translate.View more comments')}}</a> 
                   <br>
-                     <a href="" class="text-gray" style="font-size:12px;line-height:30px">{{ $item->created_at->diffForHumans($now) }} </a>
+                     <a href="" class="text-gray" style="font-size:12px;line-height:30px">{{ $item->created_at->diffForHumans($) }} </a>
                      <hr>
                      <form class="position-relative form" action="{{ route('comment.post')}}">
                         <textarea rows="10"  autocomplete="off" class="textarea-{{$key}} textarea-comment{{$key}}" placeholder="{{ __('translate.Add a comment')}}..."></textarea>

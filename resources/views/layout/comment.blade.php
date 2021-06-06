@@ -10,16 +10,16 @@
    //không cho người dùng đăng khi chưa comment
    $(function(){  
    $('.textarea-{{$value}}').on('keyup',function(event){
-      if(!$('.textarea-{{$value}}').val())
-      $('#submit-{{$value}}').addClass('disabled'); 
-      else{ 
-      $('#submit-{{$value}}').removeClass('disabled');
-      if(event.keyCode === 13) {
-         $('.textarea-{{$value}}').prop( "disabled", true );
-         event.preventDefault();
-         document.getElementById("submit-"+{{$value}}).click();
-       }
-      }
+        event.preventDefault();
+		if(!$('.textarea-{{$value}}').val())
+			$('#submit-{{$value}}').addClass('disabled'); 
+		else{ 
+			$('#submit-{{$value}}').removeClass('disabled');
+		if(event.keyCode === 13) {
+			$('.textarea-{{$value}}').prop("disabled", true );
+			document.getElementById("submit-"+{{$value}}).click();
+		}
+		}
    })
    
    //comment

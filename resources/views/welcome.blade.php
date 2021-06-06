@@ -120,7 +120,8 @@
             @if(!\App\Models\Follow::where(['user_id'=>\Auth::id(),'followed'=>$list->id])->count())
             <div class="d-inline-block position-relative suggest">
                <div class="d-inline-block text-black">
-                  <a href="{{ route('get.home-page',$list->user) }}"><img src="{{ pare_url_file($list->avatar,'user') }}" class="rounded-circle">
+                  <a href="{{ route('get.home-page',$list->user) }}">
+                     <img src="{{ pare_url_file($list->avatar,'user') }}" class="rounded-circle">
                   {{ $list->user}}</a>
                </div>
                <div class="d-inline-block" style="position: absolute; top: 0;right: 0;margin-top: 10px;">

@@ -4,8 +4,8 @@
     <div class="d-flex" style="justify-content:center">
         @include('layout.avatar',['user' =>\Auth::user(),'height'=>'40px'])
         <div style="padding: 15px 25px;">
-        <b>{{\Auth::user()->c_name}}</b><br>
-        <p>{{\Auth::user()->user}}</p>
+            <b>{{\Auth::user()->c_name}}</b><br>
+            <p>{{\Auth::user()->user}}</p>
         </div>        
     </div>
 <form action="{{ route('profile.store')}}" method="POST" class="form-question">

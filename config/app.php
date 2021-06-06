@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class  
+        Intervention\Image\ImageServiceProvider::class  ,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -230,7 +231,8 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Input' => Illuminate\Support\Facades\Input::class
+        'Input' => Illuminate\Support\Facades\Input::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

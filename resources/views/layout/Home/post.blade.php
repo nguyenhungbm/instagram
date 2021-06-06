@@ -12,7 +12,7 @@
       </div>
     
    </div>
-   <img src="{{pare_url_file($val->p_image,'profile/img') }}" class="article-img">
+   <img src="{{pare_url_file($val->p_image,'profile/img') }}" class="article-img" >
    <div class="attractive">
       <div class="d-block">
          @include('layout.attraction_button',['value'=>$val->id])

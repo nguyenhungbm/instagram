@@ -1,23 +1,14 @@
 @extends('layout.accounts')
 @section('contents')
 <div class="w-80">
-    <div class="clr">
-        <div class="edit-form__title">
-            @if(!\Auth::user()->avatar) 
-        <label for="upload_user_avatar"> <img src="/img/no-user.png" class="rounded-circle cs avatar_user_uploaded"></label>
-                
-            @elseif(substr(\Auth::user()->avatar,0,4)=='http')
-        <img src="{{ \Auth::user()->avatar }}" class="rounded-circle cs avatar_user_uploaded" id="myBtn-5">
-            @else
-        <img src="{{ pare_url_file(\Auth::user()->avatar,'user') }}" class="rounded-circle  cs avatar_user_uploaded" id="myBtn-5">
-            @endif
-        <img src="{{ asset('img/loading.gif')}}" class=" uploadavatar imguser" style="display:none;">
-                
-        </div> 
-        <div class="edit-form__content userr">  
-            <p>{{\Auth::user()->user}}</p><br>
-                     
-        </div>
+    <div class="d-flex" style="justify-content:center">
+        @include('layout.avatar',['user' =>\Auth::user(),'height'=>'40px'])
+        <div style="padding: 15px 25px;">
+            <b>{{\Auth::user()->c_name}}</b><br>
+            <p>{{\Auth::user()->user}}</p>
+        </div>        
+    </div>
+    <div class="clr"> 
         <form action="{{ route('password.store')}}" method="POST">
             @csrf
         <div class="clr">
