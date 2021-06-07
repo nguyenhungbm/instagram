@@ -2,7 +2,7 @@
     <input type="text" name="search" id="input-search" class="input-search" placeholder="{{ __('translate.Search')}}" autocomplete="off">
     <img src="{{ asset('img/search.png') }}" class="w-15 yes search-2 ">
     <img src="{{ asset('img/delete.png') }}" class="w-15 float-right delete"> 
-    <ul class="list d-none">
+    <ul class="lists d-none">
         <div class="div">
         <li class="nos d-none">
           <img src="{{ asset('img/loadingg.gif')}}" class="loaders">
@@ -15,7 +15,7 @@
     $('#input-search').on('keyup',function(){
         var val =$(this).val();  
         if(val.length >= 2){
-            $('.list').removeClass('d-none');
+            $('.lists').removeClass('d-none');
             var URL="{{route('search')}}";   
             $.get({
                 url:URL,
@@ -43,13 +43,13 @@
             })  
          } 
          else{
-            $('.list').addClass('d-none');
+            $('.lists').addClass('d-none');
          }
       })
 
       
     $(window).on('click',function(){
-        $('.list').addClass('d-none');
+        $('.lists').addClass('d-none');
     })
    })
 </script> 

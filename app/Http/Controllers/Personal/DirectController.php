@@ -14,11 +14,7 @@ use App\Events\NewMessage;
 use App\Models\User;
 use App\Events\GroupCreated;
 class DirectController extends Controller
-{
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+{ 
     //chat private
     public function index(){ 
        

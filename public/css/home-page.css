@@ -448,9 +448,14 @@ h2{
 .settings{text-align: center;
     border-radius: 10px;
     width: 35vw;
-    max-width: 350px; 
-    min-height: 400px;
+    width: 350px; 
+    height: 400px;
     overflow: hidden;}
+.settingss{
+    overflow: auto;
+    height: 87%;
+    width: 100%;
+}
 .settings .list{
     overflow: auto;
     height: 350px;

@@ -125,7 +125,7 @@ body,.background-gray{
     left: 50%;
     transform: translate(-50%,-100%);
 }
-ul.list{
+ul.lists{
     position: relative;
     border: 1px solid #eeeeee;
     border-radius: 5px;
@@ -136,7 +136,7 @@ ul.list{
     width: 300px;
 }
 
-ul.list:after, ul.list:before {
+ul.lists:after, ul.lists:before {
 	bottom: 100%;
 	left: 50%;
 	border: solid transparent;
@@ -147,26 +147,26 @@ ul.list:after, ul.list:before {
 	pointer-events: none;
 }
 
-ul.list:after {
+ul.lists:after {
     border-color: rgba(136, 183, 213, 0);
     border-bottom-color: white;
     border-width: 10px;
     margin-left: -10px;
 }
-ul.list:before {
+ul.lists:before {
     border-color: rgba(194, 225, 245, 0);
     border-bottom-color: #bdbdbd;
     border-width: 11px;
     margin-left: -11px;
 }
-ul.list .clr{
+ul.lists .clr{
     height: 50px;
     padding-top: 7px;
 }
-ul.list .clr:hover{
+ul.lists .clr:hover{
     background-color:#f4f1f1;
 }
-.list .div{
+.lists .div{
     background: white;
     width: 300px;
     max-height: 350px; 

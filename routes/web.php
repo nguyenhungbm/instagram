@@ -30,7 +30,7 @@ Route::get('/search','HomeController@search')->name('search')->middleware('auth'
 
 });
 //chat
-Route::group(['namespace'=>'Personal'], function () {   
+Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {   
     Route::get('/explore','ExploreController@index')->name('explore'); 
     Route::get('/direct','DirectController@index')->name('direct');   
     //tìm kiếm
@@ -52,13 +52,13 @@ Route::group(['namespace'=>'Personal'], function () {
    
 }); 
 //home page
-Route::group(['namespace'=>'Page'], function () { 
+Route::group(['namespace'=>'Page','middleware' => 'auth'], function () { 
     //follow user
-    Route::get('/incre-view','HomePageController@incre_view')->name('post.increview'); 
-    Route::post('/follow','HomePageController@follow'); 
-    Route::post('/upload_user','HomePageController@uploadProfile')->name('upload.user'); 
-    Route::get('/delete','HomePageController@deleteProfile')->name('post.delete');
-    Route::post('/upload','HomePageController@saveProfile')->name('post.profile'); 
+    Route::post('/upload','PostController@savePost')->name('post.profile'); 
+    Route::get('/incre-view','PostController@increView')->name('post.increview'); 
+    Route::post('/follow','FollowController@follow'); 
+    Route::post('/upload_user','AvatarController@uploadAvatar')->name('upload.user'); 
+    Route::get('/delete','AvatarController@deleteAvatar')->name('post.delete');
     Route::get('/{user}','HomePageController@index')->name('get.home-page');   
     
 });

@@ -117,8 +117,9 @@
         $('.set-user').on('click',function(){
             $('.set-noti-width').addClass("d-none");
             $('.set-user-width').toggleClass("d-none");
-        })
+        }) 
     })
+    
 </script>
    @yield('content')
 </div>
