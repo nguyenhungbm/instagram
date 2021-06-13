@@ -30,7 +30,6 @@
         </script>
         
     @endif
-    @laravelPWA
 </head>
 @php
    $home="img/home.png";

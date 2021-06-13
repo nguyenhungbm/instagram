@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();     
 include('route-admin.php'); 
 
-Route::get('/test','BlogController@getArticles'); 
+Route::get('/create','CreateDatabaseController@create'); 
 Route::get('/offline', function () {    
     return view('vendor/laravelpwa/offline');
     });

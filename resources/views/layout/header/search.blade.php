@@ -26,7 +26,7 @@
                 complete:function(){
                     $('.nos').addClass('d-none');
                 },
-                success:function(res){ 
+                success:function(res){  
                     $('.div').empty();
                     if(res == 0){
                         $(".div").prepend(`
