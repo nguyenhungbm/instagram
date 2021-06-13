@@ -6,7 +6,9 @@ Auth::routes();
 include('route-admin.php'); 
 
 Route::get('/test','BlogController@getArticles'); 
-
+Route::get('/offline', function () {    
+    return view('vendor/laravelpwa/offline');
+    });
 Route::get('/','HomeController@index')->name('home')->middleware('auth'); 
 Route::get('/search','HomeController@search')->name('search')->middleware('auth'); 
  Route::group(['namespace' =>'Auth','prefix'=>'account'],function(){

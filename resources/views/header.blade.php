@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="{{ asset('css/direct.css') }}"> 
     <link rel="stylesheet" href="{{ asset('css/reponsive.css') }}"> 
     <link rel="stylesheet" href="{{ asset('css/explore.css') }}"> 
-      <script src="https://use.fontawesome.com/452826394c.js"></script>
     <link rel="stylesheet" href="{{ asset('css/home-page.css') }}"> 
-
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/font-awesome.min.css') }}">
+                  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
@@ -30,7 +30,7 @@
         </script>
         
     @endif
-    
+    @laravelPWA
 </head>
 @php
    $home="img/home.png";
@@ -126,7 +126,6 @@
 </html> 
 @yield('js')
 <script src="{{ asset('js/app.js') }}" ></script>
-<script src="https://use.fontawesome.com/452826394c.js" defer></script>
 <script src="{{ asset('toastr/toastr.min.js') }}" defer></script>
 
 <script>

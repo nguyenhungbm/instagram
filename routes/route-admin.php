@@ -12,7 +12,6 @@ Route::group(['prefix' =>'admin-auth','namespace' => 'Admin\Auth'], function() {
     Route::get('register','HomeController@getRegisterAdmin')->name('get.register.admin');
     Route::post('register','HomeController@postRegisterAdmin');
 
-
     Route::get('logout','HomeController@getLogoutAdmin')->name('get.logout.admin');
 });
 Route::group(['prefix'=>'api-admin','namespace'=>'Admin','middleware'=>'check_admin_login'],function(){
