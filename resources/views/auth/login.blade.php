@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}"> 
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
-    <title>Instagram</title> 
+    <title>Đăng nhập</title> 
     <!-- toastr -->
     <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}"> 
     @if(session('toastr'))
@@ -17,8 +17,66 @@
         
         </script>
     @endif
+    
+    <script>
+         $(function(){ 
+            $(window).bind("load", function() {
+                jQuery(".loading").delay(6000).fadeOut();
+            });
+         })
+    </script>
 </head>
+<style>
+    
+.loading{
+    background-color: white;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loadding{
+    background: url('/img/banner.jpg');
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    width: 100%;
+    height: 100%;
+}
+#typed{ 
+    font-size: 50px;
+    z-index: 9999999;
+}
+
+#typed h1{
+    color: #000;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 100;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+}
+#typed span{
+    color:#84ff84 !important
+}
+</style>
 <body>
+<div class="loading">
+<div class="loadding"></div>
+    <div id="typed-strings" style="display:none">
+        <h1>WELCOME TO MY WEBSITE</h1>
+        <h1><span>ENJOY</span> AND <span>RELAX</span> WITH IT</h1>
+    </div>
+<span id="typed"></span>
+
+</div>
     <div class="login-left">
         <img src="{{ asset('img/login.png') }}" >
     </div>
@@ -29,12 +87,10 @@
         @csrf
             <div class="username">
                 <input  type="text" value="hung0913003358@gmail.com" class="username" id="username" name="email" placeholder="Số điện thoại, tên người dùng hoặc email" autocomplete="off">
-               
-               
             </div>
             @if($errors->first('email'))    
                 <span class="text-danger">{{$errors->first('email') }}</span>
-                @endif
+            @endif
             <div class="username">
                 <input type="password" class="password" value="123456" id="password" name="password" placeholder="Mật khẩu" > 
                 
@@ -42,7 +98,7 @@
             </div> 
             @if($errors->first('password'))    
                 <span class="text-danger">{{$errors->first('password') }}</span>
-                @endif
+            @endif
             <button type="submit">Đăng nhập</button>
         </form>
         <div class="or" >
@@ -121,6 +177,15 @@
 
     
 </script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typed = new Typed('#typed', {
+    stringsElement: '#typed-strings',
+    loop:true,
+    typeSpeed: 40,
+    backSpeed: 40,
+  });
+</script>
 <script>
     $(".click").on("click",function(){
         $(this).toggleClass("fa-eye-slash");
@@ -130,8 +195,7 @@
         }
         if($(this).hasClass("fa-eye")){
             $('#password').attr('type', 'text');
-}
+        }
     })
- 
 </script>
 </html>
