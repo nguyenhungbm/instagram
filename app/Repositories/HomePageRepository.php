@@ -11,7 +11,7 @@ class HomePageRepository
         //$id là username có thể là Auth->user hoặc không  
         $user = User::where('user',$id)->first();  
         $post = Post::where(['p_user'=>$user->id ,
-        'p_type'=>'pro'
+        'p_type'=>'profile'
        ])
         ->orderBy('created_at','desc')
         ->get();
