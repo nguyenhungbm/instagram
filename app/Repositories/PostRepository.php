@@ -4,9 +4,10 @@ namespace App\Repositories;
 
 use App\Models\Post;
 use Auth;
+use DB;
 use Image;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
+use Str;
 class PostRepository
 {
     public function create($request){

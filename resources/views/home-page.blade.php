@@ -167,9 +167,13 @@
             <a href="javascript:;" class="back"><i class="fa fa-long-arrow-left"></i> {{ __('translate.Back')}} </a>
             <p>{{ __('translate.New Post')}}</p>
             <button type="submit" class="submit">{{ __('translate.Share')}}</button> 
-            <img src="{{asset('img/loading.gif')}}"  class="w-30 nos" style="display:none">
+            <img src="{{asset('img/loading.gif')}}"  class="w-30 noss" style="display:none">
             </div>
             <textarea name="p_content" class="textarea p-5" placeholder="Write a caption... (max 2000 charaters)"></textarea>
+            
+            <!--file-->
+            <input type="file" name="profiles" accept="image/*" id="profiles" class='d-none'>
+            <!--file-->
     </div>
     <img id="image-post" src="{{ asset('img/heart-outline.png') }}" >
 </div>
@@ -187,9 +191,6 @@
 <div class="button">
 <div class="label">
 <label for="profiles" class="cs">{{ __('translate.Add to Profile')}}</label>  
-<!--file-->
-<input type="file" name="profiles" accept="image/*" id="profiles" class='d-none'>
-<!--file-->
 <p class="p">{{ __('translate.or')}}</p>
 </div>
 <div class="label label2">
@@ -427,7 +428,7 @@
         })
         $('.submit').on('click',function(){
             $(this).hide();
-            $('.nos').show();
+            $('.noss').show();
         })
     }) 
 </script> 
