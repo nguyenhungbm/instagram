@@ -295,7 +295,7 @@ ul.lists .clr:hover{
     height: 100%;
 }
 .hidden{
-    animation: faceOut 2s;
+    animation: faceOut 5s;
     animation-fill-mode: forwards;
 }
 .auto-load{

@@ -6,13 +6,13 @@ Auth::routes();
 
 //admin-auth
 Route::group(['prefix' =>'admin-auth','namespace' => 'Admin\Auth'], function() {
-    Route::get('login','HomeController@getLoginAdmin')->name('get.login.admin');
-    Route::post('login','HomeController@postLoginAdmin');
+    Route::get('login','AdminController@getLoginAdmin')->name('get.login.admin');
+    Route::post('login','AdminController@postLoginAdmin');
 
-    Route::get('register','HomeController@getRegisterAdmin')->name('get.register.admin');
-    Route::post('register','HomeController@postRegisterAdmin');
+    Route::get('register','AdminController@getRegisterAdmin')->name('get.register.admin');
+    Route::post('register','AdminController@postRegisterAdmin');
 
-    Route::get('logout','HomeController@getLogoutAdmin')->name('get.logout.admin');
+    Route::get('logout','AdminController@getLogoutAdmin')->name('get.logout.admin');
 });
 Route::group(['prefix'=>'api-admin','namespace'=>'Admin','middleware'=>'check_admin_login'],function(){
     Route::get('','HomeController@index')->name('admin.index'); 

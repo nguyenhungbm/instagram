@@ -23,7 +23,8 @@
         "nexmo/laravel": "^2.4",
         "paragonie/random_compat": "^9.99",
         "pusher/pusher-php-server": "^4.1",
-        "silviolleite/laravelpwa": "^2.0"
+        "silviolleite/laravelpwa": "^2.0",
+        "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

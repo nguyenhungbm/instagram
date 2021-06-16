@@ -125,9 +125,15 @@ button{
 }
 @media only screen and (max-width:850px){
     .login-left{display: none;} 
-    .login-right {width: 100%;border:none}
+    .login-right {
+        width: 100%;
+        border:none;
+    }
+    body{
+        background-color: #fff;
+    }
     .register{
         width: 80%;
-    margin-left: 20px;
+        margin-left: 20px;
     }
 }

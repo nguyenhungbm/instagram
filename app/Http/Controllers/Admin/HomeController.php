@@ -17,10 +17,10 @@ class HomeController extends Controller
         $new_post=Post::join('users','posts.p_user','users.id')
         ->where('p_type','profile')->count();
         $viewData=[
-            'new_admin'=>$new_admin,
-            'new_user'=>$new_user,
-            'new_post'=>$new_post,
-            'title' =>'Trang quản trị',
+            'new_admin' => $new_admin,
+            'new_user'  => $new_user,
+            'new_post'  => $new_post,
+            'title'     => 'Trang quản trị',
         ];
         return view('admin.index',$viewData);
     }

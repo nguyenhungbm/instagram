@@ -24,7 +24,7 @@ class AdminController extends Controller
             'role_count'=>$role_count,
             'title' =>'Người dùng',
         ];
-        return view('admin.employee.index',$viewData);
+        return view('admin.admin.index',$viewData);
     }
     public function create()
     { 
@@ -35,7 +35,7 @@ class AdminController extends Controller
         'permissionparent'=>$permissionparent,
         'title' =>'Thêm người dùng',
     ];
-        return view('admin.employee.create',$viewData);
+        return view('admin.admin.create',$viewData);
     }
     public function store(Request $request)
     {
@@ -61,7 +61,7 @@ class AdminController extends Controller
             ]); 
             $user->roles()->attach($request->roles);
             DB::commit();
-        return redirect()->route('admin.employee.index');
+        return redirect()->route('admin.admin.index');
     }catch(\Exception $e){
             DB::rollBack();
             Log::error('Lỗi :'.$e->getMessage().' tại dòng '.$e->getLine());
@@ -78,7 +78,7 @@ class AdminController extends Controller
         'role'   =>$role,
         'title' =>'Thay đổi người dùng',
     ];
-        return view('admin.employee.update',$viewData);
+        return view('admin.admin.update',$viewData);
     }
     public function update(Request $request,$id)
     {
@@ -106,7 +106,7 @@ class AdminController extends Controller
             ]); 
             $admin->roles()->sync($request->roles);
             DB::commit();
-        return redirect()->route('admin.employee.index');
+        return redirect()->route('admin.admin.index');
     }catch(\Exception $e){
             DB::rollBack();
             Log::error('Lỗi :'.$e->getMessage().' tại dòng '.$e->getLine());

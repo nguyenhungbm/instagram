@@ -6,8 +6,9 @@
     <title>Đăng ký</title>
     <meta name="description" content="Website kết nối mọi người với nhau , cùng nhau chia sẻ những khoảnh khắc đáng nhớ">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
-    <link rel="stylesheet" href="{{ asset('css/register.css') }}"> 
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">     
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/font-awesome.min.css') }}">
+
 </head>
 <body>
     <section><br>
@@ -60,7 +61,6 @@
     
 </body>
 
-<script src="https://use.fontawesome.com/452826394c.js"></script>
 <script>
 
 $(".click").on("click",function(){
