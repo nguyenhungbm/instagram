@@ -175,10 +175,7 @@ class DirectController extends Controller
         $conversation=Conversation::create([
             'user_id'  => $request->user_id,
             'group_id' => $request->group_id,
-            'message'  => $request->message,
-            'user'     => $users->user,
-            'avatar'   => $users->avatar,
-            'c_name'   => $users->c_name,
+            'message'  => $request->message,  
         ]);
         broadcast(new NewMessage($conversation))->toOthers();
 

@@ -59,6 +59,7 @@
                         created_at:new Date().toLocaleString()
                     }
                     this.chat = ''; 
+                    console.log(2);
                     axios.post('/group_chat/sendChat',data).then((response) => {
                         this.chat_group.group_chats.push(data);
                     })
