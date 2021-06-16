@@ -29,8 +29,12 @@
             var MESSAGE ="{{session('toastr.messages') }}"; 
         </script>
         
-    @endif
+    @endif 
+
+<!-- 123 -->
     @laravelPWA
+<!-- 456 -->
+
 </head>
 @php
    $home="img/home.png";
