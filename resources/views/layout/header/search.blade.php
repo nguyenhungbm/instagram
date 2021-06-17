@@ -21,8 +21,8 @@
                 url:URL,
                 data:{value:val},
                 beforeSend:function(){
-                    $('.nos').removeClass('d-none');
                     $('.div').empty();
+                    $('.nos').removeClass('d-none').delay(8000);
                 },
                 complete:function(){
                     $('.nos').addClass('d-none');
