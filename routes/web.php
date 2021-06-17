@@ -9,7 +9,7 @@ Route::get('/offline', function () {
     return view('vendor/laravelpwa/offline');
     });
 Route::get('/','HomeController@index')->name('home')->middleware('auth'); 
-Route::get('/search','HomeController@search')->name('search')->middleware('auth'); 
+Route::get('/search','HomeController@search')->name('search'); 
  Route::group(['namespace' =>'Auth','prefix'=>'account'],function(){
     Route::get('register','RegisterController@getFormRegister')->name('get.register'); // đăng ký
     Route::post('register','RegisterController@create'); // xử lý đăng ký

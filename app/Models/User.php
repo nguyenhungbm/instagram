@@ -8,9 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Group;
 use Laravel\Passport\HasApiTokens;
+use App\Traits\FullTextSearch;
 class User extends Authenticatable
 {
-    use HasFactory,Notifiable, HasApiTokens;
+    use HasFactory,Notifiable, HasApiTokens,FullTextSearch;
     /**
      * The attributes that are mass assignable.
      *
@@ -21,11 +22,11 @@ class User extends Authenticatable
         'provider', 'provider_id', 'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    protected $searchable = [
+        'c_name',
+        'user'
+    ];
+
     protected $hidden = [
     ];
 

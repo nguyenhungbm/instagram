@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \Pusher\Pusher;
 use App\Models\User; 
 use App\Models\Follow; 
-use App\Models\Comment;
 use App\Models\Post;
-use App\Models\Like;
-use Illuminate\Support\Facades\Gate;
-use Carbon\Carbon;  
 class HomeController extends Controller
 { 
     public function index(Request $request)
@@ -64,8 +59,7 @@ class HomeController extends Controller
     }
     public function search(Request $request){
         $val = User::where('id','!=',\Auth::id())
-                    ->where('c_name','like','%'.$request->value.'%')
-                    ->orwhere('user','like','%'.$request->value.'%')
+                    ->search($request->value)
                     ->get();
         if(!$val->isEmpty())
             return view('layout.header.data',compact('val'))->render();

@@ -3,15 +3,15 @@
     <img src="{{ asset('img/search.png') }}" class="w-15 yes search-2 ">
     <img src="{{ asset('img/delete.png') }}" class="w-15 float-right delete"> 
     <ul class="lists d-none">
-        <div class="div">
         <li class="nos d-none">
           <img src="{{ asset('img/loadingg.gif')}}" class="loaders">
         </li>
+        <div class="div"> 
         </div>
     </ul>
 </div>
 <script> 
-   $(function(){
+   $(function(){ 
     $('#input-search').on('keyup',function(){
         var val =$(this).val();  
         if(val.length >= 2){
@@ -22,6 +22,7 @@
                 data:{value:val},
                 beforeSend:function(){
                     $('.nos').removeClass('d-none');
+                    $('.div').empty();
                 },
                 complete:function(){
                     $('.nos').addClass('d-none');

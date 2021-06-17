@@ -31,9 +31,7 @@
         
     @endif 
 
-<!-- 123 -->
     @laravelPWA
-<!-- 456 -->
 
 </head>
 @php
