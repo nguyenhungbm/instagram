@@ -6,8 +6,9 @@
       <h6 class="m-0 font-weight-bold text-primary">Cập nhật quyền hạn</h6>
    </div>
    <div class="card-body">
-      <form method="post">
+      <form  action="{{ route('role.update',$role->id)}}" method="post">
          @csrf
+         @method('PUT')
          <div class="form-group">
             <label for="exampleFormControlInput2">Tên quyền hạn</label>
             <input type="text" class="form-control" value="{{ $role->name}}" name="name" id="exampleFormControlInput2"  >

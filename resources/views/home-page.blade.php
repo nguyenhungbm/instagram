@@ -2,33 +2,32 @@
 @extends('header') 
 @section('content')
 <body>
-    <section class="sd">
-        @include('layout.avatar',['user' => $user,'height'=>'170px'])
-        <div class="csa">
-            <div class="csb">
-                <span class="os">{{ $user->user }}</span>
-                @if($user->user === \Auth::user()->user)
+<section class="sd">
+    @include('layout.avatar',['user' => $user,'height'=>'170px'])
+    <div class="csa">
+        <div class="csb">
+            <span class="os">{{ $user->user }}</span>
+            @if($user->user === \Auth::user()->user)
                 <a href="{{ route('profile.edit') }}">{{ __('translate.Edit Profile')}}</a>
                 <i class="fa fa-2x fa-sun-o" id="myBtn-3"></i>  
                 <button id="myBtn-4" class="background-blue button" style="padding: 5px 20px;margin-left: 20px;border-radius: 5px;">Đăng bài</button> 
-
-                @else  
+            @else  
                 <div class="list-follow">
                 @if(!$followed)
-                <button class="follow" onclick="follow('{{$user->id}}')">
-                    <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$user->id}}" style="display:none">
-                    <p class="text-follows{{$user->id}}">{{ __('translate.follow')}}</p>
-                </button>
+                    <button class="follow" onclick="follow('{{$user->id}}')">
+                        <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$user->id}}" style="display:none">
+                        <p class="text-follows{{$user->id}}">{{ __('translate.follow')}}</p>
+                    </button>
                 @else
-                <a href="{{ route('chat.show', $user->id) }}" class="message">{{ __('translate.Message')}}</a>
-                <a class="unfollow follows{{$user->id}}"href="javascript:;"  onclick="follow('{{$user->id}}')">
-                <i class="fa  fa-user-times"></i>
-                <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$user->id}}" style="display:none;margin-top: -11px;">
-                </a>
+                    <a href="{{ route('chat.show', $user->id) }}" class="message">{{ __('translate.Message')}}</a>
+                    <a class="unfollow follows{{$user->id}}"href="javascript:;"  onclick="follow('{{$user->id}}')">
+                    <i class="fa  fa-user-times"></i>
+                    <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$user->id}}" style="display:none;margin-top: -11px;">
+                    </a>
                 @endif
                 </div>
-                @endif
-            </div>
+            @endif
+        </div>
         <!-- modal setting -->
         <div id="myModal-3" class="modal ">
             <div class="modal-content setting animate__animated animate__zoomIn" >
@@ -44,10 +43,11 @@
             <li><a href="#" id="exit3">{{ __('translate.Cancel')}}</a></li>
             </div>
         </div>
+
         <div class="csc">
             <p><b style="padding-right: 5px;">{{ count($post)}}</b> {{ __('translate.posts')}}</p>
             <p class="cs" id="myBtn-6"><b style="padding-right: 5px;" class="follower">{{count($userFollow)}}</b>{{ __('translate.followers')}}</p>
-            <!-- modal setting -->
+            <!-- modal follow -->
             <div id="myModal-6" class="modal">
             <div class="modal-content settings animate__animated animate__zoomIn" >
                 <li class="one">{{ ucwords(__('translate.followers'))}} <span class="float-right cs" id="exit6" style="right: 15px;position: absolute;top: 0;">&times;</span></li>
@@ -151,7 +151,7 @@
             </div>
             <!--end modal-->
         </div>
-        <b>{{ $user->c_name}}</b>  
+        <b class="name_user">{{ $user->c_name}}</b>  
     </div>
 </section>
 <div class="image d-none">
@@ -201,7 +201,7 @@
 </div>
 </div> 
 </form>  
-<div class="post-image">
+<div class="post-image"> 
     @if(!count($post))
     <div class="clr">
         <br>
@@ -216,17 +216,18 @@
     <div><img src="{{ asset('img/everything.png')}}" class="float-left hed"></div>
     <br>
     @endif
-    <div class="clr">
+    <div class="d-grid_image">
         @foreach($post as $key=> $val) 
         <div class="cs cse {{ $key%3 == 1 ? 'uio' : '' }}"  id="myBtnn{{$val->id}}">
+            <input type="hidden" value="{{ $val->p_slug}}" id="slug{{$val->id}}">
             <div class="clr csf">
                 <i class="fa fa-heart"></i> 
                 <p class="likes{{$val->id}}">{{ $val->p_favourite}}</p>
                 <i class="fa fa-comment"></i> 
                 <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>
             </div>
-        @if($key < 6 )
-            <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}" id="image{{$key}}">
+        @if($key < 61 )
+            <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="img_small" id="image{{$key}}">
         @else
             <img data-img="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="lazyload" id="image{{$key}}">
         @endif
@@ -317,18 +318,25 @@
                 //    $div.scrollTop($div[0].scrollHeight);
                 // })
                     
-                //hiện modal bài viết 
+                //hiện modal bài viết
+                
+                
         $(function(){
             $('#myBtnn{{$val->id}}').on('click',function(event){
-                $('#myModall{{$val->id}}').show();
-                var post='{{$val->id}}';
-                var URL ="{{ route('post.increview')}}";  
-                $.get({
-                    url:URL,
-                    data:{post:post},
-                    success:function(e){  
-                    }
-                })
+                if(screen.width >800){
+                    $('#myModall{{$val->id}}').show();
+                    var post='{{$val->id}}';
+                    var URL ="{{ route('post.increview')}}";  
+                    $.get({
+                        url:URL,
+                        data:{post:post},
+                        success:function(e){  
+                        }
+                    })
+                }else{
+                    var slug =$('#slug{{$val->id}}').val();
+                    window.location.href='/p/'+slug;
+                }
             })
             $('#myModall{{$val->id}}').on('click',function(event){
                 if(event.target == document.getElementById("myModall{{$val->id}}")) 
@@ -372,6 +380,7 @@
 <script>
     //lazy load img
     let id="{{count($post)}}";
+    console.log(id);
     let options={
         root:null,
         rootMargin:'0px',

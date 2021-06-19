@@ -27,6 +27,12 @@ class RoleController extends Controller
         ];
         return view('admin.role.index',$viewData);
     }
+    public function show($id)
+    {
+       $role =Role::find($id);
+       return $role;
+    }
+
     public function create()
     { 
         $role=$this->role->all();
@@ -52,9 +58,9 @@ class RoleController extends Controller
             'display_name' => $request->display_name,
         ]);
         $role->permissions()->attach($request->permission_id);
-        return redirect()->route('admin.role.index');
+        return redirect()->route('role.index');
     }
-    public function update($id)
+    public function edit($id)
     { 
         $role=$this->role->find($id);
         $permissionParent=$this->permission->where('parent_id', null)->get();
@@ -67,7 +73,7 @@ class RoleController extends Controller
     ];
         return view('admin.role.update',$viewData);
     }
-    public function edit(Request $request,$id)
+    public function update(Request $request,$id)
     {
         $role=$this->role->find($id);
         $request->validate([
@@ -82,9 +88,9 @@ class RoleController extends Controller
             'display_name' => $request->display_name,
         ]);
         $role->permissions()->sync($request->permission_id);
-        return redirect()->route('admin.role.index');
+        return redirect()->route('role.index');
     }
-    public function delete($id)
+    public function destroy($id)
     {
         $role=$this->role->find($id);
         \DB::table('permission_role')->where('role_id',$id)->delete();

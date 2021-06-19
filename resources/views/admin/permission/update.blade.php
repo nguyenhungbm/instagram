@@ -6,7 +6,8 @@
          <h6 class="m-0 font-weight-bold text-primary">Cập nhật quyền hạn</h6>
       </div>
       <div class="card-body">
-         <form method="post">
+         <form  action="{{ route('permission.update')}}" method="post">
+            @method('PUT')
             @csrf
             <div class="form-group">
                <label for="fe">Tên quyền hạn</label>

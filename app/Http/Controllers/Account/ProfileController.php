@@ -90,4 +90,8 @@ class ProfileController extends Controller
         ]);
         return redirect()->back();
     }
+    public function ConfirmPhone(Request $request){
+        return 2;
+       return view('account.confirm_phone',$request->phone) ;
+    }
 }

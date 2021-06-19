@@ -20,9 +20,9 @@ class AdminController extends Controller
         $admin= Admin::simplePaginate(15);
         $role_count=DB::table('role_user')->where('user_id',\Auth::guard('admins')->user()->id)->count();
         $viewData=[
-            'admin' =>$admin,
-            'role_count'=>$role_count,
-            'title' =>'Người dùng',
+            'admin'     => $admin,
+            'role_count'=> $role_count,
+            'title'     => 'Người dùng',
         ];
         return view('admin.admin.index',$viewData);
     }
@@ -31,40 +31,40 @@ class AdminController extends Controller
         $role =Role::all();
         $permissionparent=Permission::where('parent_id',null)->get();
         $viewData=[
-        'role'  =>$role,
-        'permissionparent'=>$permissionparent,
-        'title' =>'Thêm người dùng',
+        'role'  => $role,
+        'permissionparent' => $permissionparent,
+        'title' => 'Thêm người dùng',
     ];
         return view('admin.admin.create',$viewData);
     }
     public function store(Request $request)
     {
             $request->validate([
-            'email'=>'email|required|unique:admins,email',
-            'name' =>'required',
-            'password' =>'min:6',
-            'roles'    =>'required'
+            'email'     => 'email|required|unique:admins,email',
+            'name'      => 'required',
+            'password'  => 'min:6',
+            'roles'     => 'required'
         ],[
-            'email.required'=>'Bạn cần nhập email',
-            'email.email'=>'Email không đúng định dạng',
-            'email.unique'=>'Email đã được đăng ký',
-            'name.required'=>'Bạn cần nhập tên người dùng',
-            'password.min'=>'Mật khẩu cần nhiều hơn 6 kí tự',
-            'roles.required'=>'Bạn cần chọn vai trò của người dùng',
+            'email.required' => 'Bạn cần nhập email',
+            'email.email'    => 'Email không đúng định dạng',
+            'email.unique'   => 'Email đã được đăng ký',
+            'name.required'  => 'Bạn cần nhập tên người dùng',
+            'password.min'   => 'Mật khẩu cần nhiều hơn 6 kí tự',
+            'roles.required' => 'Bạn cần chọn vai trò của người dùng',
         ]);
         try{ 
             DB::beginTransaction();
             $user=Admin::create([
-                'name' =>$request->name,
-                'email'=>$request->email,
-                'password' =>Hash::make($request->password) 
+                'name'      => $request->name,
+                'email'     => $request->email,
+                'password'  => Hash::make($request->password) 
             ]); 
             $user->roles()->attach($request->roles);
             DB::commit();
-        return redirect()->route('admin.admin.index');
+        return redirect()->route('admin.index');
     }catch(\Exception $e){
-            DB::rollBack();
-            Log::error('Lỗi :'.$e->getMessage().' tại dòng '.$e->getLine());
+        DB::rollBack();
+        Log::error('Lỗi :'.$e->getMessage().' tại dòng '.$e->getLine());
         }
     }
     public function edit($id)
@@ -73,10 +73,10 @@ class AdminController extends Controller
         $role=Role::all();
         $role_admin =DB::table('role_user')->where('user_id',$id)->select('role_id')->get(); 
         $viewData=[
-        'admin'  =>$admin,
-        'role_admin'  =>$role_admin,
-        'role'   =>$role,
-        'title' =>'Thay đổi người dùng',
+        'admin'       => $admin,
+        'role_admin'  => $role_admin,
+        'role'        => $role,
+        'title'       => 'Thay đổi người dùng',
     ];
         return view('admin.admin.update',$viewData);
     }
@@ -106,13 +106,13 @@ class AdminController extends Controller
             ]); 
             $admin->roles()->sync($request->roles);
             DB::commit();
-        return redirect()->route('admin.admin.index');
+        return redirect()->route('admin.index');
     }catch(\Exception $e){
             DB::rollBack();
             Log::error('Lỗi :'.$e->getMessage().' tại dòng '.$e->getLine());
         }
     }
-    public function delete($id)
+    public function destroy($id)
     {
         try{ 
             DB::beginTransaction();

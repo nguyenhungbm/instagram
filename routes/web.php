@@ -13,8 +13,7 @@ Route::get('/search','HomeController@search')->name('search');
  Route::group(['namespace' =>'Auth','prefix'=>'account'],function(){
     Route::get('register','RegisterController@getFormRegister')->name('get.register'); // đăng ký
     Route::post('register','RegisterController@create'); // xử lý đăng ký
-
-
+ 
     Route::get('verify/{user}','RegisterController@getVerifyAccount')->name('user.verify.gmail');//xác thực qua email
     Route::get('verify-phone','RegisterController@getVerifyMessage')->name('user.verify.message');//xác thực qua tin nhắn
     Route::post('verify-phone','RegisterController@postVerifyMessage');//xác thực qua tin nhắn
@@ -28,6 +27,7 @@ Route::get('/search','HomeController@search')->name('search');
     Route::post('accounts/password/reset','ResetPasswordController@StorePassword'); // thay đổi mật khẩu
 
     Route::get('logout','LoginController@getLogout')->name('get.logout'); // đăng xuất
+
 
 });
 //chat
@@ -92,5 +92,10 @@ Route::group(['prefix'=>'accounts','namespace'=>'Account'], function () {
     Route::post('/edit/store','ProfileController@store')->name('profile.store');    
     Route::get('/edit/password','ProfileController@password')->name('password.edit'); 
     Route::post('/edit/password/store','ProfileController@store_password')->name('password.store');  
+    Route::get('/confirm','ProfileController@ConfirmPhone')->name('confirm'); // quên mật khẩu
+});
 
+Route::group(['prefix'=>'sms'], function () {   
+    Route::post('/sms','TwilioController@sms')->name('twilio.sms');  
+    Route::post('/voice','TwilioController@voice')->name('twilio.voice');    
 });

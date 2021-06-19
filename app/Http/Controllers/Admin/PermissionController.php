@@ -11,7 +11,7 @@ class PermissionController extends Controller
 {
     public function index()
     {
-        $permission=Permission::orderBy('parent_id','asc')->paginate(15);
+        $permission=Permission::orderBy('parent_id','asc')->paginate(10);
         $role_count=DB::table('role_user')->where('user_id',\Auth::guard('admins')->user()->id)->count();
          
         $viewData=[
@@ -55,9 +55,9 @@ class PermissionController extends Controller
             'display_name' =>$request->display_name, 
         ]);  
     }
-        return redirect()->route('admin.permission.index');
+        return redirect()->route('permission.index');
     }
-    public function update($id)
+    public function edit($id)
     { 
         $permission=Permission::find($id);
         $all_permission=Permission::all();
@@ -70,7 +70,7 @@ class PermissionController extends Controller
     ];
         return view('admin.permission.update',$viewData);
     }
-    public function edit(Request $request,$id)
+    public function update(Request $request,$id)
     {
         $permission=Permission::find($id);
         $request->validate([
@@ -93,9 +93,9 @@ class PermissionController extends Controller
        
         $permission->save();
     }
-        return redirect()->route('admin.permission.index');
+        return redirect()->route('permission.index');
     }
-    public function delete($id)
+    public function destroy($id)
     {
         $permission=Permission::find($id);
         if($permission) $permission->delete();

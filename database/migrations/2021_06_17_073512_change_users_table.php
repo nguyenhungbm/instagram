@@ -14,9 +14,8 @@ class ChangeUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            
-        DB::statement('ALTER TABLE users ADD FULLTEXT search (`c_name`, `user`)');
-        DB::statement('ALTER TABLE users ENGINE = MyISAM');
+            DB::statement('ALTER TABLE users ADD FULLTEXT `search` (`c_name`, `user`)');
+            DB::statement('ALTER TABLE users ENGINE = MyISAM');
         });
     }
 

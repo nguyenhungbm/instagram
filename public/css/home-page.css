@@ -216,17 +216,15 @@ footer ul{
     padding-left: 10px;
 }
 .cse{ 
-    float: left;
-    width: 31%;
-    height: 293px;
     position: relative;
-    text-align: center;  
-    margin-bottom: 28px; 
 }
 .uio{  
     margin-right: 28px; 
     margin-left: 28px; 
 } 
+.img_small{
+    margin-bottom: 30px;
+}
 .cse .clr{
     position: absolute;
     color: white;
@@ -552,11 +550,15 @@ h2{
     }
     #myModal .modal-content p {left:44%}
     .sd,.posts{width: 100%;}
-    section img.user{
-            width: 100px;
-            height: 100px;
-            margin-left: 0;
-        }
+    #myBtn-5{
+        width: 100px !important;
+        height: 100px !important;
+        margin-left: 0;
+    }
+    .csb{
+        display: table;
+
+    }
     .csb span:nth-child(1){ 
         float: left;
         width: 100%;
@@ -564,10 +566,15 @@ h2{
     .csa{
         padding-top: 0;
     }
-    .csb a{
-        margin: 0;}
-
-    .csc p{width: 100%; } 
+    .csb #myBtn-4{
+        margin-top: 20px;
+        margin-left:  0 !important;
+    }
+    .csc p{width: 75%; } 
+    .name_user{
+        margin-left: 65px;
+        font-size: 18px;
+    }
     .csc p:nth-child(1),.csc p:nth-child(2){width: 50%; } 
     .posts .csd{width: 100%;
         grid-gap: 20px;}

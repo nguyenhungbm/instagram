@@ -58,9 +58,15 @@ class HomeController extends Controller
         return view('welcome',$data);
     }
     public function search(Request $request){
-        $val = User::where('id','!=',\Auth::id())
-                    ->search($request->value)
-                    ->get();
+        // full text search 
+        // $val = User::where('id','!=',\Auth::id())
+        //             ->search($request->value)
+        //             ->get();
+
+        $val =  User::where('id','!=',\Auth::id())
+                ->where('user','like',$request->value)
+                ->orwhere('c_name','like',$request->value)
+                ->get();
         if(!$val->isEmpty())
             return view('layout.header.data',compact('val'))->render();
         else{

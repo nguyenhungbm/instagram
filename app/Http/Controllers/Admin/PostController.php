@@ -10,9 +10,9 @@ class PostController extends Controller
 {
     public function index()
     {
-        $post=Post::join('users','posts.p_user','users.id')
-                    ->select('posts.*','users.user','users.c_name')
-                    ->where('p_type','profile')->paginate(15);
+        $post = Post::join('users','posts.p_user','users.id')
+                ->select('posts.*','users.user','users.c_name')
+                ->where('p_type','profile')->paginate(15);
          
         $viewData=[
             'post'  => $post,
@@ -20,7 +20,7 @@ class PostController extends Controller
         ];
         return view('admin.post.index',$viewData);
     }
-    public function delete($id)
+    public function destroy($id)
     {
         $post=Post::find($id);
         if($post) $post->delete();

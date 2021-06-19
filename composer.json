@@ -25,6 +25,7 @@
         "paragonie/random_compat": "^9.99",
         "pusher/pusher-php-server": "^4.1",
         "silviolleite/laravelpwa": "^2.0",
+        "twilio/sdk": "^6.25",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {

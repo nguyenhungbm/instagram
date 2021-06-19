@@ -6,7 +6,7 @@
       <h6 class="m-0 font-weight-bold text-primary">Thêm quyền hạn</h6>
    </div>
    <div class="card-body">
-      <form method="post">
+      <form  action="{{ route('role.store')}}" method="post">
          @csrf
          <div class="form-group">
             <label for="exampleFormControlInput2">Tên quyền hạn</label>

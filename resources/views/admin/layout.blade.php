@@ -21,7 +21,7 @@
       <div id="wrapper">
       <!-- Sidebar -->
       <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.index')}}" style="background:white">
+         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home.index')}}" style="background:white">
             <div class="sidebar-brand-icon">
                <img src="{{ asset('img/logo.png')}}">
             </div>
@@ -31,7 +31,7 @@
             Features
          </div>
          <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.employee.index')}}">
+            <a class="nav-link collapsed" href="{{ route('admin.index')}}">
             <i class="far fa-user"></i>
             <span>Admin</span>
             </a> 
@@ -52,8 +52,8 @@
             </a>
             <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
-                  <a class="collapse-item" href="{{ route('admin.permission.index')}}">Quyền hạn chung</a>
-                  <a class="collapse-item" href="{{ route('admin.role.index')}}">Phân quyền</a>
+                  <a class="collapse-item" href="{{ route('permission.index')}}">Quyền hạn chung</a>
+                  <a class="collapse-item" href="{{ route('role.index')}}">Phân quyền</a>
                </div>
             </div>
          </li> 
@@ -62,7 +62,7 @@
             Other
          </div>
          <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.post.index')}}">
+            <a class="nav-link" href="{{ route('post.index')}}">
             <i class="fas fa-fw fa-columns"></i>
             <span>Post</span>
             </a> 

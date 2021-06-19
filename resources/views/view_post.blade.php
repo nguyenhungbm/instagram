@@ -46,7 +46,7 @@
 
                   <i class="fa fa-ellipsis-h"></i> 
 
-                  <div class="os heo">{{ $val->created_at->diffForHumans($) }}</div>
+                  <div class="os heo">{{ $val->created_at->diffForHumans() }}</div>
                </div>
             @endif   
             <div class="list-comment{{$val->id}}">
@@ -57,7 +57,7 @@
                         <p><b><a href="{{ route('get.home-page',$cmt->users->user)}}">{{$cmt->users->c_name}}</a></b>{{ $cmt->c_comment}}</p>
                      </div>
                      <i class="fa fa-ellipsis-h"></i>
-                     <div class="os heo">{{ $cmt->created_at->diffForHumans($) }} </div>
+                     <div class="os heo">{{ $cmt->created_at->diffForHumans() }} </div>
                   </div>
                @endforeach
             </div>
@@ -91,7 +91,7 @@
          @include('layout.attraction_button',['value'=>$val->id])
             <p class="asf "><b class="view">{{$val->p_view}}</b> {{ __('translate.views')}}</p>
             <p class="asf ">@include('layout.like',['value'=>$val->id])</p>
-            <p class="os">{{ $val->created_at->diffForHumans($) }} </p>
+            <p class="os">{{ $val->created_at->diffForHumans() }} </p>
          </div>
          @include('layout.comment',['value'=>$val->id])
       </div>

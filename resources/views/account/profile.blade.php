@@ -63,8 +63,10 @@
             <b>{{ __('translate.Phone Number') }}</b>
         </div>
         <div class="edit-form__content">  
+            <form action="confirm" method="get">
             <input type="text" name="phone" placeholder="Phone Number" value="{{\Auth::user()->phone}}">
-            <button class="background-blue button">{{ __('translate.Confirm Phone Number') }}</button>   
+            <button class="background-blue button" type="submit">{{ __('translate.Confirm Phone Number') }}</button>
+            </form>   
         </div> 
     </div>
     @php
