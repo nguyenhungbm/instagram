@@ -1,4 +1,4 @@
 @extends('admin.layout')
 @section('content') 
-<livewire:role-table>
+<livewire:user-table>
 @endsection

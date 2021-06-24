@@ -23,25 +23,16 @@ class HomeController extends Controller
             'title'     => 'Trang quản trị',
         ];
         return view('admin.index',$viewData);
+    } 
+    public function user()
+    { 
+        return view('admin.user.index',[
+            'title' => 'Người dùng',
+        ]);
     }
-    public function list(){
-        $user=User::orderBy('id','desc')->paginate(15);
-        $title='Người dùng';
-        return view('admin.user.list',compact('user','title'));
-    }
-    public function block_user($id)
-    {
-        $user=User::find($id);
-        if($user->is_active==1) $user->is_active=2;
-        else if($user->is_active==2)
-        $user->is_active=1;
-        $user->save();
-        return redirect()->back();
-    }
-    public function delete($id)
-    {
-        $user=User::find($id);
-        $user->delete();
-        return redirect()->back();
+    public function post(){
+        return view('admin.post.index',[
+            'title' => 'Bài viết',
+        ]);
     }
 }

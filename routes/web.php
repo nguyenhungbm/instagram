@@ -8,9 +8,9 @@ include('route-admin.php');
 Route::get('/offline', function () {    
     return view('vendor/laravelpwa/offline');
     });
-Route::get('/','HomeController@index')->name('home')->middleware('auth'); 
-Route::get('/search','HomeController@search')->name('search'); 
- Route::group(['namespace' =>'Auth','prefix'=>'account'],function(){
+Route::get('/','App\Http\Controllers\HomeController@index')->name('home')->middleware('auth'); 
+Route::get('/search','App\Http\Controllers\HomeController@search')->name('search'); 
+ Route::group(['namespace' =>'App\Http\Controllers\Auth','prefix'=>'account'],function(){
     Route::get('register','RegisterController@getFormRegister')->name('get.register'); // đăng ký
     Route::post('register','RegisterController@create'); // xử lý đăng ký
  
@@ -31,7 +31,7 @@ Route::get('/search','HomeController@search')->name('search');
 
 });
 //chat
-Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {   
+Route::group(['namespace'=>'App\Http\Controllers\Personal','middleware' => 'auth'], function () {   
     Route::get('/explore','ExploreController@index')->name('explore'); 
     Route::get('/direct','DirectController@index')->name('direct');   
     //tìm kiếm
@@ -53,7 +53,7 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
    
 }); 
 //home page
-Route::group(['namespace'=>'Page','middleware' => 'auth'], function () { 
+Route::group(['namespace'=>'App\Http\Controllers\Page','middleware' => 'auth'], function () { 
     //follow user
     Route::post('/upload','PostController@savePost')->name('post.profile'); 
     Route::get('/incre-view','PostController@increView')->name('post.increview'); 
@@ -64,10 +64,10 @@ Route::group(['namespace'=>'Page','middleware' => 'auth'], function () {
     
 });
 
-Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('/callback/{provider}', 'SocialController@callback');
+Route::get('/auth/redirect/{provider}', 'App\Http\Controllers\SocialController@redirect');
+Route::get('/callback/{provider}', 'App\Http\Controllers\SocialController@callback');
 
-Route::group(['namespace'=>'Activate'], function () {   
+Route::group(['namespace'=>'App\Http\Controllers\Activate'], function () {   
     // post image
     Route::get('/like/post','PostImage@LikePost')->name('like.post'); 
     Route::post('/comment/post','PostImage@CommentPost')->name('comment.post');  
@@ -86,8 +86,8 @@ Route::group(['namespace'=>'Activate'], function () {
  
 });
 //chi tiết bài viết
-Route::get('/p/{slug}','Account\PostController@view_post')->name('post.view'); 
-Route::group(['prefix'=>'accounts','namespace'=>'Account'], function () {   
+Route::get('/p/{slug}','App\Http\Controllers\Account\PostController@view_post')->name('post.view'); 
+Route::group(['prefix'=>'accounts','namespace'=>'App\Http\Controllers\Account'], function () {   
     Route::get('/edit','ProfileController@edit')->name('profile.edit');  
     Route::post('/edit/store','ProfileController@store')->name('profile.store');    
     Route::get('/edit/password','ProfileController@password')->name('password.edit'); 
@@ -96,6 +96,6 @@ Route::group(['prefix'=>'accounts','namespace'=>'Account'], function () {
 });
 
 Route::group(['prefix'=>'sms'], function () {   
-    Route::post('/sms','TwilioController@sms')->name('twilio.sms');  
-    Route::post('/voice','TwilioController@voice')->name('twilio.voice');    
+    Route::post('/sms','App\Http\Controllers\TwilioController@sms')->name('twilio.sms');  
+    Route::post('/voice','App\Http\Controllers\TwilioController@voice')->name('twilio.voice');    
 });

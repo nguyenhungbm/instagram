@@ -42,4 +42,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Group::class)->withTimestamps();
     }
+    //search livewire
+    public static function search($search){
+        return empty($search) ? static::query() 
+        : static::query()->where('id','like','%'.$search.'%')
+        ->orWhere('c_name','like','%'.$search.'%')
+        ->orWhere('phone','like','%'.$search.'%')
+        ->orWhere('email','like','%'.$search.'%');
+    }
 }

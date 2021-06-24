@@ -6,7 +6,7 @@
       <h6 class="m-0 font-weight-bold text-primary">Thay đổi thông tin người dùng</h6>
     </div>
     <div class="card-body">
-      <form  action="{{ route('admin.update')}}" method="post">
+      <form  action="{{ route('admin.update',$admin->id)}}" method="post">
         @method('PUT')
         @csrf
       <div class="form-group">

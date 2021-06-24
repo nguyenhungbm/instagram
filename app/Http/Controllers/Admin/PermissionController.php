@@ -5,18 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Permission;
-use DB;
 use Illuminate\Support\Str;
 class PermissionController extends Controller
 {
     public function index()
     {
-        $permission=Permission::orderBy('parent_id','asc')->paginate(10);
-        $role_count=DB::table('role_user')->where('user_id',\Auth::guard('admins')->user()->id)->count();
-         
         $viewData=[
-            'role_count'=>$role_count,
-            'permission'  => $permission,
             'title' =>'Quyền hạn',
         ];
         return view('admin.permission.index',$viewData);
@@ -95,10 +89,5 @@ class PermissionController extends Controller
     }
         return redirect()->route('permission.index');
     }
-    public function destroy($id)
-    {
-        $permission=Permission::find($id);
-        if($permission) $permission->delete();
-        return redirect()->back();
-    }
+    
 }

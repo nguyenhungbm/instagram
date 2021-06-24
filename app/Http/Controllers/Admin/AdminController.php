@@ -61,7 +61,7 @@ class AdminController extends Controller
             ]); 
             $user->roles()->attach($request->roles);
             DB::commit();
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.admin.index');
     }catch(\Exception $e){
         DB::rollBack();
         Log::error('Lỗi :'.$e->getMessage().' tại dòng '.$e->getLine());
@@ -69,9 +69,9 @@ class AdminController extends Controller
     }
     public function edit($id)
     {  
-        $admin=Admin::find($id);
-        $role=Role::all();
-        $role_admin =DB::table('role_user')->where('user_id',$id)->select('role_id')->get(); 
+        $admin  = Admin::find($id);
+        $role   = Role::all();
+        $role_admin = DB::table('role_user')->where('user_id',$id)->select('role_id')->get(); 
         $viewData=[
         'admin'       => $admin,
         'role_admin'  => $role_admin,
