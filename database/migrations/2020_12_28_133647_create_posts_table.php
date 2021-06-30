@@ -23,7 +23,7 @@ class CreatePostsTable extends Migration
             $table->integer('p_favourite')->default(0);
             $table->integer('p_view')->default(0);
             $table->integer('p_comment')->default(0);
-            $table->integer('p_share')->default(0); 
+            $table->string('p_qrcode'); 
             $table->timestamps();
         });
     }

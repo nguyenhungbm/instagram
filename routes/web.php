@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
  
 Auth::routes();     
 include('route-admin.php'); 
-
+use App\Http\Controllers\QRController;
 Route::get('/offline', function () {    
     return view('vendor/laravelpwa/offline');
     });
@@ -24,11 +24,9 @@ Route::get('/search','App\Http\Controllers\HomeController@search')->name('search
     Route::get('forgot-password','ResetPasswordController@getFormPassword')->name('get.forgot-password'); // quên mật khẩu
     Route::post('forgot-password','ResetPasswordController@postPassword'); // xử lý quên mật khẩu
     Route::get('accounts/password/reset','ResetPasswordController@changePassword')->name('user.change.password'); // thay đổi mật khẩu
-    Route::post('accounts/password/reset','ResetPasswordController@StorePassword'); // thay đổi mật khẩu
+    Route::post('accounts/password/reset','ResetPasswordController@StorePassword'); // thay đổi mật khẩu 
 
-    Route::get('logout','LoginController@getLogout')->name('get.logout'); // đăng xuất
-
-
+    Route::get('logout','LoginController@getLogout')->name('get.logout'); // đăng xuất  
 });
 //chat
 Route::group(['namespace'=>'App\Http\Controllers\Personal','middleware' => 'auth'], function () {   
@@ -61,6 +59,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Page','middleware' => 'auth'], 
     Route::post('/upload_user','AvatarController@uploadAvatar')->name('upload.user'); 
     Route::get('/delete','AvatarController@deleteAvatar')->name('post.delete');
     Route::get('/{user}','HomePageController@index')->name('get.home-page');   
+    Route::get('qr_code/{slug}', 'QRController@create')->name('qrcode');
     
 });
 
