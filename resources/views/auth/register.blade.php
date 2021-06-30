@@ -7,6 +7,8 @@
     <meta name="description" content="Website kết nối mọi người với nhau , cùng nhau chia sẻ những khoảnh khắc đáng nhớ">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">     
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/font-awesome.min.css') }}">
 
 </head>
