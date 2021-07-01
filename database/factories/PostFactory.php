@@ -28,6 +28,7 @@ class PostFactory extends Factory
         'p_slug'=>Str::random(15),
         'p_content' =>$this->faker->realText($maxNbChars = 100, $indexSize = 2),
         'p_type' => 'profile',  
+        'p_qrcode' => '',  
         'created_at'=>now(),
         'updated_at'=>now(),
         ];
