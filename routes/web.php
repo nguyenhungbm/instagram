@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();     
 include('route-admin.php'); 
 
+Route::get('/data','App\Http\Controllers\HomeController@data'); 
+
 Route::get('/offline', function () {    
     return view('vendor/laravelpwa/offline');
     });

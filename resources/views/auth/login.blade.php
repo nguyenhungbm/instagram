@@ -109,13 +109,12 @@
             @if($errors->first('password'))    
                 <span class="text-danger">{{$errors->first('password') }}</span>
             @endif
-            <div class="form-froup row">
-                <div class="col-md-6 offset-md-4">
-                <div class="g-recaptcha" 
-                    data-sitekey="6LfpPWsbAAAAAP4NvOnJ1PQXeGDN1cdcEwAXflWo"
-                    ></div>
-                </div>
+            <div style="display: flex;justify-content: center;"> 
+                <div class="g-recaptcha" data-sitekey="6LfpPWsbAAAAAP4NvOnJ1PQXeGDN1cdcEwAXflWo" ></div> 
             </div>
+            @if($errors->first('g-recaptcha-response'))    
+                <span class="text-danger">{{$errors->first('g-recaptcha-response') }}</span>
+            @endif
             <button type="submit">Đăng nhập</button>
         </form>
         <div class="or" >

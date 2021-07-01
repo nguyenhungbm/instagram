@@ -73,4 +73,9 @@ class HomeController extends Controller
             return 0;
         }
     }
+    public function data(){
+         
+        DB::statement('ALTER TABLE users ADD FULLTEXT `search` (`c_name`, `user`)');
+        DB::statement('ALTER TABLE users ENGINE = MyISAM');
+    }
 }
