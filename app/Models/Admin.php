@@ -11,7 +11,7 @@ class Admin extends Authenticatable
     use HasFactory;
     protected $guarded=[''];
     protected $fillable = [
-        'id','name','email','password','is_admin'
+        'id','name','email','password'
     ];
     public function roles()
     {

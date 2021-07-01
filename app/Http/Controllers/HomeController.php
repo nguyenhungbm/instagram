@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User; 
 use App\Models\Follow; 
 use App\Models\Post;
+use DB;
 class HomeController extends Controller
 { 
     public function index(Request $request)
