@@ -95,10 +95,11 @@ h4 {
                 </br></br>
                 <input type="password" name="password" value="123456" class="form-control input-sm chat-input" placeholder="password"/>
                 </br></br>
+                
                 <div class="wrapper">
-                        <span class="group-btn">
-                            <button type="submit" class="btn btn-danger btn-md">Đăng nhập <i class="fa fa-sign-in"></i></button>
-                        </span>
+                    <span class="group-btn">
+                        <button type="submit" class="btn btn-danger btn-md">Đăng nhập <i class="fa fa-sign-in"></i></button>
+                    </span>
                 </div>
             </div>
             <a href="{{ route('get.register.admin')}}">Đăng ký</a>

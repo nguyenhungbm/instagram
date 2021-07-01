@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">  <meta name="theme-color" content="#4285f4">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/font-awesome.min.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <title>Đăng nhập</title> 
     <!-- toastr -->
     <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}"> 
@@ -108,6 +109,13 @@
             @if($errors->first('password'))    
                 <span class="text-danger">{{$errors->first('password') }}</span>
             @endif
+            <div class="form-froup row">
+                <div class="col-md-6 offset-md-4">
+                <div class="g-recaptcha" 
+                    data-sitekey="6LfpPWsbAAAAAP4NvOnJ1PQXeGDN1cdcEwAXflWo"
+                    ></div>
+                </div>
+            </div>
             <button type="submit">Đăng nhập</button>
         </form>
         <div class="or" >
