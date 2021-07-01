@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
- 
+
 Auth::routes();     
 include('route-admin.php'); 
-use App\Http\Controllers\QRController;
+
 Route::get('/offline', function () {    
     return view('vendor/laravelpwa/offline');
     });

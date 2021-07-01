@@ -217,14 +217,12 @@ footer ul{
 }
 .cse{ 
     position: relative;
+    margin-bottom: 30px;
 }
 .uio{  
     margin-right: 28px; 
     margin-left: 28px; 
 } 
-.img_small{
-    margin-bottom: 30px;
-}
 .cse .clr{
     position: absolute;
     color: white;
@@ -250,7 +248,7 @@ footer ul{
     position: absolute;
     height: 100%;
     width: 70%; 
-    
+    object-position: top;
 } 
 .headcs{
     height: 100%;

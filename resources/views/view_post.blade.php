@@ -21,7 +21,7 @@
    <meta name="description"  property="zalo:description" content="Bài viết của {{$val->user->c_name}}">
    <link rel="stylesheet" href="{{ asset('css/view_post.css') }}"> 
  
-   <div class="asd">
+   <div class="asd"> 
       <img src="{{ pare_url_file($val->p_image,'profile/img') }}" class="asa"> 
       <div class="ass">
          <div class="heq">
@@ -150,10 +150,10 @@
 <div class="hr">  
       <p style="margin-left:20px">Thêm các bài viết từ <a href="{{route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}}</b></a></p>
       <br>
-      <div class="clr" style="width:104%">
+      <div class="d-grid_image">
          @foreach($related_post as $key=> $val) 
-         <div class="cs cse" style="margin-right:19px">
-            <a href="{{route('post.view',$val->p_slug)}}">
+         <div class="cs cse {{ $key%3 == 1 ? 'uio' : '' }}">
+            <a href="{{route('post.view',$val->p_slug)}}"> 
                <div class="clr csf">
                   <i class="fa fa-heart"></i> <p class="likes{{$val->id}}">{{ $val->p_favourite}}</p>
                   <i class="fa fa-comment"></i> <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>

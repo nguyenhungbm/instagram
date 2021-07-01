@@ -1,9 +1,10 @@
 <article class="border-gray position-relative">
 <a href="{{pare_url_file($val->p_image,'profile/img') }}" download class="position-absolute" style="
-    right: 15px;
-    top: 75px;
+    left: 15px;
+    top: 70px;
     z-index: 100;
-    color: white;" title="{{$val->p_image}}"> <span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-download fa-stack-1x"></i></span></a>
+    color: white;" title="{{$val->p_image}}"> <span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-download fa-stack-1x"></i></span>
+</a>
      
    <div class="header ">
       <a class="text-black" href="{{ $val->user->user}}"><img src="{{ pare_url_file($val->user->avatar,'user') }}" class="rounded-circle  d-inline-block img-user">{{ $val->user->c_name}}</a>

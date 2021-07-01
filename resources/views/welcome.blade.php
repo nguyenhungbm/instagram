@@ -91,19 +91,12 @@
                   </path>
                </svg>
          </div>
-         @endif 
-         <!-- <div class="loading" style="text-align:center">
-            <img src="{{asset('img/loadingg.gif')}}"style="width:250px;height:250px">
-            </div> -->
+         @endif  
       </div>
       <div class="d-inline-block right" >
          <div class="d-block">
             <div class="d-inline-block"><a href="{{\Auth::user()->user}}">  
-               @if(substr(auth()->user()->avatar,0,4)=='http')
-               <img src="{{ auth()->user()->avatar }}" class="rounded-circle w-50">
-               @else
                <img src="{{ pare_url_file(auth()->user()->avatar,'user') }}" class="rounded-circle w-50">
-               @endif </a>
             </div>
             <div class="d-inline-block">
                <div class="user-link"><a href="{{\Auth::user()->user}}" class="text-black">{{ \Auth::user()->user}}</a></div>
