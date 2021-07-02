@@ -5,30 +5,18 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Auth;
+use Hash;
+use Validator;
 use Carbon\Carbon;
 use App\Models\Follow; 
 use App\Http\Requests\RequestRegister;
-use Illuminate\Support\Facades\Mail;
+use Mail;
 use App\Mail\RegisterSuccess;
 use Illuminate\Http\Request;
 use App\SendCode;
 class RegisterController extends Controller
 { 
-
-    use RegistersUsers;
- 
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
     public function getFormRegister(){ 
            return view('auth.register');
     }
@@ -41,12 +29,13 @@ class RegisterController extends Controller
         
         if(is_numeric($request->email)){
             $request->validate([
-                'email'=>'regex:/(0)[0-9]/'
+                'email'=>'min:8|max:12'
             ],[
-                'email.regex'=>'Số điện thoại không tồn tại'
+                'email.min'  => 'Số điện thoại nhiều hơn 8 số',
+                'email.max'  => 'Số điện thoại không được quá 12 số'
             ]);
-            $data['phone'] =$data['email'];
-            $data['code_otp']=SendCode::SendCode($data['email']); 
+            $data['phone']      = $data['email'];
+            $data['code_otp']   = SendCode::SendCode($data['email']); 
             User::insertGetId($data);
             \Session::flash('toastr',[
                 'type'=>'success',

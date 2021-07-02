@@ -13,6 +13,9 @@ Route::get('/offline', function () {
 Route::get('/','App\Http\Controllers\HomeController@index')->name('home')->middleware('auth'); 
 Route::get('/search','App\Http\Controllers\HomeController@search')->name('search'); 
  Route::group(['namespace' =>'App\Http\Controllers\Auth','prefix'=>'account'],function(){
+    Route::get('forgot-password','ResetPasswordController@getFormPassword')->name('get.forgot-password'); // quên mật khẩu
+    Route::post('forgot-password','ResetPasswordController@postPassword'); // xử lý quên mật khẩu
+   
     Route::get('register','RegisterController@getFormRegister')->name('get.register'); // đăng ký
     Route::post('register','RegisterController@create'); // xử lý đăng ký
  
@@ -23,8 +26,6 @@ Route::get('/search','App\Http\Controllers\HomeController@search')->name('search
     Route::get('login','LoginController@getFormLogin')->name('get.login'); // đăng nhập
     Route::post('login','LoginController@postLogin'); // xử lý đăng nhập
     
-    Route::get('forgot-password','ResetPasswordController@getFormPassword')->name('get.forgot-password'); // quên mật khẩu
-    Route::post('forgot-password','ResetPasswordController@postPassword'); // xử lý quên mật khẩu
     Route::get('accounts/password/reset','ResetPasswordController@changePassword')->name('user.change.password'); // thay đổi mật khẩu
     Route::post('accounts/password/reset','ResetPasswordController@StorePassword'); // thay đổi mật khẩu 
 

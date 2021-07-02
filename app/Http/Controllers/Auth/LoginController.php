@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-use Illuminate\Support\Facades\Auth;
+use Auth;
 use App\Http\Requests\RequestLogin;
+use Mail;
+use App\Mail\RegisterSuccess;
+
 class LoginController extends Controller 
 {
     public function getFormLogin(){
@@ -15,17 +15,19 @@ class LoginController extends Controller
     }
     public function postLogin(RequestLogin $request){
         $data =$request->only('email','password');
-        if(Auth::attempt($data)){ 
+        if(Auth::attempt($data) || Auth::attempt(['user'=> $request->email , 'password' => $request->password]) ||
+        Auth::attempt(['phone'=> $request->email , 'password' => $request->password])
+        ){ 
             if(Auth::user()->is_active ==1){
-                 
                 return redirect()->to('/');
             }
             else if(Auth::user()->is_active ==0){
                 Auth::logout();
                 \Session::flash('toastr',[
                     'type'=>'error',
-                    'messages'=>'Tài khoản chưa được xác thực . Vui lòng kiểm tra lại gmail !'
+                    'messages'=>'Tài khoản của bạn chưa được xác thực . Chúng tôi đã gửi một email đến '.$request->email.' với một liên kết để xác thực tài khoản của bạn.'
                 ]);
+                Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$request->user));
                 return redirect()->route('get.login');
             }
             else if(Auth::user()->is_active ==2){
@@ -36,7 +38,7 @@ class LoginController extends Controller
                 ]);
                 return redirect()->route('get.login');
             }
-}
+    }
         else{
             \Session::flash('toastr',[
                 'type'=>'error',

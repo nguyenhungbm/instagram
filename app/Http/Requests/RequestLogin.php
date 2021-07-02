@@ -24,7 +24,7 @@ class RequestLogin extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'required|exists:users,email',
+            'email'=>'required',
             'password'=>'required',
             'g-recaptcha-response' => 'required',
         ];
@@ -33,7 +33,6 @@ class RequestLogin extends FormRequest
     {
         return [
             'email.required'=>'Bạn chưa điền tên đăng nhập',
-            'email.exists'=>'Tài khoản không tồn tại',
             'password.required'=>'Bạn chưa điền mật khẩu',
             'g-recaptcha-response.required'=>'Bạn cần xác minh không phải là robot'
         ];

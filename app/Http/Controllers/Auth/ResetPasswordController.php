@@ -4,29 +4,51 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\ResetsPasswords;
+use Auth;
 use App\Http\Requests\RequestLogin;
-use Illuminate\Support\Facades\Hash;
+use Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
-
-use Illuminate\Support\Facades\Mail;
+use Mail;
 use App\Mail\ResetPasswordSuccess;
+use App\Mail\RegisterSuccess;
 class ResetPasswordController extends Controller
 {
-   public function getFormPassword(){
-       return view('auth.forgot-password');
-   }
-   public function postPassword(RequestLogin $request){  
-       $user =User::where('email',$request->email)->first();
-    \Session::flash('toastr',[
-        'type'=>'success',
-        'messages'=>'Chúng tôi đã gửi một email đến '.$request->email.' với một liên kết để truy cập lại vào tài khoản của bạn.'
-    ]);
-    Mail::to($request->email)->send(new ResetPasswordSuccess($user->c_name,$user->user));
-
-    return redirect()->back();
+    public function getFormPassword(){
+        return view('auth.forgot-password');
+    }
+    public function postPassword(Request $request){  
+        $validatedData = $request->validate(
+            ['email' => 'required'],
+            ['email.required' => 'Bạn cần chọn email']
+        );
+        $user =User::where('email',$request->email)->first();
+        if($user){
+            if($user->is_active  == 0){
+                \Session::flash('toastr',[
+                    'type'=>'success',
+                    'messages'=>'Tài khoản của bạn chưa được xác thực . Chúng tôi đã gửi một email đến '.$request->email.' với một liên kết để xác thực tài khoản của bạn.'
+                ]);
+            }else if($user->is_active == 2){
+                \Session::flash('toastr',[
+                    'type'=>'error',
+                    'messages'=>'Tài khoản của bạn đã bị khóa'
+                ]);
+            }else{
+                \Session::flash('toastr',[
+                    'type'=>'success',
+                    'messages'=>'Chúng tôi đã gửi một email đến '.$request->email.' với một liên kết để yêu cầu thay đổi mật khẩu với tài khoản của bạn.'
+                ]);
+                Mail::to($request->email)->send(new ResetPasswordSuccess($user->c_name,$user->user));
+            }
+        }
+        else {
+            \Session::flash('toastr',[
+                'type'=>'error',
+                'messages'=>'Tài khoản của bạn chưa được đăng ký'
+            ]);
+        }
+        return redirect()->back();
 }
 
     public function changePassword(Request $request){

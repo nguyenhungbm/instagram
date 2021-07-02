@@ -36,7 +36,6 @@
                 <span class="text-danger">{{$errors->first('email') }}</span>
                 @endif
             </div>
-            <input type="password" name="password" value="123456" style="display:none">
            <br>
             <button type="submit">Gửi liên kết đăng nhập</button>
         </form><br>

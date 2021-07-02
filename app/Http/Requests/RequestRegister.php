@@ -24,10 +24,10 @@ class RequestRegister extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'required|unique:users',
-            'c_name'=>'required',
-            'user'=>'required|unique:users',
-            'password'=>'min:6'
+            // 'email'=>'required|unique:users',
+            // 'c_name'=>'required',
+            // 'user'=>'required|unique:users',
+            // 'password'=>'min:6'
         ];
     }
     public function messages()
