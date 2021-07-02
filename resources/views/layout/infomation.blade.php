@@ -4,11 +4,11 @@
 <div id="Modal{{$value}}" class="modal">
     <div class="modal-content setting animate__animated animate__zoomIn" >
         @if($val->user->id != \Auth::id())
-        <li><label class="text-red">{{ __('translate.Report')}}</label></li>
+        <!-- <li><label class="text-red">{{ __('translate.Report')}}</label></li> -->
         @endif
         <li><a href="{{route('post.view',$val->p_slug)}}" >{{ __('translate.Go to post')}}</a> </li>
         <li class="cs qrcode" id="Btn2{{$value}}"><label >QR CODE</label></li>
-        <li class="cs" id="Btn1{{$value}}"><label >{{ __('translate.Share to')}} ...</label></li>
+        <!-- <li class="cs" id="Btn1{{$value}}"><label >{{ __('translate.Share to')}} ...</label></li> -->
         <input type="text" value="{{route('post.view',$val->p_slug)}}" id="myInput{{$value}}" style="opacity:0;position:absolute">
         <li class="tooltip">
             <a onclick="myFunction()" onmouseout="outFunc()">

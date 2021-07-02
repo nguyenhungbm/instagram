@@ -88,7 +88,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Activate'], function () {
  
 });
 //chi tiết bài viết
-Route::get('/p/{slug}','App\Http\Controllers\Account\PostController@view_post')->name('post.view'); 
+Route::get('/p/{slug}','App\Http\Controllers\Account\PostController@view_post')->name('post.view')->middleware('auth'); 
 Route::group(['prefix'=>'accounts','namespace'=>'App\Http\Controllers\Account'], function () {   
     Route::get('/edit','ProfileController@edit')->name('profile.edit');  
     Route::post('/edit/store','ProfileController@store')->name('profile.store');    
