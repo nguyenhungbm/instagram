@@ -1,14 +1,8 @@
 @include('header') 
 <link rel="stylesheet" href="{{ asset('dropzone\dist\min\dropzone.min.css')}}">
-<br>
-<br>
-<br>
-<br>
-<br>
 <section class=" hej"> 
     <form method="POST"  action="{{ route('upload.video')}}" class="dropzone hek " id="dropzoneForm" enctype="multipart/form-data">
     @csrf
-    
     </form>
     <form  method="POST"  action="{{ route('upload.video')}}">
       @csrf
@@ -34,7 +28,7 @@
     </div>
     <div class="clr hec">
         <input type="radio" name="v_viewed" value="1">
-        <p class="os">IGTV and Facebook Page</p> <br> <a class="text-blue">Connect Page</a> 
+        <span class="os fs-14" style="line-height:30px">IGTV and Facebook Page</span><br><a class="text-blue">Connect Page</a> 
     </div>
     <p class="os fs-11">Reach more people by making your videos visible on IGTV and your Facebook Page.</p><br><br>
     <b>Accessibility</b>
@@ -77,7 +71,6 @@
       });
 </script>
 
-<script src="https://use.fontawesome.com/452826394c.js"></script>
 <script src="{{ asset('dropzone\dist\min\dropzone.min.js')}}"></script> 
 
 <script type="text/javascript">
@@ -85,7 +78,7 @@
 Dropzone.options.dropzoneForm = {
     autoProcessQueue : false,
     maxFiles: 1,
-    acceptedFiles : ".mp4,.mp3,.flv,.avi,.wmv,.mov,.jpg",
+    acceptedFiles : ".mp4,.mp3,.flv,.avi,.wmv,.mov,.jpg,'png','jpeg",
 
     init:function(){
       var submitButton = document.querySelector("#submit-all");

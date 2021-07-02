@@ -401,28 +401,26 @@
     for( var i=6;i<id;i++) { 
     observer.observe(document.querySelector('#image'+i)); 
     } 
-</script> 
-<script>
-    $('#first').on('click',function(e){
-        e.preventDefault();
-        $('.post-image').removeClass('d-none');
-        $('.post-video').addClass('d-none');
-    
-        
-        $(this).addClass('bt');
-        $('#second').removeClass('bt');
-    })
-    $('#second').on('click',function(e){
-        e.preventDefault();
-        $('.post-image').addClass('d-none');
-        $('.post-video').removeClass('d-none');
-        
-        $(this).addClass('bt');
-        $('#first').removeClass('bt');
-    })
-</script>  
+</script>    
 <script>
     $(function(){  
+        $('#first').on('click',function(e){
+            e.preventDefault();
+            $('.post-image').removeClass('d-none');
+            $('.post-video').addClass('d-none');
+        
+            
+            $(this).addClass('bt');
+            $('#second').removeClass('bt');
+        })
+        $('#second').on('click',function(e){
+            e.preventDefault();
+            $('.post-image').addClass('d-none');
+            $('.post-video').removeClass('d-none');
+            
+            $(this).addClass('bt');
+            $('#first').removeClass('bt');
+        })
         $('.next').on('click',function(){
                 $('.first').addClass('d-none');
                 $('.second').removeClass('d-none');
