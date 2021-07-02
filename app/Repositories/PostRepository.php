@@ -20,9 +20,9 @@ class PostRepository
             $file = $request->file('profiles');
             $filename = $file->getClientOriginalName();
             $img = Image::make($file);
-            $img->text('NGUYEN HUNG', 50, 30, function($font) { 
+            $img->text('NGUYEN HUNG', 30, 30, function($font) { 
                 $font->file(public_path('FontDacingScript.ttf'));
-                $font->size(20); 
+                $font->size(10); 
                 $font->color('#000'); 
             });          
     

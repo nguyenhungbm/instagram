@@ -190,7 +190,7 @@
                         <b class="zz">${data.user.user}</b><br>
                         <b class="os">${data.user.c_name}</b>
                         </a>
-                        <button class="followss zc${followed}" onclick="authFollow('${followed}')" ><cen class="cen${followed}">${data.text_follow}</cen>
+                        <button class="followss zc${followed}" onclick="authFollow('${followed}')" ><span class="cen${followed}">${data.text_follow}</span>
                         <img src="img/loading.gif" class="w-30 load${followed}" style="display:none;margin-top: -11px;">
                     </li>
                 `);

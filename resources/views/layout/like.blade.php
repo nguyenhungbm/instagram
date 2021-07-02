@@ -22,23 +22,23 @@
                 @if(\App\Models\Follow::checkFollow(\Auth::id(),$item->users->id))
                 @if($item->users->id != \Auth::id())
                 <button class="followss zc{{$item->users->id}}" onclick="followInOtherPage('{{$item->users->id}}')" >
-                <cen class="cen{{$item->users->id}}">{{ __('translate.folowing')}}</cen>
+                <span class="cen{{$item->users->id}}">{{ __('translate.folowing')}}</span>
                 <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$item->users->id}}" style="display:none;margin-top: -11px;">
                 @else
                 <button class="followss zc{{$item->users->id}}" onclick="authFollow('{{$item->users->id}}')" >
-                <cen class="cen{{$item->users->id}}">{{ __('translate.folowing')}}</cen>
+                <span class="cen{{$item->users->id}}">{{ __('translate.folowing')}}</span>
                 <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$item->users->id}}" style="display:none;margin-top: -11px;">
                 @endif
                 </button>
                 @else 
                 @if($item->users->id != \Auth::id()) 
                 <button class="follows zc{{$item->users->id}}" onclick="followInOtherPage('{{$item->users->id}}')" >
-                <cen class="cen{{$item->users->id}}">{{ __('translate.follow')}}</cen>
+                <span class="cen{{$item->users->id}}">{{ __('translate.follow')}}</span>
                 <img src="{{ asset('img/loading.gif')}}"  style="display:none;"class="w-30 load{{$item->users->id}}">
                 </button>
                 @else
                 <button class="follows zc{{$item->users->id}}" onclick="authFollow('{{$item->users->id}}')" >
-                <cen class="cen{{$item->users->id}}">{{ __('translate.follow')}}</cen>
+                <span class="cen{{$item->users->id}}">{{ __('translate.follow')}}</span>
                 <img src="{{ asset('img/loading.gif')}}"  style="display:none;"class="w-30 load{{$item->users->id}}">
                 </button>
                 @endif

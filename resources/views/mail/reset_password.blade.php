@@ -39,7 +39,7 @@
    <div class="img"><img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"></div><br>
     <div class="p-15">
         <p>Xin chào <b> {{ $name}}</b>!</p>
-        <p>Chúng tôi rất tiếc khi biết bạn đang gặp sự cố khi đăng nhập vào Instagram. Chúng tôi có thể giúp bạn đăng nhập lại vào tài khoản của mình.</p>  
+        <p>Chúng tôi rất tiếc khi biết bạn đang gặp sự cố khi đăng nhập vào Instagram. Chúng tôi có thể giúp bạn đổi mật khẩu tài khoản của mình.</p>  
         <div style="text-align:center"><a href="{{route('user.change.password','user='.$user)}}" class="button" style="color:white">Đăng nhập với tư cách {{$user}}</a></div>
        <p> Liên hệ với chúng tôi để được hỗ trợ nhiều hơn:</p>
        <p> Hotline: <a href="tel:0948561668">0948561668</a> </p>

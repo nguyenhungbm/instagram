@@ -223,15 +223,15 @@ footer ul{
     margin-right: 28px; 
     margin-left: 28px; 
 } 
-.cse .clr{
+.cse .csf{
     position: absolute;
     color: white;
     display: flex;
-    justify-content: center;
+    margin-left: 30%;
     align-items: center;
     height: 100%;} 
-.cse .clr i{padding: 7px;}   
-.cse:hover .csf{display: flex;z-index: 2;}
+.cse .csf i{padding: 7px;}   
+.cse:hover .csf{z-index: 2;}
 .cse:hover img{
     filter: brightness(50%); z-index: 1;
 }

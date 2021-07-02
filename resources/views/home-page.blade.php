@@ -69,23 +69,23 @@
                         @if(\App\Models\Follow::checkFollow(\Auth::id(),$list->user_id))
                         @if($user->id != \Auth::id())
                         <button class="followss zc{{$list->user_id}}" onclick="followInOtherPage('{{$list->user_id}}')" >
-                        <cen class="cen{{$list->user_id}}">{{ ucwords(__('translate.folowing'))}}</cen>
+                        <span class="cen{{$list->user_id}}">{{ ucwords(__('translate.folowing'))}}</span>
                         <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$list->user_id}}" style="display:none;margin-top: -11px;">
                         @else
                         <button class="followss zc{{$list->user_id}}" onclick="authFollow('{{$list->user_id}}')" >
-                        <cen class="cen{{$list->user_id}}">{{ ucwords(__('translate.folowing'))}}</cen>
+                        <span class="cen{{$list->user_id}}">{{ ucwords(__('translate.folowing'))}}</span>
                         <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$list->user_id}}" style="display:none;margin-top: -11px;">
                         @endif
                         </button>
                         @else  
                         @if($user->id != \Auth::id())
                         <button class="follows zc{{$list->user_id}}" onclick="followInOtherPage('{{$list->user_id}}')" >
-                        <cen class="cen{{$list->user_id}}">{{ __('translate.follow')}}</cen>
+                        <span class="cen{{$list->user_id}}">{{ __('translate.follow')}}</span>
                         <img src="{{ asset('img/loading.gif')}}"  style="display:none;"class="w-30 load{{$list->user_id}}">
                         </button>
                         @else
                         <button class="follows zc{{$list->user_id}}" onclick="authFollow('{{$list->user_id}}')" >
-                        <cen class="cen{{$list->user_id}}">{{ __('translate.follow')}}</cen>
+                        <span class="cen{{$list->user_id}}">{{ __('translate.follow')}}</span>
                         <img src="{{ asset('img/loading.gif')}}"  style="display:none;"class="w-30 load{{$list->user_id}}">
                         </button>
                         @endif
@@ -121,23 +121,23 @@
                         @if(\App\Models\Follow::checkFollow(\Auth::id(),$list->friends->id))
                         @if($user->id != \Auth::id())
                         <button class="followss zc{{$list->friends->id}}" onclick="followInOtherPage('{{$list->friends->id}}')" >
-                        <cen class="cen{{$list->friends->id}}">{{ __('translate.folowing')}}</cen>
+                        <span class="cen{{$list->friends->id}}">{{ __('translate.folowing')}}</span>
                         <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$list->friends->id}}" style="display:none;margin-top: -11px;">
                         @else
                         <button class="followss zc{{$list->friends->id}}" onclick="authFollow('{{$list->friends->id}}')" >
-                        <cen class="cen{{$list->friends->id}}">{{ __('translate.folowing')}}</cen>
+                        <span class="cen{{$list->friends->id}}">{{ __('translate.folowing')}}</span>
                         <img src="{{ asset('img/loading.gif')}}" class="w-30 load{{$list->friends->id}}" style="display:none;margin-top: -11px;">
                         @endif
                         </button>
                         @else 
                         @if($user->id != \Auth::id()) 
                         <button class="follows zc{{$list->friends->id}}" onclick="followInOtherPage('{{$list->friends->id}}')" >
-                        <cen class="cen{{$list->friends->id}}">{{ __('translate.follow')}}</cen>
+                        <span class="cen{{$list->friends->id}}">{{ __('translate.follow')}}</span>
                         <img src="{{ asset('img/loading.gif')}}"  style="display:none;"class="w-30 load{{$list->friends->id}}">
                         </button>
                         @else
                         <button class="follows zc{{$list->friends->id}}" onclick="authFollow('{{$list->friends->id}}')" >
-                        <cen class="cen{{$list->friends->id}}">{{ __('translate.follow')}}</cen>
+                        <span class="cen{{$list->friends->id}}">{{ __('translate.follow')}}</span>
                         <img src="{{ asset('img/loading.gif')}}"  style="display:none;"class="w-30 load{{$list->friends->id}}">
                         </button>
                         @endif
@@ -220,7 +220,7 @@
         @foreach($post as $key=> $val) 
         <div class="cs cse {{ $key%3 == 1 ? 'uio' : '' }}"  id="myBtnn{{$val->id}}">
             <input type="hidden" value="{{ $val->p_slug}}" id="slug{{$val->id}}">
-            <div class="clr csf">
+            <div class="csf">
                 <i class="fa fa-heart"></i> 
                 <p class="likes{{$val->id}}">{{ $val->p_favourite}}</p>
                 <i class="fa fa-comment"></i> 
@@ -229,7 +229,7 @@
         @if($key < 61 )
             <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="img_small" id="image{{$key}}">
         @else
-            <img data-img="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="lazyload" id="image{{$key}}">
+            <img data-img="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="img_small lazyload" id="image{{$key}}">
         @endif
         </div>
         <div id="myModall{{$val->id}}" class="modal hei">

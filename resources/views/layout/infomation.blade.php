@@ -42,12 +42,20 @@
     <li><label class="text-red">{{ __('translate.Share to')}}</label></li>
     <li> 
         <div data-href="{{route('post.view',$val->p_slug)}}"  >
-            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook" style="margin-top:0;margin-right:5px"></i>{{ __('translate.Share to')}} Facebook</a>
+            <!-- <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook" style="margin-top:0;margin-right:5px"></i>{{ __('translate.Share to')}} Facebook</a> -->
+            <a href="javascript:;">{{ __('translate.Share to')}} Facebook</a>
         </div>
     </li>
-    <li><a class="twitter-sh are-button" href="https://twitter.com/intent/tweet"> <i class="fa fa-twitter" style="margin-top:0"></i> {{ __('translate.Share to')}} Twitter</a> </li>
+    <li>
+    <!-- <a class="twitter-sh are-button" href="https://twitter.com/intent/tweet"> <i class="fa fa-twitter" 
+    style="margin-top:0"></i> {{ __('translate.Share to')}} Twitter</a>  -->
+    <a href="javascript:;">{{ __('translate.Share to')}} Twitter</a>
+
+    </li>
     <li> 
-        <label class="zalo-share-button" data-href="{{ route('post.view',$val->p_slug) }}" data-layout="1" data-oaid="579745863508352884"  data-color="blue" data-customize=false></label>
+        <!-- <label class="zalo-share-button" data-href="{{ route('post.view',$val->p_slug) }}" data-layout="1" data-oaid="579745863508352884"  data-color="blue" data-customize=false></label> -->
+        <a href="javascript:;">{{ __('translate.Share to')}} Zalo</a>
+
     </li>
     <li class="cs" id="exits1{{$value}}"><label>{{ __('translate.Cancel')}}</label></li>
     </div>
@@ -90,6 +98,14 @@ $(function(){
     //hiện modal qr
     $('#Btn2{{$value}}').on('click',function(){
         $('#Modal2{{$value}}').show();
+        var url ="{{route('qrcode',$val->p_slug)}}";
+        console.log(url);
+        $.get({
+            url:url,
+            success:function(e){
+                $('.img-thumbnail').attr('src',e.img); 
+            }
+        })
     })
     $('#exits2{{$value}}').on('click',function(){
         $('#Modal2{{$value}}').hide();
@@ -104,16 +120,3 @@ $(function(){
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0&appId=286256932921835&autoLogAppEvents=1" nonce="hO6WZe49"></script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script src="https://sp.zalo.me/plugins/sdk.js"></script>
-<script>
-$(function(){
-    $('.qrcode').on('click',function(){
-        var url ="{{route('qrcode',$val->p_slug)}}";
-        $.get({
-            url:url,
-            success:function(e){
-                $('.img-thumbnail').attr('src',e.img); 
-            }
-        })
-    })
-})
-</script>

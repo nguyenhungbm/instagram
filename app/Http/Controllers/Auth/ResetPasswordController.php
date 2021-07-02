@@ -64,7 +64,7 @@ class ResetPasswordController extends Controller
             'password.min'=>'Mật khẩu cần nhiều hơn 6 kí tự',
             're_password.required'=>'Mật khẩu xác nhận không đúng',
             're_password.same'=>'Mật khẩu xác nhận không đúng',
-
+ 
         ]);
             $data['password']=Hash::make($request->password);
             $user->update($data);

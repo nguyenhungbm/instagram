@@ -30,6 +30,7 @@ section{
     left: 35%;
     background: white;
     border:1px solid #bdbdbd;
+    border-radius:5px;
     text-align: center;
     padding: 15px;
     width: 350px
@@ -66,7 +67,7 @@ button{
 <body>
     <div class="header"><img src="{{ asset('img/logo.png')}}"></div>
     <section><br>
-        <img src="{{ pare_url_file($user->avatar,'avatar')}}" class="img"> 
+        <img src="{{ pare_url_file($user->avatar,'user')}}" class="img"> 
         <p>{{$user->c_name}}</p> 
         <br>
         <form action="" method="POST">

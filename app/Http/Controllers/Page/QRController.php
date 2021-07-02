@@ -9,7 +9,7 @@ class QRController extends Controller
     public function create($slug)
     { 
         $post = Post::where('p_slug',$slug)->first();
-        if($post->p_qrcode != ""){
+        if($post->p_qrcode == ""){
             $img = $post->p_qrcode;
         }
         else{

@@ -65,8 +65,8 @@ class HomeController extends Controller
         //             ->get();
 
         $val =  User::where('id','!=',\Auth::id())
-                ->where('user','like',$request->value)
-                ->orwhere('c_name','like',$request->value)
+                ->where('user','like','%'.$request->value.'%')
+                ->orwhere('c_name','like','%'.$request->value.'%')
                 ->get();
         if(!$val->isEmpty())
             return view('layout.header.data',compact('val'))->render();
@@ -75,7 +75,7 @@ class HomeController extends Controller
         }
     }
     public function data(){
-        DB::statement("ALTER TABLE 'users' ADD FULLTEXT search ('c_name', 'user')");
-        DB::statement("ALTER TABLE 'users' ENGINE = MyISAM");
+        DB::statement("ALTER TABLE users ADD FULLTEXT search ('c_name', 'user')");
+        DB::statement("ALTER TABLE users ENGINE = MyISAM");
     }
 }

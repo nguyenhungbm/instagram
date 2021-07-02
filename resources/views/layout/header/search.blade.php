@@ -12,45 +12,46 @@
 </div>
 <script> 
    $(function(){ 
-    $('#input-search').on('keyup',function(){
-        var val =$(this).val();  
-        if(val.length >= 2){
-            $('.lists').removeClass('d-none');
-            var URL="{{route('search')}}";   
-            $.get({
-                url:URL,
-                data:{value:val},
-                beforeSend:function(){
-                    $('.div').empty();
-                    $('.nos').removeClass('d-none').delay(8000);
-                },
-                complete:function(){
-                    $('.nos').addClass('d-none');
-                },
-                success:function(res){  
-                    $('.div').empty();
-                    if(res == 0){
-                        $(".div").prepend(`
-                            <li class="no p-15">
-                                {{ __("translate.No result found.")}}
-                            </li>
-                        `);  
-                    }
-                    else{
-                        $('.no').addClass('d-none');
-                        $(".div").prepend(res);  
-                    }
+       $(".delete").on('click',function(){
+           $('.input-search').val("");
+       })
+        $('#input-search').on('keyup',function(){
+            var val =$(this).val();  
+            if(val.length >= 2){
+                $('.lists').removeClass('d-none');
+                var URL="{{route('search')}}";   
+                $.get({
+                    url:URL,
+                    data:{value:val},
+                    beforeSend:function(){
+                        $('.div').empty();
+                        $('.nos').removeClass('d-none').delay(8000);
+                    },
+                    complete:function(){
+                        $('.nos').addClass('d-none');
+                    },
+                    success:function(res){  
+                        $('.div').empty();
+                        if(res == 0){
+                            $(".div").prepend(`
+                                <li class="no p-15">
+                                    {{ __("translate.No result found.")}}
+                                </li>
+                            `);  
+                        }
+                        else{
+                            $('.no').addClass('d-none');
+                            $(".div").prepend(res);  
+                        }
+                }
+                })  
+            } 
+            else{
+                $('.lists').addClass('d-none');
             }
-            })  
-         } 
-         else{
+        })
+        $(window).on('click',function(){
             $('.lists').addClass('d-none');
-         }
-      })
-
-      
-    $(window).on('click',function(){
-        $('.lists').addClass('d-none');
+        })
     })
-   })
 </script> 
