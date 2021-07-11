@@ -66,7 +66,7 @@
 <div id="Modal2{{$value}}" class="modal">
     <div class="modal-content setting animate__animated animate__zoomIn" style="text-align:center">
         <li class="one"><label style="font-size: 20px;">QRCODE</label><span class="float-right cs" id="exits2{{$value}}" style="right: 15px;position: absolute;top: 0;font-size: 33px;">&times;</span></li>
-        <img class="img-thumbnail" src="{{ pare_url_file('qrcode') }}" >
+        <img class="img-thumbnail" src="{{ pare_url_file('qrcode.svg','') }}" >
     </div>
 </div> 
 <!-- modal -->

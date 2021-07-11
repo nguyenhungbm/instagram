@@ -25,6 +25,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
     <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}"> 
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYEK57L0L5"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LYEK57L0L5');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
     @if(session('toastr'))
         <script>    
             var TYPE_MESSAGE="{{session('toastr.type') }}";
