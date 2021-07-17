@@ -116,7 +116,7 @@ $(function(){
     })   
 })
 </script>      
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0&appId=286256932921835&autoLogAppEvents=1" nonce="hO6WZe49"></script>
+<!-- <div id="fb-root"></div> -->
+<!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0&appId=286256932921835&autoLogAppEvents=1" nonce="hO6WZe49"></script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<script src="https://sp.zalo.me/plugins/sdk.js"></script>
+<script src="https://sp.zalo.me/plugins/sdk.js"></script> -->
