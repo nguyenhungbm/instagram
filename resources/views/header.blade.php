@@ -61,35 +61,31 @@
 </div>  
 <div id="app">
 <header> 
-      <div class="container">
-         <div class="d-grid">
-            <div><a href="{{ url('/')}}"><img src="{{ asset('img/logo.png') }}"  width="103px" height="29px"></a></div>
-           
+    <div class="container">
+        <div style="display: flex;justify-content:space-between;">
+            <a href="{{ url('/')}}"><img src="{{ asset('img/logo.png') }}"  width="103px" height="29px"></a>
             @include('layout.header.search')
-
-            <div>
-               <div class="d-block">
-                  <ul>
-                     <li class="d-inline-block  position-relative">
+                <ul  class="d-flex">
+                    <li>
                         <a href="/">
                         <img class="mr-20 rounded-circle w-30" src="{{ asset($home) }}" >
                         </a>
-                     </li>
-                     <li class="d-inline-block  position-relative">
+                    </li>
+                    <li>
                         <a href="{{ url('/direct') }}">
                         <img class="mr-20 rounded-circle w-30" src="{{ asset($direct) }}" >
                         </a>
-                     </li>
-                     <!-- <li class="d-inline-block  position-relative">
+                    </li>
+                    <!-- <li class=" position-relative">
                         <a href="{{ url('/explore') }}">
                         <img class="mr-20 rounded-circle w-30" src="{{ asset($explore)  }}" >
                         </a>  
-                     </li> -->
-                     <notification v-bind:notifications="notifications"  v-bind:notification_readed="notification_readed"></notification>
+                    </li> -->
+                    <notification v-bind:notifications="notifications"  v-bind:notification_readed="notification_readed"></notification>
                    
-                     <li class="d-inline-block position-relative set-user">
+                    <li class="position-relative set-user">
                         <a> 
-                        <img src="{{ pare_url_file(auth()->user()->avatar,'user') }}" class="mr-20 rounded-circle w-30 avatar_user_uploaded" style="object-fit:cover">
+                        <img src="{{ pare_url_file(auth()->user()->avatar,'user') }}" class="mr-20 rounded-circle w-30 avatar_user_uploaded">
                         </a>
                         <ul class="notification set-user-width d-none">
                            <a href="{{ route('get.home-page',auth()->user()->user) }}">
@@ -117,11 +113,9 @@
                               <li>{{ __('translate.Log Out')}}</li>
                            </a>
                         </ul>
-                     </li>
-                  </ul>
-               </div>
+                    </li>
+                </ul>
             </div>
-         </div>
       </div>
    </header>
    <script>
@@ -140,7 +134,8 @@
    @yield('content')
 </div>
 </html> 
-@yield('js')
+@stack('js')
+<script src="{{ asset('js/modal.js') }}" ></script> 
 <script src="{{ asset('js/app.js') }}" ></script>
 <script src="{{ asset('toastr/toastr.min.js') }}" defer></script>
 

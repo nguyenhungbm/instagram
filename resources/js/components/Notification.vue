@@ -1,5 +1,5 @@
    <template>
-   <li class="d-inline-block position-relative noti">
+   <li class="position-relative noti">
       <a href="javascript:;" class="position-relative">
       <img class="mr-20 rounded-circle w-30 heart" src="/img/heart.png">
       <span class="count-action">{{notifications.length }}</span>

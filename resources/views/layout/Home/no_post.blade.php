@@ -1,10 +1,10 @@
-<div class="d-block text-center cs" style="margin-top:30%" id="myBtn-5">
+<div class="d-block text-center cs" id="myBtn-2">
    <i class="fa fa-lg fa-plus-square-o" style="font-size:400%"></i>
    <p>{{ __('translate.Start following other people to share memories')}}</p>
 </div>
 <!-- modal user image -->
 <div class="suggest-follow">
-   <div id="myModal-5" class="modal">
+   <div id="myModal-2" class="modal">
       <div class="modal-content setting animate__animated animate__zoomIn" >
          <li >
             <label style="width:70%">{{ __('translate.Suggestions For You')}}</label> 

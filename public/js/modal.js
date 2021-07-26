@@ -1,4 +1,15 @@
 $(function(){
+     //cài đặt
+     $('body').on('click','#myBtn-2',function(){
+        $('#myModal-2').show();
+    })
+    $('body').on('click','#exit2',function(){
+        $('#myModal-2').hide();
+    })
+    $('#myModal-2').on('click',function(event){
+        if(event.target == document.getElementById("myModal-2")) 
+            $(this).hide()
+    })
     //cài đặt
     $('body').on('click','#myBtn-3',function(){
         $('#myModal-3').show();
@@ -73,4 +84,5 @@ $(function(){
 }) 
 window.onclick = function(event) { 
    $('.list').addClass('d-none');
+   
 }  

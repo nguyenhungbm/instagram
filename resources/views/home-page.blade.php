@@ -1,4 +1,14 @@
 <title>{{ $user->c_name}}</title>
+<style>
+@media only screen and (max-width: 670px){
+#myBtn-5{
+        width: 100px !important;
+        height: 100px !important;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+</style>
 @extends('header') 
 @section('content')
 <body>
@@ -45,8 +55,8 @@
         </div>
 
         <div class="csc">
-            <p><b style="padding-right: 5px;">{{ count($post)}}</b> {{ __('translate.posts')}}</p>
-            <p class="cs" id="myBtn-6"><b style="padding-right: 5px;" class="follower">{{count($userFollow)}}</b>{{ __('translate.followers')}}</p>
+            <p><b>{{ count($post)}}</b> {{ __('translate.posts')}}</p>
+            <p class="cs" id="myBtn-6"><b class="follower">{{count($userFollow)}}</b> {{ __('translate.followers')}}</p>
             <!-- modal follow -->
             <div id="myModal-6" class="modal">
             <div class="modal-content settings animate__animated animate__zoomIn" >
@@ -98,7 +108,7 @@
             </div>
             </div>
             <!--end modal-->
-            <p class="cs" id="myBtn-7">{{ __('translate.folowing')}} <b class="count" style="float: none;">{{ count($areFollow) }}</b>{{ __('translate.following')}}</p>
+            <p class="cs" id="myBtn-7">{{ __('translate.folowing')}} <b class="count">{{ count($areFollow) }}</b>{{ __('translate.following')}}</p>
             <!-- modal setting -->
             <div id="myModal-7" class="modal">
             <div class="modal-content settings animate__animated animate__zoomIn" >
@@ -151,7 +161,7 @@
             </div>
             <!--end modal-->
         </div>
-        <b class="name_user">{{ $user->c_name}}</b>  
+        <b class="name">{{ $user->c_name}}</b>  
     </div>
 </section>
 <div class="image d-none">
@@ -201,7 +211,6 @@
 </div>
 </div> 
 </form>  
-<div class="post-image"> 
     @if(!count($post))
     <div class="clr">
         <br>
@@ -216,7 +225,7 @@
     <div><img src="{{ asset('img/everything.png')}}" class="float-left hed"></div>
     <br>
     @endif
-    <div class="d-grid_image">
+    <div class="clr">
         @foreach($post as $key=> $val) 
         <div class="cs cse {{ $key%3 == 1 ? 'uio' : '' }}"  id="myBtnn{{$val->id}}">
             <input type="hidden" value="{{ $val->p_slug}}" id="slug{{$val->id}}">
@@ -345,7 +354,6 @@
         })            
 </script>     
 @endforeach 
-    </div>
 </div>
     <div class="d-none post-video">
         @if(!count($video))
@@ -442,8 +450,7 @@
 </body>
 @endsection
 
-@section('js')
-<script src="{{ asset('js/modal.js') }}" ></script> 
+@push('js')
 <script src="{{ asset('js/post.js') }}" ></script> 
 <script src="{{ asset('js/avatar.js') }}" ></script> 
-@endsection
+@endpush

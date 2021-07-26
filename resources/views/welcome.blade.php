@@ -150,8 +150,8 @@
 </body>
 @endsection
 
-@section('js')
+@push('js')
 <script src="{{ asset('js/post.js') }}" defer></script>
 <script src="{{ asset('slick/slick/slick.js') }}"></script>
 <script src="{{ asset('js/style.js') }}"></script>
-@endsection
+@endpush

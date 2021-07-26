@@ -2005,6 +2005,7 @@ __webpack_require__.r(__webpack_exports__);
           created_at: new Date().toLocaleString()
         };
         this.chat = '';
+        console.log(2);
         axios.post('/group_chat/sendChat', data).then(function (response) {
           _this.chat_group.group_chats.push(data);
         });
@@ -66231,7 +66232,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "d-inline-block position-relative noti" }, [
+  return _c("li", { staticClass: "position-relative noti" }, [
     _c(
       "a",
       { staticClass: "position-relative", attrs: { href: "javascript:;" } },

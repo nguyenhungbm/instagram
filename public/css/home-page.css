@@ -20,7 +20,7 @@ section{
 }
 .sd{height: 200px;
     width: 70%;
-    margin: 0 auto;}
+}
 section img.user{
     width: 200px;
     height: 200px; 
@@ -45,10 +45,10 @@ section span{
     border: 1px solid #bdbdbd;
     margin-right: 20px;
 }
-#myBtn-2{margin-right: 20px;}
+#myBtn-2{margin-top: 20%;}
 .csc{
-   height: 15%;
-   margin: 15px 0;
+    line-height: 50px;
+    height: 30%;
 }
 .csc p,.list-follow{
     float: left; 
@@ -57,7 +57,7 @@ section span{
     margin: 5px;
 }
 .csc p{
-    padding-right: 22px;
+    padding-right: 15px;
 }
 .csz span{
    font-size: 22px;
@@ -178,13 +178,7 @@ section span{
     resize: none;
     height: 75px;
     outline: none;
-}
-.posts{
-    position: relative;
-    width: 70%; 
-    margin: 0 auto; 
-    border-top: 1px solid #bdbdbd;
-    min-height: 350px;}
+} 
 .posts .csd{ 
     width: 80%;
     margin: 0 auto;
@@ -199,7 +193,7 @@ section span{
     border-top: 1px solid #bdbdbd;
     min-height: 350px;} 
 .posts .csd button{   
-    padding-top: 20px;   
+    padding-top: 10px;   
     opacity: 0.7;
 }
 .bt{ border-top: 1px solid black;opacity:1 !important}
@@ -218,11 +212,14 @@ footer ul{
 .cse{ 
     position: relative;
     margin-bottom: 30px;
-}
-.uio{  
-    margin-right: 28px; 
-    margin-left: 28px; 
+    width:28%;
+    float:left
 } 
+.uio {
+    margin-right: 6%;
+    margin-left: 7%;
+}
+
 .cse .csf{
     position: absolute;
     color: white;
@@ -463,22 +460,18 @@ h2{
     width: 100%;
 }
 .settings .one{ 
-    padding: 10px;
     border-bottom: 1px solid #bdbdbd;
 }
 .settings .fa{
     margin-top: 30px;
     padding: 15px;
-    zoom: 2;
+    font-size: 200%;
     border: 2px solid black;
     border-radius: 50%;
 }
 .settings .two{
     margin: 15px;
     font-size: 20px; 
-}
-.settings .three{
-    margin-bottom: 50px;
 }
 .zx{
     width: 64%;
@@ -549,15 +542,15 @@ h2{
         margin-top: -20px;
     }
      .modal-content{
-        width: 88%;
+        width: 70%;
+    }
+    .bt {
+        border: none;
     }
     #myModal .modal-content p {left:44%}
     .sd,.posts{width: 100%;}
-    #myBtn-5{
-        width: 100px !important;
-        height: 100px !important;
-        margin-left: 0;
-    }
+    
+    .name{display: none;}
     .csb{
         display: table;
 
@@ -567,22 +560,26 @@ h2{
         width: 100%;
     }
     .csa{
-        padding-top: 0;
+        padding-top: 10px;
     }
     .csb #myBtn-4{
         margin-top: 20px;
         margin-left:  0 !important;
     }
-    .csc p{width: 75%; } 
     .name_user{
         margin-left: 65px;
         font-size: 18px;
-    }
-    .csc p:nth-child(1),.csc p:nth-child(2){width: 50%; } 
-    .posts .csd{width: 100%;
-        grid-gap: 20px;}
-    .cse{
-        width: 30%;
-        height: 118px;
-        margin: 5px;}
     } 
+    .cse {
+        width: 30%;
+        height: 115px;
+        margin-right: 20%;
+        margin-bottom: 100px;
+    }
+    .img_small {
+        width: 200px;
+    } 
+    .uio{
+        margin-left: 0;
+    }
+} 

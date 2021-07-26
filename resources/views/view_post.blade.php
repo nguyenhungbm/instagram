@@ -184,7 +184,7 @@
 </footer> 
 @endsection
 
-@section('js')
+@push('js')
 <script src="{{ asset('js/post.js') }}"></script> 
 
-@endsection
+@endpush

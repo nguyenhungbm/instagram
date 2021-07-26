@@ -1,3 +1,16 @@
+<style>
+@media only screen and (max-width: 670px){
+body{
+    background: #ffff !important;
+    }
+.edit-form,.edit-form__right{
+    border:none !important
+}
+.edit-form__right { 
+    padding-top: 0px !important;
+}
+}
+</style>
 @extends('layout.accounts')
 @section('contents')
 <div class="w-80">

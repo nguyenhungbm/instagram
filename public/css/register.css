@@ -45,7 +45,6 @@ section{
     outline: none;
 }
 .username span{
-    
     position: absolute;
     top: 0;
     left: 0;
@@ -93,8 +92,7 @@ button{
     color: white;
     cursor:pointer
 }
-.login{ 
-   
+.login{  
     background-color: #fff; 
     border: 1px solid #bdbdbd;
     width: 350px;
@@ -114,4 +112,12 @@ button{
     padding: 10px;
     z-index: 2;
     cursor: pointer;
+}
+@media only screen and (max-width:850px){
+    .login,section{
+        border: none;
+    }
+    section{
+        top:41%
+    }
 }
