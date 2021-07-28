@@ -16,7 +16,7 @@ $(function(){
         if($('.hihi{{$list->id}}').hasClass('background-blue')){
             $('.hihi{{$list->id}}').removeClass('background-blue'); 
             $('.pt{{$list->id}}').remove();
-            if(!$('.pw').children('div').hasClass('pt')){
+            if(!$('.pw').children('div').hasClass('pt')){ 
                 $('.nexts').addClass('disabled');
             }
             for( var i = 0; i < users.length; i++){ 

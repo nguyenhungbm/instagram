@@ -88,12 +88,17 @@
         <div class="pu ">
             <b class="pq">{{ __('translate.Suggested')}}</b>
             @foreach($chat as $key=>$list)
-            @if($list->friends->id!=\Auth::id())
+            @php
+            if($list->friend_id == \Auth::id())
+                $val = $list->users;
+            else 
+                $val = $list->friends;
+            @endphp
             <div class="clr py cs py{{$list->id}}">
-                <img src="{{ pare_url_file($list->friends->avatar,'user')}}" class="rounded-circle">
+                <img src="{{ pare_url_file($val->avatar,'user')}}" class="rounded-circle">
                 <div>
-                <b>{{ $list->friends->user}}</b><br>
-                <p class="os">{{$list->friends->c_name}}</p>
+                <b>{{ $val->user}}</b><br>
+                <p class="os">{{$val->c_name}}</p>
                 </div>
                 <button class="cs hihi{{$list->id}}"><i class="fa fa-lg fa-check haha{{$list->id}}"></i></button>
             </div>
@@ -109,17 +114,17 @@
                 $('.nexts').addClass('disabled');
             }
             for( var i = 0; i < users.length; i++){ 
-                if ( users[i] === {{$list->friends->id}}) { 
+                if ( users[i] === {{$val->id}}) { 
                     users.splice(i, 1); 
                 }
             }
         }else{  
-            users.push({{$list->friends->id}});
+            users.push({{$val->id}});
             $('.nexts').removeClass('disabled');
             $('.hihi{{$list->id}}').addClass('background-blue'); 
             $('.pw').append(` 
                 <div class="pt pt{{$list->id}}" id="pt{{$list->id}}">
-                    <a href="javascript:;">{{$list->friends->user}} <span class="close{{$list->id}}">&times;</span></a> 
+                    <a href="javascript:;">{{$val->user}} <span class="close{{$list->id}}">&times;</span></a> 
                 </div> 
             `);
         }
@@ -127,7 +132,7 @@
     });  
     $('body').on('click','.close{{$list->id}}',function(){
         for( var i = 0; i < users.length; i++){ 
-                if ( users[i] === {{$list->friends->id}}) { 
+                if ( users[i] === {{$val->id}}) { 
                     users.splice(i, 1); 
                 }
             }
@@ -142,7 +147,6 @@
     })  
 })
 </script> 
-@endif
 @endforeach 
       </div>
    </div>

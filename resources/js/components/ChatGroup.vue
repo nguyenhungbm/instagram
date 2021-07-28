@@ -8,7 +8,7 @@
                     <div class="me-messages"> 
                         <p> {{ group_chat.message }}</p>
                     </div>
-            </div>
+            </div> 
  
 
                    <div class="friend-messages clr position-relative" v-else>

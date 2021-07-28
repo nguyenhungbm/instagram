@@ -31,9 +31,9 @@ class DirectController extends Controller
         ];
         return view('direct',$viewData);
     }
-    public function show($id){ 
-      $chat =Chat:: where('repeats',0)->where(function($user){
-            $user ->where('user_id',\Auth::id())
+    public function show($id){  
+      $chat =Chat::where('repeats',0)->where(function($user){
+            $user->where('user_id',\Auth::id())
                 ->orwhere('friend_id',\Auth::id());
         })
                 ->get();    
