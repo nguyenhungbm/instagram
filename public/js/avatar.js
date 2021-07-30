@@ -32,7 +32,7 @@ function UpdateUserAvatar(form){
             $('.imguser').show();
             $('.avatar_user_uploaded').addClass('constrast');
         },
-        complete:function(){
+        complete:function(){ 
             $('.avatar_user_uploaded').removeClass('constrast');
             $('.imguser').hide();
         },
