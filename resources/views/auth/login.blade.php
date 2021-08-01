@@ -15,16 +15,15 @@
         <script>    
             var TYPE_MESSAGE="{{session('toastr.type') }}"; 
             var MESSAGE ="{{session('toastr.messages') }}";
-        
         </script>
     @endif
     
     <script>
-         $(function(){ 
+        $(function(){ 
             $(window).bind("load", function() {
                 jQuery(".loading").delay(6000).fadeOut();
             });
-         })
+        })
     </script>
 </head>
 <style>

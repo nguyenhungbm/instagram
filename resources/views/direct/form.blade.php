@@ -47,8 +47,7 @@
                     <a href="{{ route('chat.show', $userr->id) }}">
                         <li class="clr" >
                             <img src="{{ pare_url_file($userr->avatar,'user') }}">
-                            <p>{{ $userr->c_name}}</p>
-                            <br>
+                            <p style="    margin-top: 10px;">{{ $userr->c_name}}</p> <br>
                             <onlineuser v-bind:friend="{{ $userr }}" v-bind:onlineusers="onlineUsers"></onlineuser>
                         </li>
                     </a>

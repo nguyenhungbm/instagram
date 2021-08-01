@@ -1982,10 +1982,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['chat_group', 'userid'],
   data: function data() {
@@ -2005,7 +2001,6 @@ __webpack_require__.r(__webpack_exports__);
           created_at: new Date().toLocaleString()
         };
         this.chat = '';
-        console.log(2);
         axios.post('/group_chat/sendChat', data).then(function (response) {
           _this.chat_group.group_chats.push(data);
         });
@@ -6720,7 +6715,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.red {\n    color: red;\n}\n.green {\n    color: rgb(82, 197, 82);\n}\n.is-pulled-right{margin-left:50px;\nmargin-top: -15px;}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.red {\n    color: red;\n}\n.green {\n    color: rgb(82, 197, 82);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -65995,7 +65990,7 @@ var render = function() {
           _vm._v(" "),
           _vm.chats.chat.length == 0
             ? _c("div", { staticClass: "no-message" }, [
-                _vm._v("\n        There are no messages\n    ")
+                _vm._v("\n        Không có tin nhắn\n    ")
               ])
             : _vm._e()
         ],
@@ -66104,65 +66099,69 @@ var render = function() {
     _c(
       "div",
       { staticClass: "bottom-right position-relative", attrs: { id: "hihi" } },
-      _vm._l(_vm.chat_group.group_chats, function(group_chat, index) {
-        return _c("div", { key: index }, [
-          group_chat.user_id == _vm.userid
-            ? _c("div", { staticClass: "my-messages position-relative" }, [
-                _c("div", { staticClass: "time" }, [
-                  _vm._v(_vm._s(_vm._f("formatDate")(group_chat.created_at)))
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "me-messages" }, [
-                  _c("p", [_vm._v(" " + _vm._s(group_chat.message))])
-                ])
-              ])
-            : _c(
-                "div",
-                { staticClass: "friend-messages clr position-relative" },
-                [
+      [
+        _vm._l(_vm.chat_group.group_chats, function(group_chat, index) {
+          return _c("div", { key: index }, [
+            group_chat.user_id == _vm.userid
+              ? _c("div", { staticClass: "my-messages position-relative" }, [
                   _c("div", { staticClass: "time" }, [
                     _vm._v(_vm._s(_vm._f("formatDate")(group_chat.created_at)))
                   ]),
                   _vm._v(" "),
-                  _c("a", { attrs: { href: "/" + group_chat.user } }, [
-                    group_chat.avatar.substr(0, 4) != "http"
-                      ? _c("img", {
-                          staticClass: "friend-img rounded-circle",
-                          attrs: { src: "/uploads/user/" + group_chat.avatar }
-                        })
-                      : _vm._e(),
-                    _vm._v(" "),
-                    group_chat.avatar.substr(0, 4) == "http"
-                      ? _c("img", {
-                          staticClass: "friend-img rounded-circle",
-                          attrs: { src: group_chat.avatar }
-                        })
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "os " }, [
-                    _vm._v(_vm._s(group_chat.c_name))
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "friend-chat" }, [
-                    _vm._v(
-                      " \n                       " +
-                        _vm._s(group_chat.message) +
-                        "\n                   "
-                    )
+                  _c("div", { staticClass: "me-messages" }, [
+                    _c("p", [_vm._v(" " + _vm._s(group_chat.message))])
                   ])
-                ]
-              )
-        ])
-      }),
-      0
+                ])
+              : _c(
+                  "div",
+                  { staticClass: "friend-messages clr position-relative" },
+                  [
+                    _c("div", { staticClass: "time" }, [
+                      _vm._v(
+                        _vm._s(_vm._f("formatDate")(group_chat.created_at))
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "/" + group_chat.user } }, [
+                      group_chat.avatar.substr(0, 4) != "http"
+                        ? _c("img", {
+                            staticClass: "friend-img rounded-circle",
+                            attrs: { src: "/uploads/user/" + group_chat.avatar }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      group_chat.avatar.substr(0, 4) == "http"
+                        ? _c("img", {
+                            staticClass: "friend-img rounded-circle",
+                            attrs: { src: group_chat.avatar }
+                          })
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "os " }, [
+                      _vm._v(_vm._s(group_chat.c_name))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "friend-chat" }, [
+                      _vm._v(
+                        " \n                   " +
+                          _vm._s(group_chat.message) +
+                          "\n               "
+                      )
+                    ])
+                  ]
+                )
+          ])
+        }),
+        _vm._v(" "),
+        _vm.chat_group.group_chats.length == 0
+          ? _c("div", { staticClass: "no-message" }, [
+              _vm._v("\n       Không có tin nhắn\n   ")
+            ])
+          : _vm._e()
+      ],
+      2
     ),
-    _vm._v(" "),
-    _vm.chat_group.length == 0
-      ? _c("div", { staticClass: "no-message" }, [
-          _vm._v("\n           There are no messages\n       ")
-        ])
-      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "form-chat position-absolute" }, [
       _c("img", {

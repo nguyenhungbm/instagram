@@ -117,7 +117,7 @@
                 </ul>
             </div>
       </div>
-   </header>
+</header>
    <script>
     $(function(){
         $('.noti').on('click',function(){

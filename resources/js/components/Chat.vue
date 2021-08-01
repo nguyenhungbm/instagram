@@ -21,7 +21,7 @@
             </div>
         </div>
         <div v-if="chats.chat.length == 0"  class="no-message">
-            There are no messages
+            Không có tin nhắn
         </div> 
         <!-- <img src="/img/typing.gif" style="height:100px"> -->
     </div>

@@ -63,7 +63,7 @@
 .user{
     width: 80%;
     float: left;
-    padding: 15px;
+    padding: 15px 40px;
     font-weight: 700;
 }
 .user img{
@@ -92,13 +92,18 @@
     width: 50px;
     border-radius: 50%;
     float: left;
-    margin: 15px;
+    margin: 10px 15px;
 }
 .bottom-left ul{height: 100%;}
 .bottom-left li{ 
     width: 100%;  
     height: 15%;
+    position: relative;
 } 
+.is-pulled-right {
+    position: absolute;
+    left: 80px;
+}
 .bottom-left li:hover{
     background-color: #80808014;
 }    
@@ -111,10 +116,8 @@
     border-radius: 20px;
 } 
 .my-messages{
-
     float: right;
     width: 95%; 
-    margin-top: 15px;
     margin-bottom:15px;
     
 }
@@ -124,17 +127,16 @@
 .my-messages p{
     box-sizing: content-box;
     background-color:#80808021 ;
-    padding: 12px 8px;
+    border-radius: 22px;
+    padding: 12px;
     float: right;
     max-width: 45%;
-    border-radius: 18px;
 }
 .friend-messages{float: left;
     width: 100%;
-    margin-bottom:60px;
 }
 .friend-img{
-    margin: 0 10px;
+    margin: 10px;
     height: 40px;
     width: 40px;
     object-fit: cover;
@@ -149,11 +151,12 @@
     left: 67px;
 }
 .friend-chat{
-    padding: 12px 8px;
+    border-radius: 22px;
+    padding: 12px;
+    font-size: 14px;
     float: left;
-    border: 1px solid gray;
+    border: 1px solid #eee;
     max-width: 45%;
-    border-radius: 18px;
 }  
 .friend-messages a{
     float: left
