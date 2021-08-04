@@ -10,7 +10,6 @@
    </div>
    <div class="infos">
       <a href="" class="info"><i class="fa fa-lg fa-info"></i></a>
-      <a href="{{route('chat.video')}}"><i class="fa fa-lg fa-video-camera"></i></a>
    </div>
 </div>
 <chat_group v-bind:chat_group="chat_group" v-bind:userid="{{ Auth::user()->id }}" v-bind:roomid="{{ $room }}"></chat_group>

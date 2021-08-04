@@ -45,6 +45,8 @@ class DirectController extends Controller
                         ->select('videocall')
                         ->first()
                         ; 
+        if(!isset($videocall['videocall'])) 
+            $videocall['videocall'] = rand(000000,999999);
         $viewData=[
             'chat'      => $chat,   
             'friend'    => $friend,
@@ -144,7 +146,7 @@ class DirectController extends Controller
     public function video($room)
     {
         $room = Chat::where('videocall',$room)->first();
-        if($room->user_id == \Auth::id() || $room->friend_id == \Auth::id())
+        // if($room->user_id == \Auth::id() || $room->friend_id == \Auth::id())
             return view('direct.videocall');
     }
     public function index_chat_group($rooms){ 
