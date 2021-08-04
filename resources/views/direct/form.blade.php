@@ -57,7 +57,7 @@
       </div>
    </div>
    <div class="rights d-inline-block" style="height: 100%;width:65%;background-color: white; ">
-      @yield('conten')
+      @yield('chat')
    </div>
 </div>
 <!-- <div id="id01" class="w3-modal d-none"> -->

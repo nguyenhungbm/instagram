@@ -1,8 +1,6 @@
 
 @extends('direct.form') 
-@section('conten')
-
- 
+@section('chat')
 <div class="rights d-inline-block" style="height: 100%;width:65%;background-color: white; ">
    <div class="d-flex we">
       <img src="{{asset('img/direct-content.png')}}">

@@ -1,6 +1,6 @@
 $(function(){
      //cài đặt
-     $('body').on('click', '#myBtn-2',function(){
+     $('body').on('click','#myBtn-2',function(){
         $('#myModal-2').show();
     })
     $('body').on('click','#exit2',function(){
@@ -84,5 +84,4 @@ $(function(){
 }) 
 window.onclick = function(event) { 
    $('.list').addClass('d-none');
-   
 }  

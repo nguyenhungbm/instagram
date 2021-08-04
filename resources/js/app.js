@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('chat', require('./components/Chat.vue').default);
 Vue.component('chat_group', require('./components/ChatGroup.vue').default);
+Vue.component('video-call', require('./components/VideoCall.vue').default);
 
 Vue.component('chat-composer', require('./components/ChatComposer.vue').default);
 Vue.component('notification', require('./components/Notification.vue').default);

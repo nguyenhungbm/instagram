@@ -49,7 +49,7 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
     Route::post('/chat/getChat/{id}', 'DirectController@getChat');
     Route::post('/chat/sendChat', 'DirectController@sendChat');
     //call video
-    Route::get('/video',  'DirectController@video')->name('chat.video');
+    Route::get('/video/{room}',  'DirectController@video')->name('chat.video');
     // Route::post('/pusher/auth', 'HomeController@authenticate'); 
    
 }); 

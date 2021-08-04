@@ -1,6 +1,6 @@
 <meta name="roomId" content="{{ $room }}">
 @extends('direct.form') 
-@section('conten') 
+@section('chat') 
 <div class="top-right clr  ">
    <div class="user">
       <a href="#">

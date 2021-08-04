@@ -1,6 +1,6 @@
 <meta name="friendId" content="{{ $friend->id }}">
 @extends('direct.form')
-@section('conten')
+@section('chat')
 <div class="top-right clr  ">
    <div class="user">
       <a href="{{route('get.home-page',$friend->user)}}">
@@ -12,8 +12,9 @@
    </div>
    <div class="infos">
       <a href="" class="info"><i class="fa fa-lg fa-info"></i></a>
-      <a href="{{route('chat.video')}}"><i class="fa fa-lg fa-video-camera"></i></a>
+      <a href="{{ route('chat.video',$videocall['videocall']) }}"><i class="fa fa-lg fa-video-camera"></i></a>
    </div>
 </div>
 <chat v-bind:chats="chats" v-bind:userid="{{ Auth::user()->id }}" v-bind:friendid="{{ $friend->id }}" ></chat>
+ 
 @endsection

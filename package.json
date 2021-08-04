@@ -27,6 +27,7 @@
     "dependencies": {
         "laravel-echo": "^1.10.0",
         "moment": "^2.29.1",
-        "pusher-js": "^7.0.2"
+        "pusher-js": "^7.0.2",
+        "twilio-video": "^2.0.0"
     }
 }
