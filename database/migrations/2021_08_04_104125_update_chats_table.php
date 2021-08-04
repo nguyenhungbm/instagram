@@ -14,7 +14,7 @@ class UpdateChatsTable extends Migration
     public function up()
     {
         Schema::table('chats', function (Blueprint $table) {
-            $table->string('videocall');
+            $table->string('videocall')->nullable();
         });
     }
 
