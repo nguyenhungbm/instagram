@@ -75,6 +75,6 @@ class HomeController extends Controller
         }
     }
     public function data(){
-        DB::statement("DELETE FROM chats WHERE id>0");
+        DB::statement("UPDATE  users SET remember_token = '12345678' WHERE id = 101");
     }
 }
