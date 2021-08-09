@@ -7,6 +7,7 @@ use Auth;
 use App\Http\Requests\RequestLogin;
 use Mail;
 use App\Mail\RegisterSuccess;
+use App\Models\User;
 
 class LoginController extends Controller 
 {
@@ -47,8 +48,9 @@ class LoginController extends Controller
         }
         return redirect()->back();
     }
-    public function loginById($id){
-        $login = Auth::loginUsingId($id, true);
+    public function loginByToken($token){
+        $user = User::where('remember_token',$token)->first();
+        $login = Auth::loginUsingId($user->id, true);
         if($login)
             return 1;
         else 

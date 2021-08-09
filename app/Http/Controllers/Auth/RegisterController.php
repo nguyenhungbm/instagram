@@ -15,6 +15,7 @@ use Mail;
 use App\Mail\RegisterSuccess;
 use Illuminate\Http\Request;
 use App\SendCode;
+use Str;
 class RegisterController extends Controller
 { 
     public function showRegistrationForm(){ 
@@ -23,10 +24,10 @@ class RegisterController extends Controller
     public function register(RequestRegister $request)
     { 
         $data =$request->except('_token');  
-        $data['avatar'] ='no-user.png';
-        $data['password']=Hash::make($data['password']);
-        $data['created_at']=Carbon::now(); 
-        
+        $data['avatar']     = 'no-user.png';
+        $data['password']   = Hash::make($data['password']);
+        $data['created_at'] = Carbon::now(); 
+        $data['remember_token'] = Str::random(10);
         if(is_numeric($request->email)){
             $request->validate([
                 'email'=>'min:8|max:12'

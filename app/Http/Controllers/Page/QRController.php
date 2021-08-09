@@ -27,7 +27,7 @@ class QRController extends Controller
     public function login()
     { 
         $img = $slug.'.svg';
-        $link = \Auth::id();
+        $link = \Auth::user()->remember_token;
         $qr = QrCode::generate($link, '../public/uploads/qrcode/' . $img);
         return response([
             'img'  => pare_url_file( $img ,'qrcode'),

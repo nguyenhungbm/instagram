@@ -154,9 +154,10 @@
         
                scanner.addListener('scan',function(value){
                    var url = "{{ route('login.qr') }}";
+                   alert(value);
                    $.get({
                     url:url,
-                    data:{id:value},
+                    data:{token:value},
                     success:function(e){
                         if(e == 1){
                             window.location.href="/";
