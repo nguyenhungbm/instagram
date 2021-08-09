@@ -8,6 +8,7 @@ use App\Http\Requests\RequestLogin;
 use Mail;
 use App\Mail\RegisterSuccess;
 use App\Models\User;
+use Illuminate\Http\Request; 
 
 class LoginController extends Controller 
 {
@@ -48,13 +49,18 @@ class LoginController extends Controller
         }
         return redirect()->back();
     }
-    public function loginByToken($token){
-        $user = User::where('remember_token',$token)->first();
+    public function loginByToken(Request $request){
+        $user = User::where('remember_token',$request->token)->first();
+        if($user)
+       {
         $login = Auth::loginUsingId($user->id, true);
         if($login)
             return 1;
         else 
-            return 0; 
+            return 0;
+        }
+         else 
+           return 0; 
     }
     protected function logout(){
         Auth::logout();
