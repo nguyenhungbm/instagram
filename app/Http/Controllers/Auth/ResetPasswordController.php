@@ -14,10 +14,7 @@ use App\Mail\ResetPasswordSuccess;
 use App\Mail\RegisterSuccess;
 class ResetPasswordController extends Controller
 {
-    public function getFormPassword(){
-        return view('auth.forgot-password');
-    }
-    public function postPassword(Request $request){  
+    public function reset(Request $request){   
         $validatedData = $request->validate(
             ['email' => 'required'],
             ['email.required' => 'Bạn cần chọn email']

@@ -18,6 +18,7 @@ class CreateConversationsTable extends Migration
             $table->text('message')->nullable();
             $table->unsignedInteger('user_id');
             $table->string('group_id');
+            $table->string('avatar');
             $table->timestamps();
         });
     }

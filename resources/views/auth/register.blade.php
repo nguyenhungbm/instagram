@@ -57,7 +57,7 @@
         <p>Bằng cách đăng ký, bạn đồng ý với Điều khoản, Chính sách dữ liệu và Chính sách cookie của chúng tôi.</p>
         <div class="login">
         <span>Bạn có tải khoản</span>
-        <a href="{{ route('get.login')}}">Đăng nhập</a>
+        <a href="{{ route('login')}}">Đăng nhập</a>
     </div>
     </section>
     

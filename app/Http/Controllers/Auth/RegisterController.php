@@ -17,10 +17,10 @@ use Illuminate\Http\Request;
 use App\SendCode;
 class RegisterController extends Controller
 { 
-    public function getFormRegister(){ 
+    public function showRegistrationForm(){ 
            return view('auth.register');
     }
-    public function create(RequestRegister $request)
+    public function register(RequestRegister $request)
     { 
         $data =$request->except('_token');  
         $data['avatar'] ='no-user.png';
@@ -57,7 +57,7 @@ class RegisterController extends Controller
             ]);
             Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$request->user));
 
-           return redirect()->route('get.login');
+           return redirect()->route('login');
         } 
         
         return redirect()->back();

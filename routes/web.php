@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();     
 include('route-admin.php'); 
 
 Route::get('/data','HomeController@data'); 
@@ -10,26 +9,19 @@ Route::get('/data','HomeController@data');
 Route::get('/offline', function () {    
     return view('vendor/laravelpwa/offline');
     });
+Auth::routes();     
 Route::get('/','HomeController@index')->name('home')->middleware('auth'); 
 Route::get('/search','HomeController@search')->name('search'); 
  Route::group(['namespace' =>'Auth','prefix'=>'account'],function(){
-    Route::get('forgot-password','ResetPasswordController@getFormPassword')->name('get.forgot-password'); // quên mật khẩu
-    Route::post('forgot-password','ResetPasswordController@postPassword'); // xử lý quên mật khẩu
-   
-    Route::get('register','RegisterController@getFormRegister')->name('get.register'); // đăng ký
-    Route::post('register','RegisterController@create'); // xử lý đăng ký
- 
+    
+    Route::get('/login/qr/','LoginController@loginById')->name('login.qr'); 
     Route::get('verify/{user}','RegisterController@getVerifyAccount')->name('user.verify.gmail');//xác thực qua email
     Route::get('verify-phone','RegisterController@getVerifyMessage')->name('user.verify.message');//xác thực qua tin nhắn
     Route::post('verify-phone','RegisterController@postVerifyMessage');//xác thực qua tin nhắn
-
-    Route::get('login','LoginController@getFormLogin')->name('get.login'); // đăng nhập
-    Route::post('login','LoginController@postLogin'); // xử lý đăng nhập
+ 
     
     Route::get('accounts/password/reset','ResetPasswordController@changePassword')->name('user.change.password'); // thay đổi mật khẩu
     Route::post('accounts/password/reset','ResetPasswordController@StorePassword'); // thay đổi mật khẩu 
-
-    Route::get('logout','LoginController@getLogout')->name('get.logout'); // đăng xuất  
 });
 //chat
 Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {   
@@ -57,6 +49,7 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
 Route::group(['namespace'=>'Page','middleware' => 'auth'], function () { 
     //follow user
     Route::get('qr_code/{slug}', 'QRController@create')->name('qrcode');
+    Route::get('qr_code/login', 'QRController@login')->name('qrcode.login');
     Route::post('/upload','PostController@savePost')->name('post.profile'); 
     Route::get('/incre-view','PostController@increView')->name('post.increview'); 
     Route::post('/follow','FollowController@follow'); 

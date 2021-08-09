@@ -9,6 +9,7 @@ return [
     'folowings'       => '',
     'folowing'        => 'following',
     'Change Password' => 'Change Password',
+    'Create QR Login' => 'Create QR Login',
     'Nametag'         => 'Nametag',
     'Apps and Websites'=>'Apps and Websites',
     'Notifications' =>'Notifications',

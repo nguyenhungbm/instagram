@@ -329,7 +329,7 @@ textarea::-webkit-scrollbar {
 }
 .hea b{font-size: 22px;}
 .hea p{font-size: 18px;}
-.img-thumbnail{
+.img-thumbnail,.img-thumbnails{
     width: 200px !important;
     height: 200px !important;
     border-radius: 5px !important;

@@ -10,10 +10,10 @@ use App\Mail\RegisterSuccess;
 
 class LoginController extends Controller 
 {
-    public function getFormLogin(){
+    public function showLoginForm(){
         return view('auth.login');
     }
-    public function postLogin(RequestLogin $request){
+    public function login(RequestLogin $request){
         $data =$request->only('email','password');
         if(Auth::attempt($data) || Auth::attempt(['user'=> $request->email , 'password' => $request->password]) ||
         Auth::attempt(['phone'=> $request->email , 'password' => $request->password])
@@ -28,7 +28,7 @@ class LoginController extends Controller
                     'messages'=>'Tài khoản của bạn chưa được xác thực . Chúng tôi đã gửi một email đến '.$request->email.' với một liên kết để xác thực tài khoản của bạn.'
                 ]);
                 Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$request->user));
-                return redirect()->route('get.login');
+                return redirect()->route('login');
             }
             else if(Auth::user()->is_active ==2){
                 Auth::logout();
@@ -36,7 +36,7 @@ class LoginController extends Controller
                     'type'=>'error',
                     'messages'=>'Tài khoản của bạn đã bị khóa do vi phạm chính sách của chúng tôi! '
                 ]);
-                return redirect()->route('get.login');
+                return redirect()->route('login');
             }
     }
         else{
@@ -47,8 +47,15 @@ class LoginController extends Controller
         }
         return redirect()->back();
     }
-    protected function getLogout(){
+    public function loginById($id){
+        $login = Auth::loginUsingId($id, true);
+        if($login)
+            return 1;
+        else 
+            return 0; 
+    }
+    protected function logout(){
         Auth::logout();
-        return redirect()->route('get.login');
+        return redirect()->route('login');
     }
 }
