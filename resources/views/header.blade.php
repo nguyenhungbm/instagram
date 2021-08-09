@@ -144,6 +144,7 @@
     $('body').on('click','#myBtn-1',function(){
         $('#myModal-1').show();
         var url ="{{route('qrcode.login')}}";
+        console.log(url);
         $.get({
             url:url,
             success:function(e){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Page;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Str;
 class QRController extends Controller
 { 
     public function create($slug)
@@ -26,7 +27,7 @@ class QRController extends Controller
     }
     public function login()
     { 
-        $img = $slug.'.svg';
+        $img = Str::random(10).'.svg';
         $link = \Auth::user()->remember_token;
         $qr = QrCode::generate($link, '../public/uploads/qrcode/' . $img);
         return response([
