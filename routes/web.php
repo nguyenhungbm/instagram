@@ -46,8 +46,9 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
    
 }); 
 //home page
-Route::group(['namespace'=>'Page','middleware' => 'auth'], function () { 
+Route::group(['namespace'=>'Page'], function () { 
     //follow user
+    Route::get('/incre','PostController@index')->name('post'); 
     Route::get('/qr/login', 'QRController@login')->name('qrcode.login');
     Route::post('/upload','PostController@savePost')->name('post.profile'); 
     Route::get('/incre-view','PostController@increView')->name('post.increview'); 

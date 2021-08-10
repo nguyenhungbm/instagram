@@ -15,6 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(
+            \App\Repositories\Post\PostRepositoryInterface::class,
+            \App\Repositories\Post\PostRepository::class
+        );
         if(env('REDIRECT_HTTPS')) {
             $this->app['request']->server->set('HTTPS', true);
         }
