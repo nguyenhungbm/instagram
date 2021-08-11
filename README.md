@@ -46,6 +46,9 @@
     - Khi theo dõi sẽ hiện link để có thể nhắn tin với người khác
 + Trang chat 
     - Có thể chat ,hiện online bằng cơ chế realtime
+    - Tạo group chat với nhiều người khác nhau
+    - Tìm kiếm người dùng để tạo nhóm chat
+    - Gọi video 1-1
 + Trang chỉnh sửa thông tin
     - Thay đổi thông tin cá nhân ,avatar
     - Thay đổi giới tính trực tiếp bằng ajax

@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name','display_name'
+    ];
     public function permissionsChildren()
     {
         return $this->hasMany(Permission::class,'parent_id');

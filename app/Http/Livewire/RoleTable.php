@@ -10,7 +10,7 @@ class RoleTable extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $perPage = 1;
+    public $perPage = 10;
     public $search = '';
     public $orderBy = 'id';
     public $orderAsc = true;

@@ -16,7 +16,7 @@ abstract class BaseRepository implements RepositoryInterface
     }
 
     //lấy model tương ứng
-    abstract public function getModel();
+    abstract public function getModel(); 
 
     /**
      * Set model

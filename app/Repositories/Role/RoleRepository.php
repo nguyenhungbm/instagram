@@ -1,17 +1,16 @@
 <?php
-namespace App\Repositories\Post;
+namespace App\Repositories\Role;
 
 use App\Repositories\BaseRepository;
-
-class PostRepository extends BaseRepository implements PostRepositoryInterface
+class RoleRepository extends BaseRepository implements RoleRepositoryInterface
 {
     //lấy model tương ứng
     public function getModel()
     {
-        return \App\Models\Post::class;
+        return \App\Models\Role::class;
     }
 
-    public function getPost()
+    public function getRole()
     {
         return $this->model->select('p_content')->take(5)->get();
     }

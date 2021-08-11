@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\Permission;
 use DB;
+use App\Repositories\Role\RoleRepositoryInterface;
 class RoleController extends Controller
 {
-    private $role,$permission;
-    public function __construct(Role $role,Permission $permission)
+    private $role,$permission,$repository;
+    public function __construct(Role $role,Role $permission,RoleRepositoryInterface $RoleRepositoryInterface)
     {
-       $this->role=$role;
-       $this->permission=$permission;
+       $this->role = $role;
+       $this->permission = $permission;
+       $this->repository = $RoleRepositoryInterface;
     }
     public function index()
     {
@@ -24,8 +26,7 @@ class RoleController extends Controller
     }
     public function show($id)
     {
-       $role =Role::find($id);
-       return $role;
+        $this->repository->find($id);
     }
 
     public function create()
@@ -48,11 +49,11 @@ class RoleController extends Controller
             'name.required'=>'Bạn cần nhập tên quyền hạn', 
             'display_name.required'=>'Bạn cần nhập mô tả quyền hạn', 
         ]); 
-        $role=$this->role->create([
-            'name' => $request->name,
-            'display_name' => $request->display_name,
-        ]);
-        $role->permissions()->attach($request->permission_id);
+        $data['name'] = $request->name;
+        $data['display_name'] = $request->display_name;
+        
+        $this->repository->create($data);
+        $this->role->permissions()->attach($request->permission_id);
         return redirect()->route('role.index');
     }
     public function edit($id)
@@ -78,18 +79,17 @@ class RoleController extends Controller
             'name.required'=>'Bạn cần nhập tên quyền hạn', 
             'display_name.required'=>'Bạn cần nhập mô tả quyền hạn', 
         ]);   
-        $role->update([
-            'name' => $request->name,
-            'display_name' => $request->display_name,
-        ]);
+        $data['name'] = $request->name;
+        $data['display_name'] = $request->display_name;
+        
+        $this->repository->update($id,$data);
         $role->permissions()->sync($request->permission_id);
         return redirect()->route('role.index');
     }
     public function destroy($id)
-    {
-        $role=$this->role->find($id);
+    { 
         \DB::table('permission_role')->where('role_id',$id)->delete();
-        if($role) $role->delete();
+        $this->repository->delete($id);
         return redirect()->back();
     }
 }
