@@ -11,7 +11,7 @@ use App\Repositories\Role\RoleRepositoryInterface;
 class RoleController extends Controller
 {
     private $role,$permission,$repository;
-    public function __construct(Role $role,Role $permission,RoleRepositoryInterface $RoleRepositoryInterface)
+    public function __construct(Role $role,Permission $permission,RoleRepositoryInterface $RoleRepositoryInterface)
     {
        $this->role = $role;
        $this->permission = $permission;
