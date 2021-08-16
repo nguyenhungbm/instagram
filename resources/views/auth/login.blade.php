@@ -28,13 +28,13 @@
         </script>
     </head>
     <body>
-        <!-- <div class="loading">
+        <div class="loading">
             <div class="loadding"></div>
                 <div id="typed-strings" style="display:none">
                     <h1>WELCOME TO MY WEBSITE</h1>
                     <h1><span>ENJOY</span> AND <span>RELAX</span> WITH IT</h1>
                 </div>
-            <span id="typed"></span> -->
+            <span id="typed"></span>
         </div>
         <div class="login-left">
             <img src="{{ asset('img/login.png') }}" >
