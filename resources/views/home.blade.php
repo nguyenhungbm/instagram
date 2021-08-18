@@ -18,7 +18,6 @@
     @endif 
 </head>
 <body>
-
     <div id="example"></div>
 </body>
 </html>

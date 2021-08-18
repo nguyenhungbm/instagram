@@ -8,7 +8,7 @@ body{
 }
 }
 </style>
-@extends('layout.accounts')
+@extends('layouts.accounts')
 @section('contents')
 <div class="w-80">
     <div class="d-flex" style="justify-content:center">

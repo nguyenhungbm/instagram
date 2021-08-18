@@ -12,9 +12,9 @@ class PostRepository
 {
     public function create($request){
         $data=$request->except('_token','profiles','stories');  
-        $data['created_at']=Carbon::now();
-        $data['p_user']=Auth::id(); 
-        $data['p_slug'] =Str::random(15);
+        $data['created_at'] = Carbon::now();
+        $data['p_user']     = Auth::id(); 
+        $data['p_slug']     = Str::random(15);
         if($request->profiles){
             $data['p_type'] = 'profile';
             $file = $request->file('profiles');

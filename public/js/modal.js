@@ -1,4 +1,23 @@
 $(function(){
+    //qr code
+    $('body').on('click','#myBtn-1',function(){
+        $('#myModal-1').show();
+        var url ="{{route('qrcode.login')}}";
+        console.log(url);
+        $.get({
+            url:url,
+            success:function(e){
+                $('.img-thumbnails').attr('src',e.img); 
+            }
+        })
+    })
+    $('body').on('click','#exit1',function(){
+        $('#myModal-1').hide();
+    })
+    $('#myModal-1').on('click',function(event){
+        if(event.target == document.getElementById("myModal-1")) 
+            $(this).hide()
+    })
      //cài đặt
     $('body').on('click','#myBtn-2',function(){
         $('#myModal-2').show();

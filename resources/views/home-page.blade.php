@@ -9,7 +9,7 @@
     }
     }
 </style>
-@extends('header') 
+@extends('layouts.app') 
 @section('content')
 <body>
     <section class="sd">
@@ -46,10 +46,12 @@
                     <li><a href="">{{ __('translate.Apps and Websites')}}</a></li>
                     <li><a href="">{{ __('translate.Notifications')}}</a></li>
                     <li><a href="">{{ __('translate.Privacy and Security')}}</a></li>
-                    <li><a href="">{{ __('translate.Login Activity')}}</a></li>
+                    <li><a href="{{ route('login-activity') }}">{{ __('translate.Login Activity')}}</a></li>
                     <li><a href="">{{ __('translate.Emails from Instagram')}}</a></li>
                     <li><a href="">{{ __('translate.Report a Problem')}}</a></li>
-                    <li><a href="{{ route('logout') }}">{{ __('translate.Log Out')}}</a></li>
+                    <li><a href="javascript:void(0)" onclick="event.preventDefault(); $('.logout-form').submit();">
+                                    {{ __('translate.Log Out')}}
+                                    </a></li>
                     <li><a href="#" id="exit3">{{ __('translate.Cancel')}}</a></li>
                 </div>
             </div>

@@ -12,7 +12,9 @@ Route::get('/offline', function () {
 Auth::routes();     
 Route::get('/','HomeController@index')->name('home')->middleware('auth'); 
 Route::get('/search','HomeController@search')->name('search'); 
- Route::group(['namespace' =>'Auth','prefix'=>'account'],function(){
+Route::get('/address','HomeController@getAddress')->middleware('auth'); 
+Route::post('/address','HomeController@storeAddress')->middleware('auth'); 
+Route::group(['namespace' =>'Auth','prefix'=>'account'],function(){
     
     Route::get('/login/qr/','LoginController@loginByToken')->name('login.qr'); 
     Route::get('verify/{user}','RegisterController@getVerifyAccount')->name('user.verify.gmail');//xác thực qua email
@@ -89,6 +91,7 @@ Route::group(['prefix'=>'accounts','namespace'=>'Account'], function () {
     Route::get('/edit/password','ProfileController@password')->name('password.edit'); 
     Route::post('/edit/password/store','ProfileController@store_password')->name('password.store');  
     Route::get('/confirm','ProfileController@ConfirmPhone')->name('confirm'); // quên mật khẩu
+    Route::get('/login-activity','ProfileController@LoginActivity')->name('login-activity'); // quên mật khẩu
 });
 
 Route::group(['prefix'=>'sms'], function () {   

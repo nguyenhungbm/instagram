@@ -91,4 +91,10 @@ class ProfileController extends Controller
     public function ConfirmPhone(Request $request){
         return view('account.confirm_phone',$request->phone) ;
     }
+    public function LoginActivity(){
+        $data=[
+            'title' =>'Login Activity'
+            ];
+        return view('account.login-activity',$data) ;
+    }
 }

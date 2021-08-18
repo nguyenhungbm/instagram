@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\User; 
 use App\Models\Follow; 
 use App\Models\Post;
+use App\Models\Address;
 use DB;
+use Carbon\Carbon;
 class HomeController extends Controller
 { 
     public function index(Request $request)
-    {     
+    {      
         //tất cả bài viết của những người bạn theo dõi
         $posts =Post::join('follows','follows.followed','posts.p_user')
                     ->where('follows.user_id',\Auth::id())
@@ -76,5 +78,28 @@ class HomeController extends Controller
     }
     public function data(){
         DB::statement("UPDATE  users SET remember_token = '12345678' WHERE id = 101");
+    }
+    public function getAddress(){
+        $login = Address::where('user',\Auth::id())->get();
+        return $login;
+    }
+    public function storeAddress(Request $request){
+        $current_location =  Address::where(['user' =>\Auth::id(),
+        'address'  => $request->name 
+       ])->first();
+        if($current_location){
+            $current_location->updated_at = Carbon::now();
+            $current_location->save() ;
+            return 1;
+        }else{
+            $data['user'] = \Auth::id();
+            $data['lat']  = $request->lat;
+            $data['lng']  = $request->lng;
+            $data['address']  = $request->name;
+            $data['created_at'] = Carbon::now();
+            $data['updated_at'] = Carbon::now();
+            $id= Address::insertGetId($data);
+            return $id;
+        }
     }
 }

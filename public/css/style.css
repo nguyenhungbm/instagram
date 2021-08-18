@@ -6,7 +6,7 @@
 .cs,button,input[type="submit"]{cursor: pointer;}
 button{outline: none;background-color: transparent;border:none;}
 .os{opacity: 0.5;}
-
+body{overflow:hidden;}
 .clr{
     content: "";
     display: table;

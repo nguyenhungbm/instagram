@@ -1,7 +1,7 @@
 <style>
    body{height:80%}
 </style>
-@extends('header') 
+@extends('layouts.app') 
 @section('content') 
 <div class="messages  d-block">
    <div class="left d-inline-block" style="height: 100%;width:35%; ">

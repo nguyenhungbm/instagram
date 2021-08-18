@@ -10,10 +10,11 @@ class AccessTokenController extends Controller
 {
     public function generate_token()
     {
-        // Substitute your Twilio Account SID and API Key details
-        $accountSid =  env('TWILIO_ACCOUNT_SID','AC4d77c8f248f512f494e2d7f8a77465cd');
-        $apiKeySid = env('TWILIO_API_KEY_SID','SKf0fbe17ff19f5803453a908629e43398');
-        $apiKeySecret = env('TWILIO_API_KEY_SECRET','dvR3C5vYTr1GadhkS0WvFPSrcub9xMgg');
+        // Substitute your Twilio Account SID and API Key details 
+
+        $accountSid     = \Config::get('env.twilio_account_sid');
+        $apiKeySid      = \Config::get('env.twilio_api_key_sid');
+        $apiKeySecret   = \Config::get('env.twilio_api_key_secret');
 
         $identity = uniqid();
         // Create an Access Token

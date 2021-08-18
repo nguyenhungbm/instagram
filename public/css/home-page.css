@@ -220,13 +220,14 @@ footer ul{
     margin-left: 7%;
 }
 
-.cse .csf{
+.cse .csf {
     position: absolute;
     color: white;
     display: flex;
     margin-left: 30%;
     align-items: center;
-    height: 100%;} 
+    height: 100%;
+}
 .cse .csf i{padding: 7px;}   
 .cse:hover .csf{z-index: 2;}
 .cse:hover img{
@@ -555,31 +556,39 @@ h2{
         display: table;
 
     }
+    .csc {
+        line-height: 30px;
+    }
+    .posts .csd {
+        width: 100%;
+    }
     .csb span:nth-child(1){ 
         float: left;
         width: 100%;
+        margin-bottom: 10px;
     }
     .csa{
         padding-top: 10px;
     }
     .csb #myBtn-4{
         margin-top: 20px;
-        margin-left:  0 !important;
     }
     .name_user{
         margin-left: 65px;
         font-size: 18px;
     } 
     .cse {
-        width: 30%;
-        height: 115px;
-        margin-right: 20%;
-        margin-bottom: 100px;
+        width: 50%;
+        height: 220px;
+        margin: 0;
     }
     .img_small {
-        width: 200px;
+        width: 80%;
+        height: 80%;
+        object-position: left;
     } 
     .uio{
         margin-left: 0;
     }
+    .posts .clr{ text-align: center;}
 } 

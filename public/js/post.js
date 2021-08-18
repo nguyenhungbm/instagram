@@ -1,4 +1,4 @@
-    
+  
     //like
     function likepost(postId){    
         $.get({

@@ -11,7 +11,7 @@ body{
 }
 }
 </style>
-@extends('layout.accounts')
+@extends('layouts.accounts')
 @section('contents')
 <div class="w-80">
     <div class="d-flex" style="justify-content:center">
@@ -96,7 +96,7 @@ body{
             <b>{{ __('translate.Gender')}}</b>  
         </div>
         <div class="edit-form__content"> 
-            <input type="text" name="gender" placeholder="Email"  id="myBtn-6" value="{{ $val}}" readonly>
+            <input type="text" name="gender" class="cs" placeholder="Email"  id="myBtn-6" value="{{ $val}}" readonly>
         </div> 
     </div>  
     <div id="myModal-6" class="modal"> 

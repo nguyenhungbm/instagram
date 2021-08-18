@@ -1,6 +1,8 @@
+@extends('layouts.app') 
+@push('css')
 <link rel="stylesheet" href="{{asset('css/accounts.css')}}">
-@include('header') 
-<body>
+@endpush
+@section('content') 
     <div class="content">
     <div class="edit-form clr" >
     <div class="edit-form__left">
@@ -12,7 +14,7 @@
             <a href="javascript:;"><li>{{__('translate.Notifications')}}</li></a>
             <a href="javascript:;"><li>{{__('translate.Manage Contacts')}}</li></a>
             <a href="javascript:;"><li>{{__('translate.Privacy and Security')}}</li></a>
-            <a href="javascript:;"><li>{{__('translate.Login Activity')}}</li></a>
+            <a href="{{ route('login-activity') }}"><li>{{__('translate.Login Activity')}}</li></a>
             <a href="javascript:;"><li>{{__('translate.Emails from Instagram')}}</li></a>
         </ul>
     </div>
@@ -41,20 +43,9 @@
          <li class=" "><a href="{{route('language',['en']) }}">English</a></li>
       </ul>
       <br> 
-   </footer>
-<script src="{{ asset('js/modal.js') }}"></script>  
-<script src="{{ asset('js/avatar.js') }}"></script>
-</body>
-<script src="{{ asset('toastr/toastr.min.js') }}"></script>
-<script>
-    if(typeof TYPE_MESSAGE != "undefined"){
-        switch (TYPE_MESSAGE){
-            case 'success':
-                toastr.success(MESSAGE)
-                break;
-            case 'error':
-                toastr.error(MESSAGE)
-                break;
-        }
-    }
-</script>
+   </footer> 
+@endsection
+@push('js')
+<script src="{{ asset('js/avatar.js') }}" ></script> 
+
+@endpush

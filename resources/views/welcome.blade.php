@@ -1,7 +1,8 @@
-@extends('header') 
+@extends('layouts.app') 
 @section('content')
+@push('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick/slick.css') }}"/>
-<body>
+@endpush
    <div class="container">
    <div class="d-block">
       <div class="d-inline-block left border-gray">
@@ -37,36 +38,8 @@
                      <div>42  </div>
                   </a>
                </li>
-               <li>
-                  <a>
-                     <img src="{{ asset('img/be-giang.png') }}" class="img-story rounded-circle d-inline-block">
-                     <div>42  </div>
-                  </a>
-               </li>
-               <li>
-                  <a>
-                     <img src="{{ asset('img/be-giang.png') }}" class="img-story rounded-circle d-inline-block">
-                     <div>42  </div>
-                  </a>
-               </li>
-               <li>
-                  <a>
-                     <img src="{{ asset('img/be-giang.png') }}" class="img-story rounded-circle d-inline-block">
-                     <div>42  </div>
-                  </a>
-               </li>
-               <li>
-                  <a>
-                     <img src="{{ asset('img/be-giang.png') }}" class="img-story rounded-circle d-inline-block">
-                     <div>42  </div>
-                  </a>
-               </li>
-               <li>
-                  <a>
-                     <img src="{{ asset('img/be-giang.png') }}" class="img-story rounded-circle d-inline-block">
-                     <div>42  </div>
-                  </a>
-               </li>
+                
+            
                <li>
                   <a>
                      <img src="{{ asset('img/be-giang.png') }}" class="img-story rounded-circle d-inline-block">
@@ -147,11 +120,9 @@
          </div>
       </div>
    </div>
-</body>
 @endsection
 
 @push('js')
-<script src="{{ asset('js/post.js') }}" defer></script>
 <script src="{{ asset('slick/slick/slick.js') }}"></script>
 <script src="{{ asset('js/style.js') }}"></script>
 @endpush

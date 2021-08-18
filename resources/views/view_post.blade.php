@@ -1,5 +1,5 @@
 <title>Bài viết của {{$val->user->c_name}}</title>
-@extends('header') 
+@extends('layouts.app') 
 @section('content')  
    <meta charset="utf-8">
    <meta name="url" property="og:url" content="{{ url(route('post.view',$val->p_slug)) }}">
@@ -146,21 +146,22 @@
 </script> 
 <br>
 @if(count($related_post))
-<hr><br>
-<div class="hr">  
-      <p style="margin-left:20px">Thêm các bài viết từ <a href="{{route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}}</b></a></p>
+<br>
+<div class="posts">  
+      <p class="text-center">Thêm các bài viết từ <a href="{{route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}}</b></a></p>
       <br>
-      <div class="d-grid_image">
+      <div class="clr">
          @foreach($related_post as $key=> $val) 
-         <div class="cs cse {{ $key%3 == 1 ? 'uio' : '' }}">
-            <a href="{{route('post.view',$val->p_slug)}}"> 
-               <div class="clr csf">
-                  <i class="fa fa-heart"></i> <p class="likes{{$val->id}}">{{ $val->p_favourite}}</p>
-                  <i class="fa fa-comment"></i> <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>
-               </div>
-               <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}"  id="image{{$key}}">  
-            </a>
-         </div>
+         <div class="cs cse {{ $key%3 == 1 ? 'uio' : '' }}"  id="myBtnn{{$val->id}}">
+            <input type="hidden" value="{{ $val->p_slug}}" id="slug{{$val->id}}">
+            <div class="csf">
+                <i class="fa fa-heart"></i> 
+                <p class="likes{{$val->id}}">{{ $val->p_favourite}}</p>
+                <i class="fa fa-comment"></i> 
+                <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>
+            </div>
+            <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="img_small" id="image{{$key}}">
+        </div>
          @endforeach
       </div>
 </div>

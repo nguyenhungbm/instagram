@@ -1,5 +1,8 @@
-@include('header') 
+@extends('layouts.app') 
+@push('css')
 <link rel="stylesheet" href="{{ asset('dropzone\dist\min\dropzone.min.css')}}">
+@endpush
+@section('content') 
 <section class=" hej"> 
     <form method="POST"  action="{{ route('upload.video')}}" class="dropzone hek " id="dropzoneForm" enctype="multipart/form-data">
     @csrf
@@ -59,6 +62,8 @@
         <li class="os">&copy; 2021 Instagram from Facebook</li> 
     </ul>
 </footer>   
+@endsection
+@push('js')
 <script>
    $('#video_upload').on('change',function(ev){ 
         var reader=new FileReader(); 
@@ -100,3 +105,4 @@ Dropzone.options.dropzoneForm = {
 
   };
   </script>
+  @endpush
