@@ -1,5 +1,4 @@
 
-
 //  add and update avatar  
 function uploadUserAvatar(input,form){ 
     UpdateUserAvatar(form); 
@@ -39,10 +38,10 @@ function UpdateUserAvatar(form){
         success:function(e){    
             $('.img').empty();
             $('.img').prepend(`
-            <img src="uploads/user/'+${e.avatar}" class="rounded-circle user cs avatar_user_uploaded" id="myBtn-5">
+            <img src="/uploads/user/'+${e.avatar}" class="rounded-circle user cs avatar_user_uploaded" id="myBtn-5">
             <img src="img/loading.gif" class="imguser" style="display:none;">
             `);
-            $('.avatar_user_uploaded').attr('src','uploads/user/'+e.avatar);
+            $('.avatar_user_uploaded').attr('src','/uploads/user/'+e.avatar);
         }
     })
 } 

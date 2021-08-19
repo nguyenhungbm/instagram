@@ -14,7 +14,6 @@ function success(position){
     lng = position.coords.longitude; 
 }
 function fail(){
-    alert('Không thấy địa chỉ');
 }
 function createMap(location){
     map = new google.maps.Map(document.getElementById("map"), {

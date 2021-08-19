@@ -15,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('PostService',\App\Services\PostService::class);
+        $this->app->singleton('UserService',\App\Services\UserService::class);
         $this->app->singleton(
             \App\Repositories\Role\RoleRepositoryInterface::class,
             \App\Repositories\Role\RoleRepository::class,

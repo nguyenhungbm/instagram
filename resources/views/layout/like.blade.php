@@ -1,14 +1,14 @@
-<b class="zxm cs" id="myBtn-{{$value}}">
+<b class="zxm cs" id="buttonLike-{{$value}}">
     @if(\App\Models\Like::where('r_post',$value)->count())
         <b class="like{{$value}}">{{\App\Models\Like::where('r_post',$value)->count()}}</b> {{ __('translate.likes')}}
     @endif
 </b>
     <!-- modal user image -->
-<div id="myModal-{{$value}}" class="modal">
+<div id="like-{{$value}}" class="modal">
     <div class="modal-content setting animate__animated animate__zoomIn" >
         <li>
             <label style="width:70%">{{ ucwords(__('translate.likes'))}} </label>
-            <div class="float-right cs"style="font-size: 30px;padding: 9px 16px;" id="exit{{$value}}">&times;</div>
+            <div class="float-right cs"style="font-size: 30px;padding: 9px 16px;" id="cancel{{$value}}">&times;</div>
         </li>
         <div class="posts{{$value}}">
             @foreach(\App\Models\Like::where('r_post',$value)->get() as $item)
@@ -50,14 +50,14 @@
     </div>
     </div>
 <script>
-    $('body').on('click','#myBtn-{{$value}}',function(){
-        $('#myModal-{{$value}}').show();
+    $('body').on('click','#buttonLike-{{$value}}',function(){
+        $('#like-{{$value}}').show();
         })
-    $('body').on('click','#exit{{$value}}',function(){
-        $('#myModal-{{$value}}').hide();
+    $('body').on('click','#cancel{{$value}}',function(){
+        $('#like-{{$value}}').hide();
     }) 
-    $('body').on('click','#myModal-{{$value}}',function(event){
-        if(event.target == document.getElementById('myModal-{{$value}}'))
+    $('body').on('click','#like-{{$value}}',function(event){
+        if(event.target == document.getElementById('like-{{$value}}'))
             $(this).hide();
     }) 
 </script>

@@ -59,11 +59,11 @@
         }) 
     })
 </script>
+<script src="{{ asset('js/avatar.js') }}" ></script> 
 <script src="{{ asset('js/post.js') }}" ></script>
-<script src="{{ asset('js/modal.js') }}" ></script> 
-<script src="{{ asset('js/app.js') }}" ></script>
 <script src="{{ asset('toastr/toastr.min.js') }}" defer></script>
 
+<script src="{{ asset('js/modal.js') }}" ></script> 
 <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDSh1SwthGocAh8XZ-kSwnIGnEZJsS_qI&libraries=places&callback=initMap"
       async
@@ -88,5 +88,6 @@
   
 </script>
 @stack('js')
+<script src="{{ asset('js/app.js') }}" ></script>
 </body>
 </html>

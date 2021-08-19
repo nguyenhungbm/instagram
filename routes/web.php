@@ -50,13 +50,12 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
 //home page
 Route::group(['namespace'=>'Page'], function () { 
     //follow user
-    Route::get('/incre','PostController@index')->name('post'); 
     Route::get('/qr/login', 'QRController@login')->name('qrcode.login');
     Route::post('/upload','PostController@savePost')->name('post.profile'); 
     Route::get('/incre-view','PostController@increView')->name('post.increview'); 
     Route::post('/follow','FollowController@follow'); 
-    Route::post('/upload_user','AvatarController@uploadAvatar')->name('upload.user'); 
-    Route::get('/delete','AvatarController@deleteAvatar')->name('post.delete');
+    Route::post('/upload_user','AvatarController@upload')->name('upload.user'); 
+    Route::get('/delete','AvatarController@delete')->name('post.delete');
     Route::get('/{user}','HomePageController@index')->name('get.home-page');   
     Route::get('qr_code/{slug}', 'QRController@create')->name('qrcode');
     

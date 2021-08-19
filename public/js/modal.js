@@ -54,36 +54,36 @@ $(function(){
         })
 
     //avatar
-    $('#myBtn-5').on('click',function(){
-    $('#myModal-5').show();
-        })
-    $('#exit5').on('click',function(){
-    $('#myModal-5').hide();
-        })
-    $('#myModal-5').on('click',function(event){
+    $('body').on('click','#myBtn-5',function(){
+        $('#myModal-5').show();
+    })
+    $('body').on('click','#exit5',function(){
+        $('#myModal-5').hide();
+    })
+    $('body').on('click','#myModal-5',function(event){
         if(event.target == document.getElementById("myModal-5")) 
         $(this).hide()
-        })
+    })
 
     //theo dõi
     $('body').on('click','#myBtn-6',function(){
-    $('#myModal-6').show();
-        })
+        $('#myModal-6').show();
+    })
     $('body').on('click','#exit6',function(){
-    $('#myModal-6').hide();
-        })
+        $('#myModal-6').hide();
+    })
     $('#myModal-6').on('click',function(event){
         if(event.target == document.getElementById("myModal-6")) 
             $(this).hide()
-        })
+    })
 
     //đang theo dõi
     $('body').on('click','#myBtn-7',function(){
-    $('#myModal-7').show();
-        })
+        $('#myModal-7').show();
+    })
     $('body').on('click','#exit7',function(){
-    $('#myModal-7').hide();
-        })
+        $('#myModal-7').hide();
+    })
     $('#myModal-7').on('click',function(event){
         if(event.target == document.getElementById("myModal-7")) 
             $(this).hide()
@@ -92,14 +92,14 @@ $(function(){
     //thông tin bài viết
     $('body').on('click','#myBtn-8',function(){
         $('#myModal-8').show();
-            })
-        $('body').on('click','#exit8',function(){
+    })
+    $('body').on('click','#exit8',function(){
         $('#myModal-8').hide();
-            })
-        $('#myModal-8').on('click',function(event){
-            if(event.target == document.getElementById("myModal-8")) 
-                $(this).hide()
-        })
+    })
+    $('#myModal-8').on('click',function(event){
+        if(event.target == document.getElementById("myModal-8")) 
+            $(this).hide()
+    })
 }) 
 window.onclick = function(event) { 
    $('.list').addClass('d-none');

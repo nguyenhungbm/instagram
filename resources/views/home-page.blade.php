@@ -16,7 +16,7 @@
         @include('layout.avatar',['user' => $user,'height'=>'170px'])
         <div class="csa">
             <div class="csb">
-                <span class="os">{{ $user->user }}</span>
+                <span class="os">{{ $user->user }}</span> 
                 @if($user->user === \Auth::user()->user)
                 <a href="{{ route('profile.edit') }}">{{ __('translate.Edit Profile')}}</a>
                 <i class="fa fa-2x fa-sun-o" id="myBtn-3"></i>  
@@ -450,6 +450,4 @@
 </body>
 @endsection
 @push('js')
-<script src="{{ asset('js/post.js') }}" ></script> 
-<script src="{{ asset('js/avatar.js') }}" ></script> 
 @endpush

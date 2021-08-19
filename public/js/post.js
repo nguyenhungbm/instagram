@@ -8,10 +8,10 @@
             $('.like'+postId).text(e.post.p_favourite);
             $('.likes'+postId).text(e.post.p_favourite);
             if(e.action=='them'){
-                if(e.post.p_favourite==1){
-                    $('#myBtn-'+e.post.id).prepend(`
-                    <b class="like${e.post.id}">1</b> ${e.word}
-                    `);
+                if(e.post.p_favourite == 1){
+                    $('#buttonLike-'+e.post.id).prepend(`
+                        <b class="like${e.post.id}">1</b> ${e.word}
+                        `);
                 }
                 $('.posts'+e.post.id).prepend(`
                     <div class="clr users${e.user.id}${e.post.id}" style="height: 50px;">

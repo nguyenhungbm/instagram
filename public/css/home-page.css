@@ -13,6 +13,9 @@ p{
     font-variant: normal;
     font-weight: normal;
 }
+.csb{
+    height: 50px;
+}
 .nonevent{pointer-events: none;}
 section{
     margin: 0 auto;

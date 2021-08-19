@@ -9,7 +9,7 @@
         <li><a href="{{route('post.view',$val->p_slug)}}" >{{ __('translate.Go to post')}}</a> </li>
         <li class="cs qrcode" id="Btn2{{$value}}"><label >QR CODE</label></li>
         <!-- <li class="cs" id="Btn1{{$value}}"><label >{{ __('translate.Share to')}} ...</label></li> -->
-        <input type="text" value="{{route('post.view',$val->p_slug)}}" id="myInput{{$value}}" style="opacity:0;position:absolute">
+        <input type="text" value="{{route('post.view',$val->p_slug)}}" id="myInput{{$value}}" style="display:none">
         <li class="tooltip">
             <a onclick="myFunction()" onmouseout="outFunc()">
             <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
@@ -26,6 +26,7 @@
         copyText.select();
         copyText.setSelectionRange(0, 99999);
         document.execCommand("copy");
+        navigator.clipboard.writeText(copyText.value);
         
         var tooltip = document.getElementById("myTooltip");
         tooltip.innerHTML = "Copied";

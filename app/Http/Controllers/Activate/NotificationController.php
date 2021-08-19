@@ -15,7 +15,6 @@ class NotificationController extends Controller
         $data=[
             'notification'=>$notification,
             'notification_readed'=>$notification_readed,
-
         ];
        return $data;
     }

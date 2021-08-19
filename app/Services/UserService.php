@@ -1,17 +1,13 @@
 <?php
-
-namespace App\Repositories;
-
-use App\Models\User;
-use App\Models\Follow;
+namespace App\Services;
+use App\Models\User; 
 use Auth;
+use App\Models\Follow;
 use Carbon\Carbon;
-class FollowRepository
-{
-    public function follow($request){
-        $data=$request->all();
+class UserService{
+    public function follow($data){
         $data['user_id']=Auth::user()->id;
-        $data['created_at']=Carbon::now('Asia/Ho_Chi_Minh'); 
+        $data['created_at']=Carbon::now(); 
         $isFollow =Follow::where(['user_id'=>Auth::user()->id,'followed'=>$data['followed']])->count();
         if($isFollow){
             Follow::where(['user_id'=>Auth::user()->id,'followed'=>$data['followed']])->delete();
@@ -40,4 +36,35 @@ class FollowRepository
             ]);
         } 
     }
+    public function uploadAvatar($request){
+        $user =  User::find(Auth::user()->id);   
+        if($user->avatar != 'no-user.png'){
+            unlink(public_path('uploads/user/'.$user->avatar));
+        }
+        if ($request->hasFile('upload_user_avatar')) {
+        $image =upload_image('upload_user_avatar','user');
+        if($image['code']==1)
+            $user->avatar=$image['name'];
+        }
+        if($user->update()){
+        return  User::find(Auth::user()->id);
+        }else{
+            return 700;
+        }
+    }
+
+    public function deleteAvatar(){ 
+        $user =  User::find(Auth::user()->id); 
+        if($user->avatar != 'no-user.png'){
+            unlink(public_path('uploads/user/'.$user->avatar));
+        }
+        $user->avatar='no-user.png';  
+        if($user->update()){
+            echo 200;
+        }else{
+            echo 700;
+        }
+    } 
 }
+
+?>
