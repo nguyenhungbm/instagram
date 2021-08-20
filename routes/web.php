@@ -20,7 +20,6 @@ Route::group(['namespace' =>'Auth','prefix'=>'account'],function(){
     Route::get('verify/{user}','RegisterController@getVerifyAccount')->name('user.verify.gmail');//xác thực qua email
     Route::get('verify-phone','RegisterController@getVerifyMessage')->name('user.verify.message');//xác thực qua tin nhắn
     Route::post('verify-phone','RegisterController@postVerifyMessage');//xác thực qua tin nhắn
- 
     
     Route::get('accounts/password/reset','ResetPasswordController@changePassword')->name('user.change.password'); // thay đổi mật khẩu
     Route::post('accounts/password/reset','ResetPasswordController@StorePassword'); // thay đổi mật khẩu 
@@ -50,14 +49,14 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
 //home page
 Route::group(['namespace'=>'Page'], function () { 
     //follow user
-    Route::get('/qr/login', 'QRController@login')->name('qrcode.login');
+    Route::get('/qr/login', 'QRController@login');
     Route::post('/upload','PostController@savePost')->name('post.profile'); 
     Route::get('/incre-view','PostController@increView')->name('post.increview'); 
     Route::post('/follow','FollowController@follow'); 
     Route::post('/upload_user','AvatarController@upload')->name('upload.user'); 
     Route::get('/delete','AvatarController@delete')->name('post.delete');
-    Route::get('/{user}','HomePageController@index')->name('get.home-page');   
     Route::get('qr_code/{slug}', 'QRController@create')->name('qrcode');
+    Route::get('/{user}','HomePageController@index')->name('get.home-page');   
     
 }); 
 

@@ -2,7 +2,7 @@ $(function(){
     //qr code
     $('body').on('click','#myBtn-1',function(){
         $('#myModal-1').show();
-        var url ="{{route('qrcode.login')}}";
+        var url ="/qr/login";
         console.log(url);
         $.get({
             url:url,

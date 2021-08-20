@@ -11,7 +11,6 @@
 </style>
 @extends('layouts.app') 
 @section('content')
-<body>
     <section class="sd">
         @include('layout.avatar',['user' => $user,'height'=>'170px'])
         <div class="csa">
@@ -236,9 +235,9 @@
                 <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>
             </div>
             @if($key < 61 )
-            <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="img_small" id="image{{$key}}">
+            <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}" id="image{{$key}}">
             @else
-            <img data-img="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="img_small lazyload" id="image{{$key}}">
+            <img data-img="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="lazyload" id="image{{$key}}">
             @endif
         </div>
         <div id="myModall{{$val->id}}" class="modal hei">
@@ -382,7 +381,6 @@
         </ul>
         <br> 
     </footer>
-</body>
 <p class="os" style="text-align:center">&copy; 2020 INSTAGRAM FROM FACEBOOK</p>
 <br>
 <script>
@@ -447,7 +445,6 @@
         })
     }) 
 </script> 
-</body>
 @endsection
 @push('js')
 @endpush

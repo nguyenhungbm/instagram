@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
         @stack('css')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYEK57L0L5"></script>
         <script src="{{ asset('js/map.js') }}"></script>
