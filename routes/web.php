@@ -14,13 +14,13 @@ Route::get('/','HomeController@index')->name('home')->middleware('auth');
 Route::get('/search','HomeController@search')->name('search'); 
 Route::get('/address','HomeController@getAddress')->middleware('auth'); 
 Route::post('/address','HomeController@storeAddress')->middleware('auth'); 
+
 Route::group(['namespace' =>'Auth','prefix'=>'account'],function(){
-    
     Route::get('/login/qr/','LoginController@loginByToken')->name('login.qr'); 
     Route::get('verify/{user}','RegisterController@getVerifyAccount')->name('user.verify.gmail');//xác thực qua email
     Route::get('verify-phone','RegisterController@getVerifyMessage')->name('user.verify.message');//xác thực qua tin nhắn
     Route::post('verify-phone','RegisterController@postVerifyMessage');//xác thực qua tin nhắn
-    
+        
     Route::get('accounts/password/reset','ResetPasswordController@changePassword')->name('user.change.password'); // thay đổi mật khẩu
     Route::post('accounts/password/reset','ResetPasswordController@StorePassword'); // thay đổi mật khẩu 
 });

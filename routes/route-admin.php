@@ -21,7 +21,4 @@ Route::group(['prefix'=>'api-admin','namespace'=>'Admin','middleware'=>'check_ad
         'role'       => 'RoleController',
         'permission' => 'PermissionController',
     ]); 
-});
-Route::group(['prefix'=>'api-admin','namespace'=>'App\Http\Livewire','middleware'=>'check_admin_login'],function(){
-    // Route::get('list-user','UserTable@render')->name('admin.user.list');
-});
+}); 
