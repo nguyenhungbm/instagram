@@ -17,7 +17,6 @@ class PostController extends Controller
             'val' =>$post,
             'related_post' =>$related_post,
             'title'=>'',
-
         ];
         return view('view_post',$viewData);
     }

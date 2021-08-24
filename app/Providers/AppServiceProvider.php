@@ -15,8 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //service container
         $this->app->singleton('PostService',\App\Services\PostService::class);
         $this->app->singleton('UserService',\App\Services\UserService::class);
+        // repository
         $this->app->singleton(
             \App\Repositories\Role\RoleRepositoryInterface::class,
             \App\Repositories\Role\RoleRepository::class,
@@ -24,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             \App\Repositories\Permission\PermissionRepositoryInterface::class,
             \App\Repositories\Permission\PermissionRepository::class,
-        );
-       
+        ); 
+      
         if(env('REDIRECT_HTTPS')) {
             $this->app['request']->server->set('HTTPS', true);
         }
