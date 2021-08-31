@@ -25,12 +25,12 @@
                     data:{value:val},
                     beforeSend:function(){
                         $('.div').empty();
-                        $('.nos').removeClass('d-none').delay(8000);
+                        $('.nos').removeClass('d-none');
                     },
                     complete:function(){
-                        $('.nos').addClass('d-none');
                     },
-                    success:function(res){  
+                    success:function(res){
+                        setTimeout(function(){  
                         $('.div').empty();
                         if(res == 0){
                             $(".div").prepend(`
@@ -39,10 +39,13 @@
                                 </li>
                             `);  
                         }
+                        
                         else{
                             $('.no').addClass('d-none');
                             $(".div").prepend(res);  
                         }
+                        $('.nos').addClass('d-none');
+                    },1000);
                 }
                 })  
             } 

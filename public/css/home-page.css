@@ -218,6 +218,10 @@ footer ul{
     width:28%;
     float:left
 } 
+.cse img{
+    height: 300px;
+    width: 300px;
+}
 .uio {
     margin-right: 6%;
     margin-left: 7%;

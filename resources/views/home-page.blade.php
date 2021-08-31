@@ -211,149 +211,23 @@
     </div> 
     </form>  
     @if(!count($post))
-    <div class="clr">
-        <br>
-        <div class="hea">
-            <b>{{ __('translate.Start capturing and sharing your moments.')}}</b>
-            <p>{{ __('translate.Get the app to share your first photo or video.')}}</p>
-            <br><br>
-            <img src="{{ asset('img/appstore.png')}}" class="cs" style="height:40px;width:135px">
-            <img src="{{ asset('img/chplay.png')}}" class="cs" style="height:40px;width:135px">
-        </div>
-    </div>
-    <div><img src="{{ asset('img/everything.png')}}" class="float-left hed"></div>
-    <br>
-    @endif
-    <div class="clr">
-        @foreach($post as $key=> $val) 
-        <div class="cs cse {{ $key%3 == 1 ? 'uio' : '' }}"  id="myBtnn{{$val->id}}">
-            <input type="hidden" value="{{ $val->p_slug}}" id="slug{{$val->id}}">
-            <div class="csf">
-                <i class="fa fa-heart"></i> 
-                <p class="likes{{$val->id}}">{{ $val->p_favourite}}</p>
-                <i class="fa fa-comment"></i> 
-                <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>
-            </div>
-            @if($key < 61 )
-            <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}" id="image{{$key}}">
-            @else
-            <img data-img="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="lazyload" id="image{{$key}}">
-            @endif
-        </div>
-        <div id="myModall{{$val->id}}" class="modal hei">
-            <div class="csg">
-                <a href="{{pare_url_file($val->p_image,'profile/img') }}" download class="position-absolute" style="
-                    left: 15px;top: 15px;z-index: 100;color: white;
-                    " title="{{$val->p_image}}"> <span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-download fa-stack-1x"></i></span></a>
-                <img src="{{ pare_url_file($val->p_image,'profile/img_large') }}" class="csq"> 
-                <div class="cle">
-                    <div class="heq">
-                        <div class="hew"><a href="{{ route('get.home-page',$val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar,'user') }}" class="avatar_user_uploaded"></a> </div>
-                        <div class="hee">
-                            <p><a href="{{ route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}} </a></b>
-                                @if($val->user->id==$user->id)
-                                @else
-                                &#8729; <b>{{ __('translate.folowing')}}</b>
-                                @endif
-                            </p>
-                        </div>
-                        @include('layout.infomation',['value'=>$val->id])
-                    </div>
-                    <div class="her hdl{{$val->id}}" id="hell">
-                        @if($val->p_content!='')
-                        <div class="clr het">
-                            <div class="hew"><a href="{{ route('get.home-page',$val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar,'user') }}" class="avatar_user_uploaded"></a> </div>
-                            <div class="hep">
-                                <p><a href="{{ route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}}</a> </b> {{$val->p_content}}</p>
-                            </div>
-                            <i class="fa fa-ellipsis-h"></i> 
-                            <div class="os heo">{{ $val->created_at->diffForHumans() }} 
-                            </div>
-                        </div>
-                        @endif   
-                        <div class="list-comment{{$val->id}}">
-                            @foreach(\App\Models\Comment::where('c_post',$val->id)->orderBy('created_at','desc')->get() as $value => $cmt)  
-                            <div class="clr het hjk{{$value}} "  style="display:none">
-                                <div class="hew"><a href="{{ route('get.home-page',$cmt->users->user)}}"><img src="{{ pare_url_file($cmt->users->avatar,'user') }}" class="{{ $cmt->c_user_id ==\Auth::id() ? 'avatar_user_uploaded' :''}}"></a> </div>
-                                <div class="hep">
-                                    <p><b><a href="{{ route('get.home-page',$cmt->users->user)}}">{{$cmt->users->c_name}}</a> </b> {{$cmt->c_comment}}</p>
-                                </div>
-                                <i class="fa fa-ellipsis-h"></i>
-                                <div class="os heo">{{ $cmt->created_at->diffForHumans() }} </div>
-                            </div>
-                            @endforeach
-                        </div>
-                        <div class="buttons"><button class="button{{$val->id}} ">+</button> </div>
-                        <script>
-                            $('.button{{$val->id}}').on('click',function(){  
-                                loadmore(); 
-                            }) 
-                            currentindex=0;
-                            maxindex ="{{\App\Models\Comment::where('c_post',$val->id)->count()}}";
-                            function loadmore(){ 
-                            x=  window.scrollY;
-                            var maxresult = 5;
-                            
-                            for(var i = 0; i < maxresult; i++)
-                            {
-                            $(".hjk"+(currentindex+i)).show();
-                            }
-                            if(currentindex+5>=maxindex){
-                            $('.button{{$val->id}}').hide();
-                            }
-                            window.scrollTo(0,x);
-                            currentindex += maxresult;
-                            
-                            }
-                            
-                            loadmore();
-                        </script>
-                    </div>
-                    <div class="hey">
-                        @include('layout.attraction_button',['value'=>$val->id])
-                        <p class="f-6 "><b class="view{{$val->id}}">{{$val->p_view}}</b> {{ __('translate.views')}}</p>
-                        <p class="f-6 " style="margin-top:-6px"> @include('layout.like',['value'=>$val->id])</p>
-                        <p class="os">{{ $val->created_at->diffForHumans() }}</p>
-                    </div>
-                    @include('layout.comment',['value'=>$val->id])
-                </div>
-            </div>
-        </div>
-        <script>   
-            //click để scroll đến cuối trang
-            // $('body').on('click','#myBtnn{{$val->id}}',function(){
-            //    var $div = $("#hell"); 
-            //    $div.scrollTop($div[0].scrollHeight);
-            // })
-                
-            //hiện modal bài viết
-            
-            
-            $(function(){
-            $('#myBtnn{{$val->id}}').on('click',function(event){
-            if(screen.width >800){
-                $('#myModall{{$val->id}}').show();
-                var post='{{$val->id}}';
-                var URL ="{{ route('post.increview')}}";  
-                $.get({
-                    url:URL,
-                    data:{post:post},
-                    success:function(e){  
-                    }
-                })
-            }else{
-                var slug =$('#slug{{$val->id}}').val();
-                window.location.href='/p/'+slug;
-            }
-            })
-            $('#myModall{{$val->id}}').on('click',function(event){
-            if(event.target == document.getElementById("myModall{{$val->id}}")) 
-                $(this).hide();
-            })
-            })            
-        </script>     
-        @endforeach 
-    </div>
+            @include('layout.homepage.no_post')
+         @else
+         <div class="clr homepage">
+             @include('layout.homepage.index') 
+         </div>
+         <div class="auto-load text-center">
+               <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px" y="0px" height="60" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+                  <path fill="#000"
+                     d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+                     <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s"
+                           from="0 50 50" to="360 50 50" repeatCount="indefinite" />
+                  </path>
+               </svg>
+         </div>
+         @endif  
+  
     <div class="d-none post-video">
         @if(!count($video))
         <div class="hef">
@@ -382,32 +256,7 @@
         <br> 
     </footer>
 <p class="os" style="text-align:center">&copy; 2020 INSTAGRAM FROM FACEBOOK</p>
-<br>
-<script>
-    //lazy load img
-    let id="{{count($post)}}";
-    console.log(id);
-    let options={
-        root:null,
-        rootMargin:'0px',
-        threshold:0.25
-    };
-    let callback =(entries,observer)=>{
-        entries.forEach(entry=>{
-            if(entry.isIntersecting && entry.target.className === 'lazyload'){
-                let imageUrl = entry.target.getAttribute('data-img');
-                if(imageUrl){
-                entry.target.src =imageUrl;
-                observer.unobserve(entry.target);
-                }
-            }
-        })
-    } 
-    let observer =new IntersectionObserver(callback,options);
-    for( var i=6;i<id;i++) { 
-    observer.observe(document.querySelector('#image'+i)); 
-    } 
-</script>    
+<br>     
 <script>
     $(function(){  
         $('#first').on('click',function(e){
@@ -445,6 +294,4 @@
         })
     }) 
 </script> 
-@endsection
-@push('js')
-@endpush
+@endsection 

@@ -6,16 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Follow;
+use Illuminate\Http\Request;
+
 class HomePageController extends Controller
 { 
-    public function index($id){
+    public function index($id,Request $request){
         //$id là username có thể là Auth->user hoặc không  
         $user = User::where('user',$id)->first();  
         $post = Post::where(['p_user'=>$user->id ,
         'p_type'=>'profile'
        ])
         ->orderBy('created_at','desc')
-        ->get();
+        ->simplePaginate(12);  
+
         $countPost = Post::where(['p_user'=>$user['id'],'p_type'=>'profile'])->count();                   
         $video = Post::where(['p_user'=>$user['id'],
                            'p_type'=>'video'])
@@ -28,6 +31,13 @@ class HomePageController extends Controller
         $isFollow =Follow::where(['user_id'=>\Auth::id(),'followed'=>$user['id']])->count();
         //đang theo dõi ai
         $userFollow =Follow::where('followed',$user['id'])->orderBy('created_at','desc')->get();
+        $output = '';
+        if ($request->ajax()) {
+                foreach ($post as $key =>$val) {
+                    $output.= view('layout.homepage.post',compact('key','val','user'))->render();
+                }   
+            return $output;
+        }
         $viewData =[
             'user'       => $user,
             'countPost'  => $countPost, 

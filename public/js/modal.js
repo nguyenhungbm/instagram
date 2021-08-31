@@ -10,7 +10,7 @@ $(function(){
                 $('.img-thumbnails').attr('src',e.img); 
             }
         })
-    })
+    }) 
     $('body').on('click','#exit1',function(){
         $('#myModal-1').hide();
     })

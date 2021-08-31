@@ -48,7 +48,7 @@ class HomeController extends Controller
     $output = '';
     if ($request->ajax()) {
             foreach ($posts as $key =>$val) {
-                $output.= view('layout.Home.post',compact('key','val'))->render();
+                $output.= view('layout.home.post',compact('key','val'))->render();
             }   
         return $output;
     }

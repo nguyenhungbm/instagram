@@ -5,14 +5,15 @@
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
             page++;
-            infinteLoadMore(page);      
+            
+            setTimeout( infinteLoadMore(page), 4000) 
         }
     });
 
     function infinteLoadMore(page) {
         $.ajax({
             url: "?page=" + page,
-            datatype: "html",
+            datatype: "html", 
             type: "get",
             beforeSend: function () {
                 $('.auto-load').show();
@@ -24,7 +25,7 @@
                 return;
             }
             $('.auto-load').hide();
-            $(".postss").append(response);
+            $(".homepage").append(response);
         })
         .fail(function (jqXHR, ajaxOptions, thrownError) {
             console.log('Lỗi server');

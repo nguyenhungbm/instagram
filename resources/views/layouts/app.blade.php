@@ -24,8 +24,7 @@
         <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
         <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
         @stack('css')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYEK57L0L5"></script>
         <script src="{{ asset('js/map.js') }}"></script>
@@ -63,8 +62,8 @@
 <script src="{{ asset('js/avatar.js') }}" ></script> 
 <script src="{{ asset('js/post.js') }}" ></script>
 <script src="{{ asset('toastr/toastr.min.js') }}" defer></script>
-
 <script src="{{ asset('js/modal.js') }}" ></script> 
+ 
 <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDSh1SwthGocAh8XZ-kSwnIGnEZJsS_qI&libraries=places&callback=initMap"
       async

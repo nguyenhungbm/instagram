@@ -38,7 +38,6 @@
                      <div>42  </div>
                   </a>
                </li>
-                
             
                <li>
                   <a>
@@ -49,10 +48,10 @@
             </ul>
          </section>
          @if(!$count_post)
-            @include('layout.Home.no_post')
+            @include('layout.home.no_post')
          @else
          <div class="postss conntent">
-             @include('layout.Home.index') 
+             @include('layout.home.index') 
          </div>
          <div class="auto-load text-center">
                <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

@@ -14,9 +14,9 @@ class PostController extends Controller
                            ->where('p_user',$post->p_user)
         ->orderby('id','desc')->limit(6)->get();
         $viewData=[
-            'val' =>$post,
-            'related_post' =>$related_post,
-            'title'=>'',
+            'val'           => $post,
+            'related_post'  => $related_post,
+            'title'         => '',
         ];
         return view('view_post',$viewData);
     }
