@@ -22,7 +22,7 @@
 ### Chức năng chính
 + Trang đăng nhập dành cho người dùng
     - Đăng nhập 
-    - Đăng nhập bằng google , facebook
+    - Đăng nhập bằng google , facebook ,mã qr code
     - Đăng ký ( email , số điện thoại)
     - Xác thực email , số điện thoại đã đăng ký
     - Quên mật khẩu ( gửi email cho người dùng để người dùng đặt lại mật khẩu)
