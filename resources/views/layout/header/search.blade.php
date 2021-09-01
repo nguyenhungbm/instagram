@@ -34,7 +34,7 @@
                         $('.div').empty();
                         if(res == 0){
                             $(".div").prepend(`
-                                <li class="no    p-15">
+                                <li class="no p-15">
                                     {{ __("translate.No result found.")}}
                                 </li>
                             `);  
