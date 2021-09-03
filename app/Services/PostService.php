@@ -8,9 +8,10 @@ use Carbon\Carbon;
 use Image;
 use Auth;
 use Str;
+use DB;
 use App\Notifications\CommentPost;
 class PostService{
-    public function create($data){
+    public function create($data,$request){
         $data['created_at'] = Carbon::now();
         $data['p_user']     = Auth::id(); 
         $data['p_slug']     = Str::random(15);

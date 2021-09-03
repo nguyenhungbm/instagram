@@ -9,7 +9,7 @@ class PostController extends Controller
 {  
     public function savePost(Request $request){  
         $postService = app()->make('PostService');
-        return $postService->create($request->except('_token','profiles','stories'));
+        return $postService->create($request->except('_token','profiles','stories'),$request);
     }
     
     public function increView(Request $request){

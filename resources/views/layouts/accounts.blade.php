@@ -7,20 +7,20 @@
     <div class="edit-form clr" >
     <div class="edit-form__left">
         <ul class="cs">
-        <a href="{{route('profile.edit')}}"><li class="{{$title == 'Edit Profile' ? 'activate' : 'noactivate'}}">{{__('translate.Edit Profile')}}</li></a>
-           <a href="{{route('password.edit')}}"> <li class="{{$title == 'Change Password' ? 'activate' : 'noactivate'}}">{{__('translate.Change Password')}}</li></a>
+        <a href="{{route('profile.edit')}}"><li class="{{ Route::currentRouteName() == 'profile.edit' ? 'activate' : 'noactivate'}}">{{__('translate.Edit Profile')}}</li></a>
+           <a href="{{route('password.edit')}}"> <li class="{{ Route::currentRouteName() == 'password.edit' ? 'activate' : 'noactivate'}}">{{__('translate.Change Password')}}</li></a>
             <a href="javascript:;"><li>{{__('translate.Apps and Websites')}}</li></a>
             <a href="javascript:;"><li>{{__('translate.Email and SMS')}}</li></a>
             <a href="javascript:;"><li>{{__('translate.Notifications')}}</li></a>
             <a href="javascript:;"><li>{{__('translate.Manage Contacts')}}</li></a>
             <a href="javascript:;"><li>{{__('translate.Privacy and Security')}}</li></a>
-            <a href="{{ route('login-activity') }}"><li>{{__('translate.Login Activity')}}</li></a>
+            <a href="{{ route('login-activity') }}"><li class="{{ Route::currentRouteName() == 'login-activity' ? 'activate' : 'noactivate'}}">{{__('translate.Login Activity')}}</li></a>
             <a href="javascript:;"><li>{{__('translate.Emails from Instagram')}}</li></a>
         </ul>
     </div>
     
     <div class="edit-form__right">
-        @yield('contents')
+        @yield('contents') 
     </div><br>
     </div>
     </form>

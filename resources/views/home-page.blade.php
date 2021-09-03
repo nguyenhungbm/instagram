@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="csc">
-                <p><b>{{ count($post)}}</b> {{ __('translate.posts')}}</p>
+                <p><b>{{Auth::user()->picture}}</b> {{ __('translate.posts')}}</p>
                 <p class="cs" id="myBtn-6"><b class="follower">{{count($userFollow)}}</b> {{ __('translate.followers')}}</p>
                 <!-- modal follow -->
                 <div id="myModal-6" class="modal">
