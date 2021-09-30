@@ -46,11 +46,11 @@ class UserService{
         if($image['code']==1)
             $user->avatar=$image['name'];
         }
-        if($user->update()){
-        return  User::find(Auth::user()->id);
-        }else{
+        if($user->update())
+            return User::find(Auth::user()->id);
+        else
             return 700;
-        }
+        
     }
 
     public function deleteAvatar(){ 

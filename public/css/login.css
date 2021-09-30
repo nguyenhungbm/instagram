@@ -34,16 +34,17 @@ button{ outline:none}
     height: 425px;
     background: white;
 }
-.username {position: relative;}
+.username {position: relative;width: 72%;margin: 0 auto;color: #8e8e8e}
 .username input{
-    height: 30px;
     border: 1px solid #bdbdbd;
-    font-size: 14px;
+    font-size: 13px;
     padding-left: 5px;
+    padding-top: 8px;
     border-radius: 3px;
-    width: 72%;
-    color: #1e2d48;
+    width: 100%;
+    color: #000; 
     margin-bottom: 10px;
+    height: 30px;
     background-color: #bababa14;  
 }
 .username span{
@@ -55,6 +56,15 @@ button{ outline:none}
     color: red;
 
 }  
+
+.label-user,.label-password{
+     font-size: 15px;
+     transform: translateY(0px);
+     position: absolute;
+     left: 7px;
+     top: 15px;
+     cursor: pointer;
+}
 .or{
     display: flex;
     height: 5px; 
@@ -123,7 +133,6 @@ button{
 .click{ 
     position: absolute;
     right: 0;
-    width: 40%;
     top: 15%;
     cursor: pointer;
 }

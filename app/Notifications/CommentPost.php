@@ -17,7 +17,7 @@ class CommentPost extends Notification
          $this->post=$post;
          $this->user=$user;
          $this->type=$type;
-    }
+    } 
 
     /**
      * Get the notification's delivery channels.
