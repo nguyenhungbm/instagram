@@ -1,143 +1,157 @@
-*{
+* {
     padding: 0;
-    margin: 0; 
+    margin: 0;
     outline: none;
-} 
-a{text-decoration: none;color:black}
-.text-danger{color:red}
-body{
-    background-color: #fafafa; 
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+.text-danger {
+    color: red;
+}
+body {
+    background-color: #fafafa;
     content: "";
     display: table;
-    clear: both; 
+    clear: both;
     width: 100%;
-    margin-top:30px;
-} 
-button{ outline:none}
-.login-left{ 
-    float:left;
+    margin-top: 30px;
+}
+button {
+    outline: none;
+}
+.login-left {
+    float: left;
     width: 50%;
     text-align: right;
-}  
-.login-right,.register{
-    float: left; 
+}
+.login-right,
+.register {
+    float: left;
     width: 30%;
     text-align: center;
-}  
-.login-right .logo{
+}
+.login-right .logo {
     margin-bottom: 20px;
 }
-.login-right{
+.login-right {
     border-radius: 2px;
     border: 1px solid #bdbdbd;
     padding: 25px 0px;
     height: 425px;
     background: white;
 }
-.username {position: relative;width: 72%;margin: 0 auto;color: #8e8e8e}
-.username input{
+.username {
+    position: relative;
+    width: 72%;
+    margin: 0 auto;
+    color: #8e8e8e;
+}
+.username input {
     border: 1px solid #bdbdbd;
     font-size: 13px;
     padding-left: 5px;
     padding-top: 8px;
     border-radius: 3px;
     width: 100%;
-    color: #000; 
+    color: #000;
     margin-bottom: 10px;
     height: 30px;
-    background-color: #bababa14;  
+    background-color: #bababa14;
 }
-.username span{
-     
-    position: absolute; 
+.username span {
+    position: absolute;
     margin: 0px;
-    left: 0; 
+    left: 0;
     font-size: 14px;
     color: red;
-
-}  
-
-.label-user,.label-password{
-     font-size: 15px;
-     transform: translateY(0px);
-     position: absolute;
-     left: 7px;
-     top: 15px;
-     cursor: pointer;
 }
-.or{
+
+.label-user,
+.label-password {
+    font-size: 15px;
+    transform: translateY(0px);
+    position: absolute;
+    left: 7px;
+    top: 15px;
+    cursor: pointer;
+}
+.or {
     display: flex;
-    height: 5px; 
+    height: 5px;
     width: 70%;
-    margin: auto; 
+    margin: auto;
     opacity: 0.5;
 }
-.bar{
+.bar {
     width: 40%;
-    height: 1px; 
+    height: 1px;
     background-color: #bdbdbd;
     margin-top: 7px;
     padding-left: 10px;
 }
-.content{
-    margin: 0px 23px 0px 25px;}
-.qr-login{
+.content {
+    margin: 0px 23px 0px 25px;
+}
+.qr-login {
     width: 70%;
     margin-bottom: 10px;
     margin-left: 15px;
 }
-.fb-login,.google-login,.forget-password{
+.fb-login,
+.google-login,
+.forget-password {
     width: 70%;
     margin: auto;
     float: center;
-    margin-bottom: 15px; 
-}  
-.fb-login{
-
+    margin-bottom: 15px;
+}
+.fb-login {
     margin-left: 25px;
 }
-.fb-login a{
+.fb-login a {
     color: #0095f6;
     text-decoration: none;
 }
-.google-login{
+.google-login {
     margin-left: 20px;
 }
-.google-login a{
-    color:brown;
+.google-login a {
+    color: brown;
     text-decoration: none;
-} 
-.register{ 
-    background-color: #fff; 
+}
+.register {
+    background-color: #fff;
     border: 1px solid #bdbdbd;
-    width: 27vw;  
+    width: 27vw;
     padding: 20px;
     margin-top: 45px;
 }
-.register a{
+.register a {
     text-decoration: none;
-    color:#0095f6
+    color: #0095f6;
 }
- 
-button{
+
+button {
     width: 70%;
     border: none;
     padding: 5px;
-    background-color: #0095f6; 
+    background-color: #0095f6;
     border-radius: 5px;
     color: white;
     margin-bottom: 15px;
     margin-top: 15px;
-    cursor:pointer
+    cursor: pointer;
 }
-.click{ 
+.click {
     position: absolute;
     right: 0;
     top: 15%;
     cursor: pointer;
 }
 
-.loading{
+.loading {
     background-color: white;
     background-repeat: no-repeat;
     position: fixed;
@@ -150,8 +164,8 @@ button{
     justify-content: center;
     align-items: center;
 }
-.loadding{
-    background: url('/img/banner.jpg');
+.loadding {
+    background: url("/img/banner.jpg");
     background-repeat: no-repeat;
     position: fixed;
     top: 30%;
@@ -159,53 +173,55 @@ button{
     width: 100%;
     height: 100%;
 }
-#typed{ 
+#typed {
     font-size: 50px;
     z-index: 9999999;
 }
 
-#typed h1{
+#typed h1 {
     color: #000;
-    font-family: 'Raleway',sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: 100;
     text-transform: uppercase;
     text-align: center;
     margin: 0;
 }
-#typed span{
-    color:#84ff84 !important
+#typed span {
+    color: #84ff84 !important;
 }
-video{
+video {
     width: 500px;
     left: 30%;
     position: absolute;
     top: 25%;
 }
-h2{
+h2 {
     color: white;
     position: absolute;
     left: 40%;
     top: 10%;
 }
-@media only screen and (max-width:650px){
-    #typed{
+@media only screen and (max-width: 650px) {
+    #typed {
         font-size: 30px;
     }
-    .loadding{
-        left:20%;
-        top:35%
+    .loadding {
+        left: 20%;
+        top: 35%;
     }
 }
-@media only screen and (max-width:850px){
-    .login-left{display: none;} 
+@media only screen and (max-width: 850px) {
+    .login-left {
+        display: none;
+    }
     .login-right {
         width: 100%;
-        border:none;
+        border: none;
     }
-    body{
+    body {
         background-color: #fff;
     }
-    .register{
+    .register {
         width: 80%;
         margin-left: 20px;
     }

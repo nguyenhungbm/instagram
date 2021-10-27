@@ -12,7 +12,7 @@ use Carbon\Carbon;
 class HomeController extends Controller
 { 
     public function index(Request $request)
-    {      
+    {       
         //tất cả bài viết của những người bạn theo dõi
         $posts =Post::join('follows','follows.followed','posts.p_user')
                     ->where('follows.user_id',\Auth::id())
