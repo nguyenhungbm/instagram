@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 class LoginController extends Controller 
 {
     public function showLoginForm(){
+        if(Auth::user())
+            return redirect()->route('home');
         return view('auth.login');
     }
     public function login(RequestLogin $request){
@@ -22,7 +24,7 @@ class LoginController extends Controller
         Auth::attempt(['phone'=> $request->email , 'password' => $request->password])
         ){ 
             if(Auth::user()->is_active ==1){
-               //  return redirect()->to('/');
+                return redirect()->to('/');
                return response()->json([
                     'status' => '300',
                     'message' => '',
@@ -31,8 +33,8 @@ class LoginController extends Controller
             else if(Auth::user()->is_active ==0){
                 Auth::logout();
                  
-               //  Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$user->user));
-               //  return redirect()->route('login');
+                Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$user->user));
+                return redirect()->route('login');
                 return response()->json([
                     'status' => '400',
                     'message' => 'Tài khoản của bạn chưa được xác thực . Chúng tôi đã gửi một email đến '.$request->email.' với một liên kết để xác thực tài khoản của bạn.',

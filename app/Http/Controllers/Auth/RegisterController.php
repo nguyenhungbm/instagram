@@ -19,7 +19,9 @@ use Str;
 class RegisterController extends Controller
 { 
     public function showRegistrationForm(){ 
-           return view('auth.register');
+        if(Auth::user())
+            return redirect()->route('home');
+            return view('auth.register');
     }
     public function register(RequestRegister $request)
     { 

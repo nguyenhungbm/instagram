@@ -99,8 +99,8 @@
     <div class="modal-content setting animate__animated animate__zoomIn" style="text-align:center">
     <div class="container-fluid">
         <div class="form-row">
-            <div class="col-12">
-                <div class="slidercaptcha card">
+            <div class="col-12"  style="min-height:300px">
+                <div class="slidercaptcha card" style="border:none">
                     <div class="card-header">
                         <span>Security Verification</span>
                     </div>
@@ -189,7 +189,6 @@ if(typeof TYPE_MESSAGE != "undefined"){
                          'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
                     },
                     success:function(res){
-                         $('.modal').hide();
                          if(res.status == 400){
                               Swal.fire({
                               title:res.message,
@@ -203,12 +202,12 @@ if(typeof TYPE_MESSAGE != "undefined"){
                               no-repeat
                               `
                               })
-                         }  if(res.status == 200){
+                         }else if(res.status == 200){
                               Swal.fire({
                               icon: 'error',
                               text: res.message,
                               })
-                         }else if(res.status == 300){
+                         }else {
                               window.location.href="/";
                          }
                     }
@@ -246,12 +245,19 @@ $('#myModal').show();
           })
           });
      }) 
+$('#myBtn-4').on('click',function(){
+    $("#myModal-4").show();
+})
 $('#myModal').on('click',function(event){
      if(event.target == document.getElementById("myModal")) 
           $(this).hide()
 })
           
-          
+$('#myModal-4').on('click',function(event){
+     if(event.target == document.getElementById("myModal-4")) 
+          $(this).hide()
+})
+               
 </script>
 <script>
      var typed = new Typed('#typed', {
