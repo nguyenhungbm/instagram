@@ -26,7 +26,6 @@ class RequestLogin extends FormRequest
         return [
             'email'=>'required',
             'password'=>'required',
-            'g-recaptcha-response' => 'required',
         ];
     }
     public function messages()
@@ -34,7 +33,6 @@ class RequestLogin extends FormRequest
         return [
             'email.required'=>'Bạn chưa điền tên đăng nhập',
             'password.required'=>'Bạn chưa điền mật khẩu',
-            // 'g-recaptcha-response.required'=>'Bạn cần xác minh không phải là robot'
         ];
     }
 }

@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="{{ asset('css/home-page.css') }}">
 <link rel="stylesheet" href="{{ asset('library/sweetalert/dist/sweetalert2.min.css') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
-<script src="https://www.google.com/recaptcha/api.js"></script>
 <link href="{{ asset('library/puzzle-captcha/src/disk/slidercaptcha.min.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <title>Đăng nhập</title>
@@ -48,6 +47,7 @@
           <div class="logo"><img src="{{ asset('img/logo.png') }}" ></div>
           <form action="" method="POST">
                @csrf
+               <div class="error text-danger"></div>
                <div class="username">
                <input  type="text" value="hung0913003358@gmail.com" id="username" name="email" autocomplete="off">
                <label for="username" class="label-user">Số điện thoại, tên người dùng hoặc email</label>
@@ -62,12 +62,6 @@
                </div>
                @if($errors->first('password'))    
                <span class="text-danger">{{$errors->first('password') }}</span>
-               @endif
-               <div style="display: flex;justify-content: center;">
-               <div class="g-recaptcha" data-sitekey="6LfpPWsbAAAAAP4NvOnJ1PQXeGDN1cdcEwAXflWo" ></div>
-               </div>
-               @if($errors->first('g-recaptcha-response'))    
-               <span class="text-danger">{{$errors->first('g-recaptcha-response') }}</span>
                @endif
                <button type="button"  id="myBtn-4">Đăng nhập</button>
           </form>
