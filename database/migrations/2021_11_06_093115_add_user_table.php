@@ -9,8 +9,8 @@ class AddUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('user')->index();
-            $table->string('c_name')->index();
+            $table->string('user')->index()->nullable();
+            $table->string('c_name')->index()->nullable();
         });
     }
  
