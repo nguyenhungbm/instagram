@@ -60,6 +60,7 @@ return [
     'Message'=>'Nhắn tin',
     'Report'=>'Báo cáo',
     'Go to post'=>'Đi tới bài viết',
+    'Delete post'=>'Xóa bài viết',
     'Share to'=>'Chia sẻ lên',
     'Copy Link'=>'Sao chép đường dẫn',
     'Start following other people to share memories'=>'Bắt đầu theo dõi những người khác để cùng chia sẻ những kỷ niệm',

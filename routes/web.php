@@ -83,6 +83,7 @@ Route::group(['namespace'=>'Activate'], function () {
 });
 //chi tiết bài viết
 Route::get('/p/{slug}','Account\PostController@view_post')->name('post.view')->middleware('auth'); 
+Route::get('/p/{slug}/delete','Account\PostController@delete')->name('post.delete')->middleware('auth'); 
 Route::group(['prefix'=>'accounts','namespace'=>'Account'], function () {   
     Route::get('/edit','ProfileController@edit')->name('profile.edit');  
     Route::post('/edit/store','ProfileController@store')->name('profile.store');    

@@ -63,6 +63,7 @@ return [
     'Message'=>'Message',
     'Report'=>'Report',
     'Go to post'=>'Go to post',
+    'Delete post'=>'Delete post',
     'Share to'=>'Share to',
     'Copy Link'=>'Copy Link',
     'Start following other people to share memories'=>'Start following other people to share memories',

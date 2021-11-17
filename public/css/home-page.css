@@ -16,6 +16,7 @@ p{
 .csb{
     height: 50px;
 }
+.text-danger{color:red}
 .nonevent{pointer-events: none;}
 section{
     margin: 0 auto;

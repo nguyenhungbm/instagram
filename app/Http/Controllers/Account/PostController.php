@@ -20,4 +20,10 @@ class PostController extends Controller
         ];
         return view('view_post',$viewData);
     }
+    public function delete(Request $request,$slug){
+        $post=Post::where('p_slug',$slug)->first();
+        if($post)
+            $post->delete();
+        return redirect()->back();
+    }
 }

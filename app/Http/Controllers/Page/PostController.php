@@ -16,4 +16,6 @@ class PostController extends Controller
         Post::where('id',$request->post)->increment('p_view');
         return Post::find($request->post);
     }
+
+   
 }
