@@ -62,14 +62,14 @@ class HomeController extends Controller
     }
     public function search(Request $request){
         // full text search 
-        $val = User::where('id','!=',\Auth::id())
-                    ->search($request->value)
-                    ->get();
+        // $val = User::where('id','!=',\Auth::id())
+        //             ->search($request->value)
+        //             ->get();
 
-        // $val =  User::where('id','!=',\Auth::id())
-        //         ->where('user','like','%'.$request->value.'%')
-        //         ->orwhere('c_name','like','%'.$request->value.'%')
-        //         ->get();
+        $val =  User::where('id','!=',\Auth::id())
+                ->where('user','like','%'.$request->value.'%')
+                ->orwhere('c_name','like','%'.$request->value.'%')
+                ->get();
         if(!$val->isEmpty())
             return view('layout.header.data',compact('val'))->render();
         else{
@@ -77,6 +77,7 @@ class HomeController extends Controller
         }
     }
     public function data(){
+        DB::statement('ALTER TABLE users ADD FULLTEXT search (user, c_name)');
         for($i=2;$i<100;$i++){
         $data['user_id']=$i ;
         $data['created_at']=Carbon::now(); 
