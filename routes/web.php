@@ -31,7 +31,7 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
     //tìm kiếm
     Route::get('/searchmess','DirectController@searchmess')->name('searchmess'); 
     //lấy người dùng tạo group chat 
-    Route::get('/direct/a/','DirectController@create_chat_group')->name('create_chat_group'); 
+    Route::post('/direct/a/','DirectController@create_chat_group')->name('create_chat_group'); 
     //chat group
     Route::get('/direct/t/{room}', 'DirectController@index_chat_group')->name('chat.group.show');
     Route::post('/group_chat/getGroupChat/{room}', 'DirectController@getGroupChat');
@@ -40,9 +40,7 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
     //chat private
     Route::get('/direct/{id}', 'DirectController@show')->name('chat.show');
     Route::post('/chat/getChat/{id}', 'DirectController@getChat');
-    Route::post('/chat/sendChat', 'DirectController@sendChat');
-    //call video
-    Route::get('/video/{room}',  'DirectController@video')->name('chat.video');
+    Route::post('/chat/sendChat', 'DirectController@sendChat'); 
     // Route::post('/pusher/auth', 'HomeController@authenticate'); 
    
 }); 

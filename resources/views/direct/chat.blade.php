@@ -9,11 +9,7 @@
       </a>
       <onlineuser v-bind:friend="{{ $friend }}" v-bind:onlineusers="onlineUsers"></onlineuser>
 
-   </div>
-   <div class="infos">
-      <a href="" class="info"><i class="fa fa-lg fa-info"></i></a>
-      <a href="{{ route('chat.video',$videocall['videocall']) }}"><i class="fa fa-lg fa-video-camera"></i></a>
-   </div>
+   </div> 
 </div>
 <chat v-bind:chats="chats" v-bind:userid="{{ Auth::user()->id }}" v-bind:friendid="{{ $friend->id }}" ></chat>
  

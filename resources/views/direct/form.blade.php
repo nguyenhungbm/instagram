@@ -102,39 +102,43 @@
                 <button class="cs hihi{{$list->id}}"><i class="fa fa-lg fa-check haha{{$list->id}}"></i></button>
             </div>
 <script> 
-    var users= [];
-    users.push({{Auth::id()}});
     $(function(){ 
-    $('.py{{$list->id}}').on('click',function(){
+        $('.nexts').on('click',function(e){
+        e.preventDefault();
+        var total_user = [];
+        $(".pw .pt").each(function() {
+            total_user.push({id : parseInt($(this).attr('data-id')) , name : $(this).attr('data-name') });
+        });
+        var url = "{{ route('create_chat_group') }}";
+            $.post({
+                url:url,
+                data:{user:total_user},
+                headers:{
+                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(res){
+                   window.location.href=res.group;
+                }
+            })
+        })
+    $('body').on('click','.py{{$list->id}}',function(){
         if($('.hihi{{$list->id}}').hasClass('background-blue')){
             $('.hihi{{$list->id}}').removeClass('background-blue'); 
             $('.pt{{$list->id}}').remove();
             if(!$('.pw').children('div').hasClass('pt')){
                 $('.nexts').addClass('disabled');
             }
-            for( var i = 0; i < users.length; i++){ 
-                if ( users[i] === {{$val->id}}) { 
-                    users.splice(i, 1); 
-                }
-            }
         }else{  
-            users.push({{$val->id}});
             $('.nexts').removeClass('disabled');
             $('.hihi{{$list->id}}').addClass('background-blue'); 
             $('.pw').append(` 
-                <div class="pt pt{{$list->id}}" id="pt{{$list->id}}">
-                    <a href="javascript:;">{{$val->user}} <span class="close{{$list->id}}">&times;</span></a> 
+                <div class="pt pt{{$val->id}}" id="pt{{$list->id}}" data-id="{{$val->id}}" data-name="{{$val->c_name}}">
+                    <a href="javascript:;">{{$val->c_name}} <span class="close{{$list->id}}">&times;</span></a> 
                 </div> 
             `);
         }
-        $('#add_user').val(users);
     });  
     $('body').on('click','.close{{$list->id}}',function(){
-        for( var i = 0; i < users.length; i++){ 
-                if ( users[i] === {{$val->id}}) { 
-                    users.splice(i, 1); 
-                }
-            }
         $('.pt{{$list->id}}').remove();
         $('.hihi{{$list->id}}').removeClass('background-blue'); 
         if($('.pu button').hasClass("background-blue")){
@@ -142,7 +146,6 @@
         }else{
             $('.nexts').addClass('disabled');
         } 
-        $('#add_user').val(users); 
     })  
 })
 </script> 
@@ -174,9 +177,13 @@
         $('#search').on('keyup',function(){
             var val =$(this).val();  
             var URL="{{route('searchmess')}}";
+            var total_user = [];
+            $(".pw .pt").each(function() {
+                total_user.push(parseInt($(this).attr('data-id')));
+            });
             $.get({
                 url:URL,
-                data:{value:val},
+                data:{value:val,user:total_user},
                 beforeSend:function(){
                     $('.noss').removeClass('d-none');
                     $('.pu').addClass('d-none');
