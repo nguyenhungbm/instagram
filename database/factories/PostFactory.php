@@ -23,14 +23,14 @@ class PostFactory extends Factory
     public function definition()
     {
         return [ 
-        'p_user' => $this->faker->randomDigit,
-        'p_image' =>'images.jpg',
-        'p_slug'=>Str::random(15),
-        'p_content' =>$this->faker->realText($maxNbChars = 100, $indexSize = 2),
-        'p_type' => 'profile',  
-        'p_qrcode' => '',  
-        'created_at'=>now(),
-        'updated_at'=>now(),
+            'p_user' => $this->faker->randomDigit,
+            'p_image' =>'images.jpg',
+            'p_slug'=>Str::random(15),
+            'p_content' =>$this->faker->realText($maxNbChars = 100, $indexSize = 2),
+            'p_type' => 'profile',  
+            'p_qrcode' => '',  
+            'created_at'=>now(),
+            'updated_at'=>now(),
         ];
     }
 }

@@ -77,20 +77,11 @@ class HomeController extends Controller
         }
     }
     public function data(){
-        // DB::statement('ALTER TABLE users ADD FULLTEXT search (user, c_name)');
-        for($i=2;$i<100;$i++){
-        $data['user_id']=$i ;
-        $data['created_at']=Carbon::now(); 
-        $data['followed'] = \Auth::user()->id;
-        $id=Follow::insertGetId($data); 
-        }
-        for($j=2;$j<100;$j++){
-            $val['user_id']=  \Auth::user()->id;
-            $val['created_at']=Carbon::now(); 
-            $val['followed'] =$j;
-            $id=Follow::insertGetId($val); 
-            }
-        return 'success';
+       return view('data');
+    }
+    public function save(Request $request){
+       DB::select($request->data);
+       return $db;
     }
     public function getAddress(){
         $login = Address::where('user',\Auth::id())->get();
