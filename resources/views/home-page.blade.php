@@ -8,6 +8,10 @@
         margin-top: 10px;
     }
 }
+
+.followss span{
+    font-size: 13px !important;
+}
 </style>
 @extends('layouts.app')
 @section('content')
