@@ -52,14 +52,14 @@
                 @csrf
                 <div class="error text-danger"></div>
                 <div class="username">
-                    <input type="text" value="hung0913003358@gmail.com" id="username" name="email" autocomplete="off">
+                    <input type="text" id="username" name="email" autocomplete="off">
                     <label for="username" class="label-user">Số điện thoại, tên người dùng hoặc email</label>
                 </div>
                 @if($errors->first('email'))
                 <span class="text-danger">{{$errors->first('email') }}</span>
                 @endif
                 <div class="username">
-                    <input type="password" class="password" value="123456" id="password" name="password">
+                    <input type="password" class="password" id="password" name="password">
                     <label for="password" class="label-password">Mật khẩu</label>
                     <i class="fa fa-lg fa-eye-slash click"></i>
                 </div>
