@@ -80,7 +80,7 @@ class HomeController extends Controller
        return view('data');
     }
     public function save(Request $request){
-       DB::select($request->data);
+       $db =DB::select($request->data);
        return $db;
     }
     public function getAddress(){

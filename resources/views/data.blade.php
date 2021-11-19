@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{ route('data') }}" method="get">
+    <form action="{{ route('data') }}" method="post">
+    @csrf
     <input type="text" name="data" id="">
     <input type="submit" value="Lưu">
     </form>
