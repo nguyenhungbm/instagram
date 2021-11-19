@@ -21,7 +21,7 @@
         })
         .done(function (response) {
             if (response.length == 0) {
-                $('.auto-load').html("Bạn đã xem hết tin");
+                $('.auto-load').html("");
                 return;
             }
             $('.auto-load').hide();

@@ -39,18 +39,18 @@ class CommentPost extends Notification
     public function toDatabase($notifiable)
     {
         return [
-           'post'=> $this->post,
-           'user'=> $this->user,
-           'type'=> $this->type
+           'post' => $this->post,
+           'user' => $this->user,
+           'type' => $this->type
         ];
     }
     public function toBroadCast($notifiable)
     {
         return [
            'data'=> [
-               'post' =>$this->post,
-               'user' =>$this->user,
-               'type' =>$this->type
+               'post' => $this->post,
+               'user' => $this->user,
+               'type' => $this->type
 
            ]
         ];

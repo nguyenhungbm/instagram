@@ -42,9 +42,9 @@
    complete:function(){
       $('.load-comment').hide();
       $('.submit-{{$value}} div').show();
-   }
+   } 
    }).done(function(e){
-   $('.comment{{$value}}').text(c_comment);
+   $('.comment{{$value}}').text(e.comment);
    $(".list-comment{{$value}}").prepend(`
    <div class="clr het">
    <div class="hew"><a href="/${e.user.user}"><img src="${e.avatar}" class="avatar_user_uploaded"></a> </div>

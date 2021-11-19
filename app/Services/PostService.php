@@ -81,14 +81,17 @@ class PostService{
         $data['updated_at'] = Carbon::now(); 
         Comment::InsertGetId($data);
         $post = Post::find($data['c_post']);
+        $post->p_comment =  $post->p_comment + 1;
+        $post->update();
         $user = User::find( Auth::id());
 
         if($data['c_user_id'] != $post->p_user)
         User::find($post->p_user)->notify(new CommentPost($post,$user,'comment'));
         return response([
             'user'   =>  Auth::user(), 
-            'avatar' => pare_url_file( Auth::user()->avatar,'user')
-            ]);
+            'avatar' => pare_url_file( Auth::user()->avatar,'user'),
+            'comment' => $post->p_comment
+        ]);
     }
 }
 

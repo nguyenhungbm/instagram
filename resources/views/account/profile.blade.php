@@ -38,7 +38,7 @@ body{
             <b>{{ __('translate.Username') }}</b>
         </div>
         <div class="edit-form__content">
-            <input type="text" name="user" value="{{\Auth::user()->user}}" placeholder="{{ __('translate.Username') }}">
+            <input type="text" disabled value="{{\Auth::user()->user}}" placeholder="{{ __('translate.Username') }}">
             <p class="os f-11">{{ __("translate.In most cases, you'll be able to change your username back to") }}{{\Auth::user()->user}}{{ __("translate.for another 14 days.") }}</p>
         </div>
     </div>

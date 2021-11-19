@@ -137,7 +137,7 @@ class DirectController extends Controller
         else{
             $random_number =rand(0000000000,9999999999); 
          
-            $group_name = Auth::user()->c_name.',';
+            $group_name ='d'. Auth::user()->c_name.',';
             foreach ($request->user as $list) {
                 $group_name .= $list['name'].',';
             }
@@ -202,6 +202,10 @@ class DirectController extends Controller
             'group_id'=>$room
         ]) 
         ->get();
+        foreach($group_chats as $list){
+            $list->c_name = User::find($list->user_id)->c_name;
+            $list->user = User::find($list->user_id)->user;
+        }
     $data=[
         'group_chats'   => $group_chats,
         'room'     => $room

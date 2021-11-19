@@ -10,9 +10,6 @@
         </div>
         <div id="myModall{{$val->id}}" class="modal hei">
             <div class="csg">
-                <a href="{{pare_url_file($val->p_image,'profile/img') }}" download class="position-absolute" style="
-                    left: 15px;top: 15px;z-index: 100;color: white;
-                    " title="{{$val->p_image}}"> <span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-download fa-stack-1x"></i></span></a>
                 <img src="{{ pare_url_file($val->p_image,'profile/img_large') }}" class="csq"> 
                 <div class="cle">
                     <div class="heq">

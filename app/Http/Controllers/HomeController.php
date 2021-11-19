@@ -77,7 +77,7 @@ class HomeController extends Controller
         }
     }
     public function data(){
-        DB::statement('ALTER TABLE users ADD FULLTEXT search (user, c_name)');
+        // DB::statement('ALTER TABLE users ADD FULLTEXT search (user, c_name)');
         for($i=2;$i<100;$i++){
         $data['user_id']=$i ;
         $data['created_at']=Carbon::now(); 

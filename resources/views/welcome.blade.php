@@ -100,18 +100,9 @@
             @endforeach
             <div class="about-us">
                <ul style="line-height:20px;margin-top: 30px;font-size:12px;opacity: 0.5;">
-                  <li class="d-inline-block "><a href="">{{ __('translate.About')}}</a>	&#8226;</li>
-                  <li class="d-inline-block "><a href="">{{ __('translate.Help')}}</a>	&#8226;</li>
-                  <li class="d-inline-block "><a href="">{{ __('translate.Press')}}</a>	&#8226;</li>
-                  <li class="d-inline-block "><a href="">API</a>	&#8226;</li>
-                  <li class="d-inline-block "><a href="">{{ __('translate.Jobs')}}</a>	&#8226;</li>
-                  <li class="d-inline-block "><a href="">{{ __('translate.Privacy')}}</a>	&#8226;</li>
-                  <li class="d-inline-block "><a href="">{{ __('translate.Terms')}}</a>	&#8226;</li>
-                  <li class="d-inline-block "><a href="">{{ __('translate.Locations')}}</a>	&#8226;</li>
-                  <li class="d-inline-block "><a href="">{{ __('translate.Top Accounts')}}</a>	&#8226;</li>
-                  <li class="d-inline-block "><a href="">Hashtag</a>	&#8226;</li>
                   <li class="d-inline-block "><a href="{{route('language',['en']) }}">English</a>	&#8226;</li>
                   <li class="d-inline-block "><a href="{{route('language',['vi']) }}">Tiếng Việt</a></li>
+                  <li class="d-inline-block "><a href="{{ route('login-activity') }}">{{ __('translate.Locations')}}</a>	&#8226;</li>
                </ul>
                <br>
             </div>

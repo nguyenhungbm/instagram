@@ -22,7 +22,7 @@
    <link rel="stylesheet" href="{{ asset('css/view_post.css') }}"> 
  
    <div class="asd"> 
-      <img src="{{ pare_url_file($val->p_image,'profile/img') }}" class="asa"> 
+      <img src="{{ pare_url_file($val->p_image,'profile/img') }}" class="asa" style="object-position: top;"> 
       <div class="ass">
          <div class="heq">
             <div class="hew"><a href="{{ route('get.home-page',$val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar,'user') }}" class="avatar_user_uploaded"></a> </div>
