@@ -106,7 +106,7 @@
                </ul>
                <br>
             </div>
-            <p class="text-gray" style="font-size:12px">&copy; 2020 INSTAGRAM FROM FACEBOOK</p>
+            <p class="text-gray" style="font-size:12px">&copy; 2021 TEAM 8 FROM INFORMATION TECHNOLOGY CLASS</p>
          </div>
       </div>
    </div>

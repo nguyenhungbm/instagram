@@ -17,7 +17,7 @@
                     <div class="clr users${e.user.id}${e.post.id}" style="height: 50px;">
                     <a href="${e.user.user}" class="zx position-relative" style="width:75%">
                     <img src="${e.avatar}" class="w-35 rounded-circle"> 
-                    <b class="zz">${e.user.user}</b><br>
+                    <b class="zz">${e.user.user}</b>
                     <b class="os zpo">${e.user.c_name}</b>
                     </a>
                     </div>
@@ -102,11 +102,11 @@
                         <li class="clr user${data.auth.id}" style="height: 50px;">
                             <a href="${data.auth.user}" class="zx position-relative ">
                             <img src="${data.avatar}" class="w-35 rounded-circle"> 
-                            <b class="zz">${data.auth.user}</b><br>
-                            <b class="os">${data.auth.c_name}</b>
+                            <b class="zz">${data.auth.user}</b>
+                            <b class="os zpo">${data.auth.c_name}</b>
                             </a>
                         </li>
-                    `);
+                    `); 
                 }
             
             }
@@ -187,8 +187,8 @@
                     <li class="clr users${followed}" style="height: 50px;">
                         <a href="${data.user.user}" class="zx position-relative">
                         <img src="uploads/user/${data.user.avatar}" class="w-35 rounded-circle"> 
-                        <b class="zz">${data.user.user}</b><br>
-                        <b class="os">${data.user.c_name}</b>
+                        <b class="zz">${data.user.user}</b>
+                        <b class="os zpo">${data.user.c_name}</b>
                         </a>
                         <button class="followss zc${followed}" onclick="authFollow('${followed}')" ><span class="cen${followed}">${data.text_follow}</span>
                         <img src="img/loading.gif" class="w-30 load${followed}" style="display:none;margin-top: -11px;">

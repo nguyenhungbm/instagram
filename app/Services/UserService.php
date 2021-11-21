@@ -61,6 +61,9 @@ class UserService{
         if($user->avatar != 'ninja.jpg'){
             unlink(public_path('uploads/user/'.$user->avatar));
         }
+        if($user->avatar != 'no-user.png'){
+            unlink(public_path('uploads/user/'.$user->avatar));
+        }
         $user->avatar='no-user.png';  
         if($user->update()){
             echo 200;

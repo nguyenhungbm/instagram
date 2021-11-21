@@ -17,7 +17,19 @@ class LoginController extends Controller
             return redirect()->route('home');
         return view('auth.login');
     }
-    public function login(RequestLogin $request){
+    public function login(Request $request){
+        if(!$request->email){
+            return response()->json([
+                'status' => '200',
+                'message' => 'Bạn chưa điền tên đăng nhập',
+            ]);
+        }
+        if(!$request->password){
+            return response()->json([
+                'status' => '200',
+                'message' => 'Bạn chưa điền mật khẩu',
+            ]);
+        }
         $data =$request->only('email','password');
         $user = User::where('email',$request->email)->first();
         if(Auth::attempt($data) || Auth::attempt(['user'=> $request->email , 'password' => $request->password]) ||
@@ -48,10 +60,10 @@ class LoginController extends Controller
             }
     }
         else{
-          return response()->json([
-               'status' => '200',
-               'message' => 'Sai tài khoản hoặc mật khẩu',
-          ]);
+            return response()->json([
+                'status' => '200',
+                'message' => 'Sai tài khoản hoặc mật khẩu',
+            ]);
         }
     }
     public function loginByToken(Request $request){

@@ -118,7 +118,7 @@ h4 {
     </br></br></br>
     <!--footer-->
     <div class="footer text-white text-center">
-        <p>© 2020 Unique Login Form. All rights reserved | Design by <a href="https://freecss.tech">Free Css</a></p>
+        <p>&copy; 2021 TEAM 8 FROM INFORMATION TECHNOLOGY CLASS</p>
     </div>
     <!--//footer-->
 </div>

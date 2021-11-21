@@ -45,17 +45,24 @@
                                 </div>
                                 <i class="fa fa-ellipsis-h"></i>
                                 <div class="os heo">{{ $cmt->created_at->diffForHumans() }} </div>
+                                <input type="hidden" id="com{{ $val->id }}" value="{{\App\Models\Comment::where('c_post',$val->id)->count()}}">
                             </div>
                             @endforeach
                         </div>
+                        @if(\App\Models\Comment::where('c_post',$val->id)->count() > 5)
                         <div class="buttons"><button class="button{{$val->id}} ">+</button> </div>
+                        @endif
                         <script>
-                            $('.button{{$val->id}}').on('click',function(){  
-                                loadmore(); 
+                            $('body').on('click','.button{{$val->id}}',function(){  
+                                loadmore("{{$val->id}}"); 
                             }) 
-                            currentindex=0;
-                            maxindex ="{{\App\Models\Comment::where('c_post',$val->id)->count()}}";
-                            function loadmore(){ 
+                            var currentindex=0;
+                            function loadmore(id){ 
+                            var max = $("#com"+id).val();
+                                console.log(currentindex + " " + max);
+                            if(currentindex + 5 >= max){
+                                $('.button'+id).hide();
+                            }
                             x=  window.scrollY;
                             var maxresult = 5;
                             
@@ -63,9 +70,7 @@
                             {
                             $(".hjk"+(currentindex+i)).show();
                             }
-                            if(currentindex+5>=maxindex){
-                            $('.button{{$val->id}}').hide();
-                            }
+                           
                             window.scrollTo(0,x);
                             currentindex += maxresult;
                             }

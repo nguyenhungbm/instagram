@@ -1,6 +1,6 @@
 <form action="{{ route('comment.post')}}" class="clr position-relative ">
    @csrf
-   <textarea autocomplete="off"  class="textarea-{{$value}} textarea-comment{{$value}} textarea-comment" placeholder="{{ __('translate.Add a comment')}}..."></textarea>
+   <textarea autocomplete="off" id="coms" class="textarea-{{$value}} textarea-comment{{$value}} textarea-comment" placeholder="{{ __('translate.Add a comment')}}..."></textarea>
    <input type="hidden" value="{{$value}}" class="post-comment{{$value}}">   
    <button type="button" id="submit-{{$value}}" class="  button-comment disabled position-relative"><div class="position-absolute">{{ __('translate.Post')}}</div>
    <img src="{{ asset('img/loading.gif')}}" class="w-30 load-comment" style="display:none;">
@@ -35,13 +35,11 @@
    },
    data:{c_comment:c_comment,c_post:c_post},
    beforeSend:function(){
-      $('.submit-{{$value}} div').hide();
       $('.load-comment').show();
 
    },
    complete:function(){
       $('.load-comment').hide();
-      $('.submit-{{$value}} div').show();
    } 
    }).done(function(e){
    $('.comment{{$value}}').text(e.comment);
@@ -49,12 +47,15 @@
    <div class="clr het">
    <div class="hew"><a href="/${e.user.user}"><img src="${e.avatar}" class="avatar_user_uploaded"></a> </div>
    <div class="hep"><p><b><a href="/${e.user.user}">${e.user.c_name}</a> </b>${c_comment}</p></div>
-   <i class="fa fa-ellipsis-h"></i>
    <div class="os heo">1 giây trước </div>
    </div>
    `);
+   $(".list-comment-home{{$value}}").prepend(`
+   <div class="chat w-100 position-relative"><a href="/${e.user.user}" class="text-black">${e.user.c_name}</a>${c_comment}
+   </div>
+   `);
    $('.textarea-comment{{$value}}').val('');
-   $('.submit-{{$value}}').addClass('disabled');
+   $('#submit-{{$value}}').addClass('disabled');
    
    // var $div = $("#hell"); 
    // $div.scrollBottom($div[0].scrollHeight); 

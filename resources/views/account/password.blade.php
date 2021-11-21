@@ -56,15 +56,6 @@ body{
                 <button type="submit" class="background-blue button">{{ __('translate.Change Password') }}</button>
             </div>
         </div>
-
-        <div class="clr">
-            <div class="edit-form__title">
-                <b></b>
-            </div>
-            <div class="edit-form__content"> 
-               <a href="" class="text-blue">{{ __('translate.Forgot Password?') }}</a>
-            </div>
-        </div>
         </div>
 </form>
 @endsection 

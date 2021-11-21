@@ -17,18 +17,19 @@
    auth()->login($user); 
    return redirect()->to('/');
  }
- function createUser($getInfo,$provider){
- $user = User::where('provider_id', $getInfo->id)->first();
- if (!$user) {
-      $user = User::create([
-         'c_name'           => $getInfo->name, 
-         'email'            => $getInfo->email,
-         'avatar'           => $getInfo->avatar,
-         'user'             => $getInfo->name,
-         'provider'         => $provider,
-         'provider_id'      => $getInfo->id
-     ]);
-   }
-   return $user;
- }
+    function createUser($getInfo,$provider){
+        $user = User::where('provider_id', $getInfo->id)->first();
+        if (!$user) {
+                $user = User::create([
+                    'c_name'           => $getInfo->name, 
+                    'email'            => $getInfo->email,
+                    'avatar'           => $getInfo->avatar,
+                    'user'             => $getInfo->name,
+                    'provider'         => $provider,
+                    'provider_id'      => $getInfo->id,
+                    'is_active'        => 1
+                ]);
+        }
+        return $user; 
+    }
  }

@@ -195,7 +195,7 @@ if (typeof TYPE_MESSAGE != "undefined") {
 <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 <script src="{{ asset('library/puzzle-captcha/src/disk/longbow.slidercaptcha.min.js') }}"></script>
 <script>
-var captcha = sliderCaptcha({
+var captcha = sliderCaptcha({ 
     id: 'captcha',
     repeatIcon: 'fa fa-redo',
     onSuccess: function() {
@@ -214,6 +214,13 @@ var captcha = sliderCaptcha({
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(res) {
+                    if(res.errors){
+                        Swal.fire({
+                            icon: 'error',
+                            text: res.message,
+                        })
+                        $('.modal').hide()
+                    }
                     if (res.status == 400) {
                         Swal.fire({
                             title: res.message,
@@ -234,13 +241,14 @@ var captcha = sliderCaptcha({
                         })
                         $('.modal').hide()
                     } else {
-                        window.location.href = "/";
+                        window.location.href = "/";  
                     }
                 }
             })
         }, 500);
     }
 });
+
 </script>
 
 <script>
@@ -278,6 +286,7 @@ $('#myBtn').on('click', function() {
 })
 $('#myBtn-4').on('click', function() {
     $("#myModal-4").show();
+    captcha.reset();
 })
 $('#myModal').on('click', function(event) {
     if (event.target == document.getElementById("myModal"))

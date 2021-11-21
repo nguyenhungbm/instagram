@@ -306,6 +306,7 @@ footer ul{
 .hey p{margin-left: 10px;}
 .textarea-comment{
     padding-top: 9px;
+    padding-left: 9px;
     width: 90%;
     height: 100%;
     resize: none;

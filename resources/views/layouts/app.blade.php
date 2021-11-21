@@ -61,7 +61,7 @@
 </script>
 <script src="{{ asset('js/avatar.js') }}" ></script> 
 <script src="{{ asset('js/post.js') }}" ></script>
-<script src="{{ asset('toastr/toastr.min.js') }}" defer></script>
+<script src="{{ asset('toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('js/modal.js') }}" ></script> 
  
 <script

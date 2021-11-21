@@ -46,7 +46,7 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
    
 }); 
 //home page
-Route::group(['namespace'=>'Page'], function () { 
+Route::group(['namespace'=>'Page','middleware'=>'auth'], function () { 
     //follow user
     Route::get('/qr/login', 'QRController@login');
     Route::post('/upload','PostController@savePost')->name('post.profile'); 

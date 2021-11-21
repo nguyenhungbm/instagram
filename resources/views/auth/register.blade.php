@@ -16,8 +16,8 @@
     <section><br>
         <img src="{{ asset('img/logo.png') }}">
         <p class="dw">Đăng ký để xem ảnh và video từ bạn bè.</p>
-        <a href="" class="faa"><i class="fa fa-facebook-square"></i> ĐĂNG NHẬP BẰNG FACEBOOK</a><br><br>
-        <a href="" class="fas"><i class="fa fa-google"></i> ĐĂNG NHẬP BẰNG GOOGLE</a> 
+        <a href="{{ url('/auth/redirect/facebook') }}" class="faa"><i class="fa fa-facebook-square"></i> ĐĂNG NHẬP BẰNG FACEBOOK</a><br><br>
+        <a href="{{ url('/auth/redirect/google') }}" class="fas"><i class="fa fa-google"></i> ĐĂNG NHẬP BẰNG GOOGLE</a> 
         <div class="or" style="opacity: 0.5;" >
             <div class="bar"></div> 
             <div class="content">Hoặc</div>  

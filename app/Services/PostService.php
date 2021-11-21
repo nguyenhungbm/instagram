@@ -76,7 +76,7 @@ class PostService{
             ]);
     }
     public function comment($data){
-        $data['c_user_id']  =  Auth::id();
+        $data['c_user_id']  = Auth::id();
         $data['created_at'] = Carbon::now();
         $data['updated_at'] = Carbon::now(); 
         Comment::InsertGetId($data);

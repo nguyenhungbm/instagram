@@ -16,15 +16,15 @@
 @extends('layouts.app')
 @section('content')
 <section class="sd">
-    @include('layout.avatar',['user' => $user,'height'=>'170px'])
+    @include('layout.avatar',[ 'height'=>'170px'])
     <div class="csa">
         <div class="csb">
             <span class="os">{{ $user->user }}</span>
             @if($user->user === \Auth::user()->user)
             <a href="{{ route('profile.edit') }}">{{ __('translate.Edit Profile')}}</a>
             <i class="fa fa-2x fa-sun-o" id="myBtn-3"></i>
-            <button id="myBtn-4" class="background-blue button"
-                style="padding: 5px 20px;margin-left: 20px;border-radius: 5px;">Đăng bài</button>
+            <label for="profiles" class="background-blue button"
+                style="padding: 5px 20px;margin-left: 20px;border-radius: 5px;">Đăng bài</label>
             @else
             <div class="list-follow">
                 @if(!$followed)
@@ -47,13 +47,7 @@
         <div id="myModal-3" class="modal ">
             <div class="modal-content setting animate__animated animate__zoomIn">
                 <li><a href="{{route('password.edit')}}">{{ __('translate.Change Password')}}</a></li>
-                <li><a href="">{{ __('translate.Nametag')}}</a></li>
-                <li><a href="">{{ __('translate.Apps and Websites')}}</a></li>
-                <li><a href="">{{ __('translate.Notifications')}}</a></li>
-                <li><a href="">{{ __('translate.Privacy and Security')}}</a></li>
                 <li><a href="{{ route('login-activity') }}">{{ __('translate.Login Activity')}}</a></li>
-                <li><a href="">{{ __('translate.Emails from Instagram')}}</a></li>
-                <li><a href="">{{ __('translate.Report a Problem')}}</a></li>
                 <li><a href="javascript:void(0)" onclick="event.preventDefault(); $('.logout-form').submit();">
                         {{ __('translate.Log Out')}}
                     </a></li>
@@ -61,7 +55,7 @@
             </div>
         </div>
         <div class="csc">
-            <p><b>{{Auth::user()->picture}}</b> {{ __('translate.posts')}}</p>
+            <p><b>{{ $user->picture}}</b> {{ __('translate.posts')}}</p>
             <p class="cs" id="myBtn-6"><b class="follower">{{count($userFollow)}}</b> {{ __('translate.followers')}}</p>
             <!-- modal follow -->
             <div id="myModal-6" class="modal">
@@ -80,7 +74,7 @@
                         <li class="clr user{{$list->user_id}}" style="height: 50px;">
                             <a href="{{ $list->users->user }}" class="zx position-relative ">
                                 <img src="{{ pare_url_file($list->users->avatar,'user') }}" class="w-35 rounded-circle">
-                                <b class="zz">{{ $list->users->user }}</b><br>
+                                <b class="zz">{{ $list->users->user }}</b> 
                                 <b class="os zpo">{{ $list->users->c_name }}</b>
                             </a>
                             @if($list->user_id!=\Auth::id())
@@ -143,7 +137,7 @@
                             <a href="{{ $list->friends->user }}" class="zx position-relative">
                                 <img src="{{ pare_url_file($list->friends->avatar,'user') }}"
                                     class="w-35 rounded-circle">
-                                <b class="zz">{{ $list->friends->user }}</b><br>
+                                <b class="zz">{{ $list->friends->user }}</b> 
                                 <b class="os zpo">{{ $list->friends->c_name }}</b>
                             </a>
                             @if($list->friends->id!=\Auth::id())
@@ -230,7 +224,6 @@
             <div class="button">
                 <div class="label">
                     <label for="profiles" class="cs">{{ __('translate.Add to Profile')}}</label>
-                    <p class="p">{{ __('translate.or')}}</p>
                 </div>
                 <div class="label label2">
                     <label for="stories" class="cs">{{ __('translate.Add to Stories')}}</label>
@@ -271,22 +264,12 @@
     </div>
     <footer>
         <ul>
-            <li class=" "><a href="">{{ __('translate.About')}}</a></li>
-            <li class=" "><a href="">Blog</a></li>
-            <li class=" "><a href="">{{ __('translate.Jobs')}}</a></li>
-            <li class=" "><a href="">{{ __('translate.Help')}}</a></li>
-            <li class=" "><a href="">API</a></li>
-            <li class=" "><a href="">{{ __('translate.Privacy')}}</a></li>
-            <li class=" "><a href="">{{ __('translate.Terms')}}</a></li>
-            <li class=" "><a href="">{{ __('translate.Top Accounts')}}</a></li>
-            <li class=" "><a href="">Hashtag</a></li>
-            <li class=" "><a href="">{{ __('translate.Locations')}}</a></li>
-            <li class=" "><a href="{{route('language',['vi']) }}">Tiếng Việt</a></li>
-            <li class=" "><a href="{{route('language',['en']) }}">English</a></li>
+            <li ><a href="{{route('language',['vi']) }}">Tiếng Việt</a></li>
+            <li ><a href="{{route('language',['en']) }}">English</a></li>
         </ul>
         <br>
     </footer>
-    <p class="os" style="text-align:center">&copy; 2020 INSTAGRAM FROM FACEBOOK</p>
+    <p class="os" style="text-align:center">&copy; 2021 TEAM 8 FROM INFORMATION TECHNOLOGY CLASS</p>
     <br>
     <script>
     $(function() {

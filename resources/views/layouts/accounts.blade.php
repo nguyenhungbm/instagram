@@ -9,13 +9,7 @@
         <ul class="cs">
         <a href="{{route('profile.edit')}}"><li class="{{ Route::currentRouteName() == 'profile.edit' ? 'activate' : 'noactivate'}}">{{__('translate.Edit Profile')}}</li></a>
            <a href="{{route('password.edit')}}"> <li class="{{ Route::currentRouteName() == 'password.edit' ? 'activate' : 'noactivate'}}">{{__('translate.Change Password')}}</li></a>
-            <a href="javascript:;"><li>{{__('translate.Apps and Websites')}}</li></a>
-            <a href="javascript:;"><li>{{__('translate.Email and SMS')}}</li></a>
-            <a href="javascript:;"><li>{{__('translate.Notifications')}}</li></a>
-            <a href="javascript:;"><li>{{__('translate.Manage Contacts')}}</li></a>
-            <a href="javascript:;"><li>{{__('translate.Privacy and Security')}}</li></a>
             <a href="{{ route('login-activity') }}"><li class="{{ Route::currentRouteName() == 'login-activity' ? 'activate' : 'noactivate'}}">{{__('translate.Login Activity')}}</li></a>
-            <a href="javascript:;"><li>{{__('translate.Emails from Instagram')}}</li></a>
         </ul>
     </div>
     
@@ -26,7 +20,6 @@
     </form>
     </div>     
 </div><br>
- 
     <footer style="width:80%;">
       <ul style="float:right">
          <li class=" "><a href="">{{ __('translate.About')}}</a></li>
