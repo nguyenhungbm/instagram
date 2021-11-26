@@ -46,13 +46,15 @@ class PermissionController extends Controller
             $data['name'] = Str::lower($request->name).'-'.Str::lower($parent_permission);
             $data['display_name'] = $request->display_name;
             $data['parent_id'] = $val;
-            $this->repository->create($data); 
+            $this->repository->create($data);
         }
     }else{
         $data['name'] =  $request->name;
         $data['display_name'] = $request->display_name;
+        $data['parent_id'] = 0;
         $this->repository->create($data); 
     }
+
         return redirect()->route('permission.index');
     }
     public function edit($id)

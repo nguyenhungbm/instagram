@@ -18,7 +18,7 @@ class PostService{
         if($request->profiles){
             $data['p_type'] = 'profile';
             $file = $request->file('profiles');
-            $filename = $file->getClientOriginalName();
+            $filename = Str::random(5).$file->getClientOriginalName();
             $img = Image::make($file);
             $img->text('NGUYEN HUNG', 30, 30, function($font) { 
                 $font->file(public_path('FontDacingScript.ttf'));

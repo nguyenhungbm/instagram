@@ -71,6 +71,7 @@
     height: 30px;
     margin-right: 5px;
     vertical-align: middle;
+    object-position: bottom;
 }
 .infos{
     width: 20%;

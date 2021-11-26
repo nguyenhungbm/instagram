@@ -38,12 +38,12 @@ class UserService{
     }
     public function uploadAvatar($request){
         $user =  User::find(Auth::user()->id);   
-        if($user->avatar != 'no-user.png'){
-            unlink(public_path('uploads/user/'.$user->avatar));
-        }
-        if($user->avatar != 'ninja.jpg'){
-            unlink(public_path('uploads/user/'.$user->avatar));
-        }
+        // if($user->avatar != 'no-user.png'){
+        //     unlink(public_path('uploads/user/'.$user->avatar));
+        // }
+        // if($user->avatar != 'ninja.jpg'){
+        //     unlink(public_path('uploads/user/'.$user->avatar));
+        // }
         if ($request->hasFile('upload_user_avatar')) {
         $image =upload_image('upload_user_avatar','user');
         if($image['code']==1)
@@ -58,12 +58,12 @@ class UserService{
 
     public function deleteAvatar(){ 
         $user =  User::find(Auth::user()->id); 
-        if($user->avatar != 'ninja.jpg'){
-            unlink(public_path('uploads/user/'.$user->avatar));
-        }
-        if($user->avatar != 'no-user.png'){
-            unlink(public_path('uploads/user/'.$user->avatar));
-        }
+        // if($user->avatar != 'ninja.jpg'){
+        //     unlink(public_path('uploads/user/'.$user->avatar));
+        // }
+        // if($user->avatar != 'no-user.png'){
+        //     unlink(public_path('uploads/user/'.$user->avatar));
+        // }
         $user->avatar='no-user.png';  
         if($user->update()){
             echo 200;

@@ -1,7 +1,7 @@
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Quyền hạn</h1>
-        <small>@if(!$role_count) Hiện tại bạn chỉ có thể xem trang này. Liên hệ admin để thêm quyền hạn @endif</small>
+        <h1 class="h3 mb-0 text-gray-800">Vai trò</h1>
+        <small>@if(!$role_count) Hiện tại bạn chỉ có thể xem trang này. Liên hệ admin để thêm vai trò @endif</small>
     </div>
     <div class="row">
         <div class="col-lg-12 mb-4">
@@ -9,7 +9,7 @@
             <div class="card">
                 <a href="{{ route('role.create')}}">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Thêm quyền hạn</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Thêm vai trò</h6>
                     </div>
                 </a>
                 <div class="table-responsive">
@@ -36,16 +36,16 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th>ID</th>
-                                <th>Quyền hạn</th>
+                                <th>STT</th>
+                                <th>Vai trò</th>
                                 <th>Mô tả</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($role as $list)
+                            @foreach($role as $key => $list)
                             <tr>
-                                <td>{{$list->id}}</td>
+                            <td>{{ ++$key }}</td>
                                 <td>{{$list->name}}</td>
                                 <td>{{$list->display_name}}</td>
                                 <td class="d-flex">

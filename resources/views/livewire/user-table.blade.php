@@ -29,7 +29,7 @@
             <table class="table align-items-center table-flush">
             <thead class="thead-light">
                 <tr>
-                <th>ID</th>
+                <th>STT</th>
                 <th>Name</th>
                 <th>Số điện thoại</th>
                 <th>Email</th> 
@@ -39,9 +39,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($user as $list)
+                @foreach($user as $key => $list)
                     <tr>
-                        <td>{{$list->id}}</td>
+                    <td>{{ ++$key }}</td>
                         <td><a href="{{route('get.home-page',$list->user)}}">{{ $list->c_name}}</a></td>
                         <td>{{ $list->phone ?? 'Không có'}}</td>
                         <td>{{ $list->email}}</td>

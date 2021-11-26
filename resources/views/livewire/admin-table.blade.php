@@ -37,7 +37,7 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th>ID</th>
+                <th>STT</th>
                 <th>Admin</th>
                 <th>Email</th> 
                 <th>Vai trò</th> 
@@ -45,9 +45,9 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($admin as $list)
+              @foreach($admin as $key => $list)
                 <tr>
-                  <td>{{ $list->id}}</td>
+                  <td>{{ ++$key }}</td>
                   <td>{{ $list->name}}</td>
                   <td>{{ $list->email}}</td>
                   <td>

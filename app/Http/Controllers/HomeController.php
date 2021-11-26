@@ -27,22 +27,24 @@ class HomeController extends Controller
             ->count();
 
         $areFollow =Follow::where(['user_id'=>\Auth::id()])->get();
+        $list =[];
+        foreach($areFollow as $val){
+            array_push($list,$val->followed);
+        }
         $user=[];
         if(!count($areFollow)){
             $user =User::where('id','!=',\Auth::id())
             ->orderBy('picture','desc')
-            ->limit(5)
+            ->take(5)
             ->get(); 
         } 
         else{
-            foreach($areFollow as $list){
-            $user =User::where('id','!=',$list->id)
+            $user =User::whereNotIn('id',$list)
                         ->where('id','!=',\Auth::id())
                         ->orderBy('picture','desc')
                         ->inRandomOrder()
-                        ->limit(5)
+                        ->take(5)
                         ->get(); 
-        } 
     }
     
     $output = '';

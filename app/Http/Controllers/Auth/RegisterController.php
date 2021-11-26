@@ -58,7 +58,7 @@ class RegisterController extends Controller
                 'type'=>'success',
                 'messages'=>'Đăng ký thành công . Vui lòng xác nhận tài khoản qua gmail !'
             ]);
-            Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$request->user));
+            // Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$request->user));
 
            return redirect()->route('login');
         } 

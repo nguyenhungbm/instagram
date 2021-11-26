@@ -22,7 +22,7 @@ class AdminController extends Controller
         $viewData=[
             'admin'     => $admin,
             'role_count'=> $role_count,
-            'title'     => 'Người dùng',
+            'title'     => 'Quản trị viên',
         ];
         return view('admin.admin.index',$viewData);
     }
@@ -33,7 +33,7 @@ class AdminController extends Controller
         $viewData=[
         'role'  => $role,
         'permissionparent' => $permissionparent,
-        'title' => 'Thêm người dùng',
+        'title' => 'Thêm quản trị viên',
     ];
         return view('admin.admin.create',$viewData);
     }
@@ -61,7 +61,7 @@ class AdminController extends Controller
             ]); 
             $user->roles()->attach($request->roles);
             DB::commit();
-        return redirect()->route('admin.admin.index');
+        return redirect()->route('admin.index');
     }catch(\Exception $e){
         DB::rollBack();
         Log::error('Lỗi :'.$e->getMessage().' tại dòng '.$e->getLine());

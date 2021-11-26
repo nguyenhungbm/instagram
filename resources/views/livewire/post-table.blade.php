@@ -11,7 +11,7 @@
         <table class="table align-items-center table-flush">
             <thead class="thead-light">
             <tr>
-                <th>ID</th>
+                <th>STT</th>
                 <th>Bài viết</th> 
                 <th>Hình ảnh</th> 
                 <th>Người đăng</th>
@@ -22,9 +22,9 @@
             </thead>
             <tbody>
                         
-            @foreach($post as $list)
+            @foreach($post as $key => $list)
             <tr>
-                <td>{{$list->id}}</td>
+            <td>{{ ++$key }}</td>
                 <td><a target="blank" href="{{ route('post.view',$list->p_slug) }}">{{$list->p_content}}</a></td> 
                 <td><a target="blank" href="{{ route('post.view',$list->p_slug) }}"><img src="{{ pare_url_file($list->p_image,'profile/img_small') }}" style="width:100px;height:100px;object-fit:cover"></a></td> 
                 <td><a target="blank" href="{{ route('get.home-page',$list->user)}}">{{$list->c_name}}</a></td>

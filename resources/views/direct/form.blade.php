@@ -69,7 +69,7 @@
             <form action="{{route('create_chat_group')}}" method="get">
                 @csrf
                 <input type="hidden" name="user" id="add_user">
-                <button class="disabled nexts">{{ __('translate.Next')}}</button>
+                <button class="disabled nexts submitt">{{ __('translate.Next')}}</button>
             </form>
         </div> 
         <div class="pi">
@@ -103,24 +103,24 @@
             </div>
 <script> 
     $(function(){ 
-        $('.nexts').on('click',function(e){
+        $('.submitt').unbind().on('click',function(e){
         e.preventDefault();
         var total_user = [];
         $(".pw .pt").each(function() {
             total_user.push({id : parseInt($(this).attr('data-id')) , name : $(this).attr('data-name') });
         });
         var url = "{{ route('create_chat_group') }}";
-            $.post({
-                url:url,
-                data:{user:total_user},
-                headers:{
-                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-                },
-                success:function(res){
-                   window.location.href=res.group;
-                }
-            })
+        $.post({
+            url:url,
+            data:{user:total_user},
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            },
+            success:function(res){
+                window.location.href=res.group;
+            }
         })
+    })
     $('body').on('click','.py{{$list->id}}',function(){
         if($('.hihi{{$list->id}}').hasClass('background-blue')){
             $('.hihi{{$list->id}}').removeClass('background-blue'); 

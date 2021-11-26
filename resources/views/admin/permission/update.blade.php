@@ -9,9 +9,13 @@
             <form  action="{{ route('permission.update',$permission->id)}}" method="post">
             @method('PUT')
             @csrf
+            @php
+                $per = explode("-", $permission->name);
+            @endphp     
             <div class="form-group">
                 <label for="fe">Tên quyền hạn</label>
-                <input type="text" class="form-control" name="name" id="fe" value="{{$permission->name}}" >
+                <input type="text" class="form-control" name="name" id="fe" value="{{$per[0]}}" >
+              
                 @if($errors->first('name'))    
                     <span class="text-danger">{{$errors->first('name') }}</span>
                 @endif

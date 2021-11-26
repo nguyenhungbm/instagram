@@ -63,16 +63,10 @@
                 Other
         </div>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.post')}}">
+            <a class="nav-link" href="{{ route('post.index')}}">
             <i class="fas fa-fw fa-columns"></i>
             <span>Post</span>
             </a> 
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span>
-            </a>
         </li>
         <hr class="sidebar-divider">
         <div class="version" id="version-ruangadmin"></div>
@@ -292,18 +286,6 @@
                 </div>
             </div>
             </div>
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>
-                            copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-                        <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
-                    </span>
-                </div>
-            </div>
-            </footer>
-            <!-- Footer -->
         </div>
     </div>
     <!-- Scroll to top -->

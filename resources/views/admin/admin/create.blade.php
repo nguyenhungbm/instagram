@@ -3,7 +3,7 @@
 <div class="container-fluid" id="container-wrapper">
 <div class="card mb-4">
   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-    <h6 class="m-0 font-weight-bold text-primary">Thêm người dùng</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Thêm quản trị viên</h6>
   </div>
   <div class="card-body">
     <form  action="{{ route('admin.store')}}" method="post">
@@ -41,7 +41,7 @@
             <span class="text-danger">{{$errors->first('roles') }}</span>
           @endif
       </div>
-      <button class="btn btn-primary">Thêm người dùng</button>
+      <button class="btn btn-primary">Thêm quản trị viên</button>
     </form>
   </div>
 </div>

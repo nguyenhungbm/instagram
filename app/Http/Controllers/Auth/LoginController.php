@@ -32,7 +32,7 @@ class LoginController extends Controller
         }
         $data =$request->only('email','password');
         $user = User::where('email',$request->email)->first();
-        if(Auth::attempt($data) || Auth::attempt(['user'=> $request->email , 'password' => $request->password]) ||
+        if(Auth::attempt($data) || Auth::attempt(['id'=> $request->email , 'password' => $request->password]) ||
         Auth::attempt(['phone'=> $request->email , 'password' => $request->password])
         ){ 
         if(Auth::user()->is_active ==1){

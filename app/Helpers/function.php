@@ -12,7 +12,7 @@ if (!function_exists('upload_image')) {
     { 
         $code = 1;
         // lay duong dan anh
-        $baseFilename = public_path() . '/uploads/' . $_FILES[$file]['name'];
+        $baseFilename = public_path() . '/uploads/' .  $_FILES[$file]['name'];
 
         // thong tin file
         $info = new SplFileInfo($baseFilename);
@@ -29,7 +29,7 @@ if (!function_exists('upload_image')) {
 
         // Tên file mới
         $nameFile = trim(str_replace('.' . $ext, '', strtolower($info->getFilename())));
-        $filename = \Illuminate\Support\Str::slug($nameFile) . '.' . $ext;;
+        $filename = Illuminate\Support\Str::random(5).Illuminate\Support\Str::slug($nameFile) . '.' . $ext;
 
         // thu muc goc de upload
         $path = public_path() . '/uploads/';

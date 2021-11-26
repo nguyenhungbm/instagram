@@ -32,7 +32,7 @@ class RoleController extends Controller
     public function create()
     { 
         $role=$this->role->all();
-        $permissionParent=$this->permission->where('parent_id', null)->get();
+        $permissionParent=$this->permission->where('parent_id', 0)->get();
         $viewData=[
             'role'  => $role,
             'permissionParent'  => $permissionParent,
@@ -59,7 +59,7 @@ class RoleController extends Controller
     public function edit($id)
     { 
         $role=$this->role->find($id);
-        $permissionParent=$this->permission->where('parent_id', null)->get();
+        $permissionParent=$this->permission->where('parent_id', 0)->get();
         $permissionChecked=$role->permissions;
         $viewData=[
         'role'  =>$role,
