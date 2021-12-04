@@ -8,7 +8,7 @@
          {{ $friend->c_name}}
       </a>
       <onlineuser v-bind:friend="{{ $friend }}" v-bind:onlineusers="onlineUsers"></onlineuser>
-
+        <a href="{{ route('chat.video') }}"></a>
    </div> 
 </div>
 <chat v-bind:chats="chats" v-bind:userid="{{ Auth::user()->id }}" v-bind:friendid="{{ $friend->id }}" ></chat>

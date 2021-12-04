@@ -29,6 +29,7 @@ class RegisterController extends Controller
         $data['avatar']     = 'no-user.png';
         $data['password']   = Hash::make($data['password']);
         $data['created_at'] = Carbon::now(); 
+        $data['is_active'] = 1; 
         $data['remember_token'] = Str::random(10);
         if(is_numeric($request->email)){
             $request->validate([

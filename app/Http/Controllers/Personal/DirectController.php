@@ -33,6 +33,12 @@ class DirectController extends Controller
         ];
         return view('direct',$viewData);
     }
+    public function videocall(){ 
+        $viewData=[ 
+            'title'=>'Video call'
+        ];
+        return view('direct.videocall',$viewData);
+    }
     public function show($id){  
       $chat =Chat::where('repeats',0)->where(function($user){
             $user->where('user_id',Auth::id())

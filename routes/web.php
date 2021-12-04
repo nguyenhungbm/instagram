@@ -42,6 +42,10 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
     Route::get('/direct/{id}', 'DirectController@show')->name('chat.show');
     Route::post('/chat/getChat/{id}', 'DirectController@getChat');
     Route::post('/chat/sendChat', 'DirectController@sendChat'); 
+    
+   
+    //chat private
+    Route::get('/direct/{id}', 'DirectController@videocall')->name('chat.video');
     // Route::post('/pusher/auth', 'HomeController@authenticate'); 
    
 }); 
