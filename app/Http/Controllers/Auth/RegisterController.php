@@ -29,7 +29,6 @@ class RegisterController extends Controller
         $data['avatar']     = 'no-user.png';
         $data['password']   = Hash::make($data['password']);
         $data['created_at'] = Carbon::now(); 
-        $data['is_active'] = 1; 
         $data['remember_token'] = Str::random(10);
         if(is_numeric($request->email)){
             $request->validate([
@@ -59,7 +58,7 @@ class RegisterController extends Controller
                 'type'=>'success',
                 'messages'=>'Đăng ký thành công . Vui lòng xác nhận tài khoản qua gmail !'
             ]);
-            // Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$request->user));
+            Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$request->user));
 
            return redirect()->route('login');
         } 
