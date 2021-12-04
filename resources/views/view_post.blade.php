@@ -168,16 +168,7 @@
 @endif
 <footer> 
    <ul class="fs-13">
-      <li class=" "><a href="">{{ __('translate.About')}}</a></li>
-      <li class=" "><a href="">Blog</a></li>
-      <li class=" "><a href="">{{ __('translate.Jobs')}}</a></li>
-      <li class=" "><a href="">{{ __('translate.Help')}}</a></li>
-      <li class=" "><a href="">API</a></li>
-      <li class=" "><a href="">{{ __('translate.Privacy')}}</a></li>
-      <li class=" "><a href="">{{ __('translate.Terms')}}</a></li>
-      <li class=" "><a href="">{{ __('translate.Top Accounts')}}</a></li>
-      <li class=" "><a href="">Hashtag</a></li>
-      <li class=" "><a href="">{{ __('translate.Locations')}}</a></li>
+      <li class=" "><a href="{{ route('login-activity') }}">{{ __('translate.Locations')}}</a></li>
       <li class=" "><a href="{{route('language',['vi']) }}">Tiếng Việt</a></li>
       <li class=" "><a href="{{route('language',['en']) }}">English</a></li>
    </ul>

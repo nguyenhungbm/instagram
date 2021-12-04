@@ -101,7 +101,7 @@
             <div class="about-us">
                <ul style="line-height:20px;margin-top: 30px;font-size:12px;opacity: 0.5;">
                   <li class="d-inline-block "><a href="{{route('language',['en']) }}">English</a>	&#8226;</li>
-                  <li class="d-inline-block "><a href="{{route('language',['vi']) }}">Tiếng Việt</a></li>
+                  <li class="d-inline-block "><a href="{{route('language',['vi']) }}">Tiếng Việt</a> &#8226;</li>
                   <li class="d-inline-block "><a href="{{ route('login-activity') }}">{{ __('translate.Locations')}}</a>	&#8226;</li>
                </ul>
                <br>

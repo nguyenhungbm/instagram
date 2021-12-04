@@ -14,7 +14,7 @@ class CreatePermissionRoleTable extends Migration
     public function up()
     {
         Schema::create('permission_role', function (Blueprint $table) {
-            $table->id(); 
+             $table->uuid('id')->primary(); 
             $table->integer('role_id')->nullable();
             $table->integer('permission_id')->nullable();
             $table->timestamps();
