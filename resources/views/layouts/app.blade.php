@@ -28,6 +28,21 @@
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYEK57L0L5"></script>
         <script src="{{ asset('js/map.js') }}"></script>
+        <!-- refresh CSRF -->
+        <script type="text/javascript">
+            var csrfToken = $('[name="csrf_token"]').attr('content');
+ 
+            setInterval(refreshToken, 3600000); // 1 hour 
+ 
+            function refreshToken(){
+                $.get('refresh-csrf').done(function(data){
+                    csrfToken = data; // the new token
+                });
+            }
+ 
+            setInterval(refreshToken, 3600000); // 1 hour 
+ 
+        </script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

@@ -17,7 +17,7 @@
                     <div class="clr users${e.user.id}${e.post.id}" style="height: 50px;">
                     <a href="${e.user.user}" class="zx position-relative" style="width:75%">
                     <img src="${e.avatar}" class="w-35 rounded-circle"> 
-                    <b class="zz">${e.user.user}</b>
+                    <b class="zz">${e.user.user}</b><br>
                     <b class="os zpo">${e.user.c_name}</b>
                     </a>
                     </div>
