@@ -12,6 +12,7 @@ Route::get('/offline', function () {
     });
 Auth::routes();     
 Route::get('/','HomeController@index')->name('home')->middleware('auth'); 
+Route::get('/liff','HomeController@liff')->name('liff'); 
 Route::get('/search','HomeController@search')->name('search'); 
 Route::get('/address','HomeController@getAddress')->middleware('auth'); 
 Route::post('/address','HomeController@storeAddress')->middleware('auth'); 
