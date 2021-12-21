@@ -31,10 +31,25 @@
         });
     })
     </script>
+     <!-- refresh CSRF -->
+     <script type="text/javascript">
+            var csrfToken = $('[name="csrf_token"]').attr('content');
+ 
+            setInterval(refreshToken, 3600000); // 1 hour 
+ 
+            function refreshToken(){
+                $.get('refresh-csrf').done(function(data){
+                    csrfToken = data; // the new token
+                });
+            }
+ 
+            setInterval(refreshToken, 3600000); // 1 hour 
+ 
+        </script>
 </head>
 
 <body>
-    <div class="loading">
+    <div class="loading"> 
         <div class="loadding"></div>
         <div id="typed-strings" style="display:none">
             <h1>WELCOME TO MY WEBSITE</h1>
