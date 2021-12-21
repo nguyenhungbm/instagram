@@ -46,7 +46,7 @@
             document.getElementById("isCLient").innerHTML = liff.isInClient();
             document.getElementById("context").innerHTML = liff.getContext();
             liff.init({
-                liffId : '1656739492-QR8rXbjM'
+                liffId : '1656729079-lnr2YwaK'
             })
             .then(() =>{
                 if(liff.isLoggedIn ()){
