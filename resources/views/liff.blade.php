@@ -34,7 +34,6 @@
         <div><div class="red">Môi trường :</div><span id="environment"></div>
         <div><div class="red">Ngôn ngữ :</div><span id="language"></span></div>
         <div><div class="red">Phiên bản Liff :</div><span id="version"></span></div>
-        <div><div class="red">Phiên bản Line  :</div><span id="lineVersion"></span></div>
         <div><div class="red">Liff App có chạy trên Liff browser :</div><span id="isCLient"></span></div>
         <div><div class="red">Tình trạng bạn bè giữa người dùng và tài khoản Liff Official :</div><span id="status"></span></div>
     </body>
@@ -58,7 +57,6 @@
                         document.getElementById("environment").innerHTML = liff.getOS();
                         document.getElementById("language").innerHTML = liff.getLanguage();
                         document.getElementById("version").innerHTML = liff.getVersion();
-                        document.getElementById("lineVersion").innerHTML = liff.getLineVersion();
                         document.getElementById("isCLient").innerHTML = liff.isInClient();
                         document.getElementById("context").innerHTML = liff.getContext();
                         console.log("Context "+liff.getContext());
