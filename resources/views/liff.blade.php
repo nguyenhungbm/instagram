@@ -20,7 +20,7 @@
             .red{color:red}
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased" style="overflow: auto;width: 100vw;height: 200vh;">
         <button id="login">Login</button>
         <div><button id="logout">Logout</button></div>
         <div><div class="red">ID :</div> <span id="id"></span></div>
@@ -34,7 +34,7 @@
         <div><div class="red">Môi trường :</div><span id="environment"></div>
         <div><div class="red">Ngôn ngữ :</div><span id="language"></div>
         <div><div class="red">Phiên bản Liff :</div><span id="version"></div>
-        <div><div class="red">Phiên bản Line  :</div><span id="lineVersion"></div>
+        <div><div class="red">Phiên bản Line     :</div><span id="lineVersion"></div>
         <div><div class="red">Liff App có chạy trên Liff browser :</div><span id="isCLient"></div>
         <div><div class="red">Tình trạng bạn bè giữa người dùng và tài khoản Liff Official :</div><span id="status"></div>
     </body>
