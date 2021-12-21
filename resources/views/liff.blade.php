@@ -29,14 +29,14 @@
         <div><div class="red">IDToken :</div> <span id="IDToken"></span></div>
         <div><div class="red">DecodedIDToken : </div><span id="DecodedIDToken"></span></div>
         <div><div class="red">Avatar :</div><img src="" alt="" id="picture" style="height:150px;width:150px"></div>
-        <div><div class="red">statusMessage :</div></div><span id="statusMessage"></div>
-        <div><div class="red">Loại màn hình :</div><span id="context"></div>
+        <div><div class="red">statusMessage :</div><span id="statusMessage"></span></div>
+        <div><div class="red">Loại màn hình :</div><span id="context"></span></div>
         <div><div class="red">Môi trường :</div><span id="environment"></div>
-        <div><div class="red">Ngôn ngữ :</div><span id="language"></div>
-        <div><div class="red">Phiên bản Liff :</div><span id="version"></div>
-        <div><div class="red">Phiên bản Line     :</div><span id="lineVersion"></div>
-        <div><div class="red">Liff App có chạy trên Liff browser :</div><span id="isCLient"></div>
-        <div><div class="red">Tình trạng bạn bè giữa người dùng và tài khoản Liff Official :</div><span id="status"></div>
+        <div><div class="red">Ngôn ngữ :</div><span id="language"></span></div>
+        <div><div class="red">Phiên bản Liff :</div><span id="version"></span></div>
+        <div><div class="red">Phiên bản Line  :</div><span id="lineVersion"></span></div>
+        <div><div class="red">Liff App có chạy trên Liff browser :</div><span id="isCLient"></span></div>
+        <div><div class="red">Tình trạng bạn bè giữa người dùng và tài khoản Liff Official :</div><span id="status"></span></div>
     </body>
     <script  src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
