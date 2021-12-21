@@ -24,8 +24,18 @@
         <div><button id="logout">Logout</button></div>
         <div>ID : <span id="id"></span></div>
         <div>Name : <span id="name"></span></div>
-        <div>Avatar :<img src="" alt="" id="picture"></div>
-        <div>statusMessage :<img src="" alt="" id="statusMessage"></div>
+        <div>AccessToken : <span id="AccessToken"></span></div>
+        <div>IDToken : <span id="IDToken"></span></div>
+        <div>DecodedIDToken : <span id="DecodedIDToken"></span></div>
+        <div>Avatar :<img src="" alt="" id="picture" style="height:150px;width:150px"></div>
+        <div>statusMessage :<span id="statusMessage"></div>
+        <div>Loại màn hình :<span id="context"></div>
+        <div>Môi trường :<span id="environment"></div>
+        <div>Ngôn ngữ :<span id="language"></div>
+        <div>Phiên bản Liff :<span id="version"></div>
+        <div>Phiên bản Line SDK :<span id="lineVersion"></div>
+        <div>Liff App có chạy trên Liff browser :<span id="isCLient"></div>
+        <div>Tình trạng bạn bè giữa người dùng và tài khoản Liff Official :<span id="status"></div>
     </body>
     <script  src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
@@ -40,7 +50,16 @@
                         document.getElementById("picture").setAttribute('src',profile.pictureUrl);
                         document.getElementById("statusMessage").innerHTML = profile.statusMessage;
                         document.getElementById("id").innerHTML = profile.userId;
-
+                        document.getElementById("AccessToken").innerHTML = liff.getAccessToken();
+                        document.getElementById("IDToken").innerHTML = liff.getIDToken();
+                        document.getElementById("DecodedIDToken").innerHTML = liff.getDecodedIDToken();
+                        document.getElementById("status").innerHTML = liff.getFriendship();
+                        document.getElementById("environment").innerHTML = liff.getOS();
+                        document.getElementById("language").innerHTML = liff.getLanguage();
+                        document.getElementById("version").innerHTML = liff.getVersion();
+                        document.getElementById("lineVersion").innerHTML = liff.getLineVersion();
+                        document.getElementById("isCLient").innerHTML = liff.isInClient();
+                        document.getElementById("context").innerHTML = liff.getContext();
                     })
                 }
             })
