@@ -27,7 +27,7 @@
         "pusher/pusher-php-server": "^4.1",
         "silviolleite/laravelpwa": "^2.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
-        "twilio/sdk": "^6.25",
+        "twilio/sdk": "^6.32",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {

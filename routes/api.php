@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('access_token', 'API\AccessTokenController@generate_token');
+Route::get('/video/access_token', 'API\AccessTokenController@generate_token_video');
+Route::post('/chat/access_token', 'API\AccessTokenController@generate_token_chat');

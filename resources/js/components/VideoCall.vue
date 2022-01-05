@@ -1,5 +1,6 @@
 <template>
     <div class="">
+    <h1 class="text-2xl mb-4">Laravel Video Chat</h1>
         <div id="video-chat-window"></div>
         <div id="video-preview"></div>
     </div>
@@ -19,7 +20,7 @@ export default {
             const axios = require('axios')
             
             // Request a new token
-            axios.get('/api/access_token')
+            axios.get('/api/video/access_token')
                 .then(function (response) {
                     _this.accessToken = response.data
                 })

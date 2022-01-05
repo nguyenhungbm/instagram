@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Twilio\Jwt\AccessToken;
 use Twilio\Jwt\Grants\VideoGrant;
+use Twilio\Jwt\Grants\ChatGrant;
 class AccessTokenController extends Controller
 {
-    public function generate_token()
+    public function generate_token_video()
     {
         // Substitute your Twilio Account SID and API Key details 
 
@@ -34,5 +35,20 @@ class AccessTokenController extends Controller
         // Serialize the token as a JWT
         echo $token->toJWT();
     }
+    public function generate_token_chat(Request $request){
+        $token = new AccessToken(
+            \Config::get('env.twilio_account_sid'),
+            \Config::get('env.twilio_api_key_sid'),
+            \Config::get('env.twilio_api_key_secret'),
+            3600,
+            $request->email
+    );
 
+    $chatGrant = new ChatGrant();
+    $chatGrant->setServiceSid(\Config::get('env.twilio_account_sid'));
+    $token->addGrant($chatGrant);
+    return response()->json([
+            'token' => $token->toJWT()
+    ]);
+    }
 }

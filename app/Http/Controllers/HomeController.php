@@ -11,9 +11,7 @@ use DB;
 use Carbon\Carbon;
 class HomeController extends Controller
 { 
-    public function liff(Request $request){
-        return view('liff');
-    }
+   
     public function index(Request $request)
     {       
         //tất cả bài viết của những người bạn theo dõi

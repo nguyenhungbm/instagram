@@ -12,11 +12,15 @@ Route::get('/offline', function () {
     });
 Auth::routes();     
 Route::get('/','HomeController@index')->name('home')->middleware('auth'); 
-Route::get('/liff','HomeController@liff')->name('liff'); 
 Route::get('/search','HomeController@search')->name('search'); 
 Route::get('/address','HomeController@getAddress')->middleware('auth'); 
 Route::post('/address','HomeController@storeAddress')->middleware('auth'); 
 
+Route::group(['prefix'=>'line'],function(){
+    Route::get('/login','LiffController@login')->name('liff'); 
+    Route::get('/chatbot','LiffController@chatbot')->name('chatbot'); 
+
+});
 Route::group(['namespace' =>'Auth','prefix'=>'account'],function(){
     Route::get('/login/qr/','LoginController@loginByToken')->name('login.qr'); 
     Route::get('verify/{user}','RegisterController@getVerifyAccount')->name('user.verify.gmail');//xác thực qua email
@@ -93,7 +97,11 @@ Route::group(['prefix'=>'accounts','namespace'=>'Account'], function () {
     Route::get('/login-activity','ProfileController@LoginActivity')->name('login-activity'); // quên mật khẩu
 });
 
-Route::group(['prefix'=>'sms'], function () {   
+Route::group(['prefix'=>'twilio'], function () {  
+    Route::get('chat/{id}', 'Twilio\ChatController@chat');
+    Route::get('video', 'Twilio\VideoController@video');
+ 
     Route::post('/sms','TwilioController@sms')->name('twilio.sms');  
     Route::post('/voice','TwilioController@voice')->name('twilio.voice');    
 });
+ 
