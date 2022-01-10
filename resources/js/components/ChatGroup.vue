@@ -13,8 +13,7 @@
                 <a :href="'/'+group_chat.user">
                     <img :src="'/uploads/user/'+group_chat.avatar" class="friend-img rounded-circle" v-if="group_chat.avatar.substr(0,4)!='http'">
                     <img :src="group_chat.avatar" class="friend-img rounded-circle" v-if="group_chat.avatar.substr(0,4)=='http'">
-                </a>
-                <span class="os ">{{group_chat.c_name}}</span>
+                </a> 
                 <div class="friend-chat"> 
                     {{group_chat.message }}
                 </div>

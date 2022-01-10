@@ -78,11 +78,9 @@
 <script src="{{ asset('js/post.js') }}" ></script>
 <script src="{{ asset('toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('js/modal.js') }}" ></script> 
+<script src="https://media.twiliocdn.com/sdk/js/chat/v3.3/twilio-chat.min.js"></script>
 
-<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDSh1SwthGocAh8XZ-kSwnIGnEZJsS_qI&libraries=places&callback=initMap"
-      async
-    ></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDSh1SwthGocAh8XZ-kSwnIGnEZJsS_qI&libraries=places&callback=initMap"></script>
 @if(session('toastr'))
     <script>    
         var TYPE_MESSAGE="{{session('toastr.type') }}";

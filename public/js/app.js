@@ -5094,6 +5094,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ChatComponent",
   props: {
@@ -5110,14 +5123,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       messages: [],
       newMessage: "",
-      channel: ""
+      channel: "",
+      room: ""
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var token;
+      var token, room;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -5128,13 +5142,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 2:
               token = _context.sent;
               _context.next = 5;
-              return _this.initializeClient(token);
+              return _this.fetchRoom();
 
             case 5:
-              _context.next = 7;
+              room = _context.sent;
+              _context.next = 8;
+              return _this.initializeClient(token, room);
+
+            case 8:
+              _context.next = 10;
               return _this.fetchMessages();
 
-            case 7:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -5171,84 +5190,110 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    initializeClient: function initializeClient(token) {
+    fetchRoom: function fetchRoom() {
       var _this3 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-        var client;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var _yield$axios$post2, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                console.log(Twilio.Chat.Client.create(token));
-                _context4.next = 3;
-                return Twilio.Chat.Client.create(token);
-
-              case 3:
-                client = _context4.sent;
-                alert(4);
-                client.on("tokenAboutToExpire", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-                  var token;
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-                    while (1) {
-                      switch (_context3.prev = _context3.next) {
-                        case 0:
-                          _context3.next = 2;
-                          return _this3.fetchToken();
-
-                        case 2:
-                          token = _context3.sent;
-                          client.updateToken(token);
-
-                        case 4:
-                        case "end":
-                          return _context3.stop();
-                      }
-                    }
-                  }, _callee3);
-                })));
-                alert(3);
-                _context4.next = 9;
-                return client.getChannelByUniqueName("".concat(_this3.authUser.id, "-").concat(_this3.otherUser.id));
-
-              case 9:
-                _this3.channel = _context4.sent;
-                alert(2);
-
-                _this3.channel.on("messageAdded", function (message) {
-                  _this3.messages.push(message);
+                console.log(_this3.otherUser.id);
+                _context3.next = 3;
+                return axios.post("/api/chat/room", {
+                  user: _this3.authUser.id,
+                  other: _this3.otherUser.id
                 });
 
-                alert(1);
+              case 3:
+                _yield$axios$post2 = _context3.sent;
+                data = _yield$axios$post2.data;
+                return _context3.abrupt("return", data);
 
-              case 13:
+              case 6:
               case "end":
-                return _context4.stop();
+                return _context3.stop();
             }
           }
-        }, _callee4);
+        }, _callee3);
       }))();
     },
-    fetchMessages: function fetchMessages() {
+    initializeClient: function initializeClient(token, room) {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        var client;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return _this4.channel.getMessages();
+                return Twilio.Chat.Client.create(token);
 
               case 2:
-                _this4.messages = _context5.sent.items;
+                client = _context5.sent;
+                client.on("tokenAboutToExpire", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+                  var token;
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+                    while (1) {
+                      switch (_context4.prev = _context4.next) {
+                        case 0:
+                          _context4.next = 2;
+                          return _this4.fetchToken();
 
-              case 3:
+                        case 2:
+                          token = _context4.sent;
+                          client.updateToken(token);
+
+                        case 4:
+                        case "end":
+                          return _context4.stop();
+                      }
+                    }
+                  }, _callee4);
+                })));
+                _context5.next = 6;
+                return client.getChannelByUniqueName(room);
+
+              case 6:
+                _this4.channel = _context5.sent;
+
+                _this4.channel.on("messageAdded", function (message) {
+                  console.log("messageAdded +" + message);
+
+                  _this4.messages.push(message);
+                });
+
+              case 8:
               case "end":
                 return _context5.stop();
             }
           }
         }, _callee5);
+      }))();
+    },
+    fetchMessages: function fetchMessages() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return _this5.channel.getMessages();
+
+              case 2:
+                _this5.messages = _context6.sent.items;
+
+              case 3:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
       }))();
     },
     sendMessage: function sendMessage() {
@@ -5321,7 +5366,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-//
 //
 //
 //
@@ -5664,7 +5708,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 Vue.component('chat', __webpack_require__(/*! ./components/Chat.vue */ "./resources/js/components/Chat.vue").default);
 Vue.component('chat_group', __webpack_require__(/*! ./components/ChatGroup.vue */ "./resources/js/components/ChatGroup.vue").default);
 Vue.component('video-call', __webpack_require__(/*! ./components/VideoCall.vue */ "./resources/js/components/VideoCall.vue").default);
-Vue.component('chat-twilio-component', __webpack_require__(/*! ./components/ChatComponent.vue */ "./resources/js/components/ChatComponent.vue").default);
+Vue.component('chat-component', __webpack_require__(/*! ./components/ChatComponent.vue */ "./resources/js/components/ChatComponent.vue").default);
 Vue.component('chat-composer', __webpack_require__(/*! ./components/ChatComposer.vue */ "./resources/js/components/ChatComposer.vue").default);
 Vue.component('notification', __webpack_require__(/*! ./components/Notification.vue */ "./resources/js/components/Notification.vue").default);
 Vue.component('onlineuser', __webpack_require__(/*! ./components/OnlineUser.vue */ "./resources/js/components/OnlineUser.vue").default);
@@ -95652,31 +95696,80 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-header" }, [
-      _vm._v(_vm._s(_vm.otherUser.name))
-    ]),
-    _vm._v(" "),
     _c(
       "div",
-      { staticClass: "card-body" },
-      _vm._l(_vm.messages, function(message) {
-        return _c("div", { key: message.id }, [
-          _c(
-            "div",
-            { class: { "text-right": message.author === _vm.authUser.email } },
-            [
-              _vm._v(
-                "\n                " + _vm._s(message.body) + "\n            "
-              )
-            ]
-          )
-        ])
-      }),
-      0
+      { staticClass: "bottom-right position-relative", attrs: { id: "hihi" } },
+      [
+        _vm._l(_vm.messages, function(message) {
+          return _c("div", { key: message.id }, [
+            message.author === _vm.authUser.email
+              ? _c("div", { staticClass: "my-messages position-relative" }, [
+                  _c("div", { staticClass: "time" }, [
+                    _vm._v(_vm._s(_vm._f("formatDate")(message.created_at)))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "me-messages" }, [
+                    _c("p", [_vm._v(" " + _vm._s(message.body))])
+                  ])
+                ])
+              : _c(
+                  "div",
+                  { staticClass: "friend-messages clr position-relative" },
+                  [
+                    _c("div", { staticClass: "time" }, [
+                      _vm._v(_vm._s(_vm._f("formatDate")(message.created_at)))
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "/" + _vm.otherUser.user } }, [
+                      _vm.otherUser.avatar.substr(0, 4) != "http"
+                        ? _c("img", {
+                            staticClass: "friend-img rounded-circle",
+                            attrs: {
+                              src: "/uploads/user/" + _vm.otherUser.avatar
+                            }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.otherUser.avatar.substr(0, 4) == "http"
+                        ? _c("img", {
+                            staticClass: "friend-img rounded-circle",
+                            attrs: { src: _vm.otherUser.avatar }
+                          })
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "os " }, [
+                      _vm._v(_vm._s(_vm.otherUser.c_name))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "friend-chat" }, [
+                      _vm._v(
+                        "  \n                " +
+                          _vm._s(message.body) +
+                          "\n            "
+                      )
+                    ])
+                  ]
+                )
+          ])
+        }),
+        _vm._v(" "),
+        _vm.messages.length == 0
+          ? _c("div", { staticClass: "no-message" }, [
+              _vm._v("\n    Không có tin nhắn\n")
+            ])
+          : _vm._e()
+      ],
+      2
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "card-footer" }, [
-      _c("input", {
+    _c("div", { staticClass: "form-chat position-absolute" }, [
+      _c("img", {
+        staticClass: "img-1 w-30",
+        attrs: { src: "/img/happy.png" }
+      }),
+      _vm._v(" "),
+      _c("textarea", {
         directives: [
           {
             name: "model",
@@ -95685,8 +95778,8 @@ var render = function() {
             expression: "newMessage"
           }
         ],
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Type your message..." },
+        staticClass: "input",
+        attrs: { id: "myTextarea", placeholder: "Nhắn tin...", autofocus: "" },
         domProps: { value: _vm.newMessage },
         on: {
           keyup: function($event) {
@@ -95705,7 +95798,13 @@ var render = function() {
             _vm.newMessage = $event.target.value
           }
         }
-      })
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.sendMessage } }, [_vm._v("Gửi")]),
+      _vm._v(" "),
+      _c("img", { staticClass: "img-2  ", attrs: { src: "/img/picture.png" } }),
+      _vm._v(" "),
+      _c("img", { staticClass: "img-3 ", attrs: { src: "/img/heart.png" } })
     ])
   ])
 }
@@ -95837,10 +95936,6 @@ var render = function() {
                             attrs: { src: group_chat.avatar }
                           })
                         : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "os " }, [
-                      _vm._v(_vm._s(group_chat.c_name))
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "friend-chat" }, [

@@ -1,24 +1,37 @@
 <template>
     <div class="card">
-        <div class="card-header">{{ otherUser.name }}</div>
-        <div class="card-body">
+       <div class="bottom-right position-relative" id="hihi">
             <div v-for="message in messages" v-bind:key="message.id">
-                <div
-                    :class="{ 'text-right': message.author === authUser.email }"
-                >
+            <div class="my-messages position-relative" v-if="message.author === authUser.email">
+                <div class="time">{{ message.created_at | formatDate }}</div>  
+                    <div class="me-messages"> 
+                        <p> {{  message.body }}</p>
+                    </div>
+                </div> 
+            <div class="friend-messages clr position-relative" v-else>
+                <div class="time">{{ message.created_at | formatDate }}</div>
+                <a :href="'/'+otherUser.user">
+                    <img :src="'/uploads/user/'+otherUser.avatar" class="friend-img rounded-circle" v-if="otherUser.avatar.substr(0,4)!='http'">
+                    <img :src="otherUser.avatar" class="friend-img rounded-circle" v-if="otherUser.avatar.substr(0,4)=='http'">
+                </a> 
+                <span class="os ">{{otherUser.c_name}}</span>
+                <div class="friend-chat">  
                     {{ message.body }}
                 </div>
             </div>
         </div>
+        <div v-if="messages.length == 0"  class="no-message">
+        Không có tin nhắn
+    </div> 
+    </div>
+    
 
-        <div class="card-footer">
-            <input
-                type="text"
-                v-model="newMessage"
-                class="form-control"
-                placeholder="Type your message..."
-                @keyup.enter="sendMessage"
-            />
+        <div class="form-chat position-absolute" >
+            <img src="/img/happy.png" class="img-1 w-30">
+            <textarea class="input" id="myTextarea" placeholder="Nhắn tin..." autofocus v-on:keyup.enter="sendMessage" v-model="newMessage"></textarea>
+            <button v-on:click="sendMessage">Gửi</button>
+            <img src="/img/picture.png" class="img-2  ">
+            <img src="/img/heart.png" class="img-3 ">
         </div>
     </div>
 </template>
@@ -31,21 +44,25 @@ export default {
             type: Object,
             required: true
         },
+        
         otherUser: {
             type: Object,
             required: true
-        }
+        },
+        
     },
     data() {
         return {
             messages: [],
             newMessage: "",
-            channel: ""
+            channel: "",
+            room: ""
         };
     },
-    async mounted() {
+    async created() {
         const token = await this.fetchToken();
-        await this.initializeClient(token);
+        const room = await this.fetchRoom();
+        await this.initializeClient(token,room);
         await this.fetchMessages();
     },
     methods: {
@@ -55,34 +72,31 @@ export default {
             });
             return data.token;
         },
-        async initializeClient(token) {
-            console.log(Twilio.Chat.Client.create(token));
+        async fetchRoom() {
+             console.log( this.otherUser.id);
+            const { data } = await axios.post("/api/chat/room", {
+                user : this.authUser.id,
+                other: this.otherUser.id
+            });
+            return data;
+        },
+        async initializeClient(token,room) {
             const client = await Twilio.Chat.Client.create(token);
-            alert(4);
-
             client.on("tokenAboutToExpire", async () => {
                 const token = await this.fetchToken();
-
                 client.updateToken(token);
             });
-            alert(3);
-
-            this.channel = await client.getChannelByUniqueName(
-                `${this.authUser.id}-${this.otherUser.id}`
-            );
-            alert(2);
-
+            this.channel = await client.getChannelByUniqueName(room);
             this.channel.on("messageAdded", message => {
+                console.log("messageAdded +"+message);
                 this.messages.push(message);
             });
-            alert(1);
         },
         async fetchMessages() {
             this.messages = (await this.channel.getMessages()).items;
         },
         sendMessage() {
             this.channel.sendMessage(this.newMessage);
-
             this.newMessage = "";
         }
     }

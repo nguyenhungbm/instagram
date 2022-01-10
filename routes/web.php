@@ -98,7 +98,8 @@ Route::group(['prefix'=>'accounts','namespace'=>'Account'], function () {
 });
 
 Route::group(['prefix'=>'twilio'], function () {  
-    Route::get('chat/{id}', 'Twilio\ChatController@chat');
+    Route::get('list', 'Twilio\ChatController@index')->name('twilio.list');
+    Route::get('chat/{ids}', 'Twilio\ChatController@chat')->name('messages.chat');
     Route::get('video', 'Twilio\VideoController@video');
  
     Route::post('/sms','TwilioController@sms')->name('twilio.sms');  
