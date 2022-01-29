@@ -15,8 +15,15 @@ use App\Events\NewMessage;
 use App\Models\User;
 use App\Events\GroupCreated;
 use Auth;
+use App\Events\NewPhoto;
+use Storage;
+use Intervention\Image\ImageManager;
 class DirectController extends Controller
 { 
+    public function __construct(ImageManager $images)
+	{
+		$this->images = $images;
+	}
     //chat private
     public function index(){ 
        
@@ -41,18 +48,11 @@ class DirectController extends Controller
                 ->get();    
         $friend =User::FindorFail($id);
         $group=GroupUser::where('user_id',Auth::id())->join('groups','groups.id','group_user.group_id')->get();
-        $videocall =Chat::where(['user_id' => Auth::id() , 'friend_id' => $id])
-                        ->orwhere(['user_id' => $id, 'friend_id' => Auth::id()])
-                        ->select('videocall')
-                        ->first()
-                        ; 
-        if(!isset($videocall['videocall'])) 
-            $videocall['videocall'] = rand(000000,999999);
+        
         $viewData=[
             'chat'      => $chat,   
             'friend'    => $friend,
             'group'     => $group,
-            'videocall'     => $videocall,
             'title'     => 'Chat'
         ];
         return view('direct.chat',$viewData);
@@ -74,31 +74,62 @@ class DirectController extends Controller
 
     public function sendChat(Request $request) {  
         $repeats =0;
-        $room    = rand(000000,999999);
         if(Chat::where(['user_id'=> $request->user_id, 'friend_id' => $request->friend_id])->count())
         {
             $repeats    = 1;
-            $room       = Chat::where(['user_id'=> $request->user_id, 'friend_id' => $request->friend_id])->select('videocall')->first();
         }
         if(Chat::where(['user_id' => $request->friend_id,'friend_id'=> $request->user_id ])->count()) 
         {
             $repeats    = 2;
-            $room       = Chat::where(['user_id'=> $request->friend_id, 'friend_id' => $request->user_id])->select('videocall')->first();
         }
         Chat::create([
             'user_id'   => $request->user_id,
             'friend_id' => $request->friend_id,
             'chat'      => $request->chat,
-            'videocall' => $room,
             'repeats'   => $repeats
         ]); 
         
         return [];
     }
+    //https://pusher.com/tutorials/photo-feed-laravel/#configuration
+    public function upload(Request $request,$id)
+    { 
+        $file = request('photo');
+
+        $path = $file->hashName('profiles');
+
+        $disk = Storage::disk('public');
+        $disk->put(
+            $path, $this->formatImage($file)
+        );
+
+        $repeats =0;
+        if(Chat::where(['user_id'=> $request->user_id, 'friend_id' => $request->friend_id])->count())
+        {
+            $repeats    = 1;
+        }
+        if(Chat::where(['user_id' => $request->friend_id,'friend_id'=> $request->user_id ])->count()) 
+        {
+            $repeats    = 2;
+        }
+        $photo = Chat::create([
+            'user_id'  => Auth::id(),
+            'friend_id' => $id,
+            'chat' =>   $disk->url($path),
+            'repeats'   => $repeats
+        ]);
+        broadcast(new NewPhoto($photo))->toOthers();
+        return 1 ;
+    }
+    protected function formatImage($file)
+    {
+        return (string) $this->images->make($file->path())
+                            ->fit(150)->encode();
+    }
     public function searchmess(Request $request){ 
         if($request->value==''){
             $chat =Chat::where('user_id',Auth::id())->groupBy('friend_id')->get();
-            foreach($chat as $list){
+            foreach($chat as $list){ 
                 $list->isChecked = 0;
                 if(in_array($list->friend_id,$request->user)){
                     $list->isChecked = 1;

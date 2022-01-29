@@ -5,7 +5,8 @@
             <div class="my-messages" v-if="chat.user_id == userid">
                 <div class="time">{{ chat.created_at | formatDate }}</div>  
                     <div class="me-messages"> 
-                        <p> {{ chat.chat }}</p>
+                      <img :src="chat.chat" v-if="chat.chat.substr(0,4)=='http'" class="float-right"/>
+                        <p v-if="chat.chat.substr(0,4)!='http'"> {{ chat.chat }}</p>
                     </div>
             </div>
             <div class="friend-messages clr" v-else>
@@ -15,7 +16,10 @@
                 <img :src="'/uploads/user/'+chats.friend.avatar" class="friend-img rounded-circle" v-if="chats.friend.avatar.substr(0,4)!='http'">
                 <img :src="chats.friend.avatar" class="friend-img rounded-circle" v-if="chats.friend.avatar.substr(0,4)=='http'">
                 </a>
-                    <div class="friend-chat"> 
+                    <div class="friend-chat"  v-if="chat.chat.substr(0,4)=='http'"> 
+                         <img :src="chat.chat" />
+                    </div>
+                     <div class="friend-chat"  v-else> 
                         {{ chat.chat }}
                     </div>
             </div>

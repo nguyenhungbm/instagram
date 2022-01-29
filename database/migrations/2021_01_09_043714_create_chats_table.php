@@ -18,8 +18,7 @@ class CreateChatsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('friend_id')->unsigned();
             $table->text('chat');
-            $table->integer('repeats')->default(0);
-            $table->string('videocall');
+            $table->integer('repeats')->default(0); 
             $table->timestamps();
         });
     }

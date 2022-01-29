@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Twilio\Jwt\AccessToken;
+use App\Models\User;
 use Twilio\Jwt\Grants\VideoGrant;
 use Twilio\Jwt\Grants\ChatGrant;
 use App\Models\Room;
@@ -65,11 +66,12 @@ class AccessTokenController extends Controller
         })->orWhere(function ($query) use ($id,$user) {
             $query->where('user_id', $id)->where('friend_id', $user);
         })->first();
-
+        $first = User::find($user);
+        $second = User::find($id);
         if($room){
             $token = $room->token;
         }else{
-            $token = $user.'-'.$id;
+            $token = $first->user.$user.'-'.$second->user.$id;
             Room::create([
                 'user_id'   => $user, 
                 'friend_id' => $id,

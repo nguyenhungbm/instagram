@@ -16,6 +16,10 @@ Broadcast::channel('Online', function ($user) {
     return $user;
 });
 
+Broadcast::channel('photos', function ($user) {
+    return true;
+});
+
 Broadcast::channel('users.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });

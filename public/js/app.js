@@ -5044,6 +5044,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['chats', 'userid', 'friendid']
 });
@@ -5069,8 +5073,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
 //
 //
 //
@@ -5200,19 +5202,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                console.log(_this3.otherUser.id);
-                _context3.next = 3;
+                _context3.next = 2;
                 return axios.post("/api/chat/room", {
                   user: _this3.authUser.id,
                   other: _this3.otherUser.id
                 });
 
-              case 3:
+              case 2:
                 _yield$axios$post2 = _context3.sent;
                 data = _yield$axios$post2.data;
                 return _context3.abrupt("return", data);
 
-              case 6:
+              case 5:
               case "end":
                 return _context3.stop();
             }
@@ -5326,12 +5327,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['chats', 'userid', 'friendid'],
   data: function data() {
     return {
-      chat: ''
+      chat: '',
+      photos: []
     };
+  },
+  mounted: function mounted() {
+    this.getPhotos();
+    this.listen();
   },
   methods: {
     sendChat: function sendChat(e) {
@@ -5349,6 +5356,31 @@ __webpack_require__.r(__webpack_exports__);
           _this.chats.push(data);
         });
       }
+    },
+    update: function update(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      var data = new FormData();
+      data.append('photo', this.$refs.photo.files[0]);
+      console.log(data);
+      axios.post('/upload/photo/' + this.friendid, data).then(function (response) {
+        return _this2.photos.unshift(response.data);
+      });
+    },
+    getPhotos: function getPhotos() {
+      var _this3 = this;
+
+      axios.get('/photos').then(function (response) {
+        return _this3.photos = response.data;
+      });
+    },
+    listen: function listen() {
+      var _this4 = this;
+
+      Echo["private"]('photos').listen('NewPhoto', function (e) {
+        return _this4.photos.unshift(e.photo);
+      });
     }
   }
 });
@@ -5750,10 +5782,18 @@ var app = new Vue({
         _this.chats = response.data;
       });
       Echo["private"]('Chat.' + friendId + '.' + userId).listen('BroadcastChat', function (e) {
+        alert(1);
+
         _this.chats.chat.push(e.chat);
       });
-    } //chat.group 
+    }
 
+    Echo["private"]('photos').listen('NewPhoto', function (e) {
+      alert(2);
+      console.log(e);
+
+      _this.chats.chat.push(e.chat);
+    }); //chat.group 
 
     if (roomId != undefined) {
       axios.post('/group_chat/getGroupChat/' + roomId).then(function (response) {
@@ -95615,7 +95655,16 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "me-messages" }, [
-                      _c("p", [_vm._v(" " + _vm._s(chat.chat))])
+                      chat.chat.substr(0, 4) == "http"
+                        ? _c("img", {
+                            staticClass: "float-right",
+                            attrs: { src: chat.chat }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      chat.chat.substr(0, 4) != "http"
+                        ? _c("p", [_vm._v(" " + _vm._s(chat.chat))])
+                        : _vm._e()
                     ])
                   ])
                 : _c("div", { staticClass: "friend-messages clr" }, [
@@ -95641,13 +95690,17 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "friend-chat" }, [
-                      _vm._v(
-                        " \n                    " +
-                          _vm._s(chat.chat) +
-                          "\n                "
-                      )
-                    ])
+                    chat.chat.substr(0, 4) == "http"
+                      ? _c("div", { staticClass: "friend-chat" }, [
+                          _c("img", { attrs: { src: chat.chat } })
+                        ])
+                      : _c("div", { staticClass: "friend-chat" }, [
+                          _vm._v(
+                            " \n                    " +
+                              _vm._s(chat.chat) +
+                              "\n                "
+                          )
+                        ])
                   ])
             ])
           }),
@@ -95867,12 +95920,28 @@ var render = function() {
     _vm._v(" "),
     _c("button", { on: { click: _vm.sendChat } }, [_vm._v("Gửi")]),
     _vm._v(" "),
-    _c("img", { staticClass: "img-2  ", attrs: { src: "/img/picture.png" } }),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("input", {
+      ref: "photo",
+      staticClass: "d-none",
+      attrs: { type: "file", id: "image", name: "photo" },
+      on: { change: _vm.update }
+    }),
     _vm._v(" "),
     _c("img", { staticClass: "img-3 ", attrs: { src: "/img/heart.png" } })
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "image" } }, [
+      _c("img", { staticClass: "img-2", attrs: { src: "/img/picture.png" } })
+    ])
+  }
+]
 render._withStripped = true
 
 

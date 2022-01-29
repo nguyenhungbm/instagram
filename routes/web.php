@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Chat;
 
 include('route-admin.php'); 
 
@@ -47,6 +48,11 @@ Route::group(['namespace'=>'Personal','middleware' => 'auth'], function () {
     Route::get('/direct/{id}', 'DirectController@show')->name('chat.show');
     Route::post('/chat/getChat/{id}', 'DirectController@getChat');
     Route::post('/chat/sendChat', 'DirectController@sendChat'); 
+    Route::post('/upload/photo/{id}', 'DirectController@upload');
+    Route::get('/photos', function () {
+        return Chat::latest()->first();
+    });
+
     // Route::post('/pusher/auth', 'HomeController@authenticate'); 
    
 }); 
@@ -100,8 +106,12 @@ Route::group(['prefix'=>'accounts','namespace'=>'Account'], function () {
 Route::group(['prefix'=>'twilio'], function () {  
     Route::get('list', 'Twilio\ChatController@index')->name('twilio.list');
     Route::get('chat/{ids}', 'Twilio\ChatController@chat')->name('messages.chat');
+
     Route::get('video', 'Twilio\VideoController@video');
  
+    Route::get('/call', 'Twilio\VoiceController@call');
+    Route::post('/call', 'Twilio\VoiceController@initiateCall')->name('initiate_call');
+
     Route::post('/sms','TwilioController@sms')->name('twilio.sms');  
     Route::post('/voice','TwilioController@voice')->name('twilio.voice');    
 });

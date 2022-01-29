@@ -24,8 +24,6 @@
         Không có tin nhắn
     </div> 
     </div>
-    
-
         <div class="form-chat position-absolute" >
             <img src="/img/happy.png" class="img-1 w-30">
             <textarea class="input" id="myTextarea" placeholder="Nhắn tin..." autofocus v-on:keyup.enter="sendMessage" v-model="newMessage"></textarea>
@@ -73,7 +71,6 @@ export default {
             return data.token;
         },
         async fetchRoom() {
-             console.log( this.otherUser.id);
             const { data } = await axios.post("/api/chat/room", {
                 user : this.authUser.id,
                 other: this.otherUser.id
