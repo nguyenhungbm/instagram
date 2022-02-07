@@ -71,7 +71,7 @@ class AccessTokenController extends Controller
         if($room){
             $token = $room->token;
         }else{
-            $token = $first->user.$user.'-'.$second->user.$id;
+            $token = $first->id.'-'.$second->id;
             Room::create([
                 'user_id'   => $user, 
                 'friend_id' => $id,

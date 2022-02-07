@@ -20,7 +20,7 @@ class ChatController extends Controller
     // Lỗi chỉ hiện tin nhắn của 1 bên : do khác channel đặt trong hàm "await client.getChannelByUniqueName(room);"
     public function index(Request $request)
     {
-        $users = User::where('id', '<', 10)->get();
+        $users = User::take(10)->get();
         $title = 'Chat';
         return view('twilio.messages.index', compact('users','title'));
     }
@@ -29,7 +29,7 @@ class ChatController extends Controller
         $authUser = $request->user();
 
         $otherUser = User::find(explode('-', $ids)[1]);
-        $users = User::where('id', '<', 10)->get();
+        $users = User::take(10)->get();
         $twilio = new Client(\Config::get('env.twilio_account_sid'), \Config::get('env.twilio_account_token'));
         // Fetch channel or create a new one if it doesn't exist
         try {
@@ -71,7 +71,6 @@ class ChatController extends Controller
                 ->create($otherUser->email);
         }
         $title = 'Chat';
-       
         return view('twilio.chat', compact('users', 'otherUser','title'));
     }
 }
