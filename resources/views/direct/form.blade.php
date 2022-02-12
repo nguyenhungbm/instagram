@@ -6,7 +6,7 @@
 <div class="messages  d-block">
    <div class="left d-inline-block" style="height: 100%;width:35%; ">
         <div class="top-left  position-relative">
-            <p>{{ \Auth::user()->c_name}}</p>
+            <p>{{ \Auth::user()->c_name}} - {{ \Auth::user()->id}}</p>
             <img src="{{ asset('img/direct-message.png') }}" class="openmodal cs">
         </div>
         <div class="bottom-left">

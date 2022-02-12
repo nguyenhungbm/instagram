@@ -47,20 +47,17 @@ export default {
             type: Object,
             required: true
         },
-        
     },
     data() {
         return {
             messages: [],
             newMessage: "",
-            channel: "",
-            room: ""
+            channel: "", 
         };
     },
     async created() {
-        const token = await this.fetchToken();
-        const room = await this.fetchRoom();
-        await this.initializeClient(token,room);
+        const token = await this.fetchToken(); 
+        await this.initializeClient(token,this.otherUser.room);
         await this.fetchMessages();
     },
     methods: {

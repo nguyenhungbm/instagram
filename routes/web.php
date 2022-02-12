@@ -64,7 +64,7 @@ Route::group(['namespace'=>'Page','middleware'=>'auth'], function () {
     Route::get('/incre-view','PostController@increView')->name('post.increview'); 
     Route::post('/follow','FollowController@follow'); 
     Route::post('/upload_user','AvatarController@upload')->name('upload.user'); 
-    Route::get('/delete','AvatarController@delete')->name('post.delete');
+    Route::get('/delete','AvatarController@delete')->name('avatar.delete');
     Route::get('qr_code/{slug}', 'QRController@create')->name('qrcode');
     Route::get('/{user}','HomePageController@index')->name('get.home-page');   
     
@@ -93,7 +93,7 @@ Route::group(['namespace'=>'Activate'], function () {
 });
 //chi tiết bài viết
 Route::get('/p/{slug}','Account\PostController@view_post')->name('post.view')->middleware('auth'); 
-Route::get('/p/{slug}/delete','Account\PostController@delete')->name('post.delete')->middleware('auth'); 
+Route::get('/p/{slug}/delete','Account\PostController@delete')->name('posts.delete')->middleware('auth'); 
 Route::group(['prefix'=>'accounts','namespace'=>'Account'], function () {   
     Route::get('/edit','ProfileController@edit')->name('profile.edit');  
     Route::post('/edit/store','ProfileController@store')->name('profile.store');    

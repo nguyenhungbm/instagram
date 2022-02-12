@@ -5125,15 +5125,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       messages: [],
       newMessage: "",
-      channel: "",
-      room: ""
+      channel: ""
     };
   },
   created: function created() {
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var token, room;
+      var token;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -5144,18 +5143,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 2:
               token = _context.sent;
               _context.next = 5;
-              return _this.fetchRoom();
+              return _this.initializeClient(token, _this.otherUser.room);
 
             case 5:
-              room = _context.sent;
-              _context.next = 8;
-              return _this.initializeClient(token, room);
-
-            case 8:
-              _context.next = 10;
+              _context.next = 7;
               return _this.fetchMessages();
 
-            case 10:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -5782,14 +5776,11 @@ var app = new Vue({
         _this.chats = response.data;
       });
       Echo["private"]('Chat.' + friendId + '.' + userId).listen('BroadcastChat', function (e) {
-        alert(1);
-
         _this.chats.chat.push(e.chat);
       });
     }
 
     Echo["private"]('photos').listen('NewPhoto', function (e) {
-      alert(2);
       console.log(e);
 
       _this.chats.chat.push(e.chat);

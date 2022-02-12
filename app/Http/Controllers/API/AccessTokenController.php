@@ -56,28 +56,5 @@ class AccessTokenController extends Controller
         return response()->json([
             'token' => $token->toJWT()
         ]);
-    }
-    public function room(Request $request){
-        $token ='';
-        $id = $request->other;
-        $user = $request->user;
-        $room = Room::where(function ($query) use ($id,$user) {
-            $query->where('user_id', $user)->where('friend_id', $id);
-        })->orWhere(function ($query) use ($id,$user) {
-            $query->where('user_id', $id)->where('friend_id', $user);
-        })->first();
-        $first = User::find($user);
-        $second = User::find($id);
-        if($room){
-            $token = $room->token;
-        }else{
-            $token = $first->id.'-'.$second->id;
-            Room::create([
-                'user_id'   => $user, 
-                'friend_id' => $id,
-                'token'     => $token
-            ]);
-        }
-        return $token;
-    }
+    } 
 }

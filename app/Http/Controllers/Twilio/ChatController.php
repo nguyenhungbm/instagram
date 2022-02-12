@@ -27,7 +27,6 @@ class ChatController extends Controller
     public function chat(Request $request, $ids)
     {
         $authUser = $request->user();
-
         $otherUser = User::find(explode('-', $ids)[1]);
         $users = User::take(10)->get();
         $twilio = new Client(\Config::get('env.twilio_account_sid'), \Config::get('env.twilio_account_token'));
@@ -41,10 +40,9 @@ class ChatController extends Controller
                 ->channels
                 ->create([
                     'uniqueName' => $ids,
-                    'type' => 'private',
+                    'type' => 'public',
                 ]);
-        }
-
+    } 
         // Add first user to the channel
         try {
             $twilio->chat->v2->services(\Config::get('env.twilio_service_id'))
@@ -71,6 +69,7 @@ class ChatController extends Controller
                 ->create($otherUser->email);
         }
         $title = 'Chat';
-        return view('twilio.chat', compact('users', 'otherUser','title'));
+        $otherUser->room = $ids;
+        return view('twilio.chat', compact('users', 'otherUser','title','channel'));
     }
 }

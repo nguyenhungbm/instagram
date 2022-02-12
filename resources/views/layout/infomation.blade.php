@@ -6,7 +6,7 @@
         @if($val->user->id != \Auth::id())
         <!-- <li><label class="text-red">{{ __('translate.Report')}}</label></li> -->
         @endif
-        <li><a class="text-danger" href="{{route('post.delete',$val->p_slug)}}" >{{ __('translate.Delete post')}}</a> </li>
+        <li><a class="text-danger" href="{{route('posts.delete',$val->p_slug)}}" >{{ __('translate.Delete post')}}</a> </li>
         <li><a href="{{route('post.view',$val->p_slug)}}" >{{ __('translate.Go to post')}}</a> </li>
         <li class="cs qrcode" id="Btn2{{$value}}"><label >QR CODE</label></li>
         <!-- <li class="cs" id="Btn1{{$value}}"><label >{{ __('translate.Share to')}} ...</label></li> -->

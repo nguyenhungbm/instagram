@@ -6,4 +6,4 @@ return [
     'twilio_account_token' => env('TWILIO_AUTH_TOKEN', null),
     'twilio_service_id' => env('TWILIO_SERVICE_SID', null),
     'twilio_phone_number' => env('TWILIO_PHONE_NUMBER', null),
-];
+]; 

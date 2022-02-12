@@ -66,14 +66,12 @@ const app = new Vue({
  
             Echo.private('Chat.' + friendId + '.' + userId)
                 .listen('BroadcastChat', (e) => {
-                    alert(1);
                     this.chats.chat.push(e.chat);
                 });
         } 
          
         Echo.private('photos')
                 .listen('NewPhoto', (e) => {
-                    alert(2);
                     console.log(e);
                     this.chats.chat.push(e.chat);
                 });

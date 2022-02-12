@@ -8,6 +8,6 @@
       </a>
    </div> 
 </div>
-<chat-component :auth-user="{{ auth()->user() }}" :other-user="{{ $otherUser }}"></chat-component>
+<chat-component :auth-user="{{ auth()->user() }}" :other-user="{{ $otherUser }}" ></chat-component>
 
-@endsection 
+@endsection  

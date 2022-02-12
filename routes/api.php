@@ -18,5 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/video/access_token', 'API\AccessTokenController@generate_token_video');
 Route::post('/chat/access_token', 'API\AccessTokenController@generate_token_chat');
-Route::post('/chat/room', 'API\AccessTokenController@room');
 
