@@ -18,6 +18,7 @@ body {
                     <li class="clr">
                         <img src="{{ pare_url_file($list->avatar,'user') }}">
                         <p style="margin-top: 10px;">{{ $list->c_name}}</p> <br>
+                        <onlineuser v-bind:friend="{{$list }}" v-bind:onlineusers="onlineUsers"></onlineuser>
                     </li>
                 </a>
                 @endforeach

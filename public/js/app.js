@@ -5069,10 +5069,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5158,6 +5173,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   methods: {
+    hidden: function hidden(id) {
+      document.getElementById(id).classList.add("d-none");
+    },
     fetchToken: function fetchToken() {
       var _this2 = this;
 
@@ -5186,82 +5204,88 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    fetchRoom: function fetchRoom() {
+    initializeClient: function initializeClient(token, room) {
       var _this3 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var _yield$axios$post2, data;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        var client;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context3.next = 2;
-                return axios.post("/api/chat/room", {
-                  user: _this3.authUser.id,
-                  other: _this3.otherUser.id
-                });
+                _context4.next = 2;
+                return Twilio.Chat.Client.create(token);
 
               case 2:
-                _yield$axios$post2 = _context3.sent;
-                data = _yield$axios$post2.data;
-                return _context3.abrupt("return", data);
+                client = _context4.sent;
+                client.on("tokenAboutToExpire", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+                  var token;
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+                    while (1) {
+                      switch (_context3.prev = _context3.next) {
+                        case 0:
+                          _context3.next = 2;
+                          return _this3.fetchToken();
 
-              case 5:
+                        case 2:
+                          token = _context3.sent;
+                          client.updateToken(token);
+
+                        case 4:
+                        case "end":
+                          return _context3.stop();
+                      }
+                    }
+                  }, _callee3);
+                })));
+                _context4.next = 6;
+                return client.getChannelByUniqueName(room);
+
+              case 6:
+                _this3.channel = _context4.sent;
+
+                _this3.channel.on("messageAdded", function (message) {
+                  _this3.pushToArray(message);
+                });
+
+              case 8:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     },
-    initializeClient: function initializeClient(token, room) {
+    fetchMessages: function fetchMessages() {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
-        var client;
+        var messages, _iterator, _step, message;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return Twilio.Chat.Client.create(token);
+                return _this4.channel.getMessages();
 
               case 2:
-                client = _context5.sent;
-                client.on("tokenAboutToExpire", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-                  var token;
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
-                    while (1) {
-                      switch (_context4.prev = _context4.next) {
-                        case 0:
-                          _context4.next = 2;
-                          return _this4.fetchToken();
+                messages = _context5.sent.items;
+                _iterator = _createForOfIteratorHelper(messages);
 
-                        case 2:
-                          token = _context4.sent;
-                          client.updateToken(token);
+                try {
+                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                    message = _step.value;
 
-                        case 4:
-                        case "end":
-                          return _context4.stop();
-                      }
-                    }
-                  }, _callee4);
-                })));
-                _context5.next = 6;
-                return client.getChannelByUniqueName(room);
+                    _this4.pushToArray(message);
+                  }
+                } catch (err) {
+                  _iterator.e(err);
+                } finally {
+                  _iterator.f();
+                }
 
-              case 6:
-                _this4.channel = _context5.sent;
-
-                _this4.channel.on("messageAdded", function (message) {
-                  console.log("messageAdded +" + message);
-
-                  _this4.messages.push(message);
-                });
-
-              case 8:
+              case 5:
               case "end":
                 return _context5.stop();
             }
@@ -5269,31 +5293,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee5);
       }))();
     },
-    fetchMessages: function fetchMessages() {
+    sendMessage: function sendMessage() {
+      this.channel.sendMessage(this.newMessage);
+      this.newMessage = "";
+    },
+    sendMediaMessage: function sendMediaMessage(_ref2) {
+      var target = _ref2.target;
+      var formData = new FormData();
+      formData.append('file', target.files[0]);
+      this.channel.sendMessage(formData);
+      target.value = "";
+    },
+    pushToArray: function pushToArray(message) {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+        var mediaUrl;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                _context6.next = 2;
-                return _this5.channel.getMessages();
+                if (!(message.type === 'media')) {
+                  _context6.next = 7;
+                  break;
+                }
 
-              case 2:
-                _this5.messages = _context6.sent.items;
+                _context6.next = 3;
+                return message.media.getContentUrl();
 
               case 3:
+                mediaUrl = _context6.sent;
+
+                _this5.messages.push({
+                  type: message.type,
+                  author: message.author,
+                  body: mediaUrl,
+                  mediaUrl: mediaUrl
+                });
+
+                _context6.next = 8;
+                break;
+
+              case 7:
+                _this5.messages.push({
+                  type: message.type,
+                  author: message.author,
+                  body: message.body
+                });
+
+              case 8:
               case "end":
                 return _context6.stop();
             }
           }
         }, _callee6);
       }))();
-    },
-    sendMessage: function sendMessage() {
-      this.channel.sendMessage(this.newMessage);
-      this.newMessage = "";
     }
   }
 });
@@ -95753,7 +95807,40 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "me-messages" }, [
-                    _c("p", [_vm._v(" " + _vm._s(message.body))])
+                    message.body.substr(0, 4) == "http"
+                      ? _c("img", {
+                          staticClass: "img-mess float-right",
+                          attrs: {
+                            id: "img" + message.body,
+                            src: message.body
+                          },
+                          on: {
+                            error: function($event) {
+                              return _vm.hidden("img" + message.body)
+                            }
+                          }
+                        })
+                      : _c("p", [_vm._v(" " + _vm._s(message.body))]),
+                    _vm._v(" "),
+                    message.body.substr(0, 4) == "http"
+                      ? _c(
+                          "audio",
+                          {
+                            staticClass: "float-right",
+                            attrs: { controls: "", id: "audio" + message.body }
+                          },
+                          [
+                            _c("source", {
+                              attrs: { src: message.body, type: "audio/mp3" },
+                              on: {
+                                error: function($event) {
+                                  return _vm.hidden("audio" + message.body)
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      : _vm._e()
                   ])
                 ])
               : _c(
@@ -95782,16 +95869,44 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("span", { staticClass: "os " }, [
-                      _vm._v(_vm._s(_vm.otherUser.c_name))
-                    ]),
-                    _vm._v(" "),
                     _c("div", { staticClass: "friend-chat" }, [
-                      _vm._v(
-                        "  \n                " +
-                          _vm._s(message.body) +
-                          "\n            "
-                      )
+                      message.body.substr(0, 4) == "http"
+                        ? _c("img", {
+                            staticClass: "img-mess float-right",
+                            attrs: {
+                              id: "img" + message.body,
+                              src: message.body
+                            },
+                            on: {
+                              error: function($event) {
+                                return _vm.hidden("img" + message.body)
+                              }
+                            }
+                          })
+                        : _c("p", [_vm._v(" " + _vm._s(message.body))]),
+                      _vm._v(" "),
+                      message.body.substr(0, 4) == "http"
+                        ? _c(
+                            "audio",
+                            {
+                              staticClass: "float-right",
+                              attrs: {
+                                controls: "",
+                                id: "audio" + message.body
+                              }
+                            },
+                            [
+                              _c("source", {
+                                attrs: { src: message.body, type: "audio/mp3" },
+                                on: {
+                                  error: function($event) {
+                                    return _vm.hidden("audio" + message.body)
+                                  }
+                                }
+                              })
+                            ]
+                          )
+                        : _vm._e()
                     ])
                   ]
                 )
@@ -95846,13 +95961,42 @@ var render = function() {
       _vm._v(" "),
       _c("button", { on: { click: _vm.sendMessage } }, [_vm._v("Gửi")]),
       _vm._v(" "),
-      _c("img", { staticClass: "img-2  ", attrs: { src: "/img/picture.png" } }),
+      _vm._m(0),
       _vm._v(" "),
-      _c("img", { staticClass: "img-3 ", attrs: { src: "/img/heart.png" } })
+      _vm._m(1),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "d-none",
+        attrs: { type: "file", id: "img", accept: "image/*" },
+        on: { change: _vm.sendMediaMessage }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "d-none",
+        attrs: { type: "file", id: "audio", accept: "audio/*" },
+        on: { change: _vm.sendMediaMessage }
+      })
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "img" } }, [
+      _c("img", { staticClass: "img-2", attrs: { src: "/img/picture.png" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "audio" } }, [
+      _c("img", { staticClass: "img-3 ", attrs: { src: "/img/voice.jpg" } })
+    ])
+  }
+]
 render._withStripped = true
 
 

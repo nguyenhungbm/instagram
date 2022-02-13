@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Twilio\Jwt\AccessToken;
 use App\Models\User;
+use App\Models\Room;
 use Twilio\Rest\Client;
 use Auth;
 use Str;
@@ -20,7 +21,7 @@ class ChatController extends Controller
     // Lỗi chỉ hiện tin nhắn của 1 bên : do khác channel đặt trong hàm "await client.getChannelByUniqueName(room);"
     public function index(Request $request)
     {
-        $users = User::take(10)->get();
+        $users = User::take(10)->get(); 
         $title = 'Chat';
         return view('twilio.messages.index', compact('users','title'));
     }
@@ -69,7 +70,19 @@ class ChatController extends Controller
                 ->create($otherUser->email);
         }
         $title = 'Chat';
-        $otherUser->room = $ids;
+        $room = Room::where(function ($query) use ($otherUser) {
+            $query->where('user_id', '=', Auth::id())->where('friend_id', '=', $otherUser->id);
+        })->orWhere(function ($query) use ($otherUser) {
+            $query->where('user_id', '=', $otherUser->id)->where('friend_id', '=', Auth::id());
+        })->first();
+        if(!$room){
+            $room = Room::create([
+                'user_id' => Auth::id(),
+                'friend_id' => $otherUser->id,
+                'token'     => Auth::id().'-'.$otherUser->id
+            ]);
+        }
+        $otherUser->room = $room->token;
         return view('twilio.chat', compact('users', 'otherUser','title','channel'));
     }
 }

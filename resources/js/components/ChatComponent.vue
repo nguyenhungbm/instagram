@@ -5,7 +5,11 @@
             <div class="my-messages position-relative" v-if="message.author === authUser.email">
                 <div class="time">{{ message.created_at | formatDate }}</div>  
                     <div class="me-messages"> 
-                        <p> {{  message.body }}</p>
+                        <img class="img-mess float-right"  :id="'img'+message.body" @error="hidden('img'+message.body)" :src="message.body" v-if="message.body.substr(0,4)=='http'">
+                        <p v-else> {{  message.body }}</p>
+                        <audio controls class="float-right" :id="'audio'+message.body" v-if="message.body.substr(0,4)=='http'">
+                        <source @error="hidden('audio'+message.body)" :src="message.body" type="audio/mp3">
+                        </audio>
                     </div>
                 </div> 
             <div class="friend-messages clr position-relative" v-else>
@@ -14,9 +18,12 @@
                     <img :src="'/uploads/user/'+otherUser.avatar" class="friend-img rounded-circle" v-if="otherUser.avatar.substr(0,4)!='http'">
                     <img :src="otherUser.avatar" class="friend-img rounded-circle" v-if="otherUser.avatar.substr(0,4)=='http'">
                 </a> 
-                <span class="os ">{{otherUser.c_name}}</span>
                 <div class="friend-chat">  
-                    {{ message.body }}
+                     <img class="img-mess float-right"  :id="'img'+message.body" @error="hidden('img'+message.body)" :src="message.body" v-if="message.body.substr(0,4)=='http'">
+                        <p v-else> {{  message.body }}</p>
+                    <audio controls class="float-right" :id="'audio'+message.body" v-if="message.body.substr(0,4)=='http'">
+                        <source @error="hidden('audio'+message.body)" :src="message.body" type="audio/mp3">
+                    </audio>
                 </div>
             </div>
         </div>
@@ -28,8 +35,10 @@
             <img src="/img/happy.png" class="img-1 w-30">
             <textarea class="input" id="myTextarea" placeholder="Nhắn tin..." autofocus v-on:keyup.enter="sendMessage" v-model="newMessage"></textarea>
             <button v-on:click="sendMessage">Gửi</button>
-            <img src="/img/picture.png" class="img-2  ">
-            <img src="/img/heart.png" class="img-3 ">
+            <label for="img"><img src="/img/picture.png" class="img-2"></label>
+            <label for="audio"><img src="/img/voice.jpg" class="img-3 "></label>
+              <input type="file"  id="img" class="d-none" accept="image/*" @change="sendMediaMessage">
+              <input type="file"  id="audio" class="d-none" accept="audio/*" @change="sendMediaMessage">
         </div>
     </div>
 </template>
@@ -42,38 +51,33 @@ export default {
             type: Object,
             required: true
         },
-        
         otherUser: {
             type: Object,
             required: true
-        },
+        }
     },
     data() {
         return {
             messages: [],
             newMessage: "",
-            channel: "", 
+            channel: "",
         };
     },
     async created() {
-        const token = await this.fetchToken(); 
+        const token = await this.fetchToken();
         await this.initializeClient(token,this.otherUser.room);
         await this.fetchMessages();
     },
     methods: {
+        hidden(id){
+            document.getElementById(id).classList.add("d-none");
+        },
         async fetchToken() {
             const { data } = await axios.post("/api/chat/access_token", {
                 email: this.authUser.email
             });
             return data.token;
-        },
-        async fetchRoom() {
-            const { data } = await axios.post("/api/chat/room", {
-                user : this.authUser.id,
-                other: this.otherUser.id
-            });
-            return data;
-        },
+        }, 
         async initializeClient(token,room) {
             const client = await Twilio.Chat.Client.create(token);
             client.on("tokenAboutToExpire", async () => {
@@ -82,17 +86,42 @@ export default {
             });
             this.channel = await client.getChannelByUniqueName(room);
             this.channel.on("messageAdded", message => {
-                console.log("messageAdded +"+message);
-                this.messages.push(message);
+                this.pushToArray(message)
             });
         },
         async fetchMessages() {
-            this.messages = (await this.channel.getMessages()).items;
+            const messages = (await this.channel.getMessages()).items;
+            for (const message of messages) {
+                this.pushToArray(message)
+            }
         },
         sendMessage() {
             this.channel.sendMessage(this.newMessage);
             this.newMessage = "";
+        },
+        sendMediaMessage({ target }) {
+            const formData = new FormData();
+            formData.append('file', target.files[0]);
+            this.channel.sendMessage(formData);
+            target.value = "";
+        },
+        async pushToArray (message) {
+            if (message.type === 'media') {
+                const mediaUrl = await message.media.getContentUrl()
+                this.messages.push({
+                    type: message.type,
+                    author: message.author,
+                    body: mediaUrl,
+                    mediaUrl
+                })
+            } else {
+                this.messages.push({
+                    type: message.type,
+                    author: message.author,
+                    body: message.body,
+                })
+            }
         }
     }
 };
-</script>
+</script>   
