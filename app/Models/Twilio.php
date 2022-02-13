@@ -8,14 +8,8 @@ use App\Models\User;
 class Twilio extends Model
 {
     use HasFactory;
-    protected $table='twilios';
+    protected $table='twilio';
     protected $fillable = [
-        'user_id','friend_id','token','chat','repeats','channelSid'
+        'author','friend','token','body','repeats','channelSid','type'
     ];
-    public function users(){
-        return $this->belongsTo(User::class,'user_id');
-    }
-    public function friends(){
-        return $this->belongsTo(User::class,'friend_id');
-    }
 }

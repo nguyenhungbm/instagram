@@ -97,9 +97,12 @@ export default {
         },
         async sendMessage() {
             this.channel.sendMessage(this.newMessage);
+            const totalMessages = (await this.channel.getMessages()).items.length;
+            const message = (await this.channel.getMessages()).items[totalMessages-1];
             const { data } = await axios.post("/twilio/store/chat", {
-                chat: this.newMessage,
-                channelSid : this.otherUser.channelSid
+                body: message.body,
+                channelSid : this.otherUser.channelSid,
+                type : message.type
             });
             this.newMessage = "";
         },
@@ -107,6 +110,14 @@ export default {
             const formData = new FormData();
             formData.append('file', target.files[0]);
             this.channel.sendMessage(formData);
+            const totalMessages = (await this.channel.getMessages()).items.length;
+            const message = (await this.channel.getMessages()).items[totalMessages-1];
+            console.log(message);
+            const { data } = await axios.post("/twilio/store/chat", {
+                body: message.media.state.filename,
+                channelSid : this.otherUser.channelSid,
+                type : message.media.state.contentType
+            });
             target.value = "";
         },
         async pushToArray (message) {

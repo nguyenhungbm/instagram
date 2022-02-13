@@ -27,14 +27,11 @@ class ChatController extends Controller
     }
     public function list(Request $request)
     {
-        $chat = Twilio::where('channelSid',$request->channelSid)->whereNotNull('chat')->get();  
-        foreach($chat as $list){
-            $list->body = $list->chat;
-        }
+        $chat = Twilio::where('channelSid',$request->channelSid)->whereNotNull('body')->get();  
         return $chat; 
     }
     public function chat(Request $request, $ids)
-    {
+    { 
         $authUser = $request->user();
         $otherUser = User::find(explode('-', $ids)[1]);
         $users = User::take(10)->get();
@@ -49,7 +46,7 @@ class ChatController extends Controller
                 ->channels
                 ->create([
                     'uniqueName' => $ids,
-                    'type' => 'public',
+                    'type' => 'private',
                 ]);
     }  
         // Add first user to the channel
@@ -79,40 +76,41 @@ class ChatController extends Controller
         }
         $title = 'Chat';
         $room = Twilio::where(function ($query) use ($otherUser) {
-            $query->where('user_id', '=', Auth::id())->where('friend_id', '=', $otherUser->id);
+            $query->where('author', Auth::user()->email)->where('friend', $otherUser->email);
         })->orWhere(function ($query) use ($otherUser) {
-            $query->where('user_id', '=', $otherUser->id)->where('friend_id', '=', Auth::id());
+            $query->where('author', $otherUser->email)->where('friend', Auth::user()->email);
         })->first();
         if(!$room){
             $room = Twilio::create([
-                'user_id'    => Auth::id(), 
-                'friend_id'  => $otherUser->id,
-                'token'      => Auth::id().'-'.$otherUser->id,
+                'author'     => Auth::user()->email, 
+                'friend'     => $otherUser->email,
+                'token'      => Auth::user()->id.'-'.$otherUser->id, 
                 'channelSid' => $channel->serviceSid
             ]);
-        }
+    }
         $otherUser->room = $room->token;
         $otherUser->channelSid = $channel->serviceSid;
         return view('twilio.chat', compact('users', 'otherUser','title','channel'));
     }
 
     public function store(Request $request){
-        $message = Twilio::where('channelSid',$request->channelSid)->first();
-        if($message->user_id == Auth::id()){
-            $friend = $message->friend_id;
+        $message = Twilio::where('channelSid',$request->channelSid)->orderBy('id','desc')->first();
+        if($message->author == Auth::user()->email){
+            $friend = $message->friend;
         }else{
-            $friend = $message->user_id;
+            $friend = $message->author;
         }
         $message->repeats = '0';
         $message->update();
         $chat = Twilio::create([
-            'user_id'    => Auth::id(),
-            'friend_id'  => $friend,
-            'chat'       => $request->chat,
+            'author'    => Auth::user()->email,
+            'friend'     => $friend,
+            'body'       => $request->body,
             'token'      => $message->token,
             'repeats'    => 1,
-            'channelSid' => $message->channelSid
+            'channelSid' => $message->channelSid,
+            'type' => $request->type
         ]);
-        return 200;
+        return 200; 
     }
 }

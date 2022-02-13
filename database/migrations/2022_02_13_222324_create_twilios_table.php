@@ -13,15 +13,15 @@ class CreateTwiliosTable extends Migration
      */
     public function up()
     {
-        Schema::create('twilios', function (Blueprint $table) {
+        Schema::create('twilio', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('author')->unsigned();
-            $table->integer('friend')->unsigned();
+            $table->string('author')->nullable();
+            $table->string('friend')->nullable();
             $table->string('token');
             $table->text('body')->nullable();
             $table->string('type')->nullable();
             $table->integer('repeats')->default(0); 
-            $table->string('channelSid')->default(0);
+            $table->string('channelSid')->nullable();
             $table->timestamps();
         });
     }

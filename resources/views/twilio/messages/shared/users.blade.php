@@ -17,17 +17,17 @@ body {
                 @if($list->user_id == \Auth::id())
                 <a href="{{ route('messages.chat', [ 'ids' => auth()->user()->id  . '-' . $list->friend_id ]) }}">
                     <li class="clr">
-                        <img src="{{ pare_url_file($list->friends->avatar,'user') }}">
-                        <p style="margin-top: 10px;">{{ $list->friends->c_name}}</p> <br>
-                        <onlineuser v-bind:friend="{{$list->friends }}" v-bind:onlineusers="onlineUsers"></onlineuser>
+                        <img src="{{ pare_url_file($list->avatar,'user') }}">
+                        <p style="margin-top: 10px;">{{ $list->c_name}}</p> <br>
+                        <onlineuser v-bind:friend="{{$list }}" v-bind:onlineusers="onlineUsers"></onlineuser>
                     </li>
                 </a>
                 @else
                 <a href="{{ route('messages.chat', [ 'ids' => auth()->user()->id  . '-' . $list->user_id ]) }}">
                     <li class="clr">
-                        <img src="{{ pare_url_file($list->users->avatar,'user') }}">
-                        <p style="margin-top: 10px;">{{ $list->users->c_name}}</p> <br>
-                        <onlineuser v-bind:friend="{{$list->users }}" v-bind:onlineusers="onlineUsers"></onlineuser>
+                        <img src="{{ pare_url_file($list->avatar,'user') }}">
+                        <p style="margin-top: 10px;">{{ $list->c_name}}</p> <br>
+                        <onlineuser v-bind:friend="{{$list }}" v-bind:onlineusers="onlineUsers"></onlineuser>
                     </li>
                 </a>
                 @endif
