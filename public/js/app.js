@@ -5069,12 +5069,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -5260,7 +5254,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
-        var messages, _iterator, _step, message;
+        var messages, _yield$axios$get, data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
@@ -5271,21 +5265,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 messages = _context5.sent.items;
-                _iterator = _createForOfIteratorHelper(messages);
-
-                try {
-                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                    message = _step.value;
-
-                    _this4.pushToArray(message);
-                  }
-                } catch (err) {
-                  _iterator.e(err);
-                } finally {
-                  _iterator.f();
-                }
+                _context5.next = 5;
+                return axios.get("/twilio/list/chat/" + _this4.otherUser.channelSid);
 
               case 5:
+                _yield$axios$get = _context5.sent;
+                data = _yield$axios$get.data;
+                _this4.messages = data;
+                console.log("123" + _this4.messages);
+
+              case 9:
               case "end":
                 return _context5.stop();
             }
@@ -5294,48 +5283,93 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     sendMessage: function sendMessage() {
-      this.channel.sendMessage(this.newMessage);
-      this.newMessage = "";
-    },
-    sendMediaMessage: function sendMediaMessage(_ref2) {
-      var target = _ref2.target;
-      var formData = new FormData();
-      formData.append('file', target.files[0]);
-      this.channel.sendMessage(formData);
-      target.value = "";
-    },
-    pushToArray: function pushToArray(message) {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
-        var mediaUrl;
+        var _yield$axios$post2, data;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
+                _this5.channel.sendMessage(_this5.newMessage);
+
+                _context6.next = 3;
+                return axios.post("/twilio/store/chat", {
+                  chat: _this5.newMessage,
+                  channelSid: _this5.otherUser.channelSid
+                });
+
+              case 3:
+                _yield$axios$post2 = _context6.sent;
+                data = _yield$axios$post2.data;
+                _this5.newMessage = "";
+
+              case 6:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    },
+    sendMediaMessage: function sendMediaMessage(_ref2) {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
+        var target, formData;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                target = _ref2.target;
+                formData = new FormData();
+                formData.append('file', target.files[0]);
+
+                _this6.channel.sendMessage(formData);
+
+                target.value = "";
+
+              case 5:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }))();
+    },
+    pushToArray: function pushToArray(message) {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
+        var mediaUrl;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
                 if (!(message.type === 'media')) {
-                  _context6.next = 7;
+                  _context8.next = 7;
                   break;
                 }
 
-                _context6.next = 3;
+                _context8.next = 3;
                 return message.media.getContentUrl();
 
               case 3:
-                mediaUrl = _context6.sent;
+                mediaUrl = _context8.sent;
 
-                _this5.messages.push({
+                _this7.messages.push({
                   type: message.type,
                   author: message.author,
                   body: mediaUrl,
                   mediaUrl: mediaUrl
                 });
 
-                _context6.next = 8;
+                _context8.next = 8;
                 break;
 
               case 7:
-                _this5.messages.push({
+                _this7.messages.push({
                   type: message.type,
                   author: message.author,
                   body: message.body
@@ -5343,10 +5377,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 8:
               case "end":
-                return _context6.stop();
+                return _context8.stop();
             }
           }
-        }, _callee6);
+        }, _callee8);
       }))();
     }
   }

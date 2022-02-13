@@ -8,7 +8,6 @@ use Twilio\Jwt\AccessToken;
 use App\Models\User;
 use Twilio\Jwt\Grants\VideoGrant;
 use Twilio\Jwt\Grants\ChatGrant;
-use App\Models\Room;
 use Auth;
 use Str;
 class AccessTokenController extends Controller

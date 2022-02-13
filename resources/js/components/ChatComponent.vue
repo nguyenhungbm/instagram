@@ -91,15 +91,19 @@ export default {
         },
         async fetchMessages() {
             const messages = (await this.channel.getMessages()).items;
-            for (const message of messages) {
-                this.pushToArray(message)
-            }
+             const { data } = await axios.get("/twilio/list/chat/"+this.otherUser.channelSid);
+            this.messages = data;
+            console.log("123"+this.messages);
         },
-        sendMessage() {
+        async sendMessage() {
             this.channel.sendMessage(this.newMessage);
+            const { data } = await axios.post("/twilio/store/chat", {
+                chat: this.newMessage,
+                channelSid : this.otherUser.channelSid
+            });
             this.newMessage = "";
         },
-        sendMediaMessage({ target }) {
+        async sendMediaMessage({ target }) {
             const formData = new FormData();
             formData.append('file', target.files[0]);
             this.channel.sendMessage(formData);
