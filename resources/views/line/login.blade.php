@@ -69,7 +69,7 @@
             })
         }
         document.addEventListener('DOMContentLoaded', () => {
-            initialLiff('1656739492-QR8rXbjM');
+            initialLiff('1656890730-LlDPPVBw');
         })
         document.getElementById("login").addEventListener('click',function(){
             liff.login();
