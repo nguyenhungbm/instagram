@@ -23,7 +23,7 @@ body {
                     </li>
                 </a>
                 @else
-                <a href="{{ route('messages.chat', [ 'ids' => auth()->user()->id  . '-' . $list->user_id ]) }}">
+                <a href="{{ route('messages.chat', [ 'ids' => auth()->user()->id  . '-' . $list->id ]) }}">
                     <li class="clr">
                         <img src="{{ pare_url_file($list->avatar,'user') }}">
                         <p style="margin-top: 10px;">{{ $list->c_name}}</p> <br>

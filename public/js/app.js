@@ -5254,8 +5254,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
-        var messages, _yield$axios$get, data;
-
+        var messages;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
@@ -5265,16 +5264,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 messages = _context5.sent.items;
-                _context5.next = 5;
-                return axios.get("/twilio/list/chat/" + _this4.otherUser.channelSid);
 
-              case 5:
-                _yield$axios$get = _context5.sent;
-                data = _yield$axios$get.data;
-                _this4.messages = data;
-                console.log("123" + _this4.messages);
-
-              case 9:
+              case 3:
               case "end":
                 return _context5.stop();
             }
@@ -5286,8 +5277,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
-        var totalMessages, message, _yield$axios$post2, data;
-
+        var totalMessages, message;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
@@ -5305,19 +5295,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 6:
                 _context6.t0 = totalMessages - 1;
                 message = _context6.sent.items[_context6.t0];
-                _context6.next = 10;
-                return axios.post("/twilio/store/chat", {
-                  body: message.body,
-                  channelSid: _this5.otherUser.channelSid,
-                  type: message.type
-                });
+                console.log(message); // const { data } = await axios.post("/twilio/store/chat", {
+                //     body: message.body,
+                //     channelSid : this.otherUser.channelSid,
+                //     type : message.type
+                // });
 
-              case 10:
-                _yield$axios$post2 = _context6.sent;
-                data = _yield$axios$post2.data;
                 _this5.newMessage = "";
 
-              case 13:
+              case 10:
               case "end":
                 return _context6.stop();
             }
@@ -5329,8 +5315,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
-        var target, formData, totalMessages, message, _yield$axios$post3, data;
-
+        var target, formData, totalMessages, message;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
@@ -5352,20 +5337,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 9:
                 _context7.t0 = totalMessages - 1;
                 message = _context7.sent.items[_context7.t0];
-                console.log(message);
-                _context7.next = 14;
-                return axios.post("/twilio/store/chat", {
-                  body: message.media.state.filename,
-                  channelSid: _this6.otherUser.channelSid,
-                  type: message.media.state.contentType
-                });
+                console.log(message); // const { data } = await axios.post("/twilio/store/chat", {
+                //     body: message.media.state.filename,
+                //     channelSid : this.otherUser.channelSid,
+                //     type : message.media.state.contentType
+                // });
 
-              case 14:
-                _yield$axios$post3 = _context7.sent;
-                data = _yield$axios$post3.data;
                 target.value = "";
 
-              case 17:
+              case 13:
               case "end":
                 return _context7.stop();
             }

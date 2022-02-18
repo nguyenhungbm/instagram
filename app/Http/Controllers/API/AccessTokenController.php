@@ -10,12 +10,12 @@ use Twilio\Jwt\Grants\VideoGrant;
 use Twilio\Jwt\Grants\ChatGrant;
 use Auth;
 use Str;
+use Log;
 class AccessTokenController extends Controller
 {
     public function generate_token_video()
     {
         // Substitute your Twilio Account SID and API Key details 
-
         $accountSid     = \Config::get('env.twilio_account_sid');
         $apiKeySid      = \Config::get('env.twilio_api_key_sid');
         $apiKeySecret   = \Config::get('env.twilio_api_key_secret');

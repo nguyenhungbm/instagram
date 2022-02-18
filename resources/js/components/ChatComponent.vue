@@ -91,19 +91,18 @@ export default {
         },
         async fetchMessages() {
             const messages = (await this.channel.getMessages()).items;
-             const { data } = await axios.get("/twilio/list/chat/"+this.otherUser.channelSid);
-            this.messages = data;
-            console.log("123"+this.messages);
+              
         },
         async sendMessage() {
             this.channel.sendMessage(this.newMessage);
             const totalMessages = (await this.channel.getMessages()).items.length;
             const message = (await this.channel.getMessages()).items[totalMessages-1];
-            const { data } = await axios.post("/twilio/store/chat", {
-                body: message.body,
-                channelSid : this.otherUser.channelSid,
-                type : message.type
-            });
+            console.log(message);
+            // const { data } = await axios.post("/twilio/store/chat", {
+            //     body: message.body,
+            //     channelSid : this.otherUser.channelSid,
+            //     type : message.type
+            // });
             this.newMessage = "";
         },
         async sendMediaMessage({ target }) {
@@ -113,11 +112,11 @@ export default {
             const totalMessages = (await this.channel.getMessages()).items.length;
             const message = (await this.channel.getMessages()).items[totalMessages-1];
             console.log(message);
-            const { data } = await axios.post("/twilio/store/chat", {
-                body: message.media.state.filename,
-                channelSid : this.otherUser.channelSid,
-                type : message.media.state.contentType
-            });
+            // const { data } = await axios.post("/twilio/store/chat", {
+            //     body: message.media.state.filename,
+            //     channelSid : this.otherUser.channelSid,
+            //     type : message.media.state.contentType
+            // });
             target.value = "";
         },
         async pushToArray (message) {

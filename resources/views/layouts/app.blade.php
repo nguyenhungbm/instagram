@@ -12,7 +12,7 @@
         <meta name="title" content="Instagram">
         <meta name="description" content="Website kết nối mọi người với nhau , cùng nhau chia sẻ những khoảnh khắc đáng nhớ">
         <meta name="userId" content="{{ Auth::check() ? Auth::user()->id : 'null' }}">
-        <title>{{ __('translate.'.$title) ?? 'Instagram'}}</title>
+        <title>@if(isset($title)) {{ __('translate.'.$title) }} @else 'Instagram' @endif</title>
         <link rel="stylesheet" href="{{ asset('css/header.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/direct.css') }}">

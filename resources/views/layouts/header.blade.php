@@ -1,10 +1,12 @@
 @php
-    $home="img/home.png";
+    $home="img/home-active.png";
     $direct="img/direct.png";
     $explore="img/explore.png"; 
-    if($title=='Khám phá') $explore="img/explore-active.png";
-    elseif($title=='Message' ||$title=='Chat') $direct="img/direct-active.png"; 
-    else  $home="img/home-active.png";
+    if(isset($title)) {
+        $home="img/home.png";
+        if($title=='Khám phá') $explore="img/explore-active.png";
+        elseif($title=='Message' ||$title=='Chat') $direct="img/direct-active.png"; 
+    }
 @endphp
    
 <header>
