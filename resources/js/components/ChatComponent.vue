@@ -92,9 +92,9 @@ export default {
             });
         },
         async fetchMessages() {
-            // this.messages = (await this.channel.getMessages()).items;
-            const { data } = await axios.get("/twilio/list/chat/"+this.otherUser.room);
-             this.messages  = data;
+            this.messages = (await this.channel.getMessages()).items;
+            // const { data } = await axios.get("/twilio/list/chat/"+this.otherUser.room);
+            //  this.messages  = data;
         },
         async sendMessage() {
             this.channel.sendMessage(this.newMessage);

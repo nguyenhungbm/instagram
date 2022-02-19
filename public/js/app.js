@@ -5256,21 +5256,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
-        var _yield$axios$get, data;
-
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return axios.get("/twilio/list/chat/" + _this4.otherUser.room);
+                return _this4.channel.getMessages();
 
               case 2:
-                _yield$axios$get = _context5.sent;
-                data = _yield$axios$get.data;
-                _this4.messages = data;
+                _this4.messages = _context5.sent.items;
 
-              case 5:
+              case 3:
               case "end":
                 return _context5.stop();
             }
