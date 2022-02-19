@@ -28,7 +28,7 @@ class ChatController extends Controller
     }
     public function list(Request $request)
     {
-        $chat = Twilio::where('channelSid',$request->channelSid)->whereNotNull('body')->get();  
+        $chat = Twilio::where('token',$request->channel)->whereNotNull('body')->get();  
         return $chat; 
     }
     public function chat(Request $request, $ids)
@@ -41,9 +41,11 @@ class ChatController extends Controller
         })->orWhere(function ($query) use ($otherUser) {
             $query->where('author', $otherUser->email)->where('friend', Auth::user()->email);
         })->first();
+        
+        $twilio = new Client(\Config::get('env.twilio_account_sid'), \Config::get('env.twilio_account_token'));
+        // Fetch channel or create a new one if it doesn't exist
+         
         if(!$room){
-            $twilio = new Client(\Config::get('env.twilio_account_sid'), \Config::get('env.twilio_account_token'));
-            // Fetch channel or create a new one if it doesn't exist
             $channel = $twilio->conversations->v1->conversations 
                         ->create([
                             "uniqueName" => $authUser->id . '-' . $otherUser->id,
@@ -71,6 +73,7 @@ class ChatController extends Controller
                 'channelSid' => $channel->sid
             ]);
     }
+    
         $title = 'Chat';
         $otherUser->room = $room->token;
         $otherUser->channelSid = $room->serviceSid;

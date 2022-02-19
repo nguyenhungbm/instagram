@@ -1,13 +1,14 @@
 <template>
     <div class="card">
+        <form action="" method="post" enctype="multipart/form-data">
        <div class="bottom-right position-relative" id="hihi">
             <div v-for="message in messages" v-bind:key="message.id">
             <div class="my-messages position-relative" v-if="message.author === authUser.email">
                 <div class="time">{{ message.created_at | formatDate }}</div>  
                     <div class="me-messages"> 
-                        <img class="img-mess float-right"  :id="'img'+message.body" @error="hidden('img'+message.body)" :src="message.body" v-if="message.body.substr(0,4)=='http'">
+                        <img class="img-mess float-right"  :id="'img'+message.body" @error="hidden('img'+message.body)" :src="message.body" v-if="message.type == 'image'">
                         <p v-else> {{  message.body }}</p>
-                        <audio controls class="float-right" :id="'audio'+message.body" v-if="message.body.substr(0,4)=='http'">
+                        <audio controls class="float-right" :id="'audio'+message.body" v-if="message.type == 'audio'">
                         <source @error="hidden('audio'+message.body)" :src="message.body" type="audio/mp3">
                         </audio>
                     </div>
@@ -19,9 +20,9 @@
                     <img :src="otherUser.avatar" class="friend-img rounded-circle" v-if="otherUser.avatar.substr(0,4)=='http'">
                 </a> 
                 <div class="friend-chat">  
-                     <img class="img-mess float-right"  :id="'img'+message.body" @error="hidden('img'+message.body)" :src="message.body" v-if="message.body.substr(0,4)=='http'">
+                     <img class="img-mess float-right"  :id="'img'+message.body" @error="hidden('img'+message.body)" :src="message.body" v-if="message.type == 'image'">
                         <p v-else> {{  message.body }}</p>
-                    <audio controls class="float-right" :id="'audio'+message.body" v-if="message.body.substr(0,4)=='http'">
+                    <audio controls class="float-right" :id="'audio'+message.body" v-if="message.type == 'audio'">
                         <source @error="hidden('audio'+message.body)" :src="message.body" type="audio/mp3">
                     </audio>
                 </div>
@@ -40,6 +41,7 @@
               <input type="file"  id="img" class="d-none" accept="image/*" @change="sendMediaMessage">
               <input type="file"  id="audio" class="d-none" accept="audio/*" @change="sendMediaMessage">
         </div>
+    </form>
     </div>
 </template>
 
@@ -63,7 +65,7 @@ export default {
             channel: "",
         };
     },
-    async created() {
+    async created() { 
         const token = await this.fetchToken();
         await this.initializeClient(token,this.otherUser.room);
         await this.fetchMessages();
@@ -90,20 +92,20 @@ export default {
             });
         },
         async fetchMessages() {
-            const messages = (await this.channel.getMessages()).items;
-              
+            // this.messages = (await this.channel.getMessages()).items;
+            const { data } = await axios.get("/twilio/list/chat/"+this.otherUser.room);
+             this.messages  = data;
         },
         async sendMessage() {
             this.channel.sendMessage(this.newMessage);
+            this.newMessage = "";
             const totalMessages = (await this.channel.getMessages()).items.length;
             const message = (await this.channel.getMessages()).items[totalMessages-1];
-            console.log(message);
             // const { data } = await axios.post("/twilio/store/chat", {
             //     body: message.body,
             //     channelSid : this.otherUser.channelSid,
             //     type : message.type
             // });
-            this.newMessage = "";
         },
         async sendMediaMessage({ target }) {
             const formData = new FormData();

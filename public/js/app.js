@@ -5118,6 +5118,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ChatComponent",
   props: {
@@ -5254,18 +5256,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
-        var messages;
+        var _yield$axios$get, data;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return _this4.channel.getMessages();
+                return axios.get("/twilio/list/chat/" + _this4.otherUser.room);
 
               case 2:
-                messages = _context5.sent.items;
+                _yield$axios$get = _context5.sent;
+                data = _yield$axios$get.data;
+                _this4.messages = data;
 
-              case 3:
+              case 5:
               case "end":
                 return _context5.stop();
             }
@@ -5284,26 +5289,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _this5.channel.sendMessage(_this5.newMessage);
 
-                _context6.next = 3;
+                _this5.newMessage = "";
+                _context6.next = 4;
                 return _this5.channel.getMessages();
 
-              case 3:
+              case 4:
                 totalMessages = _context6.sent.items.length;
-                _context6.next = 6;
+                _context6.next = 7;
                 return _this5.channel.getMessages();
 
-              case 6:
+              case 7:
                 _context6.t0 = totalMessages - 1;
                 message = _context6.sent.items[_context6.t0];
-                console.log(message); // const { data } = await axios.post("/twilio/store/chat", {
-                //     body: message.body,
-                //     channelSid : this.otherUser.channelSid,
-                //     type : message.type
-                // });
 
-                _this5.newMessage = "";
-
-              case 10:
+              case 9:
               case "end":
                 return _context6.stop();
             }
@@ -95844,188 +95843,222 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c(
-      "div",
-      { staticClass: "bottom-right position-relative", attrs: { id: "hihi" } },
+      "form",
+      { attrs: { action: "", method: "post", enctype: "multipart/form-data" } },
       [
-        _vm._l(_vm.messages, function(message) {
-          return _c("div", { key: message.id }, [
-            message.author === _vm.authUser.email
-              ? _c("div", { staticClass: "my-messages position-relative" }, [
-                  _c("div", { staticClass: "time" }, [
-                    _vm._v(_vm._s(_vm._f("formatDate")(message.created_at)))
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "me-messages" }, [
-                    message.body.substr(0, 4) == "http"
-                      ? _c("img", {
-                          staticClass: "img-mess float-right",
-                          attrs: {
-                            id: "img" + message.body,
-                            src: message.body
-                          },
-                          on: {
-                            error: function($event) {
-                              return _vm.hidden("img" + message.body)
-                            }
-                          }
-                        })
-                      : _c("p", [_vm._v(" " + _vm._s(message.body))]),
-                    _vm._v(" "),
-                    message.body.substr(0, 4) == "http"
-                      ? _c(
-                          "audio",
-                          {
-                            staticClass: "float-right",
-                            attrs: { controls: "", id: "audio" + message.body }
-                          },
-                          [
-                            _c("source", {
-                              attrs: { src: message.body, type: "audio/mp3" },
-                              on: {
-                                error: function($event) {
-                                  return _vm.hidden("audio" + message.body)
-                                }
-                              }
-                            })
-                          ]
-                        )
-                      : _vm._e()
-                  ])
-                ])
-              : _c(
-                  "div",
-                  { staticClass: "friend-messages clr position-relative" },
-                  [
-                    _c("div", { staticClass: "time" }, [
-                      _vm._v(_vm._s(_vm._f("formatDate")(message.created_at)))
-                    ]),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "/" + _vm.otherUser.user } }, [
-                      _vm.otherUser.avatar.substr(0, 4) != "http"
-                        ? _c("img", {
-                            staticClass: "friend-img rounded-circle",
-                            attrs: {
-                              src: "/uploads/user/" + _vm.otherUser.avatar
-                            }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.otherUser.avatar.substr(0, 4) == "http"
-                        ? _c("img", {
-                            staticClass: "friend-img rounded-circle",
-                            attrs: { src: _vm.otherUser.avatar }
-                          })
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "friend-chat" }, [
-                      message.body.substr(0, 4) == "http"
-                        ? _c("img", {
-                            staticClass: "img-mess float-right",
-                            attrs: {
-                              id: "img" + message.body,
-                              src: message.body
-                            },
-                            on: {
-                              error: function($event) {
-                                return _vm.hidden("img" + message.body)
-                              }
-                            }
-                          })
-                        : _c("p", [_vm._v(" " + _vm._s(message.body))]),
-                      _vm._v(" "),
-                      message.body.substr(0, 4) == "http"
-                        ? _c(
-                            "audio",
-                            {
-                              staticClass: "float-right",
-                              attrs: {
-                                controls: "",
-                                id: "audio" + message.body
-                              }
-                            },
-                            [
-                              _c("source", {
-                                attrs: { src: message.body, type: "audio/mp3" },
+        _c(
+          "div",
+          {
+            staticClass: "bottom-right position-relative",
+            attrs: { id: "hihi" }
+          },
+          [
+            _vm._l(_vm.messages, function(message) {
+              return _c("div", { key: message.id }, [
+                message.author === _vm.authUser.email
+                  ? _c(
+                      "div",
+                      { staticClass: "my-messages position-relative" },
+                      [
+                        _c("div", { staticClass: "time" }, [
+                          _vm._v(
+                            _vm._s(_vm._f("formatDate")(message.created_at))
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "me-messages" }, [
+                          message.type == "image"
+                            ? _c("img", {
+                                staticClass: "img-mess float-right",
+                                attrs: {
+                                  id: "img" + message.body,
+                                  src: message.body
+                                },
                                 on: {
                                   error: function($event) {
-                                    return _vm.hidden("audio" + message.body)
+                                    return _vm.hidden("img" + message.body)
                                   }
                                 }
                               })
-                            ]
+                            : _c("p", [_vm._v(" " + _vm._s(message.body))]),
+                          _vm._v(" "),
+                          message.type == "audio"
+                            ? _c(
+                                "audio",
+                                {
+                                  staticClass: "float-right",
+                                  attrs: {
+                                    controls: "",
+                                    id: "audio" + message.body
+                                  }
+                                },
+                                [
+                                  _c("source", {
+                                    attrs: {
+                                      src: message.body,
+                                      type: "audio/mp3"
+                                    },
+                                    on: {
+                                      error: function($event) {
+                                        return _vm.hidden(
+                                          "audio" + message.body
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e()
+                        ])
+                      ]
+                    )
+                  : _c(
+                      "div",
+                      { staticClass: "friend-messages clr position-relative" },
+                      [
+                        _c("div", { staticClass: "time" }, [
+                          _vm._v(
+                            _vm._s(_vm._f("formatDate")(message.created_at))
                           )
-                        : _vm._e()
-                    ])
-                  ]
-                )
-          ])
-        }),
+                        ]),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "/" + _vm.otherUser.user } }, [
+                          _vm.otherUser.avatar.substr(0, 4) != "http"
+                            ? _c("img", {
+                                staticClass: "friend-img rounded-circle",
+                                attrs: {
+                                  src: "/uploads/user/" + _vm.otherUser.avatar
+                                }
+                              })
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.otherUser.avatar.substr(0, 4) == "http"
+                            ? _c("img", {
+                                staticClass: "friend-img rounded-circle",
+                                attrs: { src: _vm.otherUser.avatar }
+                              })
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "friend-chat" }, [
+                          message.type == "image"
+                            ? _c("img", {
+                                staticClass: "img-mess float-right",
+                                attrs: {
+                                  id: "img" + message.body,
+                                  src: message.body
+                                },
+                                on: {
+                                  error: function($event) {
+                                    return _vm.hidden("img" + message.body)
+                                  }
+                                }
+                              })
+                            : _c("p", [_vm._v(" " + _vm._s(message.body))]),
+                          _vm._v(" "),
+                          message.type == "audio"
+                            ? _c(
+                                "audio",
+                                {
+                                  staticClass: "float-right",
+                                  attrs: {
+                                    controls: "",
+                                    id: "audio" + message.body
+                                  }
+                                },
+                                [
+                                  _c("source", {
+                                    attrs: {
+                                      src: message.body,
+                                      type: "audio/mp3"
+                                    },
+                                    on: {
+                                      error: function($event) {
+                                        return _vm.hidden(
+                                          "audio" + message.body
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e()
+                        ])
+                      ]
+                    )
+              ])
+            }),
+            _vm._v(" "),
+            _vm.messages.length == 0
+              ? _c("div", { staticClass: "no-message" }, [
+                  _vm._v("\n    Không có tin nhắn\n")
+                ])
+              : _vm._e()
+          ],
+          2
+        ),
         _vm._v(" "),
-        _vm.messages.length == 0
-          ? _c("div", { staticClass: "no-message" }, [
-              _vm._v("\n    Không có tin nhắn\n")
-            ])
-          : _vm._e()
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-chat position-absolute" }, [
-      _c("img", {
-        staticClass: "img-1 w-30",
-        attrs: { src: "/img/happy.png" }
-      }),
-      _vm._v(" "),
-      _c("textarea", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.newMessage,
-            expression: "newMessage"
-          }
-        ],
-        staticClass: "input",
-        attrs: { id: "myTextarea", placeholder: "Nhắn tin...", autofocus: "" },
-        domProps: { value: _vm.newMessage },
-        on: {
-          keyup: function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
+        _c("div", { staticClass: "form-chat position-absolute" }, [
+          _c("img", {
+            staticClass: "img-1 w-30",
+            attrs: { src: "/img/happy.png" }
+          }),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.newMessage,
+                expression: "newMessage"
+              }
+            ],
+            staticClass: "input",
+            attrs: {
+              id: "myTextarea",
+              placeholder: "Nhắn tin...",
+              autofocus: ""
+            },
+            domProps: { value: _vm.newMessage },
+            on: {
+              keyup: function($event) {
+                if (
+                  !$event.type.indexOf("key") &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
+                }
+                return _vm.sendMessage($event)
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.newMessage = $event.target.value
+              }
             }
-            return _vm.sendMessage($event)
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.newMessage = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.sendMessage } }, [_vm._v("Gửi")]),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "d-none",
-        attrs: { type: "file", id: "img", accept: "image/*" },
-        on: { change: _vm.sendMediaMessage }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "d-none",
-        attrs: { type: "file", id: "audio", accept: "audio/*" },
-        on: { change: _vm.sendMediaMessage }
-      })
-    ])
+          }),
+          _vm._v(" "),
+          _c("button", { on: { click: _vm.sendMessage } }, [_vm._v("Gửi")]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "d-none",
+            attrs: { type: "file", id: "img", accept: "image/*" },
+            on: { change: _vm.sendMediaMessage }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "d-none",
+            attrs: { type: "file", id: "audio", accept: "audio/*" },
+            on: { change: _vm.sendMediaMessage }
+          })
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [

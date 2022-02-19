@@ -28,7 +28,7 @@ class ChatController extends Controller
             'token'      => $message->token,
             'repeats'    => 1,
             'channelSid' => $message->channelSid,
-            'type' => $request['Media'] ?? 'text'
+            'type' => $request['Media'] ? 'media' : 'text'
         ]);
         return 200; 
     }
