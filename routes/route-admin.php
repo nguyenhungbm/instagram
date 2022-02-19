@@ -18,7 +18,7 @@ Route::group(['prefix'=>'api-admin','namespace'=>'Admin','middleware'=>'check_ad
     Route::get('post','HomeController@post')->name('admin.post');
 
      Route::group(['prefix'=>'admin'],function(){
-        Route::get('','AdminController@index')->name('admin.index')->middleware('check_admin_permission:view-admin');
+        Route::get('','AdminController@index')->name('admin.index');
         Route::get('create','AdminController@create')->name('admin.create');
         Route::post('create','AdminController@store')->name('admin.store')->middleware('check_admin_permission:create-admin');
         Route::get('update/{id}','AdminController@edit')->name('admin.edit');
