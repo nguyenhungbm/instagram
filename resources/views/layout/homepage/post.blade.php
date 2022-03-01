@@ -6,17 +6,17 @@
                 <i class="fa fa-comment"></i> 
                 <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>
             </div>
-            <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}" id="image{{$key}}">
+            <img src="{{ pare_url_file($val->p_image, 'profile/img_small') }}" id="image{{$key}}">
         </div>
         <div id="myModall{{$val->id}}" class="modal hei">
             <div class="csg">
-                <img src="{{ pare_url_file($val->p_image,'profile/img_large') }}" class="csq"> 
+                <img src="{{ pare_url_file($val->p_image, 'profile/img_large') }}" class="csq"> 
                 <div class="cle">
                     <div class="heq">
-                        <div class="hew"><a href="{{ route('get.home-page',$val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar,'user') }}" class="avatar_user_uploaded"></a> </div>
+                        <div class="hew"><a href="{{ route('get.home-page', $val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar, 'user') }}" class="avatar_user_uploaded"></a> </div>
                         <div class="hee">
-                            <p><a href="{{ route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}} </a></b>
-                                @if($val->p_user==$user->id)
+                            <p><a href="{{ route('get.home-page', $val->user->user)}}"><b>{{$val->user->c_name}} </a></b>
+                                @if($val->p_user== $user->id)
                                 @else
                                 &#8729; <b>{{ __('translate.folowing')}}</b>
                                 @endif
@@ -27,9 +27,9 @@
                     <div class="her hdl{{$val->id}}" id="hell">
                         @if($val->p_content!='')
                         <div class="clr het">
-                            <div class="hew"><a href="{{ route('get.home-page',$val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar,'user') }}" class="avatar_user_uploaded"></a> </div>
+                            <div class="hew"><a href="{{ route('get.home-page', $val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar, 'user') }}" class="avatar_user_uploaded"></a> </div>
                             <div class="hep">
-                                <p><a href="{{ route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}}</a> </b> {{$val->p_content}}</p>
+                                <p><a href="{{ route('get.home-page', $val->user->user)}}"><b>{{$val->user->c_name}}</a> </b> {{$val->p_content}}</p>
                             </div>
                             <i class="fa fa-ellipsis-h"></i> 
                             <div class="os heo">{{ $val->created_at->diffForHumans() }} 
@@ -37,23 +37,23 @@
                         </div>
                         @endif   
                         <div class="list-comment{{$val->id}}">
-                            @foreach(\App\Models\Comment::where('c_post',$val->id)->orderBy('created_at','desc')->get() as $value => $cmt)  
+                            @foreach(\App\Models\Comment::where('c_post', $val->id)->orderBy('created_at', 'desc')->get() as $value => $cmt)  
                             <div class="clr het hjk{{$value}} "  style="display:none">
-                                <div class="hew"><a href="{{ route('get.home-page',$cmt->users->user)}}"><img src="{{ pare_url_file($cmt->users->avatar,'user') }}" class="{{ $cmt->c_user_id ==\Auth::id() ? 'avatar_user_uploaded' :''}}"></a> </div>
+                                <div class="hew"><a href="{{ route('get.home-page', $cmt->users->user)}}"><img src="{{ pare_url_file($cmt->users->avatar, 'user') }}" class="{{ $cmt->c_user_id ==\Auth::id() ? 'avatar_user_uploaded' :''}}"></a> </div>
                                 <div class="hep">
-                                    <p><b><a href="{{ route('get.home-page',$cmt->users->user)}}">{{$cmt->users->c_name}}</a> </b> {{$cmt->c_comment}}</p>
+                                    <p><b><a href="{{ route('get.home-page', $cmt->users->user)}}">{{$cmt->users->c_name}}</a> </b> {{$cmt->c_comment}}</p>
                                 </div>
                                 <i class="fa fa-ellipsis-h"></i>
                                 <div class="os heo">{{ $cmt->created_at->diffForHumans() }} </div>
-                                <input type="hidden" id="com{{ $val->id }}" value="{{\App\Models\Comment::where('c_post',$val->id)->count()}}">
+                                <input type="hidden" id="com{{ $val->id }}" value="{{\App\Models\Comment::where('c_post', $val->id)->count()}}">
                             </div>
                             @endforeach
                         </div>
-                        @if(\App\Models\Comment::where('c_post',$val->id)->count() > 5)
+                        @if(\App\Models\Comment::where('c_post', $val->id)->count() > 5)
                         <div class="buttons"><button class="button{{$val->id}} ">+</button> </div>
                         @endif
                         <script>
-                            $('body').on('click','.button{{$val->id}}',function(){  
+                            $('body').on('click', '.button{{$val->id}}',function(){  
                                 loadmore("{{$val->id}}"); 
                             }) 
                             var currentindex=0;
@@ -89,7 +89,7 @@
         </div>
         <script>   
             //click để scroll đến cuối trang
-            // $('body').on('click','#myBtnn{{$val->id}}',function(){
+            // $('body').on('click', '#myBtnn{{$val->id}}',function(){
             //    var $div = $("#hell"); 
             //    $div.scrollTop($div[0].scrollHeight);
             // })
@@ -110,7 +110,7 @@
                     }
                 })
             }else{
-                var slug =$('#slug{{$val->id}}').val();
+                var slug = $('#slug{{$val->id}}').val();
                 window.location.href='/p/'+slug;
             }
             })

@@ -56,9 +56,9 @@
                     @endforeach
                   </td>
                   <td class="d-flex">
-                    <a data-title="Cảnh báo !" href="{{ route('admin.edit',$list->id)}}" class="btn btn-sm btn-primary mr-4 twitter">Cập nhật</a>
+                    <a data-title="Cảnh báo !" href="{{ route('admin.edit', $list->id)}}" class="btn btn-sm btn-primary mr-4 twitter">Cập nhật</a>
                     
-                    <form action="{{ route('admin.destroy',$list->id)}}" method="post">
+                    <form action="{{ route('admin.destroy', $list->id)}}" method="post">
                       @method('DELETE')
                       @csrf
                       <button class="twitter btn btn-sm btn-danger">Xoá</button>

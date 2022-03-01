@@ -15,34 +15,34 @@ class HomeController extends Controller
     public function index(Request $request)
     {       
         //tất cả bài viết của những người bạn theo dõi
-        $posts =Post::join('follows','follows.followed','posts.p_user')
+        $posts =Post::join('follows', 'follows.followed', 'posts.p_user')
                     ->where('follows.user_id',\Auth::id())
-                    ->where('posts.p_type','profile')
+                    ->where('posts.p_type', 'profile')
                     ->select('posts.*')
-                    ->orderBy('created_at','desc')
+                    ->orderBy('created_at', 'desc')
                     ->simplePaginate(5);  
 
-        $count_post =Post::join('follows','follows.followed','posts.p_user')
+        $count_post =Post::join('follows', 'follows.followed', 'posts.p_user')
             ->where('follows.user_id',\Auth::id())
-            ->where('posts.p_type','profile')
+            ->where('posts.p_type', 'profile')
             ->count();
 
         $areFollow =Follow::where(['user_id'=>\Auth::id()])->get();
         $list =[];
         foreach($areFollow as $val){
-            array_push($list,$val->followed);
+            array_push($list, $val->followed);
         }
         $user=[];
         if(!count($areFollow)){
-            $user =User::where('id','!=',\Auth::id())
-            ->orderBy('picture','desc')
+            $user =User::where('id', '!=',\Auth::id())
+            ->orderBy('picture', 'desc')
             ->take(5)
             ->get(); 
         } 
         else{
-            $user =User::whereNotIn('id',$list)
-                        ->where('id','!=',\Auth::id())
-                        ->orderBy('picture','desc')
+            $user =User::whereNotIn('id', $list)
+                        ->where('id', '!=',\Auth::id())
+                        ->orderBy('picture', 'desc')
                         ->inRandomOrder()
                         ->take(5)
                         ->get(); 
@@ -51,7 +51,7 @@ class HomeController extends Controller
     $output = '';
     if ($request->ajax()) {
         foreach ($posts as $key =>$val) {
-            $output.= view('layout.homes.post',compact('key','val'))->render();
+            $output.= view('layout.homes.post',compact('key', 'val'))->render();
         }   
         return $output;
     }
@@ -61,17 +61,17 @@ class HomeController extends Controller
             'user'  => $user,     
             'title' => 'Instagram'
         ];
-        return view('welcome',$data);
+        return view('welcome', $data);
     }
     public function search(Request $request){
         // full text search 
-        $val = User::where('id','!=',\Auth::id())
+        $val = User::where('id', '!=',\Auth::id())
                     ->search($request->value)
                     ->get();
 
-        // $val =  User::where('id','!=',\Auth::id())
-        //         ->where('user','like','%'.$request->value.'%')
-        //         ->orwhere('c_name','like','%'.$request->value.'%')
+        // $val =  User::where('id', '!=',\Auth::id())
+        //         ->where('user', 'like', '%'.$request->value.'%')
+        //         ->orwhere('c_name', 'like', '%'.$request->value.'%')
         //         ->get();
         if(!$val->isEmpty())
             return view('layout.header.data',compact('val'))->render();

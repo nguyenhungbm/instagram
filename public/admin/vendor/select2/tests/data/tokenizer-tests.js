@@ -20,7 +20,7 @@ test('triggers the select event', function (assert) {
 
   var options = new Options({
     tags: true,
-    tokenSeparators: [',']
+    tokenSeparators: [', ']
   });
 
   var container = new MockContainer();
@@ -62,7 +62,7 @@ test('createTag can return null', function (assert) {
 
   var options = new Options({
     tags: true,
-    tokenSeparators: [','],
+    tokenSeparators: [', '],
     createTag: function () {
       assert.ok(true, 'createTag should have been called');
 
@@ -111,7 +111,7 @@ test('createTag returning null does not cut the term', function (assert) {
 
   var options = new Options({
     tags: true,
-    tokenSeparators: [',', '"'],
+    tokenSeparators: [', ', '"'],
     createTag: function (params) {
       var term = params.term;
 
@@ -190,7 +190,7 @@ test('works with multiple tokens given', function (assert) {
 
   var options = new Options({
     tags: true,
-    tokenSeparators: [',']
+    tokenSeparators: [', ']
   });
 
   var container = new MockContainer();

@@ -22,6 +22,6 @@ class AdminTable extends Component
             'admin'  => $admin,
             'role_count' => $role_count 
         ];
-        return view('livewire.admin-table',$data);
+        return view('livewire.admin-table', $data);
     }   
 }

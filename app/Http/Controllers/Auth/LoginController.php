@@ -30,8 +30,8 @@ class LoginController extends Controller
                 'message' => 'Bạn chưa điền mật khẩu',
             ]);
         }
-        $data =$request->only('email','password');
-        $user = User::where('email',$request->email)->first();
+        $data = $request->only('email', 'password');
+        $user = User::where('email', $request->email)->first();
         if(Auth::attempt($data) || Auth::attempt(['user'=> $request->email , 'password' => $request->password]) || 
         Auth::attempt(['id'=> $request->email , 'password' => $request->password]) ||
         Auth::attempt(['phone'=> $request->email , 'password' => $request->password])
@@ -45,7 +45,7 @@ class LoginController extends Controller
             }
             else if(Auth::user()->is_active ==0){
                 Auth::logout();
-                Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$user->user));
+                Mail::to($request->email)->send(new RegisterSuccess($request->c_name, $user->user));
                 return response()->json([
                     'status' => '400',
                     'message' => 'Tài khoản của bạn chưa được xác thực . Chúng tôi đã gửi một email đến '.$request->email.' với một liên kết để xác thực tài khoản của bạn.',
@@ -68,7 +68,7 @@ class LoginController extends Controller
         }
     }
     public function loginByToken(Request $request){
-        $user = User::where('remember_token',$request->token)->first();
+        $user = User::where('remember_token', $request->token)->first();
         if($user)
        {
         $login = Auth::loginUsingId($user->id, true);

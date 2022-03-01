@@ -8,10 +8,10 @@ class UserService{
     public function follow($data){
         $data['user_id']=Auth::user()->id;
         $data['created_at']=Carbon::now(); 
-        $isFollow =Follow::where(['user_id'=>Auth::user()->id,'followed'=>$data['followed']])->count();
+        $isFollow =Follow::where(['user_id'=>Auth::user()->id, 'followed'=>$data['followed']])->count();
         if($isFollow){
-            Follow::where(['user_id'=>Auth::user()->id,'followed'=>$data['followed']])->delete();
-            User::where('id',$data['followed'])->decrement('follower');
+            Follow::where(['user_id'=>Auth::user()->id, 'followed'=>$data['followed']])->delete();
+            User::where('id', $data['followed'])->decrement('follower');
             return response([
                 'action'            => 'bot',
                 'user'              => User::find($data['followed']),
@@ -24,12 +24,12 @@ class UserService{
         }
         else{
             $id=Follow::insertGetId($data); 
-            User::where('id',$data['followed'])->increment('follower');
+            User::where('id', $data['followed'])->increment('follower');
             return response([
                 'action'            => 'them',
                 'user'              => User::find($data['followed']),
                 'auth'              => Auth::user(),
-                'avatar'            => pare_url_file(Auth::user()->avatar,'user'),
+                'avatar'            => pare_url_file(Auth::user()->avatar, 'user'),
                 'followed'          => Follow::where('user_id',Auth::id())->count(),
                 'text_follow'       => ucwords(__('translate.folowing')),
                 'see_user_follow'   => __('translate.Message'),
@@ -45,9 +45,9 @@ class UserService{
         //     unlink(public_path('uploads/user/'.$user->avatar));
         // }
         if ($request->hasFile('upload_user_avatar')) {
-        $image = upload_image('upload_user_avatar','user');
+        $image = upload_image('upload_user_avatar', 'user');
         if($image['code']==1)
-            $user->avatar=$image['name'];
+            $user->avatar = $image['name'];
         }
         if($user->update())
             return User::find(Auth::user()->id);

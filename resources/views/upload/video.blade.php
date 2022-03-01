@@ -83,7 +83,7 @@
 Dropzone.options.dropzoneForm = {
     autoProcessQueue : false,
     maxFiles: 1,
-    acceptedFiles : ".mp4,.mp3,.flv,.avi,.wmv,.mov,.jpg,'png','jpeg",
+    acceptedFiles : ".mp4,.mp3,.flv,.avi,.wmv,.mov,.jpg, 'png', 'jpeg",
 
     init:function(){
       var submitButton = document.querySelector("#submit-all");

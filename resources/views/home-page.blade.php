@@ -73,12 +73,12 @@
                         @foreach($userFollow as $list)
                         <li class="clr user{{$list->user_id}}" style="height: 50px;">
                             <a href="{{ $list->users->user }}" class="zx position-relative ">
-                                <img src="{{ pare_url_file($list->users->avatar,'user') }}" class="w-35 rounded-circle">
+                                <img src="{{ pare_url_file($list->users->avatar, 'user') }}" class="w-35 rounded-circle">
                                 <b class="zz">{{ $list->users->user }}</b> 
                                 <b class="os zpo">{{ $list->users->c_name }}</b>
                             </a>
                             @if($list->user_id!=\Auth::id())
-                            @if(\App\Models\Follow::checkFollow(\Auth::id(),$list->user_id))
+                            @if(\App\Models\Follow::checkFollow(\Auth::id(), $list->user_id))
                             @if($user->id != \Auth::id())
                             <button class="followss zc{{$list->user_id}}"
                                 onclick="followInOtherPage('{{$list->user_id}}')">
@@ -135,13 +135,13 @@
                         @foreach($areFollow as $key=> $list)
                         <li class="clr users{{$list->friends->id}}" style="height: 50px;">
                             <a href="{{ $list->friends->user }}" class="zx position-relative">
-                                <img src="{{ pare_url_file($list->friends->avatar,'user') }}"
+                                <img src="{{ pare_url_file($list->friends->avatar, 'user') }}"
                                     class="w-35 rounded-circle">
                                 <b class="zz">{{ $list->friends->user }}</b> 
                                 <b class="os zpo">{{ $list->friends->c_name }}</b>
                             </a>
                             @if($list->friends->id!=\Auth::id())
-                            @if(\App\Models\Follow::checkFollow(\Auth::id(),$list->friends->id))
+                            @if(\App\Models\Follow::checkFollow(\Auth::id(), $list->friends->id))
                             @if($user->id != \Auth::id())
                             <button class="followss zc{{$list->friends->id}}"
                                 onclick="followInOtherPage('{{$list->friends->id}}')">

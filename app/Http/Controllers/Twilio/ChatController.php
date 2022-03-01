@@ -17,22 +17,23 @@ class ChatController extends Controller
     {
         $this->middleware('auth');
     }
-    // https://www.twilio.com/blog/add-chat-laravel-php-app-twilio-chat
+    //https://www.twilio.com/blog/twilio-conversations-vue-js-part-two ( VueJs)
+    // https://www.twilio.com/blog/add-chat-laravel-php-app-twilio-chat ( Laravel + Vuejs)
     // Lỗi Undefined index: name -> https://stackoverflow.com/questions/61177995/laravel-packagemanifest-php-undefined-index-name
     // Lỗi chỉ hiện tin nhắn của 1 bên : do khác channel đặt trong hàm "await client.getChannelByUniqueName(room);"
     public function index(Request $request)
     {
         $users = User::take(10)->get();
         $title = 'Chat';
-        return view('twilio.messages.index', compact('users','title')); 
+        return view('twilio.messages.index', compact('users', 'title')); 
     }
     public function list(Request $request)
     {
-        $chat = Twilio::where('token',$request->channel)->whereNotNull('body')->get();  
+        $chat = Twilio::where('token', $request->channel)->whereNotNull('body')->get();  
         return $chat; 
     }
     public function chat(Request $request, $ids)
-    { 
+    {  
         $authUser = $request->user();
         $otherUser = User::find(explode('-', $ids)[1]);
         $users = User::take(10)->get();
@@ -44,7 +45,6 @@ class ChatController extends Controller
         
         $twilio = new Client(\Config::get('env.twilio_account_sid'), \Config::get('env.twilio_account_token'));
         // Fetch channel or create a new one if it doesn't exist
-         
         if(!$room){
             $channel = $twilio->conversations->v1->conversations 
                         ->create([
@@ -76,13 +76,13 @@ class ChatController extends Controller
     
         $title = 'Chat';
         $otherUser->room = $room->token;
-        $otherUser->channelSid = $room->serviceSid;
-        return view('twilio.chat', compact('users', 'otherUser','title'));
+        $otherUser->channelSid = $room->channelSid;
+        return view('twilio.chat', compact('users', 'otherUser', 'title'));
     }
 
     public function store(Request $request){
         return Log::info($request->all())   ;
-        $message = Twilio::where('channelSid',$request->channelSid)->orderBy('id','desc')->first();
+        $message = Twilio::where('channelSid', $request->channelSid)->orderBy('id', 'desc')->first();
         if($message->author == Auth::user()->email){
             $friend = $message->friend;
         }else{

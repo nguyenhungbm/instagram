@@ -25,6 +25,6 @@ class RoleTable extends Component
             'role_count'=>$role_count,
             'role'  => $role,
         ];
-        return view('livewire.role-table',$viewData);
+        return view('livewire.role-table', $viewData);
     }
 }

@@ -13,7 +13,7 @@ class ChatController extends Controller
 {
     public function store(Request $request){
         Log::info($request->all());
-        $message = Twilio::where('channelSid',$request['ConversationSid'])->orderBy('id','desc')->first();
+        $message = Twilio::where('channelSid', $request['ConversationSid'])->orderBy('id', 'desc')->first();
         if($message->author == $request['Author']){
             $friend = $message->friend;
         }else{
@@ -21,14 +21,15 @@ class ChatController extends Controller
         }
         $message->repeats = '0';
         $message->update();
+        $url = 'https://mcs.us1.twilio.com/v1/Services/' . \Config::get('env.twilio_service_id') . '/Media/';
         $chat = Twilio::create([
             'author'    => $request['Author'],
             'friend'     => $friend, 
-            'body'       => $request['Body'],
+            'body'       => $request['Body'] ?? $url . json_decode( $request['Media'])[0]->Sid,
             'token'      => $message->token,
             'repeats'    => 1,
             'channelSid' => $message->channelSid,
-            'type' => $request['Media'] ? 'media' : 'text'
+            'type' => $request['Media'] ? json_decode( $request['Media'])[0]->ContentType  : 'text'
         ]);
         return 200; 
     }

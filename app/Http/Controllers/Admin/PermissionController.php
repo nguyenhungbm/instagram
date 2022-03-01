@@ -19,7 +19,7 @@ class PermissionController extends Controller
         $viewData=[
             'title' =>'Quyền hạn',
         ];
-        return view('admin.permission.index',$viewData);
+        return view('admin.permission.index', $viewData);
     }
     public function create()
     { 
@@ -28,11 +28,11 @@ class PermissionController extends Controller
             'permission'  => $permission,
             'title' =>'Thêm quyền hạn',
     ];
-        return view('admin.permission.create',$viewData);
+        return view('admin.permission.create', $viewData);
     }
     public function store(Request $request)
     {
-        // $permission =Permission::where('name',$request->name)->first();
+        // $permission =Permission::where('name', $request->name)->first();
         $request->validate([
             'name'=>'required',
             'display_name'=>'required',
@@ -42,7 +42,7 @@ class PermissionController extends Controller
         ]); 
         if($request->parent_id){
         foreach($request->parent_id as $val){
-            $parent_permission =Permission::where('id',$val)->value('name');
+            $parent_permission =Permission::where('id', $val)->value('name');
             $data['name'] = Str::lower($request->name).'-'.Str::lower($parent_permission);
             $data['display_name'] = $request->display_name;
             $data['parent_id'] = $val;
@@ -61,16 +61,16 @@ class PermissionController extends Controller
     { 
         $permission = $this->repository->find($id); 
         $all_permission = $this->repository->getAll();
-        $parent_permission=Permission::where('name',$permission->name)->pluck('parent_id')->toArray();
+        $parent_permission=Permission::where('name', $permission->name)->pluck('parent_id')->toArray();
         $viewData = [
             'permission'  =>$permission,
             'all_permission'  =>$all_permission,
             'parent_permission'=>$parent_permission,
             'title' =>'Thay đổi quyền hạn',
         ];
-        return view('admin.permission.update',$viewData);
+        return view('admin.permission.update', $viewData);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name'=>'required',
@@ -82,7 +82,7 @@ class PermissionController extends Controller
         $this->repository->delete($id);
         if($request->parent_id){
         foreach($request->parent_id as $val){
-            $parent_permission = Permission::where('id',$val)->value('name');
+            $parent_permission = Permission::where('id', $val)->value('name');
             $data['name'] = Str::lower($request->name).'-'.Str::lower($parent_permission);
             $data['display_name'] = $request->display_name;
             $data['parent_id'] = $val;

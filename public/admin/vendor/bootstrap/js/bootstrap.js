@@ -168,8 +168,8 @@
       } // If multiple durations are defined, take the first
 
 
-      transitionDuration = transitionDuration.split(',')[0];
-      transitionDelay = transitionDelay.split(',')[0];
+      transitionDuration = transitionDuration.split(', ')[0];
+      transitionDelay = transitionDelay.split(', ')[0];
       return (parseFloat(transitionDuration) + parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER;
     },
     reflow: function reflow(element) {
@@ -3843,11 +3843,11 @@
 
       this._clear();
 
-      var queries = this._selector.split(',').map(function (selector) {
+      var queries = this._selector.split(', ').map(function (selector) {
         return selector + "[data-target=\"" + target + "\"]," + selector + "[href=\"" + target + "\"]";
       });
 
-      var $link = $([].slice.call(document.querySelectorAll(queries.join(','))));
+      var $link = $([].slice.call(document.querySelectorAll(queries.join(', '))));
 
       if ($link.hasClass(ClassName$8.DROPDOWN_ITEM)) {
         $link.closest(Selector$8.DROPDOWN).find(Selector$8.DROPDOWN_TOGGLE).addClass(ClassName$8.ACTIVE);

@@ -6,7 +6,7 @@
       <h6 class="m-0 font-weight-bold text-primary">Thay đổi thông tin người dùng</h6>
     </div>
     <div class="card-body">
-      <form  action="{{ route('admin.update',$admin->id)}}" method="post">
+      <form  action="{{ route('admin.update', $admin->id)}}" method="post">
         @method('PUT')
         @csrf
       <div class="form-group">
@@ -34,7 +34,7 @@
         <label for="exampleFormControlInput3">Vai trò</label>
         <select class="multiple form-control" name="roles[]" multiple="multiple" placeholder="Chọn vai trò">
           @foreach($role as $list)
-      <option value="{{ $list->id}}" {{ $role_admin->contains('role_id',$list->id) ? 'selected' : "" }}>{{ $list->name}}</option> 
+      <option value="{{ $list->id}}" {{ $role_admin->contains('role_id', $list->id) ? 'selected' : "" }}>{{ $list->name}}</option> 
         @endforeach
     </select>
       @if($errors->first('roles'))    

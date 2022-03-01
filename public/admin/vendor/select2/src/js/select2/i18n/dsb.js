@@ -1,7 +1,7 @@
 define(function () {
   // Lower Sorbian
-  var charsWords = ['znamuško', 'znamušce', 'znamuška','znamuškow'];
-  var itemsWords = ['zapisk', 'zapiska', 'zapiski','zapiskow'];
+  var charsWords = ['znamuško', 'znamušce', 'znamuška', 'znamuškow'];
+  var itemsWords = ['zapisk', 'zapiska', 'zapiski', 'zapiskow'];
 
   var pluralWord = function pluralWord(numberOfChars, words) {
     if (numberOfChars === 1) {

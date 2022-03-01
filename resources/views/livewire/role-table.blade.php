@@ -49,8 +49,8 @@
                                 <td>{{$list->name}}</td>
                                 <td>{{$list->display_name}}</td>
                                 <td class="d-flex">
-                                    <a href="{{ route('role.edit',$list->id)}}" class="btn btn-sm btn-primary mr-4">Sửa</a>
-                                    <form action="{{ route('role.destroy',$list->id)}}" method="post">
+                                    <a href="{{ route('role.edit', $list->id)}}" class="btn btn-sm btn-primary mr-4">Sửa</a>
+                                    <form action="{{ route('role.destroy', $list->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn btn-sm btn-danger">  Xoá</button>

@@ -25,7 +25,7 @@ class RegisterController extends Controller
     }
     public function register(RequestRegister $request)
     { 
-        $data =$request->except('_token');  
+        $data = $request->except('_token');  
         $data['avatar']     = 'no-user.png';
         $data['password']   = Hash::make($data['password']);
         $data['created_at'] = Carbon::now(); 
@@ -58,7 +58,7 @@ class RegisterController extends Controller
                 'type'=>'success',
                 'messages'=>'Đăng ký thành công . Vui lòng xác nhận tài khoản qua gmail !'
             ]);
-            Mail::to($request->email)->send(new RegisterSuccess($request->c_name,$request->user));
+            Mail::to($request->email)->send(new RegisterSuccess($request->c_name, $request->user));
 
            return redirect()->route('login');
         } 
@@ -67,7 +67,7 @@ class RegisterController extends Controller
     }
 
     public function getVerifyAccount($user){
-        $user =User::where('user',$user)->first();
+        $user =User::where('user', $user)->first();
         $user->is_active =1;
         $user->save();
        
@@ -83,8 +83,8 @@ class RegisterController extends Controller
         return view('layout.verify_phone');
     }
     public function postVerifyMessage(Request $request){
-        $code=$request->a.$request->b.$request->c.$request->d.$request->e.$request->f;   
-        $user =User::where('code_otp',$code)->first();
+        $code= $request->a.$request->b.$request->c.$request->d.$request->e.$request->f;   
+        $user =User::where('code_otp', $code)->first();
         if($user){
         Auth::loginUsingId($user->id, true);
             $user->is_active=1;

@@ -11,12 +11,12 @@ use App\Models\User;
 class CommentPost extends Notification
 {
     use Queueable;
-    public $post,$user,$type;
-    public function __construct(Post $post,User $user,$type)
+    public $post, $user, $type;
+    public function __construct(Post $post,User $user, $type)
     {
-         $this->post=$post;
-         $this->user=$user;
-         $this->type=$type;
+         $this->post= $post;
+         $this->user= $user;
+         $this->type= $type;
     } 
 
     /**
@@ -27,7 +27,7 @@ class CommentPost extends Notification
      */
     public function via($notifiable)
     {
-        return ['database','broadcast'];
+        return ['database', 'broadcast'];
     }
 
     /**

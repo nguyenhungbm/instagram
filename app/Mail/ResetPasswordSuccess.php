@@ -16,11 +16,11 @@ class ResetPasswordSuccess extends Mailable
      *
      * @return void
      */
-    private $name,$user;
-    public function __construct($name,$user)
+    private $name, $user;
+    public function __construct($name, $user)
     {
-        $this->name =$name;
-        $this->user =$user;
+        $this->name = $name;
+        $this->user = $user;
     }
 
     /**

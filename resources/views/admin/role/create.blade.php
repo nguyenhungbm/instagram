@@ -37,7 +37,7 @@
                             <hr>
                         </div>
                         <div class="row">
-                        @foreach(\App\Models\Permission::where('parent_id',$list->id)->get() as $val)
+                        @foreach(\App\Models\Permission::where('parent_id', $list->id)->get() as $val)
                             @php
                                 $per = explode("-", $val->name);
                             @endphp

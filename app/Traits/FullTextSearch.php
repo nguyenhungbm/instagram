@@ -42,7 +42,7 @@ trait FullTextSearch
      */
     public function scopeSearch($query, $term)
     {
-        $columns = implode(',', $this->searchable);
+        $columns = implode(', ', $this->searchable);
  
         $query->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $this->fullTextWildcards($term));
  

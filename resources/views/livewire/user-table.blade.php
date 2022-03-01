@@ -42,7 +42,7 @@
                 @foreach($user as $key => $list)
                     <tr>
                     <td>{{ ++$key }}</td>
-                        <td><a href="{{route('get.home-page',$list->user)}}">{{ $list->c_name}}</a></td>
+                        <td><a href="{{route('get.home-page', $list->user)}}">{{ $list->c_name}}</a></td>
                         <td>{{ $list->phone ?? 'Không có'}}</td>
                         <td>{{ $list->email}}</td>
                         <td>{{ $list->provider ?? 'Trực tiếp'}}</td>

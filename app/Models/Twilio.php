@@ -10,6 +10,6 @@ class Twilio extends Model
     use HasFactory;
     protected $table='twilio';
     protected $fillable = [
-        'author','friend','token','body','repeats','channelSid','type'
+        'author', 'friend', 'token', 'body', 'repeats', 'channelSid', 'type'
     ];
 }

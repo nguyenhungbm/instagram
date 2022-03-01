@@ -3,7 +3,7 @@
 @if(isset($val))
 @foreach($val as $key=> $list)
 <div class="clr py cs py{{$list->id}}"> 
-    <img src="{{ pare_url_file($list->avatar,'user')}}" class="rounded-circle">
+    <img src="{{ pare_url_file($list->avatar, 'user')}}" class="rounded-circle">
     <div> 
         <b>{{ $list->user}}</b><br>
         <p class="os">{{$list->c_name}}</p> 
@@ -31,7 +31,7 @@ $(function(){
        
 
     });   
-    $('body').on('click','.close{{$list->id}}',function(){
+    $('body').on('click', '.close{{$list->id}}',function(){
         $('.pt{{$list->id}}').remove();
         $('.hihi{{$list->id}}').removeClass('background-blue'); 
         if($('.pu button').hasClass("background-blue")){
@@ -51,7 +51,7 @@ $(function(){
 <b class="pq">Được đề xuất</b>
 @foreach($chat as $key=> $list)
 <div class="clr py cs py{{$list->friend_id}}"> 
-    <img src="{{ pare_url_file($list->friends->avatar,'user')}}" class="rounded-circle">
+    <img src="{{ pare_url_file($list->friends->avatar, 'user')}}" class="rounded-circle">
     <div> 
         <b>{{ $list->friends->user}}</b><br>
         <p class="os">{{ $list->friends->c_name}}</p> 
@@ -78,7 +78,7 @@ $(function(){
         }
     });   
     
-    $('body').on('click','.close{{$list->friend_id}}',function(){
+    $('body').on('click', '.close{{$list->friend_id}}',function(){
         $('.pt{{$list->friend_id}}').remove();
         $('.hihi{{$list->friend_id}}').removeClass('background-blue'); 
         if($('.pu button').hasClass("background-blue")){

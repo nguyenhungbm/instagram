@@ -15,6 +15,6 @@ class ExploreController extends Controller
         $viewData=[ 
             'title'=>'Khám phá'
         ];
-        return view('explore',$viewData);
+        return view('explore', $viewData);
     }
 }

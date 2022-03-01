@@ -9,16 +9,16 @@ class Permission extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name','display_name','parent_id'
+        'name', 'display_name', 'parent_id'
     ];
     public function permissionsChildren()
     {
-        return $this->hasMany(Permission::class,'parent_id');
+        return $this->hasMany(Permission::class, 'parent_id');
     }
     public static function search($search){
         return empty($search) ? static::query() 
-        : static::query()->where('id','like','%'.$search.'%')
-        ->orWhere('name','like','%'.$search.'%')
-        ->orWhere('display_name','like','%'.$search.'%');
+        : static::query()->where('id', 'like', '%'.$search.'%')
+        ->orWhere('name', 'like', '%'.$search.'%')
+        ->orWhere('display_name', 'like', '%'.$search.'%');
     } 
 }

@@ -9,7 +9,7 @@ class QRController extends Controller
 { 
     public function create($slug)
     { 
-        $post = Post::where('p_slug',$slug)->first();
+        $post = Post::where('p_slug', $slug)->first();
         if($post->p_qrcode != ""){
             $img = $post->p_qrcode;
         }
@@ -22,7 +22,7 @@ class QRController extends Controller
             $qr = QrCode::generate($link, '../public/uploads/qrcode/' . $img);
         }
         return response([
-            'img'  => pare_url_file( $img ,'qrcode'),
+            'img'  => pare_url_file( $img , 'qrcode'),
         ]);
     }
     public function login()
@@ -31,7 +31,7 @@ class QRController extends Controller
         $link = \Auth::user()->remember_token;
         $qr = QrCode::generate($link, '../public/uploads/qrcode/' . $img);
         return response([
-            'img'  => pare_url_file( $img ,'qrcode'),
+            'img'  => pare_url_file( $img , 'qrcode'),
         ]);
     }
 }

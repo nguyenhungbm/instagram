@@ -6,7 +6,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Cập nhật quyền hạn</h6>
         </div>
         <div class="card-body">
-            <form action="{{ route('role.update',$role->id)}}" method="post">
+            <form action="{{ route('role.update', $role->id)}}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -40,14 +40,14 @@
                             <hr>
                         </div>
                         <div class="row">
-                            @foreach(\App\Models\Permission::where('parent_id',$list->id)->get() as $val)
+                            @foreach(\App\Models\Permission::where('parent_id', $list->id)->get() as $val)
                             @php
                             $per = explode("-", $val->name);
                             @endphp
                             <div class="card-body text-primary col-md-3">
                                 <h5 class="card-title">
                                     <input type="checkbox" id="{{$val->id}}" name="permission_id[]"
-                                        {{$permissionChecked->contains('id',$val->id) ?'checked':''}}
+                                        {{$permissionChecked->contains('id', $val->id) ?'checked':''}}
                                         value="{{$val->id}}" class="checkbox_children">
                                     <label for="{{$val->id}}">{{$per[0]}} </label>
                                 </h5>

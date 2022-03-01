@@ -26,7 +26,7 @@
    $("#submit-{{$value}}").on('click',function(e){
    e.preventDefault();
    var URL= $(this).parents('form').attr('action');
-   var c_comment =$('.textarea-comment{{$value}}').val();
+   var c_comment = $('.textarea-comment{{$value}}').val();
    var c_post = $('.post-comment{{$value}}').val();
    $.post({ 
    url:URL,

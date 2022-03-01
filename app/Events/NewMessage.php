@@ -23,7 +23,7 @@ class NewMessage implements ShouldBroadcast
     public $conversation;
     public function __construct(Conversation $conversation)
     {
-        $this->conversation=$conversation;
+        $this->conversation= $conversation;
     }
 
     /**

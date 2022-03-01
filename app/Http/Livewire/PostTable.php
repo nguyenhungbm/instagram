@@ -12,9 +12,9 @@ class PostTable extends Component
     protected $paginationTheme = 'bootstrap';
     public function render()
     {
-        $post = Post::join('users','posts.p_user','users.id')
-                ->select('posts.*','users.user','users.c_name')
-                ->where('p_type','profile')->paginate(15);
+        $post = Post::join('users', 'posts.p_user', 'users.id')
+                ->select('posts.*', 'users.user', 'users.c_name')
+                ->where('p_type', 'profile')->paginate(15);
          
         return view('livewire.post-table',[
             'post'  => $post,

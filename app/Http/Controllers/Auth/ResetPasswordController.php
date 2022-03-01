@@ -19,7 +19,7 @@ class ResetPasswordController extends Controller
             ['email' => 'required'],
             ['email.required' => 'Bạn cần chọn email']
         );
-        $user =User::where('email',$request->email)->first();
+        $user =User::where('email', $request->email)->first();
         if($user){
             if($user->is_active  == 0){
                 \Session::flash('toastr',[
@@ -36,7 +36,7 @@ class ResetPasswordController extends Controller
                     'type'=>'success',
                     'messages'=>'Chúng tôi đã gửi một email đến '.$request->email.' với một liên kết để yêu cầu thay đổi mật khẩu với tài khoản của bạn.'
                 ]);
-                Mail::to($request->email)->send(new ResetPasswordSuccess($user->c_name,$user->user));
+                Mail::to($request->email)->send(new ResetPasswordSuccess($user->c_name, $user->user));
             }
         }
         else {
@@ -49,11 +49,11 @@ class ResetPasswordController extends Controller
 }
 
     public function changePassword(Request $request){
-        $user =User::where('user',$request->user)->first(); 
+        $user =User::where('user', $request->user)->first(); 
         return view('account.change_password',compact('user'));
     }
     public function StorePassword(Request $request){
-        $user =User::where('user',$request->user)->first();  
+        $user =User::where('user', $request->user)->first();  
         $request->validate([
             'password'=>'min:6',
             're_password' =>"required|same:password"

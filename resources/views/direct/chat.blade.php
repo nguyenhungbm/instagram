@@ -3,8 +3,8 @@
 @section('chat')
 <div class="top-right clr  ">
    <div class="user">
-      <a href="{{route('get.home-page',$friend->user)}}">
-         <img src="{{ pare_url_file($friend->avatar,'user') }}"   class="rounded-circle ">
+      <a href="{{route('get.home-page', $friend->user)}}">
+         <img src="{{ pare_url_file($friend->avatar, 'user') }}"   class="rounded-circle ">
          {{ $friend->c_name}}
       </a>
       <onlineuser v-bind:friend="{{ $friend }}" v-bind:onlineusers="onlineUsers"></onlineuser>

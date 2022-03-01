@@ -67,7 +67,7 @@ button{
 <body>
     <div class="header"><img src="{{ asset('img/logo.png')}}"></div>
     <section><br>
-        <img src="{{ pare_url_file($user->avatar,'user')}}" class="img"> 
+        <img src="{{ pare_url_file($user->avatar, 'user')}}" class="img"> 
         <p>{{$user->c_name}}</p> 
         <br>
         <form action="" method="POST">

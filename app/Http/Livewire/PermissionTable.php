@@ -24,7 +24,7 @@ class PermissionTable extends Component
             'permission'  => $permission,
             'role_count' => $role_count 
         ];
-        return view('livewire.permission-table',$data);
+        return view('livewire.permission-table', $data);
     }
     public function destroy($id)
     {
