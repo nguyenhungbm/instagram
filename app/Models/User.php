@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'c_name','user','avatar', 'email','phone',
+        'c_name', 'user', 'avatar', 'email', 'phone',
         'provider', 'provider_id', 'password', 'remember_token',
     ];
 
@@ -45,9 +45,9 @@ class User extends Authenticatable
     //search livewire
     public static function search($search){
         return empty($search) ? static::query() 
-        : static::query()->where('id','like','%'.$search.'%')
-        ->orWhere('c_name','like','%'.$search.'%')
-        ->orWhere('phone','like','%'.$search.'%')
-        ->orWhere('email','like','%'.$search.'%');
+        : static::query()->where('id', 'like', '%'.$search.'%')
+        ->orWhere('c_name', 'like', '%'.$search.'%')
+        ->orWhere('phone', 'like', '%'.$search.'%')
+        ->orWhere('email', 'like', '%'.$search.'%');
     }
 }

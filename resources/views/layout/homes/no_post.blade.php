@@ -11,10 +11,10 @@
             <div class="float-right cs" style="font-size: 30px;padding: 9px 16px;" id="exit5">&times;</div>
          </li>
       @foreach($user as $list)
-      @if(!\App\Models\Follow::where(['user_id'=>\Auth::id(),'followed'=>$list->id])->count())
+      @if(!\App\Models\Follow::where(['user_id'=>\Auth::id(), 'followed'=>$list->id])->count())
          <div class="d-inline-block position-relative suggest" >
             <div class="d-inline-block text-black">
-               <a href="{{ route('get.home-page',$list->user) }}"><img src="{{ pare_url_file($list->avatar,'user') }}" class="rounded-circle">
+               <a href="{{ route('get.home-page', $list->user) }}"><img src="{{ pare_url_file($list->avatar, 'user') }}" class="rounded-circle">
                            {{ $list->user}}
                </a>
             </div>

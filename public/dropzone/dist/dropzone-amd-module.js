@@ -3274,9 +3274,9 @@ Dropzone.isBrowserSupported = function () {
 Dropzone.dataURItoBlob = function (dataURI) {
   // convert base64 to raw binary data held in a string
   // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-  var byteString = atob(dataURI.split(',')[1]); // separate out the mime component
+  var byteString = atob(dataURI.split(', ')[1]); // separate out the mime component
 
-  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]; // write the bytes of the string to an ArrayBuffer
+  var mimeString = dataURI.split(', ')[0].split(':')[1].split(';')[0]; // write the bytes of the string to an ArrayBuffer
 
   var ab = new ArrayBuffer(byteString.length);
   var ia = new Uint8Array(ab);
@@ -3621,11 +3621,11 @@ function () {
   }, {
     key: "restore",
     value: function restore(origFileBase64, resizedFileBase64) {
-      if (!origFileBase64.match('data:image/jpeg;base64,')) {
+      if (!origFileBase64.match('data:image/jpeg;base64, ')) {
         return resizedFileBase64;
       }
 
-      var rawImage = this.decode64(origFileBase64.replace('data:image/jpeg;base64,', ''));
+      var rawImage = this.decode64(origFileBase64.replace('data:image/jpeg;base64, ', ''));
       var segments = this.slice2Segments(rawImage);
       var image = this.exifManipulation(resizedFileBase64, segments);
       return "data:image/jpeg;base64,".concat(this.encode64(image));
@@ -3659,7 +3659,7 @@ function () {
   }, {
     key: "insertExif",
     value: function insertExif(resizedFileBase64, exifArray) {
-      var imageData = resizedFileBase64.replace('data:image/jpeg;base64,', '');
+      var imageData = resizedFileBase64.replace('data:image/jpeg;base64, ', '');
       var buf = this.decode64(imageData);
       var separatePoint = buf.indexOf(255, 3);
       var mae = buf.slice(0, separatePoint);

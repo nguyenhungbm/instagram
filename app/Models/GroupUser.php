@@ -10,10 +10,10 @@ class GroupUser extends Model
     use HasFactory;
     protected $table='group_user';
     protected $fillable = [
-        'id','group_id','user_id' 
+        'id', 'group_id', 'user_id' 
     ]; 
     public function users(){
-        return $this->belongsTo('App\Models\User','user_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
     
 }

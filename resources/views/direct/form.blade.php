@@ -12,13 +12,13 @@
         <div class="bottom-left">
         <ul>
             @if(isset($friend->id))
-            @if(!count(\App\Models\Chat::where(['user_id'=>\Auth::id(),'friend_id'=>$friend->id])->get())
+            @if(!count(\App\Models\Chat::where(['user_id'=>\Auth::id(), 'friend_id'=>$friend->id])->get())
             &&
-            !count(\App\Models\Chat::where(['friend_id'=>\Auth::id(),'user_id'=>$friend->id])->get())
+            !count(\App\Models\Chat::where(['friend_id'=>\Auth::id(), 'user_id'=>$friend->id])->get())
             )
                 <a href="{{ route('chat.show', $friend->id) }}">
                 <li class="clr">
-                    <img src="{{ pare_url_file($friend->avatar,'user') }}">
+                    <img src="{{ pare_url_file($friend->avatar, 'user') }}">
                     <p>{{ $friend->c_name}}</p>
                     <br>
                     <onlineuser v-bind:friend="{{$friend }}" v-bind:onlineusers="onlineUsers"></onlineuser>
@@ -30,7 +30,7 @@
                @foreach($group as $value)  
                     <a href="{{ route('chat.group.show', $value->room) }}">
                         <li class="clr" >
-                            <img src="{{ pare_url_file('ninja.jpg','user') }}">
+                            <img src="{{ pare_url_file('ninja.jpg', 'user') }}">
                             <p>{{$value->name}}</p>
                             <br>
                         </li>
@@ -40,13 +40,13 @@
             @if(isset($chat))
                 @foreach($chat as $list)
                     @php
-                        $userr =$list->friends;
+                        $userr = $list->friends;
                         if( $list->friends->id == \Auth::id())
-                        $userr =$list->users;
+                        $userr = $list->users;
                     @endphp
                     <a href="{{ route('chat.show', $userr->id) }}">
                         <li class="clr" >
-                            <img src="{{ pare_url_file($userr->avatar,'user') }}">
+                            <img src="{{ pare_url_file($userr->avatar, 'user') }}">
                             <p style="    margin-top: 10px;">{{ $userr->c_name}}</p> <br>
                             <onlineuser v-bind:friend="{{ $userr }}" v-bind:onlineusers="onlineUsers"></onlineuser>
                         </li>
@@ -94,7 +94,7 @@
                 $val = $list->friends;
             @endphp
             <div class="clr py cs py{{$list->id}}">
-                <img src="{{ pare_url_file($val->avatar,'user')}}" class="rounded-circle">
+                <img src="{{ pare_url_file($val->avatar, 'user')}}" class="rounded-circle">
                 <div>
                 <b>{{ $val->user}}</b><br>
                 <p class="os">{{$val->c_name}}</p>
@@ -121,7 +121,7 @@
             }
         })
     })
-    $('body').on('click','.py{{$list->id}}',function(){
+    $('body').on('click', '.py{{$list->id}}',function(){
         if($('.hihi{{$list->id}}').hasClass('background-blue')){
             $('.hihi{{$list->id}}').removeClass('background-blue'); 
             $('.pt{{$list->id}}').remove();
@@ -138,7 +138,7 @@
             `);
         }
     });  
-    $('body').on('click','.close{{$list->id}}',function(){
+    $('body').on('click', '.close{{$list->id}}',function(){
         $('.pt{{$list->id}}').remove();
         $('.hihi{{$list->id}}').removeClass('background-blue'); 
         if($('.pu button').hasClass("background-blue")){
@@ -155,7 +155,7 @@
 </div>
 <script>
     $(function(){
-        $('body').on('click','.pu button',function(){
+        $('body').on('click', '.pu button',function(){
         if($('.pu button').hasClass("background-blue")){
             $('.nexts').removeClass('disabled');
         }else{
@@ -175,7 +175,7 @@
         } 
    
         $('#search').on('keyup',function(){
-            var val =$(this).val();  
+            var val = $(this).val();  
             var URL="{{route('searchmess')}}";
             var total_user = [];
             $(".pw .pt").each(function() {

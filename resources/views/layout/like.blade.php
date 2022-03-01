@@ -1,6 +1,6 @@
 <b class="zxm cs" id="buttonLike-{{$value}}">
-    @if(\App\Models\Like::where('r_post',$value)->count())
-        <b class="like{{$value}}">{{\App\Models\Like::where('r_post',$value)->count()}}</b> {{ __('translate.likes')}}
+    @if(\App\Models\Like::where('r_post', $value)->count())
+        <b class="like{{$value}}">{{\App\Models\Like::where('r_post', $value)->count()}}</b> {{ __('translate.likes')}}
     @endif
 </b>
     <!-- modal user image -->
@@ -11,15 +11,15 @@
             <div class="float-right cs"style="font-size: 30px;padding: 9px 16px;" id="cancel{{$value}}">&times;</div>
         </li>
         <div class="posts{{$value}}">
-            @foreach(\App\Models\Like::where('r_post',$value)->get() as $item)
+            @foreach(\App\Models\Like::where('r_post', $value)->get() as $item)
             <div class="clr users{{$item->users->id}}{{$value}}" style="height: 50px;">
-                <a href="{{ route('get.home-page',$item->users->user) }}" class="zx position-relative" style="width:75%">
-                <img src="{{ pare_url_file($item->users->avatar,'user') }}" class="w-35 rounded-circle"> 
+                <a href="{{ route('get.home-page', $item->users->user) }}" class="zx position-relative" style="width:75%">
+                <img src="{{ pare_url_file($item->users->avatar, 'user') }}" class="w-35 rounded-circle"> 
                 <b class="zz">{{ $item->users->user }}</b><br>
                 <b class="os zpo">{{ $item->users->c_name }}</b>
                 </a>
                 @if($item->users->id!=\Auth::id()) 
-                @if(\App\Models\Follow::checkFollow(\Auth::id(),$item->users->id))
+                @if(\App\Models\Follow::checkFollow(\Auth::id(), $item->users->id))
                 @if($item->users->id != \Auth::id())
                 <button class="followss zc{{$item->users->id}}" onclick="followInOtherPage('{{$item->users->id}}')" >
                 <span class="cen{{$item->users->id}}">{{ __('translate.folowing')}}</span>
@@ -50,13 +50,13 @@
     </div>
     </div>
 <script>
-    $('body').on('click','#buttonLike-{{$value}}',function(){
+    $('body').on('click', '#buttonLike-{{$value}}',function(){
         $('#like-{{$value}}').show();
         })
-    $('body').on('click','#cancel{{$value}}',function(){
+    $('body').on('click', '#cancel{{$value}}',function(){
         $('#like-{{$value}}').hide();
     }) 
-    $('body').on('click','#like-{{$value}}',function(event){
+    $('body').on('click', '#like-{{$value}}',function(event){
         if(event.target == document.getElementById('like-{{$value}}'))
             $(this).hide();
     }) 

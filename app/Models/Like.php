@@ -9,7 +9,7 @@ class Like extends Model
 {
     use HasFactory; 
     public static function checkLove($postId){
-        if(static::where(['r_post'=>$postId,'r_user_id'=>\Auth::user()->id ])->exists())
+        if(static::where(['r_post'=>$postId, 'r_user_id'=>\Auth::user()->id ])->exists())
             return '2';
         return '';
     }

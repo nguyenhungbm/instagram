@@ -10,7 +10,7 @@ use DB;
 use App\Repositories\Role\RoleRepositoryInterface;
 class RoleController extends Controller
 {
-    private $role,$permission,$repository;
+    private $role, $permission, $repository;
     public function __construct(Role $role,Permission $permission,RoleRepositoryInterface $RoleRepositoryInterface)
     {
        $this->role = $role;
@@ -22,7 +22,7 @@ class RoleController extends Controller
         $viewData=[
             'title' =>'Phân quyền',
         ];
-        return view('admin.role.index',$viewData);
+        return view('admin.role.index', $viewData);
     }
     public function show($id)
     {
@@ -31,14 +31,14 @@ class RoleController extends Controller
 
     public function create()
     { 
-        $role=$this->role->all();
-        $permissionParent=$this->permission->where('parent_id', 0)->get();
+        $role= $this->role->all();
+        $permissionParent= $this->permission->where('parent_id', 0)->get();
         $viewData=[
             'role'  => $role,
             'permissionParent'  => $permissionParent,
             'title' =>'Thêm quyền hạn',
     ];
-        return view('admin.role.create',$viewData);
+        return view('admin.role.create', $viewData);
     }
     public function store(Request $request)
     {
@@ -58,20 +58,20 @@ class RoleController extends Controller
     }
     public function edit($id)
     { 
-        $role=$this->role->find($id);
-        $permissionParent=$this->permission->where('parent_id', 0)->get();
-        $permissionChecked=$role->permissions;
+        $role= $this->role->find($id);
+        $permissionParent= $this->permission->where('parent_id', 0)->get();
+        $permissionChecked= $role->permissions;
         $viewData=[
         'role'  =>$role,
         'permissionParent'=>$permissionParent,
         'permissionChecked'=>$permissionChecked,
         'title' =>'Thay đổi quyền hạn',
     ];
-        return view('admin.role.update',$viewData);
+        return view('admin.role.update', $viewData);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $role=$this->role->find($id);
+        $role= $this->role->find($id);
         $request->validate([
             'name'=>'required',
             'display_name'=>'required',
@@ -82,13 +82,13 @@ class RoleController extends Controller
         $data['name'] = $request->name;
         $data['display_name'] = $request->display_name;
         
-        $this->repository->update($id,$data);
+        $this->repository->update($id, $data);
         $role->permissions()->sync($request->permission_id);
         return redirect()->route('role.index');
     }
     public function destroy($id)
     { 
-        \DB::table('permission_role')->where('role_id',$id)->delete();
+        \DB::table('permission_role')->where('role_id', $id)->delete();
         $this->repository->delete($id);
         return redirect()->back();
     }

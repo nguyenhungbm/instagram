@@ -12,11 +12,11 @@ class Chat extends Model
     protected $dispatchesEvents = [
         'created' => BroadcastChat::class
     ];
-    protected $fillable = ['user_id', 'friend_id', 'chat','repeats','created_at'];
+    protected $fillable = ['user_id', 'friend_id', 'chat', 'repeats', 'created_at', 'type'];
     public function users(){
-        return $this->belongsTo('App\Models\User','user_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
     public function friends(){
-        return $this->belongsTo('App\Models\User','friend_id');
+        return $this->belongsTo('App\Models\User', 'friend_id');
     }
 }

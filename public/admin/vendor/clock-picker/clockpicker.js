@@ -322,7 +322,7 @@
 			svg.setAttribute('width', diameter);
 			svg.setAttribute('height', diameter);
 			var g = createSvgElement('g');
-			g.setAttribute('transform', 'translate(' + dialRadius + ',' + dialRadius + ')');
+			g.setAttribute('transform', 'translate(' + dialRadius + ', ' + dialRadius + ')');
 			var bearing = createSvgElement('circle');
 			bearing.setAttribute('class', 'clockpicker-canvas-bearing');
 			bearing.setAttribute('cx', 0);

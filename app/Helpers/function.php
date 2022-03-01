@@ -2,6 +2,7 @@
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use function foo\func;
+use Illuminate\Support\Str;
 if (!function_exists('upload_image')) {
     /**
      * @param $file [tên file trùng tên input]
@@ -22,14 +23,14 @@ if (!function_exists('upload_image')) {
 
         // kiem tra dinh dang file
         if (!$extend)
-            $extend = ['png', 'jpg', 'jpeg', 'webp'];
+            $extend = ['png', 'jpg', 'jpeg', 'webp', 'mp3'];
 
         if (!in_array($ext, $extend))
             return $data['code'] = 0;
 
         // Tên file mới
         $nameFile = trim(str_replace('.' . $ext, '', strtolower($info->getFilename())));
-        $filename = Illuminate\Support\Str::random(5).Illuminate\Support\Str::slug($nameFile) . '.' . $ext;
+        $filename = Str::random(5).Str::slug($nameFile) . '.' . $ext;
 
         // thu muc goc de upload
         $path = public_path() . '/uploads/';
@@ -109,11 +110,11 @@ if (!function_exists('number_price')) {
     function number_price($price, $sale)
     {
         if ($sale == 0) {
-            return number_format($price,0,',','.');
+            return number_format($price,0, ', ', '.');
         }
 
         $price = ((100 - $sale) * $price) / 100;
-        $price =number_format($price,0,',','.');
+        $price =number_format($price,0, ', ', '.');
         return $price;
     }
 }
@@ -182,7 +183,7 @@ if (!function_exists('check_admin'))
 {
 	function check_admin()
 	{
-		return get_data_user('admins','level') == 1 ? true : false;
+		return get_data_user('admins', 'level') == 1 ? true : false;
 	}
 }
 

@@ -11,7 +11,7 @@ use Str;
 use DB;
 use App\Notifications\CommentPost;
 class PostService{
-    public function create($data,$request){
+    public function create($data, $request){
         $data['created_at'] = Carbon::now();
         $data['p_user']     = Auth::id(); 
         $data['p_slug']     = Str::random(15);
@@ -35,9 +35,9 @@ class PostService{
             DB::table('users')->where('id',Auth::user()->id)->increment('picture');
         }
         if($request->stories){
-            $image = upload_image('stories','story');
+            $image = upload_image('stories', 'story');
             if($image['code']==1)
-                $data['p_image']=$image['name'];
+                $data['p_image']= $image['name'];
             $data['p_type']='story';
             DB::table('users')->where('id',Auth::user()->id)->increment('story');
         }
@@ -45,15 +45,15 @@ class PostService{
         return redirect()->back();
     }
     public function like($data){
-        $count= Like::where(['r_post'=>$data['r_post'],'r_user_id'=> Auth::user()->id ])->first();  
+        $count= Like::where(['r_post'=>$data['r_post'], 'r_user_id'=> Auth::user()->id ])->first();  
         if($count){  
             $count->delete();
-            Post::where('id',$data['r_post'])->decrement('p_favourite'); 
+            Post::where('id', $data['r_post'])->decrement('p_favourite'); 
             return response([
                 'action'=>'bot',
                 'post'=> Post::find($data['r_post']),
                 'user'=> Auth::user(), 
-                'avatar' =>pare_url_file( Auth::user()->avatar,'user')
+                'avatar' =>pare_url_file( Auth::user()->avatar, 'user')
                 ]);
         } 
         $data['r_user_id']= Auth::user()->id;
@@ -63,16 +63,16 @@ class PostService{
         $user=User::find( Auth::id());
         
         if($data['r_user_id'] != $post->user->id)
-        User::find($post->user->id)->notify(new CommentPost($post,$user,'like'));
+        User::find($post->user->id)->notify(new CommentPost($post, $user, 'like'));
 
         $id=Like::InsertGetId($data);
-        Post::where('id',$data['r_post'])->increment('p_favourite');
+        Post::where('id', $data['r_post'])->increment('p_favourite');
         return response([
             'action'=>'them',
             'word' =>__('translate.likes'),
             'post'=> Post::find($data['r_post']),
             'user'=> Auth::user(), 
-            'avatar' =>pare_url_file( Auth::user()->avatar,'user')
+            'avatar' =>pare_url_file( Auth::user()->avatar, 'user')
             ]);
     }
     public function comment($data){
@@ -86,10 +86,10 @@ class PostService{
         $user = User::find( Auth::id());
 
         if($data['c_user_id'] != $post->p_user)
-        User::find($post->p_user)->notify(new CommentPost($post,$user,'comment'));
+        User::find($post->p_user)->notify(new CommentPost($post, $user, 'comment'));
         return response([
             'user'   =>  Auth::user(), 
-            'avatar' => pare_url_file( Auth::user()->avatar,'user'),
+            'avatar' => pare_url_file( Auth::user()->avatar, 'user'),
             'comment' => $post->p_comment
         ]);
     }

@@ -24,7 +24,7 @@ class AdminController extends Controller
             'role_count'=> $role_count,
             'title'     => 'Quản trị viên',
         ];
-        return view('admin.admin.index',$viewData);
+        return view('admin.admin.index', $viewData);
     }
     public function create()
     { 
@@ -35,7 +35,7 @@ class AdminController extends Controller
         'permissionparent' => $permissionparent,
         'title' => 'Thêm quản trị viên',
     ];
-        return view('admin.admin.create',$viewData);
+        return view('admin.admin.create', $viewData);
     }
     public function store(Request $request)
     {
@@ -71,16 +71,16 @@ class AdminController extends Controller
     {  
         $admin  = Admin::find($id);
         $role   = Role::all();
-        $role_admin = DB::table('role_user')->where('user_id',$id)->select('role_id')->get(); 
+        $role_admin = DB::table('role_user')->where('user_id', $id)->select('role_id')->get(); 
         $viewData=[
         'admin'       => $admin,
         'role_admin'  => $role_admin,
         'role'        => $role,
         'title'       => 'Thay đổi người dùng',
     ];
-        return view('admin.admin.update',$viewData);
+        return view('admin.admin.update', $viewData);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
        $request->validate([
             'email'=>'email|required',
@@ -117,7 +117,7 @@ class AdminController extends Controller
         try{ 
             DB::beginTransaction();
             $admin=Admin::find($id)->delete(); 
-            $role_admin =DB::table('role_user')->where('user_id',$id)->delete(); 
+            $role_admin =DB::table('role_user')->where('user_id', $id)->delete(); 
             DB::commit();
         return redirect()->back();
     }catch(\Exception $e){

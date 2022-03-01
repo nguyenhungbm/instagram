@@ -28,7 +28,7 @@
                 <notification v-bind:notifications="notifications"  v-bind:notification_readed="notification_readed"></notification>
                 <li class="position-relative set-user">
                     <a> 
-                    <img src="{{ pare_url_file(auth()->user()->avatar,'user') }}" class="mr-20 rounded-circle w-30 avatar_user_uploaded">
+                    <img src="{{ pare_url_file(auth()->user()->avatar, 'user') }}" class="mr-20 rounded-circle w-30 avatar_user_uploaded">
                     </a>
                     <ul class="notification set-user-width d-none">
                         <li>
@@ -67,6 +67,6 @@
     <div id="myModal-1" class="modal">
     <div class="modal-content setting animate__animated animate__zoomIn" style="text-align:center">
         <li class="one"><label style="font-size: 20px;">QRCODE</label><span class="float-right cs" id="exit1" style="right: 15px;position: absolute;top: 0;font-size: 33px;">&times;</span></li>
-        <img class="img-thumbnails" src="{{ pare_url_file('loadingg.gif','qrcode') }}" >
+        <img class="img-thumbnails" src="{{ pare_url_file('loadingg.gif', 'qrcode') }}" >
     </div>
 </header>

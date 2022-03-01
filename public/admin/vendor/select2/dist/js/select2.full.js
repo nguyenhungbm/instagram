@@ -6228,7 +6228,7 @@ S2.define('select2/compat/inputData',[
 ], function ($, Utils) {
   function InputData (decorated, $element, options) {
     this._currentData = [];
-    this._valueSeparator = options.get('valueSeparator') || ',';
+    this._valueSeparator = options.get('valueSeparator') || ', ';
 
     if ($element.prop('type') === 'hidden') {
       if (options.get('debug') && console && console.warn) {

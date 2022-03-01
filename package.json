@@ -25,9 +25,15 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "laravel-echo": "^1.10.0",
+        "@twilio/conversations": "^2.0.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.0",
+        "express": "^4.17.3",
+        "laravel-echo": "^1.11.3",
         "moment": "^2.29.1",
-        "pusher-js": "^7.0.2",
+        "pusher-js": "^7.0.6",
+        "simple-peer": "^9.11.1",
+        "twilio": "^3.74.0",
         "twilio-video": "^2.0.0"
     }
 }

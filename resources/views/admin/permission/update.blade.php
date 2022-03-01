@@ -6,7 +6,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Cập nhật quyền hạn</h6>
         </div>
         <div class="card-body">
-            <form  action="{{ route('permission.update',$permission->id)}}" method="post">
+            <form  action="{{ route('permission.update', $permission->id)}}" method="post">
             @method('PUT')
             @csrf
             @php
@@ -31,8 +31,8 @@
                 <label for="exampleFormControlInput2">Quyền hạn cha</label>
                 <select name="parent_id[]" class="multiple form-control" multiple=""> 
                     @foreach($all_permission as $list)
-                    @if(empty($list->parent_id) && $list->id !=$permission->id)
-                        <option value="{{$list->id}}" {{in_array($list->id,$parent_permission) ? "selected='selected'" : '' }}>{{$list->name}}</option>
+                    @if(empty($list->parent_id) && $list->id != $permission->id)
+                        <option value="{{$list->id}}" {{in_array($list->id, $parent_permission) ? "selected='selected'" : '' }}>{{$list->name}}</option>
                     @endif
                     @endforeach
                 </select>

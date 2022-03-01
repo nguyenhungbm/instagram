@@ -16,7 +16,7 @@ class BroadcastChat implements ShouldBroadcast
     public $chat;
     public function __construct(Chat $chat)
     {
-        $this->chat=$chat;
+        $this->chat= $chat;
     }
 
     /**

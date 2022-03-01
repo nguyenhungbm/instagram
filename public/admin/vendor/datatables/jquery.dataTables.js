@@ -754,7 +754,7 @@
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Sort immediately with columns 0 and 1
-		 *      oTable.fnSort( [ [0,'asc'], [1,'asc'] ] );
+		 *      oTable.fnSort( [ [0, 'asc'], [1, 'asc'] ] );
 		 *    } );
 		 */
 		this.fnSort = function( aaSort )
@@ -1356,7 +1356,7 @@
 	// - Ƀ - Bitcoin
 	// - Ξ - Ethereum
 	//   standards as thousands separators.
-	var _re_formatted_numeric = /[',$£€¥%\u2009\u202F\u20BD\u20a9\u20BArfkɃΞ]/gi;
+	var _re_formatted_numeric = /[', $£€¥%\u2009\u202F\u20BD\u20a9\u20BArfkɃΞ]/gi;
 	
 	
 	var _empty = function ( d ) {
@@ -4012,7 +4012,7 @@
 		// DataTables 1.9- compatible method
 		param( 'sEcho',          settings.iDraw );
 		param( 'iColumns',       columnCount );
-		param( 'sColumns',       _pluck( columns, 'sName' ).join(',') );
+		param( 'sColumns',       _pluck( columns, 'sName' ).join(', ') );
 		param( 'iDisplayStart',  displayStart );
 		param( 'iDisplayLength', displayLength );
 	
@@ -7720,7 +7720,7 @@
 		for ( i=0, ien=selector.length ; i<ien ; i++ ) {
 			// Only split on simple strings - complex expressions will be jQuery selectors
 			a = selector[i] && selector[i].split && ! selector[i].match(/[\[\(:]/) ?
-				selector[i].split(',') :
+				selector[i].split(', ') :
 				[ selector[i] ];
 	
 			for ( j=0, jen=a.length ; j<jen ; j++ ) {
@@ -9964,7 +9964,7 @@
 		 * should contain an array for each column to be sorted initially containing
 		 * the column's index and a direction string ('asc' or 'desc').
 		 *  @type array
-		 *  @default [[0,'asc']]
+		 *  @default [[0, 'asc']]
 		 *
 		 *  @dtopt Option
 		 *  @name DataTable.defaults.order
@@ -9973,7 +9973,7 @@
 		 *    // Sort by 3rd column first, and then 4th column
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
-		 *        "order": [[2,'asc'], [3,'desc']]
+		 *        "order": [[2, 'asc'], [3, 'desc']]
 		 *      } );
 		 *    } );
 		 *
@@ -9984,7 +9984,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"aaSorting": [[0,'asc']],
+		"aaSorting": [[0, 'asc']],
 	
 	
 		/**
@@ -10003,7 +10003,7 @@
 		 *  @example
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
-		 *        "orderFixed": [[0,'asc']]
+		 *        "orderFixed": [[0, 'asc']]
 		 *      } );
 		 *    } )
 		 */

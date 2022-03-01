@@ -1,10 +1,10 @@
     @foreach($posts as $key => $item)  
          <article class="border-gray position-relative">
             <div class="header ">
-               <a class="text-black" href="{{ $item->user->user}}"><img src="{{ pare_url_file($item->user->avatar,'user') }}" class="rounded-circle  d-inline-block img-user">{{ $item->user->c_name}}</a>
+               <a class="text-black" href="{{ $item->user->user}}"><img src="{{ pare_url_file($item->user->avatar, 'user') }}" class="rounded-circle  d-inline-block img-user">{{ $item->user->c_name}}</a>
                <div class="float-right"><a><img src="{{ asset('img/edit.png') }}" class="img-edit"></a></div>
             </div>
-            <img src="{{pare_url_file($item->p_image,'profile') }}" class="article-img">
+            <img src="{{pare_url_file($item->p_image, 'profile') }}" class="article-img">
             
             <div class="attractive">
                <div class="d-block">
@@ -13,14 +13,14 @@
                   <div class="d-inline-block"><i class="fa fa-15x fa-share-alt"></i></div>
                   <div class="d-inline-block float-right"> <i class="fa fa-15x fa-bookmark-o float-right"></i></div>
                   <br>
-                    <b class="zxm"> <b class="like{{$item->id}}">{{\App\Models\Like::where('r_post',$item->id)->count()}}</b> {{ __('translate.likes')}}</b>
+                    <b class="zxm"> <b class="like{{$item->id}}">{{\App\Models\Like::where('r_post', $item->id)->count()}}</b> {{ __('translate.likes')}}</b>
                    <div class="d-inline-block w-100">
                      <div class="status">
                         <a href="{{ $item->user->user}}" class="text-black">{{$item->user->c_name}} </a>{{$item->p_content}} <br>    
                         <br>
                      </div>
                       <div class="hdl{{$key}}">
-                      @foreach(\App\Models\Comment::where('c_post',$item->id)->get() as $value=> $list) 
+                      @foreach(\App\Models\Comment::where('c_post', $item->id)->get() as $value=> $list) 
                    
                      <div class="chat w-100 position-relative hjk{{$value}}" style="display:none">
                         <a href="{{ $list->users->user}}" class="text-black">{{$list->users->c_name}}</a> {{ $list->c_comment}}
@@ -48,12 +48,12 @@
          <script> 
          //load comment
            
-         $('body').on('click','.button{{$key}}',function(){  
+         $('body').on('click', '.button{{$key}}',function(){  
             
             loadmore({{$key}});
          }) 
          currentindex=0;
-         maxindex ="{{\App\Models\Comment::where('c_post',$item->id)->count()}}";
+         maxindex ="{{\App\Models\Comment::where('c_post', $item->id)->count()}}";
          function loadmore(id){  
             if(currentindex+3 >= maxindex){
                $('.button'+id).hide();
@@ -93,9 +93,9 @@
       $(".submit-comment{{$key}}").on('click',function(e){
          e.preventDefault();
          var URL= $(this).parents('form').attr('action');
-         var c_comment=$('.textarea-comment{{$key}}').val();
-         var c_post=$('.post-comment{{$key}}').val();
-         var c_user_id=$('.user-comment{{$key}}').val(); 
+         var c_comment= $('.textarea-comment{{$key}}').val();
+         var c_post= $('.post-comment{{$key}}').val();
+         var c_user_id= $('.user-comment{{$key}}').val(); 
          
          $.get({ 
             url:URL,

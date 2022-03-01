@@ -42,7 +42,7 @@ class AdminController extends Controller
             'email.email'=>'Email không đúng định dạng',
             'password.min'=>'Mật khẩu cần ít nhất 6 kí tự',
         ]);
-		$data=$request->except('_token');
+		$data= $request->except('_token');
 		$data['password']=Hash::make($data['password']);
         $data['created_at']=Carbon::now();
         $id =Admin::InsertGetId($data);

@@ -14,7 +14,7 @@ class CheckPermissionAdmin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next,$permission=null)
+    public function handle(Request $request, Closure $next, $permission=null)
     {
         //select roles
        $listRole=Admin::find(\Auth::guard('admins')->user()->id)
@@ -24,15 +24,15 @@ class CheckPermissionAdmin
                     ->toArray();
          //select permissions
        $listPermissions=\DB::table('roles')
-       ->join('permission_role','roles.id','permission_role.role_id')
-       ->join('permissions','permissions.id','permission_role.permission_id')
-       ->whereIn('roles.id',$listRole)
+       ->join('permission_role', 'roles.id', 'permission_role.role_id')
+       ->join('permissions', 'permissions.id', 'permission_role.permission_id')
+       ->whereIn('roles.id', $listRole)
        ->select('permissions.*')
        ->get()
        ->pluck('id')
        ->unique();
        //select name permissions
-       $namePermission=\DB::table('permissions')->where('name',$permission)->value('id');
+       $namePermission=\DB::table('permissions')->where('name', $permission)->value('id');
        if($listPermissions->contains($namePermission)){
         return $next($request);
        }

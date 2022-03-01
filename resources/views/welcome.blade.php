@@ -68,7 +68,7 @@
       <div class="d-inline-block right" >
          <div class="d-block">
             <div class="d-inline-block"><a href="{{\Auth::user()->user}}">  
-               <img src="{{ pare_url_file(auth()->user()->avatar,'user') }}" class="rounded-circle w-50">
+               <img src="{{ pare_url_file(auth()->user()->avatar, 'user') }}" class="rounded-circle w-50">
             </div>
             <div class="d-inline-block">
                <div class="user-link"><a href="{{\Auth::user()->user}}" class="text-black">{{ \Auth::user()->user}}</a></div>
@@ -82,11 +82,11 @@
                <a href="" class="text-black fs-12" style="text-align:right;width:68%">{{ __('translate.See All')}}</a>
             </div>
             @foreach($user as $list)
-            @if(!\App\Models\Follow::where(['user_id'=>\Auth::id(),'followed'=>$list->id])->count())
+            @if(!\App\Models\Follow::where(['user_id'=>\Auth::id(), 'followed'=>$list->id])->count())
             <div class="d-inline-block position-relative suggest">
                <div class="d-inline-block text-black">
-                  <a href="{{ route('get.home-page',$list->user) }}">
-                     <img src="{{ pare_url_file($list->avatar,'user') }}" class="rounded-circle">
+                  <a href="{{ route('get.home-page', $list->user) }}">
+                     <img src="{{ pare_url_file($list->avatar, 'user') }}" class="rounded-circle">
                   {{ $list->user}}</a>
                </div>
                <div class="d-inline-block" style="position: absolute; top: 0;right: 0;margin-top: 10px;">

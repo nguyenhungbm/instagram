@@ -41,7 +41,7 @@ function UpdateUserAvatar(form){
             <img src="/uploads/user/'+${e.avatar}" class="rounded-circle user cs avatar_user_uploaded" id="myBtn-5">
             <img src="img/loading.gif" class="imguser" style="display:none;">
             `);
-            $('.avatar_user_uploaded').attr('src','/uploads/user/'+e.avatar);
+            $('.avatar_user_uploaded').attr('src', '/uploads/user/'+e.avatar);
         }
     })
 } 
@@ -51,7 +51,7 @@ $(function(){
     $('#profiles').on('change',function(ev){ 
         var reader=new FileReader(); 
         reader.onload=function(ev){
-            $('#image-post').attr('src',ev.target.result).css('width','350px').css('height','350px').css('margin-bottom','50px'); 
+            $('#image-post').attr('src',ev.target.result).css('width', '350px').css('height', '350px').css('margin-bottom', '50px'); 
         }
         reader.readAsDataURL(this.files[0]);   
             $('#myModal-4').hide();   
@@ -62,7 +62,7 @@ $(function(){
     $('#stories').on('change',function(ev){ 
         var reader=new FileReader(); 
         reader.onload=function(ev){
-            $('#image-post').attr('src',ev.target.result).css('width','350px').css('height','350px').css('margin-bottom','50px'); 
+            $('#image-post').attr('src',ev.target.result).css('width', '350px').css('height', '350px').css('margin-bottom', '50px'); 
         }
         reader.readAsDataURL(this.files[0]);   
             $('#myModal-4').hide();   
@@ -88,7 +88,7 @@ $(function(){
         <label for="upload_user_avatar"> <img src="/img/no-user.png" class="rounded-circle user cs avatar_user_uploaded"></label> 
         <img src="img/loading.gif" class="imguser" style="display:none;">
         `);
-        $('.avatar_user_uploaded').attr('src','/img/no-user.png');
+        $('.avatar_user_uploaded').attr('src', '/img/no-user.png');
         }
     })
 }) 
@@ -97,7 +97,7 @@ $(function(){
         
 $('.update_gender').on('click',function(e){
     e.preventDefault();
-    let URL =$(this).parents('form').attr('action');    
+    let URL = $(this).parents('form').attr('action');    
     $.ajax({
         url:URL,
         method:"POST",

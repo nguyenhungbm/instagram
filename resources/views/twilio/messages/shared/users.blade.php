@@ -17,7 +17,7 @@ body {
                 @if($list->user_id == \Auth::id())
                 <a href="{{ route('messages.chat', [ 'ids' => auth()->user()->id  . '-' . $list->friend_id ]) }}">
                     <li class="clr">
-                        <img src="{{ pare_url_file($list->avatar,'user') }}">
+                        <img src="{{ pare_url_file($list->avatar, 'user') }}">
                         <p style="margin-top: 10px;">{{ $list->c_name}}</p> <br>
                         <onlineuser v-bind:friend="{{$list }}" v-bind:onlineusers="onlineUsers"></onlineuser>
                     </li>
@@ -25,7 +25,7 @@ body {
                 @else
                 <a href="{{ route('messages.chat', [ 'ids' => auth()->user()->id  . '-' . $list->id ]) }}">
                     <li class="clr">
-                        <img src="{{ pare_url_file($list->avatar,'user') }}">
+                        <img src="{{ pare_url_file($list->avatar, 'user') }}">
                         <p style="margin-top: 10px;">{{ $list->c_name}}</p> <br>
                         <onlineuser v-bind:friend="{{$list }}" v-bind:onlineusers="onlineUsers"></onlineuser>
                     </li>

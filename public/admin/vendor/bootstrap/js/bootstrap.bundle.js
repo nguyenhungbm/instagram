@@ -167,8 +167,8 @@
       } // If multiple durations are defined, take the first
 
 
-      transitionDuration = transitionDuration.split(',')[0];
-      transitionDelay = transitionDelay.split(',')[0];
+      transitionDuration = transitionDuration.split(', ')[0];
+      transitionDelay = transitionDelay.split(', ')[0];
       return (parseFloat(transitionDuration) + parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER;
     },
     reflow: function reflow(element) {
@@ -3246,7 +3246,7 @@
       return frag.search(/,|\s/) !== -1;
     }));
 
-    if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
+    if (fragments[divider] && fragments[divider].indexOf(', ') === -1) {
       console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
     }
 
@@ -3619,7 +3619,7 @@
       /** @prop {ModifierFn} */
       fn: preventOverflow,
       /**
-       * @prop {Array} [priority=['left','right','top','bottom']]
+       * @prop {Array} [priority=['left', 'right', 'top', 'bottom']]
        * Popper will try to prevent overflow following these priorities by default,
        * then, it could overflow on the left and on top of the `boundariesElement`
        */
@@ -6421,11 +6421,11 @@
 
       this._clear();
 
-      var queries = this._selector.split(',').map(function (selector) {
+      var queries = this._selector.split(', ').map(function (selector) {
         return selector + "[data-target=\"" + target + "\"]," + selector + "[href=\"" + target + "\"]";
       });
 
-      var $link = $([].slice.call(document.querySelectorAll(queries.join(','))));
+      var $link = $([].slice.call(document.querySelectorAll(queries.join(', '))));
 
       if ($link.hasClass(ClassName$8.DROPDOWN_ITEM)) {
         $link.closest(Selector$8.DROPDOWN).find(Selector$8.DROPDOWN_TOGGLE).addClass(ClassName$8.ACTIVE);

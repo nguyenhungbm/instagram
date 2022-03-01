@@ -2,7 +2,7 @@
 @extends('layouts.app') 
 @section('content')  
    <meta charset="utf-8">
-   <meta name="url" property="og:url" content="{{ url(route('post.view',$val->p_slug)) }}">
+   <meta name="url" property="og:url" content="{{ url(route('post.view', $val->p_slug)) }}">
    <meta name="type" property="og:type" content="website" />
    <meta name="title" property="og:title" content="{{$val->p_content}}">
    <meta name="image" property="og:image" content="{{ url('/uploads/profile/img/'.$val->p_image )}}">
@@ -11,23 +11,23 @@
    <meta property="twitter:card" content="summary_large_image">
    <meta name="title" property="twitter:title" content="{{$val->p_content}}">
    <meta name="image" property="twitter:image" content="{{ url('/uploads/profile/img/'.$val->p_image )}}">
-   <meta name="url" property="twitter:domain" content="{{ url(route('post.view',$val->p_slug)) }}">
+   <meta name="url" property="twitter:domain" content="{{ url(route('post.view', $val->p_slug)) }}">
    <meta name="description"  property="twitter:description" content="Bài viết của {{$val->user->c_name}}">
 
    <meta property="zalo:card" content="summary_large_image">
    <meta name="title" property="zalo:title" content="{{$val->p_content}}">
    <meta name="image" property="zalo:image" content="{{ url('/uploads/profile/img/'.$val->p_image )}}">
-   <meta name="url" property="zalo:domain" content="{{ url(route('post.view',$val->p_slug)) }}">
+   <meta name="url" property="zalo:domain" content="{{ url(route('post.view', $val->p_slug)) }}">
    <meta name="description"  property="zalo:description" content="Bài viết của {{$val->user->c_name}}">
    <link rel="stylesheet" href="{{ asset('css/view_post.css') }}"> 
  
    <div class="asd"> 
-      <img src="{{ pare_url_file($val->p_image,'profile/img') }}" class="asa" style="object-position: top;"> 
+      <img src="{{ pare_url_file($val->p_image, 'profile/img') }}" class="asa" style="object-position: top;"> 
       <div class="ass">
          <div class="heq">
-            <div class="hew"><a href="{{ route('get.home-page',$val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar,'user') }}" class="avatar_user_uploaded"></a> </div>
+            <div class="hew"><a href="{{ route('get.home-page', $val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar, 'user') }}" class="avatar_user_uploaded"></a> </div>
                <div class="hee">
-                  <p><a href="{{ route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}} </a></b></p>
+                  <p><a href="{{ route('get.home-page', $val->user->user)}}"><b>{{$val->user->c_name}} </a></b></p>
                </div>
             @include('layout.infomation',['value'=>$val->id])
 
@@ -38,10 +38,10 @@
             @if($val->p_content!='')
                <div class="clr het">
 
-                  <div class="hew"><a href="{{ route('get.home-page',$val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar,'user') }}" class="avatar_user_uploaded"></a> </div>
+                  <div class="hew"><a href="{{ route('get.home-page', $val->user->user)}}"><img src="{{ pare_url_file($val->user->avatar, 'user') }}" class="avatar_user_uploaded"></a> </div>
 
                   <div class="hep">
-                     <p><a href="{{ route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}}</a> </b> {{$val->p_content}}</p>
+                     <p><a href="{{ route('get.home-page', $val->user->user)}}"><b>{{$val->user->c_name}}</a> </b> {{$val->p_content}}</p>
                   </div>
 
                   <i class="fa fa-ellipsis-h"></i> 
@@ -50,11 +50,11 @@
                </div>
             @endif   
             <div class="list-comment{{$val->id}}">
-               @foreach(\App\Models\Comment::where('c_post',$val->id)->orderBy('created_at','desc')->get() as $value => $cmt)  
+               @foreach(\App\Models\Comment::where('c_post', $val->id)->orderBy('created_at', 'desc')->get() as $value => $cmt)  
                   <div class="clr het hjk{{$value}} "  style="display:none">
-                     <div class="hew"><a href="{{ route('get.home-page',$cmt->users->user)}}"><img src="{{ pare_url_file($cmt->users->avatar,'user') }}" class="{{ $cmt->c_user_id ==\Auth::id() ? 'avatar_user_uploaded' :''}}"></a></div>
+                     <div class="hew"><a href="{{ route('get.home-page', $cmt->users->user)}}"><img src="{{ pare_url_file($cmt->users->avatar, 'user') }}" class="{{ $cmt->c_user_id ==\Auth::id() ? 'avatar_user_uploaded' :''}}"></a></div>
                      <div class="hep">
-                        <p><b><a href="{{ route('get.home-page',$cmt->users->user)}}">{{$cmt->users->c_name}}</a></b>{{ $cmt->c_comment}}</p>
+                        <p><b><a href="{{ route('get.home-page', $cmt->users->user)}}">{{$cmt->users->c_name}}</a></b>{{ $cmt->c_comment}}</p>
                      </div>
                      <i class="fa fa-ellipsis-h"></i>
                      <div class="os heo">{{ $cmt->created_at->diffForHumans() }} </div>
@@ -67,7 +67,7 @@
                      loadmore(); 
                }) 
                currentindex=0;
-               maxindex ="{{\App\Models\Comment::where('c_post',$val->id)->count()}}";
+               maxindex ="{{\App\Models\Comment::where('c_post', $val->id)->count()}}";
                function loadmore(){ 
                x=  window.scrollY;
                var maxresult = 5;
@@ -101,7 +101,7 @@
 
 <script>   
    //click để scroll đến cuối trang
-      // $('body').on('click','#myBtnn{{$val->id}}',function(){
+      // $('body').on('click', '#myBtnn{{$val->id}}',function(){
       //    var $div = $("#hell"); 
       //    $div.scrollTop($div[0].scrollHeight);
       // })
@@ -148,7 +148,7 @@
 @if(count($related_post))
 <br>
 <div class="posts">  
-      <p class="text-center">Thêm các bài viết từ <a href="{{route('get.home-page',$val->user->user)}}"><b>{{$val->user->c_name}}</b></a></p>
+      <p class="text-center">Thêm các bài viết từ <a href="{{route('get.home-page', $val->user->user)}}"><b>{{$val->user->c_name}}</b></a></p>
       <br>
       <div class="clr">
          @foreach($related_post as $key=> $val) 
@@ -160,7 +160,7 @@
                 <i class="fa fa-comment"></i> 
                 <p class="comment{{$val->id}}"> {{$val->p_comment }}</p>
             </div>
-            <img src="{{ pare_url_file($val->p_image,'profile/img_small') }}" class="img_small" id="image{{$key}}">
+            <img src="{{ pare_url_file($val->p_image, 'profile/img_small') }}" class="img_small" id="image{{$key}}">
         </div>
          @endforeach
       </div>

@@ -48,7 +48,7 @@
 </template>
 <script>
    export default {
-      props:['notifications','notification_readed'],
+      props:['notifications', 'notification_readed'],
       methods: {
          MarkAsRead:function(notification) {
             var data ={

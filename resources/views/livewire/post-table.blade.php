@@ -25,9 +25,9 @@
             @foreach($post as $key => $list)
             <tr>
             <td>{{ ++$key }}</td>
-                <td><a target="blank" href="{{ route('post.view',$list->p_slug) }}">{{$list->p_content}}</a></td> 
-                <td><a target="blank" href="{{ route('post.view',$list->p_slug) }}"><img src="{{ pare_url_file($list->p_image,'profile/img_small') }}" style="width:100px;height:100px;object-fit:cover"></a></td> 
-                <td><a target="blank" href="{{ route('get.home-page',$list->user)}}">{{$list->c_name}}</a></td>
+                <td><a target="blank" href="{{ route('post.view', $list->p_slug) }}">{{$list->p_content}}</a></td> 
+                <td><a target="blank" href="{{ route('post.view', $list->p_slug) }}"><img src="{{ pare_url_file($list->p_image, 'profile/img_small') }}" style="width:100px;height:100px;object-fit:cover"></a></td> 
+                <td><a target="blank" href="{{ route('get.home-page', $list->user)}}">{{$list->c_name}}</a></td>
                 <td>
                 <i class="fa fa-eye"></i>{{$list->p_view}}
                 <i class="fa fa-heart"></i>{{$list->p_favourite}}

@@ -6,11 +6,11 @@
         @if($val->user->id != \Auth::id())
         <!-- <li><label class="text-red">{{ __('translate.Report')}}</label></li> -->
         @endif
-        <li><a class="text-danger" href="{{route('posts.delete',$val->p_slug)}}" >{{ __('translate.Delete post')}}</a> </li>
-        <li><a href="{{route('post.view',$val->p_slug)}}" >{{ __('translate.Go to post')}}</a> </li>
+        <li><a class="text-danger" href="{{route('posts.delete', $val->p_slug)}}" >{{ __('translate.Delete post')}}</a> </li>
+        <li><a href="{{route('post.view', $val->p_slug)}}" >{{ __('translate.Go to post')}}</a> </li>
         <li class="cs qrcode" id="Btn2{{$value}}"><label >QR CODE</label></li>
         <!-- <li class="cs" id="Btn1{{$value}}"><label >{{ __('translate.Share to')}} ...</label></li> -->
-        <input type="text" value="{{route('post.view',$val->p_slug)}}" id="myInput{{$value}}" style="display:none">
+        <input type="text" value="{{route('post.view', $val->p_slug)}}" id="myInput{{$value}}" style="display:none">
         <li class="tooltip">
             <a onclick="myFunction()" onmouseout="outFunc()">
             <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
@@ -43,7 +43,7 @@
 <div class="modal-content setting animate__animated animate__zoomIn" >
     <li><label class="text-red">{{ __('translate.Share to')}}</label></li>
     <li> 
-        <div data-href="{{route('post.view',$val->p_slug)}}"  >
+        <div data-href="{{route('post.view', $val->p_slug)}}"  >
             <!-- <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook" style="margin-top:0;margin-right:5px"></i>{{ __('translate.Share to')}} Facebook</a> -->
             <a href="javascript:;">{{ __('translate.Share to')}} Facebook</a>
         </div>
@@ -55,7 +55,7 @@
 
     </li>
     <li> 
-        <!-- <label class="zalo-share-button" data-href="{{ route('post.view',$val->p_slug) }}" data-layout="1" data-oaid="579745863508352884"  data-color="blue" data-customize=false></label> -->
+        <!-- <label class="zalo-share-button" data-href="{{ route('post.view', $val->p_slug) }}" data-layout="1" data-oaid="579745863508352884"  data-color="blue" data-customize=false></label> -->
         <a href="javascript:;">{{ __('translate.Share to')}} Zalo</a>
 
     </li>
@@ -68,7 +68,7 @@
 <div id="Modal2{{$value}}" class="modal">
     <div class="modal-content setting animate__animated animate__zoomIn" style="text-align:center">
         <li class="one"><label style="font-size: 20px;">QRCODE</label><span class="float-right cs" id="exits2{{$value}}" style="right: 15px;position: absolute;top: 0;font-size: 33px;">&times;</span></li>
-        <img class="img-thumbnail" src="{{ pare_url_file('loadingg.gif','qrcode') }}" >
+        <img class="img-thumbnail" src="{{ pare_url_file('loadingg.gif', 'qrcode') }}" >
     </div>
 </div> 
 <!-- modal -->
@@ -100,7 +100,7 @@ $(function(){
     //hiện modal qr
     $('#Btn2{{$value}}').on('click',function(){
         $('#Modal2{{$value}}').show();
-        var url ="{{route('qrcode',$val->p_slug)}}";
+        var url ="{{route('qrcode', $val->p_slug)}}";
         $.get({
             url:url,
             success:function(e){

@@ -13,11 +13,11 @@
  public function callback($provider)
  {
    $getInfo = Socialite::driver($provider)->user(); 
-   $user = $this->createUser($getInfo,$provider); 
+   $user = $this->createUser($getInfo, $provider); 
    auth()->login($user); 
    return redirect()->to('/');
  }
-    function createUser($getInfo,$provider){
+    function createUser($getInfo, $provider){
         $user = User::where('provider_id', $getInfo->id)->first();
         if (!$user) {
                 $user = User::create([

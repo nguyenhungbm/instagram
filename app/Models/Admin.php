@@ -11,18 +11,18 @@ class Admin extends Authenticatable
     use HasFactory;
     protected $guarded=[''];
     protected $fillable = [
-        'id','name','email','password'
+        'id', 'name', 'email', 'password'
     ];
     public function roles()
     {
-        return $this->belongsToMany(Role::class,'role_user','user_id','role_id');
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
      public function checkPermissionAccess($permissionCheck)
     {
         $roles=\Auth::guard('admins')->user()->role;
         foreach($roles as $list){
-            $permission=$list->permissions;
-            if($permission->contains('name',$permissionCheck)){
+            $permission= $list->permissions;
+            if($permission->contains('name', $permissionCheck)){
                 return true;
             }
         }
@@ -30,8 +30,8 @@ class Admin extends Authenticatable
     }
     public static function search($search){
         return empty($search) ? static::query() 
-        : static::query()->where('id','like','%'.$search.'%')
-        ->orWhere('name','like','%'.$search.'%')
-        ->orWhere('email','like','%'.$search.'%');
+        : static::query()->where('id', 'like', '%'.$search.'%')
+        ->orWhere('name', 'like', '%'.$search.'%')
+        ->orWhere('email', 'like', '%'.$search.'%');
     }
 }

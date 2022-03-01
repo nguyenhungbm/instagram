@@ -15,12 +15,12 @@ class ProfileController extends Controller
         $data=[
             'title' =>'Edit Profile'
         ];
-        return view('account.profile',$data);
+        return view('account.profile', $data);
     }
     public function store(Request $request){
         $user = User::find(\Auth::id());
         if($request->ajax()){ 
-            $user->gender=$request->gender;
+            $user->gender= $request->gender;
             $user->updated_at =Carbon::now();
             $user->save();
             if($user->gender==1){
@@ -36,7 +36,7 @@ class ProfileController extends Controller
                 return __('translate.Prefer Not To Say');
             }
         }
-        $data=$request->except('_token','gender');
+        $data= $request->except('_token', 'gender');
         $data['updated_at']=Carbon::now();
         $user->update($data);
         return redirect()->back();
@@ -45,7 +45,7 @@ class ProfileController extends Controller
         $data=[
             'title' =>'Change Password'
         ];
-        return view('account.password',$data);
+        return view('account.password', $data);
     }
     public function store_password(Request $request){
         if(strlen($request->password)<6){
@@ -89,12 +89,12 @@ class ProfileController extends Controller
         return redirect()->back();
     }
     public function ConfirmPhone(Request $request){
-        return view('account.confirm_phone',$request->phone) ;
+        return view('account.confirm_phone', $request->phone) ;
     }
     public function LoginActivity(){
         $data=[
             'title' =>'Login Activity'
             ];
-        return view('account.login-activity',$data) ;
+        return view('account.login-activity', $data) ;
     }
 }

@@ -4,7 +4,7 @@
 <div class="top-right clr  ">
    <div class="user">
       <a href="#">
-      <img src="{{ pare_url_file('ninja.jpg','user') }}"   class="rounded-circle ">
+      <img src="{{ pare_url_file('ninja.jpg', 'user') }}"   class="rounded-circle ">
       {{ $group_room->name}}
       </a>
    </div>

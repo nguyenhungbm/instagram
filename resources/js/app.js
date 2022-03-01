@@ -21,8 +21,10 @@ window.Vue = require('vue').default;
 
 Vue.component('chat', require('./components/Chat.vue').default);
 Vue.component('chat_group', require('./components/ChatGroup.vue').default);
+Vue.component('pusher-video-call', require('./components/PusherVideoCall.vue').default);
 Vue.component('video-call', require('./components/VideoCall.vue').default);
 Vue.component('chat-component', require('./components/ChatComponent.vue').default)
+Vue.component('conversation-component', require('./components/ConversationComponent.vue').default)
 
 Vue.component('chat-composer', require('./components/ChatComposer.vue').default);
 Vue.component('notification', require('./components/Notification.vue').default);
@@ -69,12 +71,7 @@ const app = new Vue({
                     this.chats.chat.push(e.chat);
                 });
         } 
-         
-        Echo.private('photos')
-                .listen('NewPhoto', (e) => {
-                    console.log(e);
-                    this.chats.chat.push(e.chat);
-                });
+          
 
         //chat.group 
                 if(roomId != undefined){

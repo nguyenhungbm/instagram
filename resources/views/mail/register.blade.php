@@ -41,7 +41,7 @@
         <p>Xin chào <b> {{ $name}}</b>,</p>
         <p>Cảm ơn bạn đã đăng ký tài khoản trên Insta.es. Để có được trải nghiệm dịch vụ và được hỗ trợ tốt nhất, bạn cần hoàn thiện xác thực tài khoản.</p> 
         <p>Vui lòng bấm nút Xác thực để hoàn tất quá trình này.</p>
-        <div style="text-align:center"><a href="{{route('user.verify.gmail',$user)}}" class="button" style="color:white">Xác thực</a></div>
+        <div style="text-align:center"><a href="{{route('user.verify.gmail', $user)}}" class="button" style="color:white">Xác thực</a></div>
        <p> Liên hệ với chúng tôi để được hỗ trợ nhiều hơn:</p>
        <p> Hotline: <a href="tel:0948561668">0948561668</a> </p>
        <p>Email: <a href="mailto:hung0913003358@gmail.com">hung0913003358@gmail.com</a></p> 

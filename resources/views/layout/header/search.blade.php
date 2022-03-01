@@ -16,7 +16,7 @@
            $('.input-search').val("");
        })
         $('#input-search').on('keyup',function(){
-            var val =$(this).val();  
+            var val = $(this).val();  
             if(val.length >= 2){
                 $('.lists').removeClass('d-none');
                 var URL="{{route('search')}}";   

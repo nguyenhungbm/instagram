@@ -264,7 +264,7 @@
 
 			o.datesDisabled = o.datesDisabled||[];
 			if (!$.isArray(o.datesDisabled)) {
-				o.datesDisabled = o.datesDisabled.split(',');
+				o.datesDisabled = o.datesDisabled.split(', ');
 			}
 			o.datesDisabled = $.map(o.datesDisabled, function(d){
 				return DPGlobal.parseDate(d, format, o.language, o.assumeNearbyYear);
@@ -1696,7 +1696,7 @@
 		minViewMode: 0,
 		maxViewMode: 4,
 		multidate: false,
-		multidateSeparator: ',',
+		multidateSeparator: ', ',
 		orientation: "auto",
 		rtl: false,
 		startDate: -Infinity,

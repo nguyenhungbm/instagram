@@ -12,7 +12,7 @@ body{
 @section('contents')
 <div class="w-80">
     <div class="d-flex" style="justify-content:center">
-        @include('layout.avatar',['user' =>\Auth::user(),'height'=>'40px'])
+        @include('layout.avatar',['user' =>\Auth::user(), 'height'=>'40px'])
         <div style="padding: 15px 25px;">
             <b>{{\Auth::user()->c_name}}</b><br>
             <p>{{\Auth::user()->user}}</p>

@@ -64,7 +64,7 @@
                     </td> 
                    
                     <td class="d-flex">
-                        <a href="{{ route('permission.edit',$list->id)}}" class="btn btn-sm btn-primary mr-4">Sửa</a> 
+                        <a href="{{ route('permission.edit', $list->id)}}" class="btn btn-sm btn-primary mr-4">Sửa</a> 
                         <a href="javascript:;" wire:click="destroy({{$list->id}})" class="text-danger">Xóa</a>
                             
                     </td>
