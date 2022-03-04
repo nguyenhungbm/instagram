@@ -25,6 +25,7 @@
         <div><button id="logout">Logout</button></div>
         <div><div class="red">ID :</div> <span id="id"></span></div>
         <div><div class="red">Name :</div> <span id="name"></span></div>
+         <div><div class="red">Email :</div> <span id="email"></span></div>
         <div><div class="red">AccessToken :</div> <span id="AccessToken"></span></div>
         <div><div class="red">IDToken :</div> <span id="IDToken"></span></div>
         <div><div class="red">DecodedIDToken : </div><span id="DecodedIDToken"></span></div>
@@ -50,6 +51,7 @@
                         document.getElementById("picture").setAttribute('src',profile.pictureUrl);
                         document.getElementById("statusMessage").innerHTML = profile.statusMessage;
                         document.getElementById("id").innerHTML = profile.userId;
+                        document.getElementById("email").innerHTML = profile.email;
                         document.getElementById("AccessToken").innerHTML = liff.getAccessToken();
                         document.getElementById("IDToken").innerHTML = liff.getIDToken();
                         document.getElementById("DecodedIDToken").innerHTML = liff.getDecodedIDToken();
