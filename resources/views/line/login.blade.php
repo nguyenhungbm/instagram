@@ -51,7 +51,7 @@
                         document.getElementById("picture").setAttribute('src',profile.pictureUrl);
                         document.getElementById("statusMessage").innerHTML = profile.statusMessage;
                         document.getElementById("id").innerHTML = profile.userId;
-                        document.getElementById("email").innerHTML = liff.getDecodedIDToken().email;
+                        document.getElementById("email").innerHTML = liff.email;
                         document.getElementById("AccessToken").innerHTML = liff.getAccessToken();
                         document.getElementById("IDToken").innerHTML = liff.getIDToken();
                         document.getElementById("DecodedIDToken").innerHTML = liff.getDecodedIDToken();
