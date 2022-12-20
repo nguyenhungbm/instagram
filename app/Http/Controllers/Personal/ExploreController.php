@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Personal;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class ExploreController extends Controller
 {
@@ -11,9 +10,11 @@ class ExploreController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index(){ 
-        $viewData=[ 
-            'title'=>'Khám phá'
+
+    public function index()
+    {
+        $viewData = [
+            'title' => 'Khám phá'
         ];
         return view('explore', $viewData);
     }

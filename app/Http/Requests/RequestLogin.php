@@ -24,15 +24,16 @@ class RequestLogin extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'required',
-            'password'=>'required',
+            'email' => 'required',
+            'password' => 'required',
         ];
     }
+
     public function messages()
     {
         return [
-            'email.required'=>'Bạn chưa điền tên đăng nhập',
-            'password.required'=>'Bạn chưa điền mật khẩu',
+            'email.required' => 'Bạn chưa điền tên đăng nhập',
+            'password.required' => 'Bạn chưa điền mật khẩu',
         ];
     }
 }

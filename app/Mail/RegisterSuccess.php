@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -17,6 +16,7 @@ class RegisterSuccess extends Mailable
      * @return void
      */
     private $name, $user;
+
     public function __construct($name, $user)
     {
         $this->name = $name;
@@ -31,11 +31,11 @@ class RegisterSuccess extends Mailable
     public function build()
     {
         return $this
-        ->subject('Xác thực tài khoản')
-        ->view('mail.register')->with([
-            'name' =>$this->name,
-            'user' =>$this->user
+            ->subject('Xác thực tài khoản')
+            ->view('mail.register')->with([
+                'name' => $this->name,
+                'user' => $this->user
 
-        ]);
+            ]);
     }
 }

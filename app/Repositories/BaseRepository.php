@@ -2,21 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Repositories\RepositoryInterface;
-
 abstract class BaseRepository implements RepositoryInterface
 {
     //model muốn tương tác
     protected $model;
 
-   //khởi tạo
+    //khởi tạo
     public function __construct()
     {
         $this->setModel();
     }
 
     //lấy model tương ứng
-    abstract public function getModel(); 
+    abstract public function getModel();
 
     /**
      * Set model
@@ -33,13 +31,6 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->model->all();
     }
 
-    public function find($id)
-    {
-        $result = $this->model->find($id);
-
-        return $result;
-    }
-
     public function create($attributes = [])
     {
         return $this->model->create($attributes);
@@ -54,6 +45,13 @@ abstract class BaseRepository implements RepositoryInterface
         }
 
         return false;
+    }
+
+    public function find($id)
+    {
+        $result = $this->model->find($id);
+
+        return $result;
     }
 
     public function delete($id)

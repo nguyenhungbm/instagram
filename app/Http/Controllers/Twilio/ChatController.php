@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Twilio;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Twilio\Jwt\AccessToken;
-use App\Models\User;
 use App\Models\Twilio;
-use Twilio\Rest\Client;
+use App\Models\User;
 use Auth;
-use Str;
+use Config;
+use Illuminate\Http\Request;
 use Log;
+use Str;
+use Twilio\Rest\Client;
+
 class ChatController extends Controller
 {
     public function __construct()
@@ -25,15 +26,17 @@ class ChatController extends Controller
     {
         $users = User::take(10)->get();
         $title = 'Chat';
-        return view('twilio.messages.index', compact('users', 'title')); 
+        return view('twilio.messages.index', compact('users', 'title'));
     }
+
     public function list(Request $request)
     {
-        $chat = Twilio::where('token', $request->channel)->whereNotNull('body')->get();  
-        return $chat; 
+        $chat = Twilio::where('token', $request->channel)->whereNotNull('body')->get();
+        return $chat;
     }
+
     public function chat(Request $request, $ids)
-    {  
+    {
         $authUser = $request->user();
         $otherUser = User::find(explode('-', $ids)[1]);
         $users = User::take(10)->get();
@@ -42,63 +45,64 @@ class ChatController extends Controller
         })->orWhere(function ($query) use ($otherUser) {
             $query->where('author', $otherUser->email)->where('friend', Auth::user()->email);
         })->first();
-        
-        $twilio = new Client(\Config::get('env.twilio_account_sid'), \Config::get('env.twilio_account_token'));
+
+        $twilio = new Client(Config::get('env.twilio_account_sid'), Config::get('env.twilio_account_token'));
         // Fetch channel or create a new one if it doesn't exist
-        if(!$room){
-            $channel = $twilio->conversations->v1->conversations 
-                        ->create([
-                            "uniqueName" => $authUser->id . '-' . $otherUser->id,
-                            "friendlyName" => $authUser->email . '-' . $otherUser->email
-                        ]);
+        if (!$room) {
+            $channel = $twilio->conversations->v1->conversations
+                ->create([
+                    "uniqueName" => $authUser->id . '-' . $otherUser->id,
+                    "friendlyName" => $authUser->email . '-' . $otherUser->email
+                ]);
             // add first user 
             $firstUser = $twilio->conversations->v1->conversations($channel->sid)
-                        ->participants
-                        ->create([
-                                    "identity" => $authUser->email
-                                ]
-                        );
-        
+                ->participants
+                ->create([
+                        "identity" => $authUser->email
+                    ]
+                );
+
             // add second user 
             $secondUser = $twilio->conversations->v1->conversations($channel->sid)
-            ->participants
-            ->create([
-                         "identity" => $otherUser->email
-                     ]
-            );
+                ->participants
+                ->create([
+                        "identity" => $otherUser->email
+                    ]
+                );
             $room = Twilio::create([
-                'author'     => Auth::user()->email, 
-                'friend'     => $otherUser->email,
-                'token'      => Auth::user()->id.'-'.$otherUser->id, 
+                'author' => Auth::user()->email,
+                'friend' => $otherUser->email,
+                'token' => Auth::user()->id . '-' . $otherUser->id,
                 'channelSid' => $channel->sid
             ]);
-    }
-    
+        }
+
         $title = 'Chat';
         $otherUser->room = $room->token;
         $otherUser->channelSid = $room->channelSid;
         return view('twilio.chat', compact('users', 'otherUser', 'title'));
     }
 
-    public function store(Request $request){
-        return Log::info($request->all())   ;
+    public function store(Request $request)
+    {
+        return Log::info($request->all());
         $message = Twilio::where('channelSid', $request->channelSid)->orderBy('id', 'desc')->first();
-        if($message->author == Auth::user()->email){
+        if ($message->author == Auth::user()->email) {
             $friend = $message->friend;
-        }else{
+        } else {
             $friend = $message->author;
         }
         $message->repeats = '0';
         $message->update();
         $chat = Twilio::create([
-            'author'    => Auth::user()->email,
-            'friend'     => $friend, 
-            'body'       => $request->body,
-            'token'      => $message->token,
-            'repeats'    => 1,
+            'author' => Auth::user()->email,
+            'friend' => $friend,
+            'body' => $request->body,
+            'token' => $message->token,
+            'repeats' => 1,
             'channelSid' => $message->channelSid,
             'type' => $request->type
         ]);
-        return 200; 
+        return 200;
     }
 }

@@ -11,12 +11,15 @@ class PostImage extends Controller
     {
         $this->middleware('auth');
     }
-    public function CommentPost(Request $request){  
+
+    public function CommentPost(Request $request)
+    {
         $postService = app()->make('PostService');
         return $postService->comment($request->all());
     }
 
-    public function LikePost(Request $request){
+    public function LikePost(Request $request)
+    {
         $postService = app()->make('PostService');
         return $postService->like($request->all());
     }

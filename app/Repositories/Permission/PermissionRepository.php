@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Repositories\Permission;
 
+use App\Models\Permission;
 use App\Repositories\BaseRepository;
 
 class PermissionRepository extends BaseRepository implements PermissionRepositoryInterface
@@ -8,7 +10,7 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
     //lấy model tương ứng
     public function getModel()
     {
-        return \App\Models\Permission::class;
+        return Permission::class;
     }
 
     public function getPermission()
