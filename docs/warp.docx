@@ -1,0 +1,7 @@
+Install warp 1.1.1.1 cho ubuntu :
+B1: Link cài: https://pkg.cloudflareclient.com/packages/cloudflare-warp
+B2: Sau khi tải 1.1.1.1 xong thì đăng ký cho ubuntu theo hướng dẫn trong link này: https://developers.cloudflare.com/warp-client/get-started/linux/
+B3: Đây là link đăng ký theo nhóm của warp trên ubuntu: https://community.cloudflare.com/t/warp-client-for-linux-with-teams/272426/5
+B4: Sau khi đăng ký nhóm xong thì mình sẽ turn-on lại warp ở B2
+Trong quá trình cài đặt, nếu gặp lỗi Unable to connect to CloudflareWARP daemon thì có thể fix theo link này: https://community.cloudflare.com/t/solved-cloudflare-warp-daemon-error-when-register-the-client/281977
+=> Khi chạy cmd https://developers.cloudflare.com/warp-client/get-started/linux/ nếu có warp=on thì là đã install thành công

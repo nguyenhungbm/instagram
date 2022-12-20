@@ -1,0 +1,16 @@
+Quy trình merge nhiều commit :
+git branch -d develop
+git fetch origin
+git rebase --abort
+git rebase -i HEAD~2
+Uncomment tất cả commit cũ
+
+Git merge commits : git rebase -i HEAD~2
+Git revert merge commits:  git rebase --abort
+
+Pull code mới nhất từ develop
+git branch -D develop
+git fetch origin
+git rebase -i origin/develop
+git add .
+git rebase --continue 
