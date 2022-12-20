@@ -1,8 +1,11 @@
 <?php
+
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
-use function foo\func;
 use Illuminate\Support\Str;
+
+use function foo\func;
+
 if (!function_exists('upload_image')) {
     /**
      * @param $file [tên file trùng tên input]
@@ -10,10 +13,10 @@ if (!function_exists('upload_image')) {
      * @return array|int [ tham số trả về là 1 mảng - nếu lỗi trả về int ]
      */
     function upload_image($file, $folder = '', array $extend = array())
-    { 
+    {
         $code = 1;
         // lay duong dan anh
-        $baseFilename = public_path() . '/uploads/' .  $_FILES[$file]['name'];
+        $baseFilename = public_path() . '/uploads/' . $_FILES[$file]['name'];
 
         // thong tin file
         $info = new SplFileInfo($baseFilename);
@@ -22,31 +25,35 @@ if (!function_exists('upload_image')) {
         $ext = strtolower($info->getExtension());
 
         // kiem tra dinh dang file
-        if (!$extend)
+        if (!$extend) {
             $extend = ['png', 'jpg', 'jpeg', 'webp', 'mp3'];
+        }
 
-        if (!in_array($ext, $extend))
+        if (!in_array($ext, $extend)) {
             return $data['code'] = 0;
+        }
 
         // Tên file mới
         $nameFile = trim(str_replace('.' . $ext, '', strtolower($info->getFilename())));
-        $filename = Str::random(5).Str::slug($nameFile) . '.' . $ext;
+        $filename = Str::random(5) . Str::slug($nameFile) . '.' . $ext;
 
         // thu muc goc de upload
         $path = public_path() . '/uploads/';
-        if ($folder)
-            $path = public_path() . '/uploads/' . $folder . '/' ;
+        if ($folder) {
+            $path = public_path() . '/uploads/' . $folder . '/';
+        }
 
-        if (!\File::exists($path))
+        if (!\File::exists($path)) {
             mkdir($path, 0777, true);
+        }
 
         // di chuyen file vao thu muc uploads
         move_uploaded_file($_FILES[$file]['tmp_name'], $path . $filename);
 
         $data = [
-            'name'     => $filename,
-            'code'     => $code,
-            'path'     => $path,
+            'name' => $filename,
+            'code' => $code,
+            'path' => $path,
             'path_img' => 'uploads/' . $filename
         ];
 
@@ -57,21 +64,25 @@ if (!function_exists('upload_image')) {
 if (!function_exists('get_client_ip')) {
     function get_client_ip()
     {
-        $ipaddress = '';
-        if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = 'UNKNOWN';
+        if (getenv('HTTP_CLIENT_IP')) {
             $ipaddress = getenv('HTTP_CLIENT_IP');
-        else if (getenv('HTTP_X_FORWARDED_FOR'))
+        }
+        if (getenv('HTTP_X_FORWARDED_FOR')) {
             $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-        else if (getenv('HTTP_X_FORWARDED'))
+        }
+        if (getenv('HTTP_X_FORWARDED')) {
             $ipaddress = getenv('HTTP_X_FORWARDED');
-        else if (getenv('HTTP_FORWARDED_FOR'))
+        }
+        if (getenv('HTTP_FORWARDED_FOR')) {
             $ipaddress = getenv('HTTP_FORWARDED_FOR');
-        else if (getenv('HTTP_FORWARDED'))
+        }
+        if (getenv('HTTP_FORWARDED')) {
             $ipaddress = getenv('HTTP_FORWARDED');
-        else if (getenv('REMOTE_ADDR'))
+        }
+        if (getenv('REMOTE_ADDR')) {
             $ipaddress = getenv('REMOTE_ADDR');
-        else
-            $ipaddress = 'UNKNOWN';
+        }
 
         return $ipaddress;
     }
@@ -80,13 +91,16 @@ if (!function_exists('get_client_ip')) {
 
 if (!function_exists('pare_url_file')) {
     function pare_url_file($image, $folder = '')
-    {    
-        if(substr($image,0,4)=='http')
+    {
+        if (substr($image, 0, 4) == 'http') {
             return $image;
-        if($folder!='')
+        }
+        if ($folder != '') {
             return '/uploads/' . $folder . '/' . $image;
-        if($folder=='')
+        }
+        if ($folder == '') {
             return '/uploads/' . $image;
+        }
     }
 }
 //kiểm tra giao diện user  sử dụng
@@ -110,11 +124,11 @@ if (!function_exists('number_price')) {
     function number_price($price, $sale)
     {
         if ($sale == 0) {
-            return number_format($price,0, ', ', '.');
+            return number_format($price, 0, ', ', '.');
         }
 
         $price = ((100 - $sale) * $price) / 100;
-        $price =number_format($price,0, ', ', '.');
+        $price = number_format($price, 0, ', ', '.');
         return $price;
     }
 }
@@ -124,20 +138,22 @@ if (!function_exists('get_data_user')) {
     {
         return Auth::guard($type)->user() ? Auth::guard($type)->user()->$field : '';
     }
-} 
+}
 
 if (!function_exists('get_name_short')) {
     function get_name_short($name)
     {
-        if ($name == '') return "[N\A]";
+        if ($name == '') {
+            return "[N\A]";
+        }
 
-        $name      = trim($name);
+        $name = trim($name);
 
-        $arrayName = explode(' ', $name,2);
+        $arrayName = explode(' ', $name, 2);
         $string = '';
         if (count($arrayName)) {
             foreach ($arrayName as $item) {
-                $string .= mb_substr($item,0,1);
+                $string .= mb_substr($item, 0, 1);
             }
         }
 
@@ -145,8 +161,7 @@ if (!function_exists('get_name_short')) {
     }
 }
 
-if (!function_exists('detectDevice'))
-{
+if (!function_exists('detectDevice')) {
     function detectDevice()
     {
         $instance = new Jenssegers\Agent\Agent();
@@ -155,23 +170,21 @@ if (!function_exists('detectDevice'))
     }
 }
 
-if (!function_exists('get_agent'))
-{
+if (!function_exists('get_agent')) {
     function get_agent()
     {
         return [
-            'device'       => detectDevice()->device(),
-            'platform'     => $platform = detectDevice()->platform(),
+            'device' => detectDevice()->device(),
+            'platform' => $platform = detectDevice()->platform(),
             'platform_ver' => detectDevice()->version($platform),
-            'browser'      => $browser = detectDevice()->browser(),
-            'browser_ver'  => detectDevice()->version($browser),
-            'time'         => Carbon::now()
+            'browser' => $browser = detectDevice()->browser(),
+            'browser_ver' => detectDevice()->version($browser),
+            'time' => Carbon::now()
         ];
     }
 }
 
-if( !function_exists('get_time_login'))
-{
+if (!function_exists('get_time_login')) {
     function get_time_login($data)
     {
         $data = json_decode($data, true);
@@ -179,16 +192,16 @@ if( !function_exists('get_time_login'))
     }
 }
 
-if (!function_exists('check_admin'))
-{
-	function check_admin()
-	{
-		return get_data_user('admins', 'level') == 1 ? true : false;
-	}
+if (!function_exists('check_admin')) {
+    function check_admin()
+    {
+        return get_data_user('admins', 'level') == 1 ? true : false;
+    }
 }
 
 if (!function_exists('create_time_carbon')) {
-	function create_time_carbon($time) {
-		return \Illuminate\Support\Carbon::createFromTimeString($time);
-	}
+    function create_time_carbon($time)
+    {
+        return \Illuminate\Support\Carbon::createFromTimeString($time);
+    }
 }
