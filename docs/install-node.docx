@@ -1,4 +1,0 @@
-install node v14.16.0 ubuntu
-sudo apt update
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-nvm install v14.16.0

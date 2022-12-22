@@ -1,0 +1,16 @@
+install node v14.16.0 ubuntu
+sudo apt update
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+nvm install v14.16.0
+
+Install composer ubuntu
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-20-04
+
+Install project in aws
+https://www.youtube.com/watch?v=18HLods31k4
+
+Install web server in aws(run web without run php artisan)
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-laravel-with-nginx-on-ubuntu-20-04
+
+Lưu ý khi cài nginx
+php-fpm trong file /etc/nginx/sites-available/default phải trùng với php-fpm cài trên linux
