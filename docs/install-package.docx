@@ -14,3 +14,6 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-la
 
 Lưu ý khi cài nginx
 php-fpm trong file /etc/nginx/sites-available/default phải trùng với php-fpm cài trên linux
+
+Connect rds ec2
+mysql -h instagram.c2boaih6fp84.us-east-1.rds.amazonaws.com -P 3306 -u developer -p
