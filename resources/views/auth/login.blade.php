@@ -68,7 +68,7 @@
             <div class="error text-danger"></div>
             <div class="username">
                 <input type="text" id="username" value="hung0913003358@gmail.com" name="email" autocomplete="off">
-                <label for="username" class="label-user">Số điện thoại, tên người dùng hoặc email</label>
+                <label for="username" class="label-user">Số điện thoại hoặc email</label>
             </div>
             @if($errors->first('email'))
                 <span class="text-danger">{{$errors->first('email') }}</span>
