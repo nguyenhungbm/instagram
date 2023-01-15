@@ -90,7 +90,7 @@
         </div>
         <br><br>
         <div class="qr-login">
-            <a href="javascript:" id="myBtn"><i class="fa fa-lg fa-qrcode"></i> Đăng nhập bằng mã qr</a>
+            <a href="javascript:" id="myBtn"><i class="fa fa-lg fa-qrcode"></i> Đăng nhập bằng mã qr(ec2-1)</a>
         </div>
         <div class="fb-login">
             <a href="{{ url('/auth/redirect/facebook') }}"><i class="fa fa-lg fa-facebook-square"></i> Đăng nhập
